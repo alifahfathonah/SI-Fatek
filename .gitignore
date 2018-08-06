@@ -5,6 +5,9 @@
 !*/cache/index.html
 !*/cache/.htaccess
 
+index.php
+.htaccess
+
 zerolevel2/config/database.php
 zerolevel2/config/config.php
 
