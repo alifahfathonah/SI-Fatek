@@ -7,10 +7,22 @@ Proyek pengembangan sistem informasi Fakultas Teknik Universitas Sam Ratulangi.
 Versi 1.0.0
 1. Sistem informasi SK1
 
-### Prerequisites
+## Prerequisites
 
 1. Apache Web Server & MySQL Database
 2. Text Editor.
+3. GitHub Desktop
+
+## Instalation
+
+1. Click Clone or download
+2. Clik Open in desktop 
+3. In GitHub desktop: choose your htdocs directory
+4. In GitHub desktop: create a branch with your name in it
+5. Customize $config['base_url'] in /project/zerolevel2/config/config.php to your configuration
+6. Customize /project/zerolevel2/config/database.php to your configuration
+7. Working the code
+8. Publish the branch
 
 ## Project Structure
 
