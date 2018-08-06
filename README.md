@@ -2,7 +2,7 @@
 
 Proyek pengembangan sistem informasi Fakultas Teknik Universitas Sam Ratulangi. 
 
-## Fitur Sistem
+## Versioning
 
 Versi 1.0.0
 1. Sistem informasi SK1
@@ -17,12 +17,15 @@ Versi 1.0.0
 
 1. Click Clone or download
 2. Clik Open in desktop 
-3. In GitHub desktop: choose your htdocs directory
-4. In GitHub desktop: create a branch with your name in it
-5. Customize $config['base_url'] in /project/zerolevel2/config/config.php to your configuration
-6. Customize /project/zerolevel2/config/database.php to your configuration
-7. Working the code
-8. Publish the branch
+3. In GitHub desktop: choose your htdocs directory for the project
+4. Before working the code, don't forget to create a branch with your name in it
+5. Customize these two file with your development environment
+```
+$config['base_url'] in /project/zerolevel2/config/config.php
+/project/zerolevel2/config/database.php
+```
+6. Working the code
+7. Publish the branch
 
 ## Project Structure
 
@@ -50,11 +53,18 @@ Versi 1.0.0
 
 ### Model structure
 
-Function untuk mengakses database luar, diletakkan pada file model masing-masing
+Function untuk mengakses database luar, diletakkan pada file model masing-masing.
 ```
 /model/akademika_portal.php
 /model/akademika_sdm.php
 /model/akademika_sia.php
+```
+In the future, akan dikembangkan webservice untuk mengakses database luar.
+
+### Testing Controller
+Create your own testing controller in folder testing. Note: This directory will be remove in production stage
+```
+/controller/testing/
 ```
 
 ## Tim Pengembang
