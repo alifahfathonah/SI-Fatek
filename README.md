@@ -67,6 +67,12 @@ Create your own testing controller in folder testing. Note: This directory will 
 /controller/testing/
 ```
 
+### Images and assets
+Place your editable custom css and js in to
+```
+/assets/custom_css/ & /assets/custom_js/
+```
+
 ## Tim Pengembang
 
 * **Alwin Sambul** - *Project Leader* - asambul@unsrat.ac.id
