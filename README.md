@@ -61,5 +61,5 @@ Function untuk mengakses database luar, diletakkan pada file model masing-masing
 
 * **Alwin Sambul** - *Project Leader* - asambul@unsrat.ac.id
 * **Xaverius Najoan** - *Programmer* - xnajoan@unsrat.ac.id
-* **Edsie Jacobus** - *Database* - 
-* **Virginia Tulenan** - *System Analyst* - 
+* **Edsie Jacobus** - *Database/Programmer* - 
+* **Virginia Tulenan** - *System Analyst/Programmer* - 
