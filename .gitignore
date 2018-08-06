@@ -6,6 +6,7 @@
 !*/cache/.htaccess
 
 zerolevel2/config/database.php
+zerolevel2/config/config.php
 
 user_guide_src/build/*
 user_guide_src/cilexer/build/*
