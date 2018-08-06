@@ -18,3 +18,20 @@ zerolevel2/logs/*
 !zerolevel2/logs/index.html
 !zerolevel2/logs/.htaccess
 /vendor/
+
+.DS_Store
+composer.lock
+
+# IDE Files
+#-------------------------
+/nbproject/
+.idea/*
+
+## Sublime Text cache files
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+*.sublime-project
+/tests/tests/
+/tests/results/

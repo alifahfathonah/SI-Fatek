@@ -29,6 +29,12 @@ $config['base_url'] in /project/zerolevel2/config/config.php
 
 ## Project Structure
 
+### CodeIgniter Engine
+Codeigniter engine (/system) are exclude in the project directory. Feel free to edit the index.php file pointing at your system directory
+```
+$system_path = '../system' in /[root]/index.php
+```
+
 ### Siteview Layout
 
 1. Dosen siteview
