@@ -1,8 +1,8 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 <!-- 
-Crafted by: 
-Xaverius Najoan
-http://xaverius.najoan.net
+Develop by: 
+Tim pengembang PTI Fakultas Teknik Unsrat
+http://fatek.unsrat.ac.id
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -12,137 +12,161 @@ http://xaverius.najoan.net
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Portal Fakultas Teknik Unsrat">
-    <meta name="author" content="Xaverius Najoan">
-	<meta name="robots" content="noindex, nofollow">
+    <meta name="author" content="Tim PTI Fatek">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <title>Administrasi Fakultas Teknik</title>
 
-    <title>Administrator | Portal Fatek Unsrat</title>
-	
-	<link href="<?php echo base_url("images/favicon.ico");?>" rel="icon" type="image/x-icon">
+    <link href="<?php echo base_url("images/favicon.ico");?>" rel="icon" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
     <!-- Bootstrap Core CSS -->
-    <link href="<?php echo base_url("assets/css/bootstrap.min.css");?>" rel="stylesheet">
-	
-    <!-- MetisMenu CSS -->
-    <link href="<?php echo base_url("assets/css/metisMenu.min.css");?>" rel="stylesheet">
-	
-    <!-- Plugin CSS -->
-    <?php if (isset($link_tag)) {
-		foreach ($link_tag as $link) {
-            echo link_tag("assets/css/".$link);
-		}
-	}?>
-	
-    <!-- Custom CSS -->
-	<link href="<?php echo base_url("assets/css/portal.css");?>" rel="stylesheet">
+    <link href="<?php echo base_url("assets/adminbsb/plugins/bootstrap/css/bootstrap.css");?>" rel="stylesheet">
 
-    <!-- Custom Fonts -->
-    <link href="<?php echo base_url("assets/font-awesome/css/font-awesome.min.css");?>" rel="stylesheet" type="text/css">
+    <!-- Waves Effect Css -->
+    <link href="<?php echo base_url("assets/adminbsb/plugins/node-waves/waves.css");?>" rel="stylesheet" />
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-	
-    <!-- jQuery -->
-    <script src="<?php echo base_url("assets/js/jquery.min.js");?>"></script>
+    <!-- Animation Css -->
+    <link href="<?php echo base_url("assets/adminbsb/plugins/animate-css/animate.css");?>" rel="stylesheet" />
+
+    <!-- Morris Chart Css-->
+    <link href="<?php echo base_url("assets/adminbsb/plugins/morrisjs/morris.css");?>" rel="stylesheet" />
+
+    <!-- Custom Css -->
+    <link href="<?php echo base_url("assets/adminbsb/css/style.css");?>" rel="stylesheet" />
+
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="<?php echo base_url("assets/adminbsb/css/themes/all-themes.css");?>" rel="stylesheet" />
 
 </head>
 
-<body>
-	<div id="wrapper">
-		<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="<?php echo base_url();?>">
-					<span class="logo-text"><i class="fa fa-users fa-fw"></i> Portal Fakultas Teknik</span>
-				</a>
-			</div>
-
-			<ul class="nav navbar-top-links navbar-right" id="user-menu">
-				<li>
-					<a href="<?php echo site_url("admin/dashboard");?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-				</li>	
-				<li>
-					<a href="<?php echo site_url("admin/dashboard/profile"); ?>"><i class="fa fa-user fa-fw"></i> My Profile</a>
-				</li>
-				
-				<li><a href="<?php echo site_url("admin/logout"); ?>"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
-			</ul>
-
-			<div class="navbar-default sidebar" role="navigation">
-				<div class="sidebar-nav navbar-collapse">
-					<ul class="nav" id="side-menu">	
-						<li>
-							<a href="<?php echo site_url("admin/data-mahasiswa");?>"><i class="fa fa-fw fa-male"></i> Data Mahasiswa</a>
-						</li>
-						<li>
-							<a href="<?php echo site_url("admin/data-alumni");?>"><i class="fa fa-fw fa-graduation-cap"></i> Data Alumni</a>
-						</li>
-						<li>
-							<a href="<?php echo site_url("admin/data-dosen");?>"><i class="fa fa-university fa-fw"></i> Data Dosen</a>
-						</li>
-						<li>
-							<a href="<?php echo site_url("admin/data-dokumen");?>"><i class="fa fa-folder fa-fw"></i> Dokumen Dosen</a>
-						</li>
-						<?php if($this->session->userdata['logged_in_admin']['curr_id'] == "1") {?>
-						<li>
-							<a href="<?php echo site_url("admin/user");?>"><i class="fa fa-users fa-fw"></i> Kelola User</a>
-						</li>
-						<?php }?>
-						
-					</ul>
-				</div>
-			</div>
-		</nav>
-
-		<div id="page-wrapper">
-
-			<div class="container-fluid">
-
-				<!-- Page Heading -->
-				<div class="row">
-					<div class="col-lg-12">
-						<h1 class="page-header">
-						<?php echo $title;?> <?php if(!empty($subtitle)) echo "<small>".$subtitle."</small>";?>
-						</h1>
-					</div>
-				</div>
-				<!-- /.row -->
-				
-				<?php if($body_page) $this->load->view($body_page);?>
-
-			</div>
-			<!-- /.container-fluid -->
-
-		</div>
-		<!-- /#page-wrapper -->
-		
-		<footer>
-		<div class="text-center">
-			Fakultas Teknik Universitas Sam Ratulangi - Copyright &copy; 2017 - All Rights Reserved
-		</div>
-		</footer>
-		
+<body class="theme-blue">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Please wait...</p>
+        </div>
     </div>
-    <!-- /#wrapper -->
-	
-    <!-- Bootstrap Core JavaScript -->
-    <script src="<?php echo base_url("assets/js/bootstrap.min.js");?>"></script>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars --> 
+    <!-- Top Bar -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+                <a href="javascript:void(0);" class="bars"></a>
+                <a class="navbar-brand" href="index.html">Administrasi Fatek Unsrat</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="<?php echo site_url("login/logout");?>">Logout <i class="material-icons">logout</i></a></li>                   
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- #Top Bar -->
+    <section>
+        <!-- Left Sidebar -->
+        <aside id="leftsidebar" class="sidebar">
+            <!-- User Info -->
+            <div class="user-info">
+                <div class="info-container">
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><b><?php echo $this->session->userdata['logged_in_admin']['nama'];?></b></div>
+                    <div class="email"><?php echo $this->session->userdata['logged_in_admin']['namaRole'];?></div>
+                    <div class="email"><?php echo $this->session->userdata['logged_in_admin']['namaUnit'];?></div>
+                    <div class="btn-group user-helper-dropdown">
+                        <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="javascript:void(0);"><i class="material-icons">person</i>Ganti Password</a></li>                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- #User Info -->
+            <!-- Menu -->
+            <div class="menu">
+                <ul class="list">
+                    <li class="header">DAFTAR MENU</li>
+                    <?php if($menu_page) $this->load->view($menu_page);?>
+                </ul>
+            </div>
+            <!-- #Menu -->
+            <!-- Footer -->
+            <div class="legal">
+                <div class="copyright">
+                    PTI Fatek Unsrat &copy;<?php echo date('Y');?>
+                </div>
+            </div>
+            <!-- #Footer -->
+        </aside>
+        <!-- #END# Left Sidebar -->
+        
+    </section>
 
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="<?php echo base_url("assets/js/metisMenu.min.js");?>"></script>
-	
-    <!-- Custom JavaScript -->
-    <script src="<?php echo base_url("assets/js/portalMenu.js");?>"></script>
-	
+    <section class="content">
+        <div class="container-fluid">
+            <?php if($body_page) $this->load->view($body_page);?>
+        </div>
+
+        <?php $this->load->view('debug');?> 
+    </section>
+        
+    <!-- Jquery Core Js -->
+    <script src="<?php echo base_url("assets/adminbsb/plugins/jquery/jquery.min.js");?>"></script>
+
+    <!-- Bootstrap Core Js -->
+    <script src="<?php echo base_url("assets/adminbsb/plugins/bootstrap/js/bootstrap.js");?>"></script>
+
+    <!-- Select Plugin Js -->
+    <script src="<?php echo base_url("assets/adminbsb/plugins/bootstrap-select/js/bootstrap-select.js");?>"></script>
+
+    <!-- Slimscroll Plugin Js -->
+    <script src="<?php echo base_url("assets/adminbsb/plugins/jquery-slimscroll/jquery.slimscroll.js");?>"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="<?php echo base_url("assets/adminbsb/plugins/node-waves/waves.js");?>"></script>
+
+    <!-- Jquery CountTo Plugin Js -->
+    <script src="<?php echo base_url("assets/adminbsb/plugins/jquery-countto/jquery.countTo.js");?>"></script>
+
+    <!-- Morris Plugin Js -->
+    <script src="<?php echo base_url("assets/adminbsb/plugins/raphael/raphael.min.js");?>"></script>
+    <script src="<?php echo base_url("assets/adminbsb/plugins/morrisjs/morris.js");?>"></script>
+
+    <!-- ChartJs -->
+    <script src="<?php echo base_url("assets/adminbsb/plugins/chartjs/Chart.bundle.js");?>"></script>
+
+    <!-- Flot Charts Plugin Js -->
+    <script src="<?php echo base_url("assets/adminbsb/plugins/flot-charts/jquery.flot.js");?>"></script>
+    <script src="<?php echo base_url("assets/adminbsb/plugins/flot-charts/jquery.flot.resize.js");?>"></script>
+    <script src="<?php echo base_url("assets/adminbsb/plugins/flot-charts/jquery.flot.pie.js");?>"></script>
+    <script src="<?php echo base_url("assets/adminbsb/plugins/flot-charts/jquery.flot.categories.js");?>"></script>
+    <script src="<?php echo base_url("assets/adminbsb/plugins/flot-charts/jquery.flot.time.js");?>"></script>
+
+    <!-- Sparkline Chart Plugin Js -->
+    <script src="<?php echo base_url("assets/adminbsb/plugins/jquery-sparkline/jquery.sparkline.js");?>"></script>
+
+    <!-- Custom Js -->
+    <script src="<?php echo base_url("assets/adminbsb/js/admin.js");?>"></script>
+    <script src="<?php echo base_url("assets/adminbsb/js/portalMenu.js");?>"></script>
+
+
 </body>
 
 </html>
-<?php //include("debug.php");?>
+
