@@ -29,7 +29,7 @@ class Xave extends CI_Controller {
 				$sess_data['kodeJur'] = $data->prodiJurKode;
 				$sess_data['kodeFak'] = $data->prodiFakKode;
 
-				$this->session->set_userdata($sess_data);
+				$this->session->set_userdata('logged_in_dosen',$sess_data);
 			}
 		} else {}
 

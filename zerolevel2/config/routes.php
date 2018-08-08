@@ -59,14 +59,25 @@ $route['translate_uri_dashes'] = TRUE;
 | -------------------------------------------------------------------------
 */
 
-//Siteview Admin Routes
-$route['admin'] = 'admin/dashboard';
-$route['admin/logout'] = 'admin/login/logout';
-
 //Siteview Dosen Routes
-$route['dosen'] = 'dosen/profile';
-$route['dosen/logout'] = 'dosen/login/logout';
+$route['dosen'] = 'dosen/dashboard';
+$route['dosen/logout'] = 'login/logout_dosen';
 
 //Siteview Mahasiswa Routes
-$route['mahasiswa'] = 'mahasiswa/profile';
-$route['mahasiswa/logout'] = 'mahasiswa/login/logout';
+$route['mahasiswa'] = 'mahasiswa/dashboard';
+$route['mahasiswa/logout'] = 'login/logout_mahasiswa';
+
+//Siteview Kalab Routes
+$route['kalab'] = 'kalab/dashboard';
+
+//Siteview Koprodi Routes
+$route['koprodi'] = 'koprodi/dashboard';
+
+//Siteview Kajur Routes
+$route['kajur'] = 'kajur/dashboard';
+
+//Siteview WD1 Routes
+$route['wd1'] = 'wd1/dashboard';
+
+//Siteview Dekan Routes
+$route['dekan'] = 'dekan/dashboard';
