@@ -4,6 +4,7 @@
 */cache/*
 !*/cache/index.html
 !*/cache/.htaccess
+*/.DS_Store
 
 zerolevel2/config/database.php
 zerolevel2/config/config.php
@@ -18,3 +19,5 @@ zerolevel2/logs/*
 !zerolevel2/logs/index.html
 !zerolevel2/logs/.htaccess
 /vendor/
+.DS_Store
+zerolevel2/.DS_Store
