@@ -32,14 +32,17 @@ http://fatek.unsrat.ac.id
     <!-- Animation Css -->
     <link href="<?php echo base_url("assets/adminbsb/plugins/animate-css/animate.css");?>" rel="stylesheet" />
 
+    <!-- JQuery DataTable Css -->
+    <link href="<?php echo base_url("assets/adminbsb/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css");?>" rel="stylesheet" />
+
     <!-- Morris Chart Css-->
     <link href="<?php echo base_url("assets/adminbsb/plugins/morrisjs/morris.css");?>" rel="stylesheet" />
 
     <!-- Custom Css -->
-    <link href="<?php echo base_url("assets/adminbsb/css/style.css");?>" rel="stylesheet" />
+    <link href="<?php echo base_url("assets/adminbsb/css/style.min.css");?>" rel="stylesheet" />
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-    <link href="<?php echo base_url("assets/adminbsb/css/themes/all-themes.css");?>" rel="stylesheet" />
+    <link href="<?php echo base_url("assets/adminbsb/css/themes/all-themes.min.css");?>" rel="stylesheet" />
 
 </head>
 
@@ -123,7 +126,7 @@ http://fatek.unsrat.ac.id
             <?php if($body_page) $this->load->view($body_page);?>
         </div>
 
-        <?php $this->load->view('debug');?> 
+        <?php if (ENVIRONMENT != 'production')  $this->load->view('debug'); //display debug page ?> 
     </section>
         
     <!-- Jquery Core Js -->
@@ -163,7 +166,7 @@ http://fatek.unsrat.ac.id
 
     <!-- Custom Js -->
     <script src="<?php echo base_url("assets/adminbsb/js/admin.js");?>"></script>
-    <script src="<?php echo base_url("assets/adminbsb/js/portalMenu.js");?>"></script>
+    <script src="<?php echo base_url("assets/adminbsb/js/custom.js");?>"></script>
 
 
 </body>

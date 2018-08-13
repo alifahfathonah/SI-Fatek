@@ -29,22 +29,21 @@ class Login extends CI_Controller {
 				
 						$sess_data['username'] = $username;
 						$sess_data['nama'] = "Xaverius Najoan";
-						$sess_data['kodeRole'] = 5;
+						$sess_data['kodeRole'] = 6;
 						$sess_data['namaRole'] = "Kepala Laboratorium/Studio";
-						$sess_data['kodeUnit'] = 77;
-						$sess_data['namaUnit'] = "Lab. Rekayasa Perangkat Lunak";
+						$sess_data['kodeUnit'] = 18;
+						$sess_data['namaUnit'] = "Laboratorium Rekayasa Perangkat Lunak";
 						
 
 						$this->session->set_userdata('logged_in_admin',$sess_data);
 						$this->session->unset_userdata('login_attempt_adm');
 
 						switch ($this->session->userdata['logged_in_admin']['kodeRole']) {
-							case 1 : redirect(site_url('dekan')); break;
-							case 2 : redirect(site_url('wd1')); break;
-							case 3 : redirect(site_url('kajur')); break;
-							case 4 : redirect(site_url('koprodi')); break;
-							case 5 : redirect(site_url('kalab')); break;
-							case 6 : redirect(site_url('koprodi')); break;
+							case 2 : redirect(site_url('dekan')); break;
+							case 3: redirect(site_url('wd1')); break;
+							case 4 : redirect(site_url('kajur')); break;
+							case 5 : redirect(site_url('koprodi')); break;
+							case 6 : redirect(site_url('kalab')); break;
 							default : redirect(site_url('admin')); break;
 						}
 
