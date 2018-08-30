@@ -2,41 +2,23 @@
 
 /*
 |--------------------------------------------------------------------------
-| FT Data Configuration
+| FT Data Constant and Configuration
 |--------------------------------------------------------------------------
 |
 | Created by Xaverius Najoan
 |
 */
 
+define('URL_DOKUMEN',		"http://fatek.unsrat.ac.id/ft_data/dokumen/");
+define('URL_API',			"https://sitdev.unsrat.ac.id/tikdev/usr_api/");
+//define('URL_API',			"http://localhost/unsrat-api/");
+define('URL_FOTO_MHS',		"https://kkt.unsrat.ac.id/images/user_foto/");
+define('DIR_DOKUMEN',		"../ft_data/dokumen/");
+define('DIR_PROPOSAL',		"files/proposal/");
 
-define('LOC_FOTO_DOSEN',		"http://fatek.unsrat.ac.id/ft_data/fotodosen/");
-define('LOC_FOTO_MAHASISWA',	"http://fatek.unsrat.ac.id/ft_data/fotomahasiswa/");
-define('LOC_DOKUMEN_DOSEN',		"http://fatek.unsrat.ac.id/ft_data/dokumen/");
-
-define('DIR_FOTO_DOSEN',	'../ft_data/fotodosen/');
-define('DIR_FOTO_MAHASISWA','../ft_data/fotomahasiswa/');
-define('DIR_DOKUMEN_DOSEN',	'../ft_data/dokumen/');
-
-
-$config['pasfoto_mahasiswa'] = array(
-	'upload_path' 		=> DIR_FOTO_MAHASISWA,
-	'allowed_types' 	=>'jpg|jpeg',
-	'file_ext_tolower'	=> TRUE,
-	'encrypt_name' 		=> TRUE,
-);
-
-$config['pasfoto_dosen'] = array(
-	'upload_path' 		=> DIR_FOTO_DOSEN,
-	'allowed_types' 	=>'jpg|jpeg',
-	'file_ext_tolower'	=> TRUE,
-	'encrypt_name' 		=> TRUE,
-);
-
-$config['dokumen_dosen'] = array(
-	'upload_path' 		=> DIR_DOKUMEN_DOSEN,
+$config['proposal'] = array(
+	'upload_path' 		=> DIR_PROPOSAL,
 	'allowed_types' 	=>'pdf|jpg|jpeg',
 	'file_ext_tolower'	=> TRUE,
-	'encrypt_name' 		=> TRUE,
 	'max_size' 			=> '5000',
 );

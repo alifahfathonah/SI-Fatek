@@ -24,16 +24,18 @@ class Tabel_docgroup extends CI_Model {
 	}	
 
 	public function tambah($data) {
+		$data += array('userUpdate' => $this->session->userdata['username']);
 		$this->db->insert('ref_docgroup', $data);
 		return $this->db->insert_id();
 	}
 	
 	public function delete($id) {
-		return $this->db->delete('ref_docgroup', array('kodeDocGroup' => $id));
+		return $this->db->delete('ref_docgroup', array('docgroupId' => $id));
 	}
 	
 	public function update($data) {
-		$this->db->where('ref_docgroup', $data['kodeDocGroup']);
+		$data += array('userUpdate' => $this->session->userdata['username']);
+		$this->db->where('ref_docgroup', $data['docgroupId']);
 		return $this->db->update('ref_docgroup', $data);
 	}	
 

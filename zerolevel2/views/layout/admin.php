@@ -166,7 +166,7 @@ http://fatek.unsrat.ac.id
 
     <!-- Custom Js -->
     <script src="<?php echo base_url("assets/adminbsb/js/admin.js");?>"></script>
-    <script src="<?php echo base_url("assets/adminbsb/js/custom.js");?>"></script>
+    <script src="<?php echo base_url("assets/adminbsb/js/custom_admin.js");?>"></script>
 
 
 </body>

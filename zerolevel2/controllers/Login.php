@@ -24,8 +24,9 @@ class Login extends CI_Controller {
 				if ($this->form_validation->run() == true) {
 					$username 	= $this->input->post('username',TRUE);
 					$pwd 		= $this->input->post('password',TRUE);
-					
-					if ($pwd == $username) {
+					$result 	= $pwd == $username;
+
+					if ($result) {
 				
 						$sess_data['username'] = $username;
 						$sess_data['nama'] = "Xaverius Najoan";
@@ -36,6 +37,7 @@ class Login extends CI_Controller {
 						
 
 						$this->session->set_userdata('logged_in_admin',$sess_data);
+						$this->session->set_userdata('username',$username);
 						$this->session->unset_userdata('login_attempt_adm');
 
 						switch ($this->session->userdata['logged_in_admin']['kodeRole']) {
@@ -46,9 +48,6 @@ class Login extends CI_Controller {
 							case 6 : redirect(site_url('kalab')); break;
 							default : redirect(site_url('admin')); break;
 						}
-
-						
-						
 						
 					}  else {
 					
@@ -87,11 +86,12 @@ class Login extends CI_Controller {
 	
 	public function logout() {
 		$this->session->unset_userdata('logged_in_admin');
+		$this->session->unset_userdata('username');
 		redirect(site_url('login'));
 	}
 
 	public function dosen() {
-		if(!isset($this->session->userdata['logged_in_dosen']['nip'])) {
+		if(!isset($this->session->userdata['logged_in_dosen'])) {
 
 			if ($this->session->lock_status_dsn == 'locked') {
 				$this->session->set_flashdata('message_login_dosen', '<span class="glyphicon glyphicon-remove"></span> Password salah 3x! Akun terkunci 5 menit!');
@@ -104,18 +104,27 @@ class Login extends CI_Controller {
 				if ($this->form_validation->run() == true) {
 					$username 	= $this->input->post('identity',TRUE);
 					$pwd 		= $this->input->post('password',TRUE);				
+					//$result =  json_decode(file_get_contents(URL_API.'dosen/login?user='.$username.'&pass='.$pwd))->status;
+					$result 	= $pwd == $username;
 
-					if ($pwd == $username) {
+					if ($result) {
 				
-						$sess_data['nip'] = $username;
-						$sess_data['nama'] = "Alwin Sambul";
-						$sess_data['kodeProdi'] = 77;
-						$sess_data['kodeJur'] = 43;
-						$sess_data['kodeFak'] = 2;
+						$data = json_decode(file_get_contents(URL_API.'dosen?nip='.$username));
+						$sess_data['nip'] = $data->nip;
+						$sess_data['nama'] = $data->nama;
+						$sess_data['kodeProdi'] = $data->kodeProdi;
+						$sess_data['kodeJur'] = $data->kodeJurusan;
+						$sess_data['kodeFak'] = $data->kodeFakultas;
 
-						$this->session->set_userdata('logged_in_dosen',$sess_data);
-						$this->session->unset_userdata('login_attempt_dsn');
-						redirect(site_url('dosen'));
+						if ($sess_data['kodeFak'] == '2') {
+
+							$this->session->set_userdata('logged_in_dosen',$sess_data);
+							$this->session->set_userdata('username',$username);
+							$this->session->unset_userdata('login_attempt_dsn');
+							redirect(site_url('dosen'));
+						} else  {
+							$this->session->set_flashdata('message_login_dosen', '<span class="glyphicon glyphicon-remove"></span> Tidak punya hak akses disini');
+						}
 						
 					}  else {
 					
@@ -147,6 +156,7 @@ class Login extends CI_Controller {
 	
 	public function logout_dosen() {
 		$this->session->unset_userdata('logged_in_dosen');
+		$this->session->unset_userdata('username');
 		redirect(site_url('dosen'));
 	}
 
@@ -164,18 +174,28 @@ public function mahasiswa() {
 				if ($this->form_validation->run() == true) {
 					$username 	= $this->input->post('identity',TRUE);
 					$pwd 		= $this->input->post('password',TRUE);
-					
-					if ($pwd == $username) {
-				
-						$sess_data['nim'] = $username;
-						$sess_data['nama'] = "Welhimson Sehang";
-						$sess_data['kodeProdi'] = 77;
-						$sess_data['kodeJur'] = 43;
-						$sess_data['kodeFak'] = 2;
+					//$result =  json_decode(file_get_contents(URL_API.'mahasiswa/login?user='.$username.'&pass='.$pwd))->status;
+					$result 	= $pwd == $username;
 
-						$this->session->set_userdata('logged_in_mahasiswa',$sess_data);
-						$this->session->unset_userdata('login_attempt_mhs');
-						redirect(site_url('mahasiswa'));
+					if ($result) {
+
+						$data = json_decode(file_get_contents(URL_API.'mahasiswa?nim='.$username));
+						$sess_data['nim'] = $data->nim;
+						$sess_data['nama'] = $data->nama;
+						$sess_data['kodeProdi'] = $data->kodeProdi;
+						$sess_data['kodeJur'] = $data->kodeJurusan;
+						$sess_data['kodeFak'] = $data->kodeFakultas;
+						$sess_data['foto'] = URL_FOTO_MHS.$data->foto;
+
+						if ($sess_data['kodeFak'] == '2') {
+
+							$this->session->set_userdata('logged_in_mahasiswa',$sess_data);
+							$this->session->set_userdata('username',$username);
+							$this->session->unset_userdata('login_attempt_mhs');
+							redirect(site_url('mahasiswa'));
+						} else  {
+							$this->session->set_flashdata('message_login_mhs', '<span class="glyphicon glyphicon-remove"></span> Tidak punya hak akses disini');
+						}
 						
 					}  else {
 					
@@ -206,6 +226,7 @@ public function mahasiswa() {
 	
 	public function logout_mahasiswa() {
 		$this->session->unset_userdata('logged_in_mahasiswa');
+		$this->session->unset_userdata('username');
 		redirect(site_url('mahasiswa'));
 	}	
 	

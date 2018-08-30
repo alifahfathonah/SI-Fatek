@@ -15,7 +15,7 @@ http://fatek.unsrat.ac.id
     <meta name="author" content="Tim PTI Fatek">
     <meta name="robots" content="noindex, nofollow">
 	
-    <title>Dosen | Portal Fakultas Teknik</title>
+    <title><?php echo $pageTitle;?> | Portal Fakultas Teknik</title>
 
     <link href="<?php echo base_url("images/favicon.ico");?>" rel="icon" type="image/x-icon">
 
@@ -34,6 +34,9 @@ http://fatek.unsrat.ac.id
 
     <!-- Waves Effect Css -->
     <link href="<?php echo base_url("assets/adminbsb/plugins/node-waves/waves.css");?>" rel="stylesheet" />
+
+    <!-- Sweetalert Css -->
+    <link href="<?php echo base_url("assets/adminbsb/plugins/sweetalert/sweetalert.css");?>" rel="stylesheet" />
 
     <!-- Animation Css -->
     <link href="<?php echo base_url("assets/adminbsb/plugins/animate-css/animate.css");?>" rel="stylesheet" />
@@ -100,7 +103,8 @@ http://fatek.unsrat.ac.id
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
-                            <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>                            
+                            <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
+                            <li><a href="<?php echo site_url('dosen/document');?>"><i class="material-icons">insert_drive_file</i>Dokumen</a></li>                           
                         </ul>
                     </div>
                 </div>
@@ -119,7 +123,7 @@ http://fatek.unsrat.ac.id
                     <li>
                         <a href="<?php echo site_url('dosen/judul');?>">
                             <i class="material-icons">view_list</i>
-                            <span>Usulan Judul</span>
+                            <span>Usulan Judul Skripsi</span>
                         </a>
                     </li>
                     <li>
@@ -164,8 +168,14 @@ http://fatek.unsrat.ac.id
     <!-- Bootstrap Tags Input Plugin Js -->
     <script src="<?php echo base_url("assets/adminbsb/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js");?>"></script>
 
+    <!-- Bootstrap Notify Plugin Js -->
+    <script src="<?php echo base_url("assets/adminbsb/plugins/bootstrap-notify/bootstrap-notify.js");?>"></script>
+
     <!-- Slimscroll Plugin Js -->
     <script src="<?php echo base_url("assets/adminbsb/plugins/jquery-slimscroll/jquery.slimscroll.js");?>"></script>
+
+    <!-- SweetAlert Plugin Js -->
+    <script src="<?php echo base_url("assets/adminbsb/plugins/sweetalert/sweetalert.min.js");?>"></script>
 
     <!-- Waves Effect Plugin Js -->
     <script src="<?php echo base_url("assets/adminbsb/plugins/node-waves/waves.js");?>"></script>
@@ -209,7 +219,7 @@ http://fatek.unsrat.ac.id
 
     <!-- Custom Js -->
     <script src="<?php echo base_url("assets/adminbsb/js/admin.js");?>"></script>
-    <script src="<?php echo base_url("assets/adminbsb/js/custom.js");?>"></script>
+    <script src="<?php echo base_url("assets/adminbsb/js/custom_dosen.js");?>"></script>
 
 </body>
 
