@@ -37,10 +37,7 @@ class Xave extends CI_Controller {
 
 	}
 
-	public function logout()
-	{
-		$this->session->sess_destroy();
-	}
+
 
 	public function cek_krs($nim)
 	{
@@ -66,6 +63,45 @@ class Xave extends CI_Controller {
 	{
 		$this->data['body_page'] = '';
 		$this->load->view('layout/dosen',$this->data);
+	}
+
+	public function testa(){
+		//$result 	= http_response_code(URL_API.'dosen/login?user=197711202010121002&pass=fJu4g6sdMQW');
+		//echo $result;
+
+		$result = json_decode(file_get_contents(URL_API.'dosen/login?user=197711202010121002&pass=fJu4g6sdMQW'),1);
+		echo $result['status'];
+		//echo $result->status;
+		//$result2 = get_headers(URL_API.'dosen/login?user=197711202010121002&pass=fJu4g6sdMQW');
+
+		//$result =  (substr(get_headers(URL_API.'dosen/login?user=197711202010121002&pass=fJu4g6sdMQW')[0], 9, 3) == 200 ? TRUE:FALSE);
+		//echo $result;
+		//echo is_array($result) ? 'Array' : 'not an Array';
+
+		//echo $result['status'];
+		//echo $result2;
+		//var_dump($result);
+		//echo $result[];
+
+					//$result[$key]['judulDsnPengusul'] = json_decode(file_get_contents(URL_API.'dosen?nip='.$result[$key]['judulDsnPengusul']))->nama;
+	}
+
+	public function test() {
+		$session_data = array(
+							'curr_id' => '1',
+							'curr_username' => 'admin',
+							'curr_group' => 'admin',
+							'curr_jurusan' => '',
+							'curr_prodi' => '',
+						);							
+						
+		$this->session->set_userdata('logged_in_admin', $session_data);
+		$this->load->view('siteview/debug');
+	}
+
+	public function logout() {
+		$this->session->sess_destroy();
+		$this->load->view('debug');
 	}
 
 	

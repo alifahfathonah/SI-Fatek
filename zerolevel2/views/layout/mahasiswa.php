@@ -26,20 +26,32 @@ http://fatek.unsrat.ac.id
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url("assets/adminbsb/plugins/bootstrap/css/bootstrap.css");?>" rel="stylesheet">
 
+    <!-- Bootstrap Select Css -->
+    <link href="<?php echo base_url("assets/adminbsb/plugins/bootstrap-select/css/bootstrap-select.css");?>" rel="stylesheet">
+
+    <!-- Bootstrap Tagsinput Css -->
+    <link href="<?php echo base_url("assets/adminbsb/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css");?>" rel="stylesheet">
+
     <!-- Waves Effect Css -->
     <link href="<?php echo base_url("assets/adminbsb/plugins/node-waves/waves.css");?>" rel="stylesheet" />
 
+    <!-- Sweetalert Css -->
+    <link href="<?php echo base_url("assets/adminbsb/plugins/sweetalert/sweetalert.css");?>" rel="stylesheet" />
+
     <!-- Animation Css -->
     <link href="<?php echo base_url("assets/adminbsb/plugins/animate-css/animate.css");?>" rel="stylesheet" />
+
+    <!-- JQuery DataTable Css -->
+    <link href="<?php echo base_url("assets/adminbsb/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css");?>" rel="stylesheet" />
 
     <!-- Morris Chart Css-->
     <link href="<?php echo base_url("assets/adminbsb/plugins/morrisjs/morris.css");?>" rel="stylesheet" />
 
     <!-- Custom Css -->
-    <link href="<?php echo base_url("assets/adminbsb/css/style.css");?>" rel="stylesheet" />
+    <link href="<?php echo base_url("assets/adminbsb/css/style.min.css");?>" rel="stylesheet" />
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-    <link href="<?php echo base_url("assets/adminbsb/css/themes/all-themes.css");?>" rel="stylesheet" />
+    <link href="<?php echo base_url("assets/adminbsb/css/themes/all-themes.min.css");?>" rel="stylesheet" />
 
 </head>
 
@@ -85,13 +97,17 @@ http://fatek.unsrat.ac.id
         <aside id="leftsidebar" class="sidebar">
             <!-- User Info -->
             <div class="user-info">
+                <div class="image">
+                    <img src="<?php echo $this->session->userdata['logged_in_mahasiswa']['foto'];?>" width="48" height="48" alt="User" />
+                </div>
                 <div class="info-container">
                     <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $this->session->userdata['logged_in_mahasiswa']['nama'];?></div>
                     <div class="email"><?php echo $this->session->userdata['logged_in_mahasiswa']['nim'];?></div>
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
-                            <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>                            
+                            <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
+                            <li><a href="<?php echo site_url('mahasiswa/document');?>"><i class="material-icons">insert_drive_file</i>Dokumen</a></li>                         
                         </ul>
                     </div>
                 </div>
@@ -110,13 +126,13 @@ http://fatek.unsrat.ac.id
                     <li>
                         <a href="<?php echo site_url('mahasiswa/judul');?>">
                             <i class="material-icons">view_list</i>
-                            <span>Usulan Judul</span>
+                            <span>Daftar Judul Skripsi</span>
                         </a>
                     </li>
                     <li>
                         <a href="<?php echo site_url('mahasiswa/bimbingan');?>">
                             <i class="material-icons">layers</i>
-                            <span>Pembimbingan</span>
+                            <span>History Berkas Skripsi</span>
                         </a>
                     </li>
                 </ul>
@@ -138,7 +154,8 @@ http://fatek.unsrat.ac.id
         <div class="container-fluid">
             <?php if($body_page) $this->load->view($body_page);?>
         </div>
-        <?php $this->load->view('debug');?>  
+
+        <?php if (ENVIRONMENT != 'production')  $this->load->view('debug'); //display debug page ?>
     </section>
         
     <!-- Jquery Core Js -->
@@ -150,14 +167,29 @@ http://fatek.unsrat.ac.id
     <!-- Select Plugin Js -->
     <script src="<?php echo base_url("assets/adminbsb/plugins/bootstrap-select/js/bootstrap-select.js");?>"></script>
 
+    <!-- Bootstrap Tags Input Plugin Js -->
+    <script src="<?php echo base_url("assets/adminbsb/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js");?>"></script>
+
+    <!-- Bootstrap Notify Plugin Js -->
+    <script src="<?php echo base_url("assets/adminbsb/plugins/bootstrap-notify/bootstrap-notify.js");?>"></script>
+
     <!-- Slimscroll Plugin Js -->
     <script src="<?php echo base_url("assets/adminbsb/plugins/jquery-slimscroll/jquery.slimscroll.js");?>"></script>
+
+    <!-- SweetAlert Plugin Js -->
+    <script src="<?php echo base_url("assets/adminbsb/plugins/sweetalert/sweetalert.min.js");?>"></script>
 
     <!-- Waves Effect Plugin Js -->
     <script src="<?php echo base_url("assets/adminbsb/plugins/node-waves/waves.js");?>"></script>
 
     <!-- Jquery CountTo Plugin Js -->
     <script src="<?php echo base_url("assets/adminbsb/plugins/jquery-countto/jquery.countTo.js");?>"></script>
+
+    <!-- Jquery Validation Plugin Css -->
+    <script src="<?php echo base_url("assets/adminbsb/plugins/jquery-validation/jquery.validate.js");?>"></script>
+
+    <!-- Sweet Alert Plugin Js -->
+    <script src="<?php echo base_url("assets/adminbsb/plugins/sweetalert/sweetalert.min.js");?>"></script>
 
     <!-- Morris Plugin Js -->
     <script src="<?php echo base_url("assets/adminbsb/plugins/raphael/raphael.min.js");?>"></script>
@@ -176,9 +208,20 @@ http://fatek.unsrat.ac.id
     <!-- Sparkline Chart Plugin Js -->
     <script src="<?php echo base_url("assets/adminbsb/plugins/jquery-sparkline/jquery.sparkline.js");?>"></script>
 
+    <!-- Jquery DataTable Plugin Js -->
+    <script src="<?php echo base_url("assets/adminbsb/plugins/jquery-datatable/jquery.dataTables.js");?>"></script>
+    <script src="<?php echo base_url("assets/adminbsb/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js");?>"></script>
+    <script src="<?php echo base_url("assets/adminbsb/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js");?>"></script>
+    <script src="<?php echo base_url("assets/adminbsb/plugins/jquery-datatable/extensions/export/buttons.flash.min.js");?>"></script>
+    <script src="<?php echo base_url("assets/adminbsb/plugins/jquery-datatable/extensions/export/jszip.min.js");?>"></script>
+    <script src="<?php echo base_url("assets/adminbsb/plugins/jquery-datatable/extensions/export/pdfmake.min.js");?>"></script>
+    <script src="<?php echo base_url("assets/adminbsb/plugins/jquery-datatable/extensions/export/vfs_fonts.js");?>"></script>
+    <script src="<?php echo base_url("assets/adminbsb/plugins/jquery-datatable/extensions/export/buttons.html5.min.js");?>"></script>
+    <script src="<?php echo base_url("assets/adminbsb/plugins/jquery-datatable/extensions/export/buttons.print.min.js");?>"></script>
+
     <!-- Custom Js -->
     <script src="<?php echo base_url("assets/adminbsb/js/admin.js");?>"></script>
-    <script src="<?php echo base_url("assets/adminbsb/js/portalMenu.js");?>"></script>
+    <script src="<?php echo base_url("assets/adminbsb/js/custom_mhs.js");?>"></script>
 
 
 </body>

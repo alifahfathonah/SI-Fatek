@@ -78,6 +78,7 @@ $db['default'] = array(
 	'hostname' => 'localhost',
 	'username' => '',
 	'password' => '',
+<<<<<<< HEAD
 	'database' => '',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
@@ -145,6 +146,9 @@ $db['akademika_sdm'] = array(
 	'username' => 'root',
 	'password' => '',
 	'database' => 'akademika_sdm',
+=======
+	'database' => 'fatek_ta',
+>>>>>>> master
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -163,4 +167,3 @@ $db['akademika_sdm'] = array(
 
 /* End of file database.php */
 /* Location: ./application/config/database.php */
-

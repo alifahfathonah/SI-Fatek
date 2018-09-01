@@ -9,7 +9,7 @@ class Bimbingan extends CI_Controller {
 		if (!isset($this->session->userdata['logged_in_dosen'])) {
 			redirect(site_url('dosen/login'));
 		}
-		
+		$this->data['pageTitle'] = "Bimbingan Skripsi";
 		$this->view = 'layout/dosen';
 		
 	}

@@ -93,4 +93,4 @@ http://fatek.unsrat.ac.id
 </body>
 
 </html>
-<?php $this->load->view('debug');?>
+<?php if (ENVIRONMENT != 'production')  $this->load->view('debug'); //display debug page ?>

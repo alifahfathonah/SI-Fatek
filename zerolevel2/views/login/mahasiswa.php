@@ -85,4 +85,4 @@ $(document).ready(function(){
 
 </body>
 </html>
-<?php $this->load->view('debug');?>
+<?php if (ENVIRONMENT != 'production')  $this->load->view('debug'); //display debug page ?>
