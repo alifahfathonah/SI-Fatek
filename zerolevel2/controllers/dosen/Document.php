@@ -3,6 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Document extends CI_Controller {
 
+	private $layout = 'layout/dosen';
+
 	public function __construct() {
 		parent::__construct();
 		$this->load->model(array('Tabel_dokumen','Tabel_docgroup'));
@@ -10,20 +12,19 @@ class Document extends CI_Controller {
 		if (!isset($this->session->userdata['logged_in_dosen'])) {
 			redirect(site_url('login/dosen'));
 		}
-		$this->view = 'layout/dosen';
-		$this->data['pageTitle'] = "Dokumen dosen";
 		
 	}
 	
 	public function index() {
 		$id_dosen = $this->session->userdata['logged_in_dosen']['nip'];
-		$this->data['dokumen'] = $this->Tabel_dokumen->get(array('ft_dokumen_user.userId'=> $id_dosen),'dokumenDocgroupId ASC, dokumenTahun DESC');
-		$this->data['kategori'] = $this->Tabel_docgroup->get();
-		$this->data['body_page'] = 'body_dosen/dokumen';
-		foreach ($this->data['dokumen'] as &$val) {
+		$data['pageTitle'] = "Dokumen dosen";
+		$data['dokumen'] = $this->Tabel_dokumen->get(array('ft_dokumen_user.userId'=> $id_dosen),'dokumenDocgroupId ASC, dokumenTahun DESC');
+		$data['kategori'] = $this->Tabel_docgroup->get();
+		$data['body_page'] = 'body_dosen/dokumen';
+		foreach ($data['dokumen'] as &$val) {
 			$val['dokumenFile'] = URL_DOKUMEN.$val['dokumenFile'];
 		}
-		$this->load->view($this->view,$this->data);
+		$this->load->view($this->layout,$data);
 
 	}
 

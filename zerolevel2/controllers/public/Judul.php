@@ -3,19 +3,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Judul extends CI_Controller {
 
+	private $layout = 'layout/public';
+
 	public function __construct() {
 		parent::__construct();
 
-		$this->view = 'layout/public';
-		$this->data['body_page'] = 'body_public/judul_list';
 	}
 	
 	public function index() {
 	
-		$this->data['alumni'] = $this->apicall->get(URL_API."judul/fakultas?id=2");
-		$this->data['pageTitle'] = "Database Judul Skripsi/TA Fakultas Teknik";
+		$data['alumni'] 	= $this->apicall->get(URL_API."judul/fakultas?id=2");
+		$data['pageTitle'] 	= "Database Judul Skripsi/TA Fakultas Teknik";
+		$data['body_page'] 	= 'body_public/judul_list';
 
-		$this->load->view($this->view,$this->data);
+		$this->load->view($this->layout,$data);
 	
 	}
 
@@ -23,26 +24,28 @@ class Judul extends CI_Controller {
 
 		switch ($jur) {
 			case "sipil":
-		        $this->data['judul'] = $this->apicall->get(URL_API."judul/jurusan?id=45");
-		        $this->data['pageTitle'] = "Database Judul Skripsi/TA Jurusan Teknik Sipil";
+		        $data['judul'] 		= $this->apicall->get(URL_API."judul/jurusan?id=45");
+		        $data['pageTitle'] 	= "Database Judul Skripsi/TA Jurusan Teknik Sipil";
 		        break;
 		    case "arsitektur":
-		        $this->data['judul'] = $this->apicall->get(URL_API."judul/jurusan?id=42");
-		        $this->data['pageTitle'] = "Database Judul Skripsi/TA Jurusan Arsitektur";
+		        $data['judul'] 		= $this->apicall->get(URL_API."judul/jurusan?id=42");
+		        $data['pageTitle'] 	= "Database Judul Skripsi/TA Jurusan Arsitektur";
 		        break;
 		    case "elektro":
-		        $this->data['judul'] = $this->apicall->get(URL_API."judul/jurusan?id=43");
-		        $this->data['pageTitle'] = "Database Judul Skripsi/TA Jurusan Teknik Elektro";
+		        $data['judul'] 		= $this->apicall->get(URL_API."judul/jurusan?id=43");
+		        $data['pageTitle'] 	= "Database Judul Skripsi/TA Jurusan Teknik Elektro";
 		        break;
 		    case "mesin":
-		        $this->data['judul'] = $this->apicall->get(URL_API."judul/jurusan?id=44");
-		        $this->data['pageTitle'] = "Database Judul Skripsi/TA Jurusan Teknik Mesin";
+		        $data['judul'] 		= $this->apicall->get(URL_API."judul/jurusan?id=44");
+		        $data['pageTitle'] 	= "Database Judul Skripsi/TA Jurusan Teknik Mesin";
 		        break;
 		    default:
 		        echo "Data not found";die;
-		}	
+		}
 
-		$this->load->view($this->view,$this->data);
+		$data['body_page'] = 'body_public/judul_list';
+
+		$this->load->view($this->layout,$data);
 	
 	}
 
@@ -50,38 +53,40 @@ class Judul extends CI_Controller {
 
 		switch ($prodi) {
 			case "sipil":
-		        $this->data['judul'] = $this->apicall->get(URL_API."judul/prodi?id=14");
-		        $this->data['pageTitle'] = "Database Judul Skripsi/TA Prodi Teknik Sipil";
+		        $data['judul'] 		= $this->apicall->get(URL_API."judul/prodi?id=14");
+		        $data['pageTitle'] 	= "Database Judul Skripsi/TA Prodi Teknik Sipil";
 		        break;
 		 	case "lingkungan":
-		        $this->data['judul'] = $this->apicall->get(URL_API."judul/prodi?id=94");
-		        $this->data['pageTitle'] = "Database Judul Skripsi/TA Prodi Teknik Lingkungan";
+		        $data['judul'] 		= $this->apicall->get(URL_API."judul/prodi?id=94");
+		        $data['pageTitle'] 	= "Database Judul Skripsi/TA Prodi Teknik Lingkungan";
 		        break;
 		    case "arsitektur":
-		        $this->data['judul'] = $this->apicall->get(URL_API."judul/prodi?id=15");
-		        $this->data['pageTitle'] = "Database Judul Skripsi/TA Prodi Arsitektur";
+		        $data['judul'] 		= $this->apicall->get(URL_API."judul/prodi?id=15");
+		        $data['pageTitle'] 	= "Database Judul Skripsi/TA Prodi Arsitektur";
 		        break;
 		    case "pwk":
-		        $this->data['judul'] = $this->apicall->get(URL_API."judul/prodi?id=16");
-		        $this->data['pageTitle'] = "Database Judul Skripsi/TA Prodi Perencanaan Wilayah dan Kota";
+		        $data['judul'] 		= $this->apicall->get(URL_API."judul/prodi?id=16");
+		        $data['pageTitle'] 	= "Database Judul Skripsi/TA Prodi Perencanaan Wilayah dan Kota";
 		        break;    
 		    case "elektro":
-		        $this->data['judul'] = $this->apicall->get(URL_API."judul/prodi?id=12");
-		        $this->data['pageTitle'] = "Database Judul Skripsi/TA Prodi Teknik Elektro";
+		        $data['judul'] 		= $this->apicall->get(URL_API."judul/prodi?id=12");
+		        $data['pageTitle'] 	= "Database Judul Skripsi/TA Prodi Teknik Elektro";
 		        break;
 		    case "informatika":
-		        $this->data['judul'] = $this->apicall->get(URL_API."judul/prodi?id=77");
-		        $this->data['pageTitle'] = "Database Judul Skripsi/TA Prodi Informatika";
+		        $data['judul'] 		= $this->apicall->get(URL_API."judul/prodi?id=77");
+		        $data['pageTitle'] 	= "Database Judul Skripsi/TA Prodi Informatika";
 		        break;
 		    case "mesin":
-		        $this->data['judul'] = $this->apicall->get(URL_API."judul/prodi?id=13");
-		        $this->data['pageTitle'] = "Database Judul Skripsi/TA Prodi Teknik Mesin";
+		        $data['judul'] 		= $this->apicall->get(URL_API."judul/prodi?id=13");
+		        $data['pageTitle'] 	= "Database Judul Skripsi/TA Prodi Teknik Mesin";
 		        break;
 		    default:
 		        echo "Data not found";die;
 		}
 
-		$this->load->view($this->view,$this->data);	
+		$data['body_page'] = 'body_public/judul_list';
+
+		$this->load->view($this->layout,$data);	
 
 	
 	}

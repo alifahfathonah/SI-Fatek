@@ -2,6 +2,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Profile extends CI_Controller {
+	
+	private $layout = 'layout/dosen';
+
 	public function __construct() {
 		parent::__construct();
 		$this->load->model(array('Tabel_dosen','Tabel_publikasi'));
@@ -9,42 +12,41 @@ class Profile extends CI_Controller {
 		if (!isset($this->session->userdata['logged_in_dosen'])) {
 			redirect(site_url('login/dosen'));
 		}
-		$this->view = 'layout/dosen';
 		
 	}
 
 	public function index() {
 		
-		$this->data['pageTitle'] = "Home";
-		$this->data['body_page'] = 'body_dosen/profile_view';
+		$data['pageTitle'] = "Home";
+		$data['body_page'] = 'body_dosen/profile_view';
 
-		$this->data['dosen'] = $this->Tabel_dosen->detail(array('nip'=> $this->session->userdata['logged_in_dosen']['nip']));
-		$this->data['dosen']['foto'] = (!empty($this->data['dosen']['foto'])) ? URL_FOTO_DOSEN.$this->data['dosen']['foto'] : URL_FOTO_DOSEN."default.jpg";
+		$data['dosen'] = $this->Tabel_dosen->detail(array('nip'=> $this->session->userdata['logged_in_dosen']['nip']));
+		$data['dosen']['foto'] = (!empty($data['dosen']['foto'])) ? URL_FOTO_DOSEN.$data['dosen']['foto'] : URL_FOTO_DOSEN."default.jpg";
 
-		$this->data['publikasi'] = $this->Tabel_publikasi->get($this->data['dosen']['dosenId']);
-		$this->data['dosenAPI'] = $this->apicall->get(URL_API.'pegawai?nip='. $this->session->userdata['logged_in_dosen']['nip']);
-		//echo var_dump($this->data['dosenAPI']);die;
-
-		if (!empty($this->data['dosen']['sintaId'])) $this->data['dosen']['sintaUrl'] = URL_SINTA.$this->data['dosen']['sintaId']."&view=overview";
-		if (!empty($this->data['dosen']['googleId'])) $this->data['dosen']['googleUrl'] = URL_GOOGLE.$this->data['dosen']['googleId'];
-		if (!empty($this->data['dosen']['scopusId'])) $this->data['dosen']['scopusUrl'] = URL_SCOPUS.$this->data['dosen']['scopusId'];
+		$data['publikasi'] = $this->Tabel_publikasi->get($data['dosen']['dosenId']);
+		$data['dosenAPI'] = $this->apicall->get(URL_API.'pegawai?nip='. $this->session->userdata['logged_in_dosen']['nip']);
 
 
+		if (!empty($data['dosen']['sintaId'])) $data['dosen']['sintaUrl'] = URL_SINTA.$data['dosen']['sintaId']."&view=overview";
+		if (!empty($data['dosen']['googleId'])) $data['dosen']['googleUrl'] = URL_GOOGLE.$data['dosen']['googleId'];
+		if (!empty($data['dosen']['scopusId'])) $data['dosen']['scopusUrl'] = URL_SCOPUS.$data['dosen']['scopusId'];
 
-		$this->load->view($this->view,$this->data);
+
+
+		$this->load->view($this->layout,$data);
 
 	}
 
 	public function edit() {
 		
-		$this->data['pageTitle'] = "Edit Profil";
-		$this->data['body_page'] = 'body_dosen/profile_edit';
-		$this->data['dosen'] = $this->Tabel_dosen->detail(array('nip'=> $this->session->userdata['logged_in_dosen']['nip']));
-		$this->data['dosen']['foto'] = (!empty($this->data['dosen']['foto'])) ? URL_FOTO_DOSEN.$this->data['dosen']['foto'] : URL_FOTO_DOSEN."default.jpg";
+		$data['pageTitle'] = "Edit Profil";
+		$data['body_page'] = 'body_dosen/profile_edit';
+		$data['dosen'] = $this->Tabel_dosen->detail(array('nip'=> $this->session->userdata['logged_in_dosen']['nip']));
+		$data['dosen']['foto'] = (!empty($data['dosen']['foto'])) ? URL_FOTO_DOSEN.$data['dosen']['foto'] : URL_FOTO_DOSEN."default.jpg";
 
 		$this->form_validation->set_rules('nama', 'Nama', 'trim|required');
 
-		$this->load->view($this->view,$this->data);
+		$this->load->view($this->layout,$data);
 
 	}
 	

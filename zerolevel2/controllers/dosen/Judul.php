@@ -2,6 +2,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Judul extends CI_Controller {
+
+	private $layout = 'layout/dosen';
+
 	public function __construct() {
 		parent::__construct();
 		$this->load->model(array('Tabel_judul','Tabel_labstudio'));
@@ -9,18 +12,17 @@ class Judul extends CI_Controller {
 		if (!isset($this->session->userdata['logged_in_dosen'])) {
 			redirect(site_url('login/dosen'));
 		}
-		$this->view = 'layout/dosen';
-		$this->data['pageTitle'] = "Judul Skripsi";
 		
 	}
 
 	public function index() {
-		
-		$this->data['judul'] = $this->Tabel_judul->get(array('judulDsnPengusul'=> $this->session->userdata['logged_in_dosen']['nip']),'judulTglUsul DESC');
-		$this->data['labstudio'] = $this->Tabel_labstudio->get(array('labstudioJurKode'=> $this->session->userdata['logged_in_dosen']['kodeJur']));
-		$this->data['body_page'] = 'body_dosen/usulan_judul';
 
-		$this->load->view($this->view,$this->data);
+		$data['pageTitle'] 	= "Judul Skripsi";
+		$data['judul'] 		= $this->Tabel_judul->get(array('judulDsnPengusul'=> $this->session->userdata['logged_in_dosen']['nip']),'judulTglUsul DESC');
+		$data['labstudio'] 	= $this->Tabel_labstudio->get(array('labstudioJurKode'=> $this->session->userdata['logged_in_dosen']['kodeJur']));
+		$data['body_page'] 	= 'body_dosen/usulan_judul';
+
+		$this->load->view($this->layout,$data);
 
 	}
 
@@ -32,7 +34,7 @@ class Judul extends CI_Controller {
 
 			$database['judulTa'] 			= $this->input->post('judul');
 			$database['judulDsnPengusul'] 	= $this->session->userdata['logged_in_dosen']['nip'];
-			$database['judulLabstudioId'] = $this->input->post('labstudio');
+			$database['judulLabstudioId'] 	= $this->input->post('labstudio');
 			$database['judulKeyword'] 		= $this->input->post('keyword');
 			$database['judulKodeProdi'] 	= $this->session->userdata['logged_in_dosen']['kodeProdi'];
 			$database['judulTglUsul'] 		= date("Y-m-d");
@@ -58,7 +60,7 @@ class Judul extends CI_Controller {
 		if ($this->form_validation->run() == TRUE) {		
 			$database['judulId'] 			= $this->input->post('idJudul');
 			$database['judulTa'] 			= $this->input->post('judul');
-			$database['judulLabstudioId'] = $this->input->post('labstudio');
+			$database['judulLabstudioId'] 	= $this->input->post('labstudio');
 			$database['judulKeyword'] 		= $this->input->post('keyword');
 
 			$this->Tabel_judul->update($database);
@@ -82,8 +84,8 @@ class Judul extends CI_Controller {
 	}
 
 	public function delete() {
-		$id = $this->input->post('judulId');
-		$response = $this->Tabel_judul->delete($id);
+		$id 		= $this->input->post('judulId');
+		$response 	= $this->Tabel_judul->delete($id);
 
 		$this->session->set_flashdata('type', 'success');
 		$this->session->set_flashdata('message', 'Berhasil di hapus!');

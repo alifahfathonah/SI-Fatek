@@ -2,6 +2,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Judul extends CI_Controller {
+
+	private $layout = 'layout/mahasiswa';
+
 	public function __construct() {
 		parent::__construct();
 		$this->load->model(array('Tabel_judul','Tabel_judul_apply'));
@@ -9,18 +12,16 @@ class Judul extends CI_Controller {
 		if (!isset($this->session->userdata['logged_in_mahasiswa'])) {
 			redirect(site_url('login/mahasiswa'));
 		}
-
-		$this->view 				= 'layout/mahasiswa';
-		$this->data['pageTitle'] 	= "Skripsi";
 		
 	}
 
 	public function index() {
+		$data['pageTitle'] 	= "Skripsi";
 		
-		$this->data['judul'] = $this->Tabel_judul->get(array('judulKodeProdi'=> $this->session->userdata['logged_in_mahasiswa']['kodeProdi'],'judulStatus !='=> 'Not Available',),'judulLabstudioId ASC, judulTglUsul DESC');
-		$this->data['body_page'] = 'body_mahasiswa/daftar_judul';
+		$data['judul'] = $this->Tabel_judul->get(array('judulKodeProdi'=> $this->session->userdata['logged_in_mahasiswa']['kodeProdi'],'judulStatus !='=> 'Not Available',),'judulLabstudioId ASC, judulTglUsul DESC');
+		$data['body_page'] = 'body_mahasiswa/daftar_judul';
 
-		$this->load->view($this->view,$this->data);
+		$this->load->view($this->layout,$data);
 
 	}
 

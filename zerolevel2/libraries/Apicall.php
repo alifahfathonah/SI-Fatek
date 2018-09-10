@@ -23,14 +23,18 @@ class Apicall {
 		$context = stream_context_create($opt);
 
 		try {
-			$data = json_decode(file_get_contents($uri,FALSE,$context));
+			$data = file_get_contents($uri,FALSE,$context);
+
+			if ($data === FALSE) {
+				echo "Cannot contact API server";return;
+			}
 		}
 
 		catch(Exception $e) {
 			echo "Not found";die;
 		}
 	
-		return $data;
+		return json_decode($data);
 
 	}
 }
