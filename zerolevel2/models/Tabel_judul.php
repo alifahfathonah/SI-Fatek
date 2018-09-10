@@ -1,8 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-//Model class for querying to akademika_sia database
 class Tabel_judul extends CI_Model {
+	
 	public function __construct() {
 		parent::__construct();	
 	}

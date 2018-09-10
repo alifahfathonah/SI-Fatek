@@ -60,7 +60,7 @@ $route['translate_uri_dashes'] = TRUE;
 */
 
 //Siteview Dosen Routes
-$route['dosen'] = 'dosen/dashboard';
+$route['dosen'] = 'dosen/profile';
 $route['dosen/logout'] = 'login/logout_dosen';
 
 //Siteview Mahasiswa Routes

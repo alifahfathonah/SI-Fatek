@@ -100,13 +100,6 @@ http://fatek.unsrat.ac.id
                 <div class="info-container">
                     <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><b><?php echo $this->session->userdata['logged_in_dosen']['nama'];?></b></div>
                     <div class="email"><?php echo $this->session->userdata['logged_in_dosen']['nip'];?></div>
-                    <div class="btn-group user-helper-dropdown">
-                        <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
-                        <ul class="dropdown-menu pull-right">
-                            <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
-                            <li><a href="<?php echo site_url('dosen/document');?>"><i class="material-icons">insert_drive_file</i>Dokumen</a></li>                           
-                        </ul>
-                    </div>
                 </div>
             </div>
             <!-- #User Info -->
@@ -120,16 +113,29 @@ http://fatek.unsrat.ac.id
                             <span>Home</span>
                         </a>
                     </li>
+
                     <li>
-                        <a href="<?php echo site_url('dosen/judul');?>">
-                            <i class="material-icons">view_list</i>
-                            <span>Usulan Judul Skripsi</span>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">person</i>
+                            <span>Profile</span>
                         </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="<?php echo site_url('dosen/profile/edit');?>">Edit Profile</a>
+                            </li>
+                            <li>
+                                <a href="<?php echo site_url('dosen/publikasi');?>">Publikasi</a>
+                            </li>
+                            <li>
+                                <a href="http://fatek.unsrat.ac.id/data/dosen.php?nip=<?php echo $this->session->userdata['logged_in_dosen']['nip'];?>" target="_blank">Public Profile</a>
+                            </li>
+                        </ul>
                     </li>
+
                     <li>
-                        <a href="<?php echo site_url('dosen/bimbingan');?>">
-                            <i class="material-icons">layers</i>
-                            <span>Pembimbingan</span>
+                        <a href="<?php echo site_url('dosen/document');?>">
+                            <i class="material-icons">insert_drive_file</i>
+                            <span>Dokumen</span>
                         </a>
                     </li>
                 </ul>

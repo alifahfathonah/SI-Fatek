@@ -5,7 +5,7 @@ class Login extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		//$this->load->model(array('User_model'));
+		$this->load->model(array('Tabel_dosen'));
 		$this->icon = "<p><span class=\"glyphicon glyphicon-remove\"></span>&nbsp;";
 		
 	}
@@ -103,27 +103,31 @@ class Login extends CI_Controller {
 				
 				if ($this->form_validation->run() == true) {
 					$username 	= $this->input->post('identity',TRUE);
-					$pwd 		= $this->input->post('password',TRUE);				
-					//$result =  json_decode(file_get_contents(URL_API.'dosen/login?user='.$username.'&pass='.$pwd))->status;
+					$pwd 		= $this->input->post('password',TRUE);
+
+					//$result	 	= $this->apicall->get(URL_API.'dosen/login?user='.$username.'&pass='.$pwd)->status;
 					$result 	= $pwd == $username;
 
 					if ($result) {
-				
-						$data = json_decode(file_get_contents(URL_API.'dosen?nip='.$username));
-						$sess_data['nip'] = $data->nip;
-						$sess_data['nama'] = $data->nama;
-						$sess_data['kodeProdi'] = $data->kodeProdi;
-						$sess_data['kodeJur'] = $data->kodeJurusan;
-						$sess_data['kodeFak'] = $data->kodeFakultas;
 
-						if ($sess_data['kodeFak'] == '2') {
+						$cek_member = $this->Tabel_dosen->detail(array('nip' => $username));
 
+						if ($cek_member) {
+								
+							$data = $this->apicall->get(URL_API.'dosen?nip='.$username);
+							$sess_data['nip'] = $data->nip;
+							$sess_data['nama'] = $cek_member['nama'];
+							$sess_data['kodeProdi'] = $data->kodeProdi;
+							$sess_data['kodeJur'] = $data->kodeJurusan;
+							$sess_data['kodeFak'] = $data->kodeFakultas;
+							
 							$this->session->set_userdata('logged_in_dosen',$sess_data);
 							$this->session->set_userdata('username',$username);
 							$this->session->unset_userdata('login_attempt_dsn');
 							redirect(site_url('dosen'));
-						} else  {
-							$this->session->set_flashdata('message_login_dosen', '<span class="glyphicon glyphicon-remove"></span> Tidak punya hak akses disini');
+						
+						} else {
+							$this->session->set_flashdata('message_login_dosen', '<span class="glyphicon glyphicon-remove"></span> Tidak ada akses disini');
 						}
 						
 					}  else {
@@ -174,18 +178,18 @@ public function mahasiswa() {
 				if ($this->form_validation->run() == true) {
 					$username 	= $this->input->post('identity',TRUE);
 					$pwd 		= $this->input->post('password',TRUE);
-					//$result =  json_decode(file_get_contents(URL_API.'mahasiswa/login?user='.$username.'&pass='.$pwd))->status;
+					//$result		=  $this->apicall->get(URL_API.'mahasiswa/login?user='.$username.'&pass='.$pwd)->status;
 					$result 	= $pwd == $username;
 
 					if ($result) {
 
-						$data = json_decode(file_get_contents(URL_API.'mahasiswa?nim='.$username));
+						$data = $this->apicall->get(URL_API.'mahasiswa?nim='.$username);
 						$sess_data['nim'] = $data->nim;
 						$sess_data['nama'] = $data->nama;
 						$sess_data['kodeProdi'] = $data->kodeProdi;
 						$sess_data['kodeJur'] = $data->kodeJurusan;
 						$sess_data['kodeFak'] = $data->kodeFakultas;
-						$sess_data['foto'] = URL_FOTO_MHS.$data->foto;
+						$sess_data['foto'] = $data->foto;
 
 						if ($sess_data['kodeFak'] == '2') {
 
