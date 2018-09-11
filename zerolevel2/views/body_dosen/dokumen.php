@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 
             <div class="block-header">
-                <h2>DOKUMEN DOSEN</h2>
+                <h2><?php echo $pageTitle;?></h2>
             </div>
             
             <div class="row clearfix">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 30, 2018 at 08:20 AM
+-- Generation Time: Sep 11, 2018 at 07:25 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `fatek_ta`
+-- Database: `ft_data`
 --
 
 -- --------------------------------------------------------
@@ -996,6 +996,234 @@ INSERT INTO `ft_dokumen_user` (`dokumenId`, `userId`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `ft_dosen`
+--
+
+CREATE TABLE `ft_dosen` (
+  `dosenId` int(11) NOT NULL,
+  `kodePegawai` int(11) DEFAULT NULL,
+  `nip` varchar(18) DEFAULT NULL,
+  `nidn` varchar(10) DEFAULT NULL,
+  `nama` varchar(255) DEFAULT NULL,
+  `alamat` varchar(100) NOT NULL,
+  `jabatan` varchar(100) NOT NULL,
+  `bio` text NOT NULL,
+  `interest` varchar(255) NOT NULL,
+  `sintaId` varchar(50) NOT NULL,
+  `googleId` varchar(50) NOT NULL,
+  `scopusId` varchar(50) NOT NULL,
+  `kodeProdi` smallint(6) DEFAULT NULL,
+  `prodi` varchar(50) DEFAULT NULL,
+  `kodeJurusan` smallint(6) DEFAULT NULL,
+  `jurusan` varchar(14) DEFAULT NULL,
+  `hp` varchar(30) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `foto` varchar(100) NOT NULL,
+  `tglUpdate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `userUpdate` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `ft_dosen`
+--
+
+INSERT INTO `ft_dosen` (`dosenId`, `kodePegawai`, `nip`, `nidn`, `nama`, `alamat`, `jabatan`, `bio`, `interest`, `sintaId`, `googleId`, `scopusId`, `kodeProdi`, `prodi`, `kodeJurusan`, `jurusan`, `hp`, `email`, `foto`, `tglUpdate`, `userUpdate`) VALUES
+(1, 4101, '194902261976031002', '', 'Prof. Ir. Bonny Sompie,MS', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(2, 4118, '195409061980121001', '0006095405', 'Bonny M.M. Ointu', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(3, 4119, '195008271979031002', '', 'Ir. R.J.M.Mandagi, MSc', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(4, 4120, '195205121980121004', '0012055207', 'Prof. Dr. Ir. H. Manalip, MSc, DEA', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', '2016-04-08 01:33:40', ''),
+(5, 4121, '196007091986032001', '0009076007', 'Prof. Dr. Ir. E. J. Kumaat, MSc. DEA', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', '2016-04-08 01:33:40', ''),
+(6, 4122, '196506031990031003', '0003066504', 'Prof. Dr. Ir. Jefrey I. Kindangen, DEA', 'Jl. Rawasari No.25, Winangun Satu, Kec. Malalayang', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', 'jkindangen@unsrat.ac.id', '20c37a8d48c7cff8c0bd8b6786a3f40e.jpg', '2016-05-26 06:21:46', ''),
+(7, 4123, '195812171988031002', '0017125805', 'Prof. Ir. M. D. Sumajouw, M.Eng, PhD', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', '2016-04-08 01:33:40', ''),
+(8, 4170, '195308181976031002', '0018085309', 'Ir. Lambertus Tanudjaja, MSc', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', '2015-07-21 02:33:25', ''),
+(9, 4171, '195512181985031002', '0018125503', 'Ir. Turangan Arens Emily, MSc', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', '2015-07-21 02:33:25', ''),
+(10, 4172, '195202141982031001', '0014025202', 'Ir. Hardi Gunawan, MASc', '', '', '', '', '', '', '', 13, 'TEKNIK MESIN', 44, 'TEKNIK MESIN', '', '', '', '2015-07-21 02:33:25', ''),
+(11, 4173, '195402281984031001', '0028025405', 'Dr. Ir. Freddy Jansen, M.Eng', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', '2015-07-21 02:33:25', ''),
+(12, 4174, '195911011988031002', '0001115907', 'Ir. Audie L. E. Rumayar, M.Eng', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', '2015-07-21 02:33:25', ''),
+(13, 4175, '195010311981031001', '', 'Ir. Luther Betteng, MT.', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', NULL, ''),
+(14, 4176, '195401061991032001', '0006015407', 'Dr. Ir. Lintong Elisabeth, MSi', 'Jl. P. Weh No. 85 Manado kode pos  95115', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', 'meikeelisabeth@yahoo.co.id', 'df01c5cc07c0ef4cb9430481ec8769f5.jpg', '2016-06-06 03:00:56', ''),
+(15, 4177, '196603201991032001', '0020036605', 'Dr.Eng. Ir. Liany A. Hendrata, MSi', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', '2016-05-24 08:52:14', ''),
+(16, 4179, '195405081983031003', '0008055404', 'Ir. Syachrul Balamba, MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', '2015-07-21 02:33:25', ''),
+(17, 4180, '195707041988031001', '0004075707', 'Ir. Joseph Rengkung, MT', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', '2015-07-21 02:33:25', ''),
+(18, 4319, '195010051980032002', '', 'Ir. Linkan Kawet, M.Si', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(19, 4320, '195308091982032001', '0009085301', 'Eveline Maria Wuisan', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(20, 4322, '196602171994031001', '0017026603', 'Dwight Moody Rondonuwu', '', '', '', '', '', '', '', 16, 'PERENCANAAN WILAYAH DAN KOTA', 42, 'ARSITEKTUR', '', '', '', NULL, ''),
+(21, 4323, '195805311987031003', '', 'Ir. Kussoy W. John, MT', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', NULL, ''),
+(22, 4324, '195808181986012001', '0018085809', 'Ir. Reny Syafriny, CES', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', '2015-07-21 02:33:25', ''),
+(23, 4325, '195405161990011001', '0016055403', 'Fuad Halim', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(24, 4563, '195103191979031001', '-', 'Ir. M. J. Paransa, MT.', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', '2016-06-06 04:39:59', ''),
+(25, 4564, '195301091979031002', '0009015303', 'Ir. Jan Soukotta, MSi.', '', '', '', '', '', '', '', 13, 'TEKNIK MESIN', 44, 'TEKNIK MESIN', '', '', '', '2016-05-26 06:25:17', ''),
+(26, 4565, '195711171987032001', '0017105703', 'Ir. Roosje J. Poluan, MSi', '', '', '', '', '', '', '', 16, 'PERENCANAAN WILAYAH DAN KOTA', 42, 'ARSITEKTUR', '', '', '', '2015-07-21 02:33:25', ''),
+(27, 4566, '196010271990032001', '0027106004', 'Ir. Lelyani Kin Khosama, MT.', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', '2016-05-26 06:24:46', ''),
+(28, 4567, '195805151987031001', '0015055808', 'Ir. Fentje Abdul Rauf, MT', '', '', '', '', '', '', '', 13, 'TEKNIK MESIN', 44, 'TEKNIK MESIN', '', '', '', '2015-07-21 02:33:25', ''),
+(29, 4568, '195705071990011001', '0007055707', 'Ir. Martinus Pakiding, MT', 'Kelurahan Buminyiur Lingkungan II  Kota Manado', '', '', '', '', '', '', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', '', '1e978f9ddcab37e0f59eb74a2cd29c68.jpg', '2016-03-29 01:51:13', ''),
+(30, 4569, '195810171983031001', '0017105810', 'Ir. Hans F. Wowor, M.Kom', '', '', '', '', '', '', '', 77, 'INFORMATIKA', 43, 'TEKNIK ELEKTRO', '', '', '7b920d182c01431d485d207de13f9a37.jpg', '2015-07-21 02:36:12', ''),
+(31, 4570, '196410101995121001', '0010106406', 'Dr. Judy O. Waani, ST, MT', 'Winangun 2 Lingkungan 2', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', 'judiwaani@yahoo.com', '', '2016-06-07 11:11:40', ''),
+(32, 4571, '195506221981111001', '0022065507', 'Ir. Hanny Poli, MSi', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', '2015-07-21 02:33:25', ''),
+(33, 4572, '196210141992031001', '0014106203', 'Prof. Dr. Ir. Fabian J. Manoppo, MAgr', 'Jl Harapan 48 Winangun Manado', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', 'Fabian_jm@unsrat.ac.id', '2c4817ca3da5b16d6ab735f191cd0e1a.jpeg', '2018-03-10 04:47:05', ''),
+(34, 4573, '196404191993031002', '0019046405', 'Dr. Eng. Ir. Ariestides K. T. Dundu, MAgr', 'Bahu Lk. 8 No. 14 Manado', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', 'torry@unsrat.ac.id', '', '2016-06-23 16:51:59', ''),
+(35, 4575, '196510141994031003', '0014106503', 'Ir. S. T. G. Kaunang, MT', '', '', '', '', '', '', '', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', '', '', '2015-07-21 02:33:25', ''),
+(36, 4576, '195712121988031003', '0012125712', 'Papia Jonkers Corneles Franklin', '', '', '', '', '', '', '', 16, 'PERENCANAAN WILAYAH DAN KOTA', 42, 'ARSITEKTUR', '', '', '', NULL, ''),
+(37, 4577, '196001011989101001', '0001016040', 'Drs. Ellia Kendek Allo, MSc', 'Perumahan Politeknik Indah Blok H Nomor: 2 Kairagi 2 Mapanget', '', '', '', '', '', '', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', 'kendekallo@ymail.com', '34c71bc030a401eca516b951ba78f37b.jpg', '2016-05-25 01:36:52', ''),
+(38, 4578, '196006211991031001', '0021066006', 'Dr. Eng. Ir. Sukarno, MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', '2016-05-24 08:55:34', ''),
+(39, 4579, '196610251994031001', '0025106604', 'Prof. Dr. Ir. O. B. A. Sompie, M.Eng', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', '2016-05-24 08:51:28', ''),
+(40, 4580, '195805181987031002', '0018055804', 'Dr. Eng. Ir. Tommy Jansen, MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', '2016-05-24 08:55:54', ''),
+(41, 4582, '196107091987031003', '0009076104', 'Prof. Dr. Ir. Sangkertadi, DEA', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', '2016-04-08 01:33:51', ''),
+(42, 4583, '195906171986111001', '0017065911', 'Drs. Idris Masuara, MSi.', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', '2016-05-26 06:24:19', ''),
+(43, 4584, '196508201993032001', '0020086506', 'Ir. Sisca V. Pandey, MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', '2015-07-21 02:33:25', ''),
+(44, 4585, '196601031993091002', '0003016604', 'Ir. Arthur H. Thambas, MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', '2015-07-21 02:33:25', ''),
+(45, 4586, '197605192000032001', '0019057601', 'Dr. Eng. Meita Rumbayan, ST, M.Eng', '', '', '', '', '', '', '', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', '', '', '2016-05-24 08:56:18', ''),
+(46, 4587, '196410281994121001', '0028106406', 'Ir. A. F. Nelwan, MT', '', '', '', '', '', '', '', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', '', 'f61053e6f890a55b7f48cf3fc7e6c129.jpg', '2015-07-21 02:37:06', ''),
+(47, 4588, '196410101993032001', '0012127605', 'Dr. Ir. Tiny Mananoma, MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', '2015-07-21 02:33:25', ''),
+(48, 4589, '195207211984031001', '0021075202', 'Ir. Indradjaja Makainas, MArs', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', '2015-07-21 02:33:25', ''),
+(49, 4590, '196001221987031003', '0022016007', 'Ir. Suryono, MT', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', '2015-07-21 02:33:25', ''),
+(50, 4591, '196201281991031001', '0028016204', 'Ir. Jermias Tjakra, MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', '2015-07-21 02:33:25', ''),
+(51, 4592, '196910081994121001', '0008106906', 'Octavianus H. A. Rogi, ST, MSi', '', '', '', '', '', '', '', 16, 'PERENCANAAN WILAYAH DAN KOTA', 42, 'ARSITEKTUR', '', '', '', '2015-07-21 02:33:25', ''),
+(52, 4593, '196909071998021002', '0007096904', 'Reky Stenly Windah, ST, MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', '2015-07-21 02:33:25', ''),
+(53, 4594, '196701211997021001', '0021016702', 'Frits O. P. Siregar, ST, MSc', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', '2015-07-21 02:33:25', ''),
+(54, 4595, '195701261989031002', '0026015701', 'Dr. Ir. James A. Timboeleng, DEA', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', '2016-04-08 01:33:40', ''),
+(55, 4596, '195307291987031001', '0029075302', 'Deddy Erdiono', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', NULL, ''),
+(56, 4597, '196510061995121001', '0006106504', 'Ir. Sonny Tilaar, MSi', 'Tateli Tiga jaga IV Kecamatan Mandolang Kabupaten Minahasa', '', '', '', '', '', '', 16, 'PERENCANAAN WILAYAH DAN KOTA', 42, 'ARSITEKTUR', '', 'stilaar@ymail.com', '', '2016-05-13 05:04:08', ''),
+(57, 4598, '196503241993031002', '0024036506', 'Dr.Eng. Ir. Jeffry S. Frans Sumarauw, MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', '2016-05-24 08:59:35', ''),
+(58, 4599, '197409132001122002', '0013097505', 'Windy Mononimbar, ST, MT', '', '', '', '', '', '', '', 16, 'PERENCANAAN WILAYAH DAN KOTA', 42, 'ARSITEKTUR', '', '', '', '2015-07-21 02:33:25', ''),
+(59, 4600, '197311162000032001', '0016117303', 'Rieneke L.E. Sela, ST, MT', '', '', '', '', '', '', '', 16, 'PERENCANAAN WILAYAH DAN KOTA', 42, 'ARSITEKTUR', '', '', '', '2015-07-21 02:33:25', ''),
+(60, 4885, '195606031987031001', '0003065602', 'Ir. Longdong Jefferson, MA', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', '2015-07-21 02:33:25', ''),
+(61, 4886, '195401291990031001', '0029015406', 'Ir. Alex Binilang, MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', '2015-07-21 02:33:25', ''),
+(62, 4887, '195804021989031002', '0002045804', 'Ir. Hanny Tangkudung, MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', '2015-07-21 02:33:25', ''),
+(63, 4888, '196107271992031002', '0027076101', 'Julianus A.R. Sondakh,', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', NULL, ''),
+(64, 4889, '196309081994031001', '0008096302', 'Ir. Hans Tumaliang, MT', '', '', '', '', '', '', '', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', '', '9e5ed4a7bc86e8585b3cd0efa8087b45.jpg', '2015-07-21 02:37:26', ''),
+(65, 4890, '196311281994121001', '0028116306', 'Ir. Jeffry Dantje Mamoto, MAgr', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', '2015-07-21 02:33:25', ''),
+(66, 4891, '196608141994031002', '0014086602', 'Rudy Poeng, ST, MT', 'Desa Sea II Jaga III. Pineleng', '', '', '', '', '', '', 13, 'TEKNIK MESIN', 44, 'TEKNIK MESIN', '', 'rudypoeng@yahoo.com', 'a77b5a2dd879b1e01c2a72f9e2dc00ec.jpg', '2016-06-30 01:14:14', ''),
+(67, 4892, '195705211987032001', '0021055706', 'Dr. Ir. Linda Tondobala, DEA', '', '', '', '', '', '', '', 16, 'PERENCANAAN WILAYAH DAN KOTA', 42, 'ARSITEKTUR', '', '', '', '2016-04-08 01:33:51', ''),
+(68, 4893, '196509121995121001', '0012096503', 'I Nyoman Gede, ST, MT', 'Pakowa Lingk. II Kec. Wanea,  Kodya Manado', '', '', '', '', '', '', 13, 'TEKNIK MESIN', 44, 'TEKNIK MESIN', '', 'gedeinyoman65@yahoo.com', 'ab9d20c479d4832793c35ce72e343c21.jpg', '2016-06-30 01:57:39', ''),
+(69, 4894, '197202021998022001', '0002027206', 'Dr. Pingkan P. Egam, ST, MT', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', '2016-05-24 08:58:41', ''),
+(70, 4895, '196511191994122001', '0019126505', 'Dr. Nita Carolina V. Monintja, ST, MT', '', '', '', '', '', '', '', 13, 'TEKNIK MESIN', 44, 'TEKNIK MESIN', '', '', '', '2016-05-24 08:59:05', ''),
+(71, 4896, '196906051997021001', '0005066905', 'Jotje Rantung, ST, MT', '', '', '', '', '', '', '', 13, 'TEKNIK MESIN', 44, 'TEKNIK MESIN', '', '', '', '2015-07-21 02:33:25', ''),
+(72, 4897, '195708271988031003', '0027085704', 'Herry Kapugu', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', NULL, ''),
+(73, 4898, '197109302002121001', '0030097103', 'Dr. Aristotulus E. Tungka, ST, MT', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', '2016-05-24 08:56:40', ''),
+(74, 4899, '197001102000122001', '0010017005', 'Lucia I. R. Lefrandt, ST, MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', '2015-07-21 02:33:25', ''),
+(75, 4901, '196602271993031003', '0027026602', 'Ir. Pierre H. Gosal, MEDS', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', '2015-07-21 02:33:25', ''),
+(76, 4903, '196705151994031003', '0015056706', 'Peter Karl Bart Assa', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(77, 4904, '195905131985021001', '0013055904', 'Dr. Drs. Bahrun, M.Kes', 'Minangah Indah Blok E Nomor: 4', '', '', '', '', '', '', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', 'drsbahrun@rocketmail.com', '465525402979e053686aa1f3a3e7d80e.jpg', '2016-04-22 02:51:59', ''),
+(78, 4905, '197401151999031003', '0015017403', 'Hengky Luntungan, ST, MT', '', '', '', '', '', '', '', 13, 'TEKNIK MESIN', 44, 'TEKNIK MESIN', '', '', '', '2015-07-21 02:33:25', ''),
+(79, 4906, '197508252000031001', '0025087503', 'Dr. Tritya A. Rante Arungpadang, ST, MT', '', '', '', '', '', '', '', 13, 'TEKNIK MESIN', 44, 'TEKNIK MESIN', '', '', '', '2016-05-24 09:02:35', ''),
+(80, 4907, '197501282002121002', '0028017502', 'Yaulie Deo Y. Rindengan, ST, MSc', 'Bahu Lingkungan III Manado', '', '', '', '', '', '', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', 'rindengan@unsrat.ac.id', '418093c37376b881aad34be63066f4e9.jpg', '2016-05-25 05:51:08', ''),
+(81, 4908, '197505181999031001', '0018057501', 'Dr. Eng. Markus Karamoy Umboh, ST, MT', '', '', '', '', '', '', '', 13, 'TEKNIK MESIN', 44, 'TEKNIK MESIN', '', '', '', '2016-05-24 08:57:40', ''),
+(82, 4909, '195310121983031001', '0012105302', 'Ir. Oscar Hans Kaseke, MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', '2015-07-21 02:33:25', ''),
+(83, 4912, '196709031995022001', '0003096713', 'Grace Y. Malingkas', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(84, 4913, '196804031998022001', '0003046803', 'Alicia A. E. Sinsuw, ST, MT', '', '', '', '', '', '', '', 77, 'INFORMATIKA', 43, 'TEKNIK ELEKTRO', '', '', '78b22eb1978b4b93295c38eff2551c22.jpg', '2018-03-13 08:20:31', ''),
+(85, 4914, '196501261993031002', '0026016502', 'Jack Hary Ticoh', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(86, 4915, '195802271990031002', '0027025703', 'Josef Eugene Raymond Sumampouw', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(87, 4916, '196705271995121001', '0027056707', 'Meicsy E. I. Najoan, ST, MT', '', '', '', '', '', '', '', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', '', 'c3cb34e019648cf66c5856dbbab02734.jpg', '2015-07-21 02:37:44', ''),
+(88, 4917, '196407222000032001', '0022076402', 'Dr. Veronica A. Kumurur, ST., MSi', 'Graha Indah Blok A/11 Pineleng 2 - Kabupaten Minahasa', '', '', '', '', '', '', 16, 'PERENCANAAN WILAYAH DAN KOTA', 42, 'ARSITEKTUR', '', 'veronicakumurur@unsrat.ac.id', '8498f57cf8b45b0285f3240c3949c2ab.jpg', '2018-03-11 13:17:31', ''),
+(89, 4918, '196501121998031001', '0012016508', 'Rizal Sengkey, ST, MT', 'Jl. Kaima, Tomohon', '', '', '', '', '', '', 77, 'INFORMATIKA', 43, 'TEKNIK ELEKTRO', '', 'rizalsengkey@gmail.com', 'acce0f5e28287ddc3437559805aca78b.jpg', '2018-03-11 07:55:31', ''),
+(90, 4919, '196610161997021001', '0016106606', 'Ir. Benefit S. Narasiang, MT', 'Jalan Pingkan Matindas 44 Dendengan Dalam Lingkungan V, Manado', '', '', '', '', '', '', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', 'benefitsemuel@gmail.com', '3172ddaf0da08c30d2bc423205351e31.jpg', '2016-04-07 03:03:17', ''),
+(91, 5125, '195009241982032001', '-', 'Ir. Wenny J. Tamboto, MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', '2015-07-21 02:33:25', ''),
+(92, 5126, '195509241989032001', '0024095504', 'Ir. Sherly Sumilat', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', '2015-07-21 02:33:25', ''),
+(93, 5127, '195810311987031001', '0031105802', 'Ir. Djajeng Poedjowibowo', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', '2015-07-21 02:33:25', ''),
+(94, 5128, '195712121988031004', '0012125711', 'Ir. Frans Palobo Sappu, MT', 'KM-7  Winangun Atas Kec. Pineleng', '', '', '', '', '', '', 13, 'TEKNIK MESIN', 44, 'TEKNIK MESIN', '', 'fpsappu@yahoo.com', '', '2016-12-05 11:24:37', ''),
+(95, 5129, '195811021987031003', '0002115806', 'Ir. Gerrits Dirk Soplanit, MT', '', '', '', '', '', '', '', 13, 'TEKNIK MESIN', 44, 'TEKNIK MESIN', '', '', '', '2015-07-21 02:33:25', ''),
+(96, 5130, '195807131988031004', '0013075805', 'Johanes Van Rate', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', NULL, ''),
+(97, 5131, '196004071991031002', '0007046010', 'Ir. Rachmat Prijadi, M.Ars.', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', '2016-05-24 09:07:57', ''),
+(98, 5132, '196710031994031001', '0003106704', 'Servie O. Dapas, ST.MT.', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(99, 5133, '196507141991031004', '0014076504', 'Steenie E. Wallah', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(100, 5134, '195812081995121001', '0008125807', 'Hansje Jeki Tawas', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(101, 5135, '196507021994031001', '0002076504', 'Michael M. Rengkung, ST, MSi', '', '', '', '', '', '', '', 16, 'PERENCANAAN WILAYAH DAN KOTA', 42, 'ARSITEKTUR', '', '', '', '2015-07-21 02:33:25', ''),
+(102, 5136, '196308261994031001', '0026086303', 'Ir. Surijadi Supardjo, MSi', '', '', '', '', '', '', '', 16, 'PERENCANAAN WILAYAH DAN KOTA', 42, 'ARSITEKTUR', '', '', '', '2015-07-21 02:33:25', ''),
+(103, 5137, '196405131993031003', '0013056404', 'Ir. Mecky R.E. Manoppo, MT', 'Jl.Mogandi Linkungan III Malalayang I', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', 'meckymanoppo@yahoo.com', '9a66af24c53ae436b187db3dee2352c8.jpg', '2018-03-13 07:50:50', ''),
+(104, 5138, '196305311993031001', '0031056503', 'Ronny Estefanus Pandaleke', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(105, 5139, '196410101995031001', '0010106407', 'Muhammad I. Jasin', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(106, 5140, '196604031995122001', '0003046605', 'Lily Setyowaty Patras, ST, MT', '', '', '', '', '', '', '', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', '', '6673da159bcc738b0386b882325428eb.jpg', '2015-07-21 02:38:31', ''),
+(107, 5142, '196602231993032001', '0023026604', 'Febrina Pingkan Yvette. Sumanti,', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(108, 5143, '196705101997021001', '0010056707', 'Dr. Eng. Vecky C. Poekoel, ST, MT', '', '', '', '', '', '', '', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', '', '7bfbfc18d138c0c9434736ef62bf7341.jpg', '2015-07-23 02:11:13', ''),
+(109, 5144, '196207071997021001', '0007076205', 'Mielke R.I.A.J. Mondoringin', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(110, 5145, '197308111998021001', '0011087304', 'Theo Kurniawan Sendow, ST., MT., IPM', 'Jl. Pulau Bali No. 3, Kelurahan Batu Kota, Malalayang', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', 'theosendow@yahoo.com', '7abbcfaeaddfdbe8f6214892ea6aede8.jpeg', '2018-03-13 07:35:10', ''),
+(111, 5146, '197111021998022001', '0002117102', 'Alva Noviana Sarajar', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(112, 5147, '197603212000121001', '0021037601', 'Dr. Agung Sutrisno, ST, MT', '', '', '', '', '', '', '', 13, 'TEKNIK MESIN', 44, 'TEKNIK MESIN', '', '', '', '2016-05-24 08:58:17', ''),
+(113, 5148, '196103101988031004', '0010036104', 'Ir. Mardan M. Anasiru', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', '2016-04-12 13:57:04', ''),
+(114, 5149, '196104021989032002', '0002046107', 'Joice Elfrida Waani', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(115, 5150, '197509152000031002', '0015097504', 'Dr.Eng. Stenly Tangkuman, ST, MT', 'Bumi Nyiur Lingkungan III, Manado', '', '', '', '', '', '', 13, 'TEKNIK MESIN', 44, 'TEKNIK MESIN', '', 'st75@unsrat.ac.id', 'a9b593f011a328934a0d376f14ec65de.jpg', '2018-03-16 06:24:01', ''),
+(116, 5151, '197608152003121003', '0015087603', 'Semuel Yacob Recky Rompis', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(117, 5152, '196301091993032001', '0009016304', 'Agnes Tekla Mandagi', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(118, 5153, '197202021997021001', '0002027205', 'Banu Dwi Handono', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(119, 5154, '197304172000031001', '0017047302', 'Arie S. M. Lumenta, ST, MT', 'Wewelen Lingk. 3 Tondano', '', '', '', '', '', '', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', 'al@unsrat.ac.id', '3f0a6f7970a9746a14edbcf9d8084ec6.jpg', '2016-06-27 15:18:49', ''),
+(120, 5155, '197407062001122002', '0006077403', 'Cindy Jeane Supit', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(121, 5156, '197008242000122001', '0024087005', 'Faizah Mastutie', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', NULL, ''),
+(122, 5157, '197110211997022001', '0021107102', 'Herawati Riogilang', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(123, 5158, '197312212000121001', '0021127301', 'Raymond Ch. Tarore, ST, MT', '', '', '', '', '', '', '', 16, 'PERENCANAAN WILAYAH DAN KOTA', 42, 'ARSITEKTUR', '', '', '', '2015-07-21 02:33:25', ''),
+(124, 5159, '197611032003121004', '0003117602', 'Johan Styfen Catner Neyland', 'Kelurahan Bumi Nyiur Lingkungan IV Kecamatan Wanea', '', '', '', '', '', '', 13, 'TEKNIK MESIN', 44, 'TEKNIK MESIN', '', 'johanneyland@gmail.com', '23c3ae047494d349a1aec429273b2cbc.jpg', '2016-06-30 00:57:43', ''),
+(125, 5160, '197910252002121001', '0025107901', 'Sherwin R. U. A. Sompie, ST, MT', '', '', '', '', '', '', '', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', '', 'a59d935d23de58b8865abe84ad30a2b4.jpg', '2015-07-21 02:40:19', ''),
+(126, 5161, '196802121998022001', '0012026805', 'Claudia S. Punuh, ST, MM', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', '2015-07-21 02:33:25', ''),
+(127, 5162, '196412221997022001', '22126406', 'Meike Kumaat', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(128, 5163, '197503112003121001', '0011037501', 'Tertius Victor Yefta Ulaan, ST, MT', 'Perumahan Permata Asri Jl. Sea-Warembungan', '', '', '', '', '', '', 13, 'TEKNIK MESIN', 44, 'TEKNIK MESIN', '', 'tertiusulaan@yahoo.com', '58f39f664dfc7357d2ae148113009218.jpg', '2016-06-30 17:41:18', ''),
+(129, 5164, '195511181990031001', '0018115502', 'Mochtar Sibi', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(130, 5165, '196603311991032003', '0031036605', 'Novi Margritje Tulung, ST, MT', 'Perum Malalayang  Indah Blok B2-3, Manado', '', '', '', '', '', '', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', 'noviunsrat@gmail.com', '897a92e7fc65c6c4fe1a7c136c9bcffe.jpg', '2016-04-26 00:22:15', ''),
+(131, 5166, '197611212003122001', '0021117602', 'Dringhuzen J. Mamahit, ST, M.Eng', '', '', '', '', '', '', '', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', '', 'ef1257dff386063eb9185a3625d0e4a8.jpg', '2015-07-21 02:47:30', ''),
+(132, 5167, '195411241989031001', '0024115406', 'Ir. Filman Lisi, MT', '', '', '', '', '', '', '', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', '', '9fee199b9c7637903d559d560ca5befe.jpg', '2015-07-21 02:39:27', ''),
+(133, 5168, '197011241997022001', '0024117001', 'Lucia Grace Jasmin Lalamentik', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(134, 5169, '196312261993031002', '0026126303', 'Jantje Bernhard Mangare', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(135, 5170, '196106191993101001', '0019066106', 'Ir. Revo Lanny Inkiriwang, MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(136, 5171, '197408012005011002', '0001087403', 'Alvin J. Tinangon, ST, MT', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', '2015-07-21 02:33:25', ''),
+(137, 5172, '197109062002122001', '0006097106', 'Cynthia Erlita Virgin Wuisang', '', '', '', '', '', '', '', 16, 'PERENCANAAN WILAYAH DAN KOTA', 42, 'ARSITEKTUR', '', '', '', NULL, ''),
+(138, 5173, '196406131997021001', '0013066403', 'Janny Olny Wuwung, ST, MT', 'Koha Jaga  4 Kecamatan Mandolang Kabupaten Minahasa', '', '', '', '', '', '', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', 'jannywuwung@gmail.com', '829b0a849466234653733b05f706d3c9.jpg', '2017-04-13 02:46:44', ''),
+(139, 5469, '197405172000032001', '0017057404', 'Fella Warouw, ST, M.Eng, PhD', 'SamRatulangi no 370 Wanea Manado', '', '', '', '', '', '', 16, 'PERENCANAAN WILAYAH DAN KOTA', 42, 'ARSITEKTUR', '', 'felawarouw@gmail.com', '', '2016-06-28 08:21:57', ''),
+(140, 5470, '196707131998021001', '0013076702', 'Esly D. Takumansang, ST, MT', '', '', '', '', '', '', '', 16, 'PERENCANAAN WILAYAH DAN KOTA', 42, 'ARSITEKTUR', '', '', '', '2015-07-21 02:33:25', ''),
+(141, 5471, '198006172002122002', '0017068002', 'Adriana Nanow Everce Ticoalu', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(142, 5473, '197403272002121002', '0027037405', 'Glanny M. Ch. Mangindaan, ST., MT.,Ph.D.', 'Perum MGI Korpri C/11 Mapanget Kecamatan Talawaan, Minut', '', '', '', '', '', '', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', 'glanny_m@unsrat.ac.id', '9fd81356d718b02c348fbf2b36773cf7.jpg', '2017-01-27 03:09:23', ''),
+(143, 5474, '197201012000121001', '0001017202', 'Yan Tondok, ST, MT', '', '', '', '', '', '', '', 13, 'TEKNIK MESIN', 44, 'TEKNIK MESIN', '', '', '', '2015-07-21 02:33:25', ''),
+(144, 5475, '197502092005011002', '0009027504', 'Johansen C. Mandey,ST., MArs.', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', '2016-05-24 09:03:12', ''),
+(145, 5477, '197808212009121003', '0021087806', 'Stanley David Sualang Karouw, ST, MTIs', 'Perumahan Lembah Sari No. 20 Winangun, Malalayang, Manado', '', '', '', '', '', '', 77, 'INFORMATIKA', 43, 'TEKNIK ELEKTRO', '', 'stanley.karouw@unsrat.ac.id', '515ea2f732cc86ce295c0ae88c3cc5d7.jpg', '2018-09-11 03:10:44', '197808212009121003'),
+(146, 5478, '198608142009122007', '0014088601', 'Kartika Harlesi Tanudjaja', '', '', '', '', '', '', '', 77, 'INFORMATIKA', 43, 'TEKNIK ELEKTRO', '', '', '', NULL, ''),
+(147, 5479, '198012092008011004', '0009128003', 'Jimmy Reagen Robot, ST, M.Kom', '', '', '', '', '', '', '', 77, 'INFORMATIKA', 43, 'TEKNIK ELEKTRO', '', '', '88acd6c8234184726fe17f0df0042423.jpg', '2015-07-21 02:41:28', ''),
+(148, 5480, '196205211991031002', '0021056204', 'George Moningka', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(149, 5481, '197409292001122003', '0029097402', 'Steeva G. Rondonuwu', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(150, 5482, '197501122008122001', '0012017505', 'Nancy Jeane Tuturoong, ST, M.Kom', '', '', '', '', '', '', '', 77, 'INFORMATIKA', 43, 'TEKNIK ELEKTRO', '', '', 'f67f413fa17175df3cd572b44ea4c48d.jpg', '2015-07-21 02:41:16', ''),
+(151, 5483, '197405042005011001', '0004057403', 'Hendra Riogilang', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(152, 5484, '197210072001121001', '0007107203', 'Steve Ch.N. Palenewen', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(153, 5485, '197902202008121004', '', 'Reynold Frankie Robot, ST, M.Eng', '', '', '', '', '', '', '', 77, 'INFORMATIKA', 43, 'TEKNIK ELEKTRO', '', '', '', '2015-07-21 02:33:25', ''),
+(154, 5486, '198803142012121001', '0014038801', 'Muhamad Dwisnanto Putro, ST, M.Eng', 'Malendeng, Manado', '', '', '', '', '', '', 77, 'INFORMATIKA', 43, 'TEKNIK ELEKTRO', '', 'dwisnantoputro@unsrat.ac.id', '08b733091c1f3adb4695d959b3bc7e22.jpg', '2016-01-13 10:37:22', ''),
+(155, 5487, '198002282012121002', '0028028006', 'Pinrolinvic Manembu, ST., MT.', 'Jl Manibang, Lingk II, Malalayang dua, Manado', '', '', '', '', '', '', 77, 'INFORMATIKA', 43, 'TEKNIK ELEKTRO', '', 'pmanembu@gmail.com', 'f5720f350c70f386d3edd3fbb10d7c48.jpg', '2016-11-13 11:41:53', ''),
+(156, 5488, '197908042014041001', '0004087908', 'Agustinus Jacobus, ST, M.Cs', '', '', '', '', '', '', '', 77, 'INFORMATIKA', 43, 'TEKNIK ELEKTRO', '', '', 'a639a50b495800bcf5278afa0853cafa.jpg', '2016-06-21 02:56:03', ''),
+(157, 5489, '197309182002122001', '0018097302', 'INGERID LIDIA MONIAGA, ST, MSi', 'Perum DPRD Blok F No 1 Jaga V Kalawat - Minut', '', '', '', '', '', '', 16, 'PERENCANAAN WILAYAH DAN KOTA', 42, 'ARSITEKTUR', '', 'ingeridmoniaga73@gmail.com', '', '2018-03-13 07:14:35', ''),
+(158, 5490, '198006112003122002', '0011068001', 'Jane Litouw, ST., MT.', '', '', '', '', '', '', '', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', '', '', '2016-05-24 09:04:46', ''),
+(159, 5492, '198208052010122003', '0005088206', 'Leidy Magrid Rompas, ST, MT', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', '2015-07-21 02:33:25', ''),
+(160, 5493, '198409062010122007', '0006098403', 'Virginia Tulenan, S.Kom, MTI', 'Mapanget', '', '', '', '', '', '', 77, 'INFORMATIKA', 43, 'TEKNIK ELEKTRO', '', 'virginia.tulenan@unsrat.ac.id', 'cbe26901befe36aa7f748c154ff28096.jpg', '2016-01-26 08:13:54', ''),
+(161, 5494, '197711202010121002', '0020117708', 'Xaverius Najoan, ST, MT', 'Lab. Rekayasa Perangkat Lunak, JTE Fakultas Teknik', '', 'Lorem Ipsum', 'Computer security, Web Engineering', '6106232', 'ti-u-LYAAAAJ', '56725649900', 77, 'INFORMATIKA', 43, 'TEKNIK ELEKTRO', '', 'xnajoan@unsrat.ac.id', '551f3c805b8f0fe59fba480678106ae4.jpg', '2017-09-13 06:59:50', '197711202010121002'),
+(162, 5495, '197602042005011004', '0004027601', 'Benny Lokombanua Maluegha, ST, MSc', 'Jalan Kampus No. 170 Kelurahan Kleak Lingkungan 2 Manado', '', '', '', '', '', '', 13, 'TEKNIK MESIN', 44, 'TEKNIK MESIN', '', 'benny_maluegha@unsrat.ac.id', 'b3862aeb1df4591e698e64231b817436.jpg', '2016-06-28 13:18:24', ''),
+(163, 5496, '197904272005011010', '0027047902', 'Roski Rolans I. Legrans', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(164, 5497, '198105262005011002', '0026058101', 'Arthur Mourits Rumagit, ST, MT', '', '', '', '', '', '', '', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', '', '', '2015-07-21 02:33:25', ''),
+(165, 5498, '198007092005011002', '0009078003', 'Dr. Eng. Steven R. Sentinuwo, ST., MTI', 'Pakowa Lingk 2 Manado', '', '', '', '', '', '', 77, 'INFORMATIKA', 43, 'TEKNIK ELEKTRO', '', 'steven@unsrat.ac.id', '129a587512dd046e7d770b024c070fdb.jpg', '2016-04-23 02:48:06', ''),
+(166, 5499, '197509262006041001', '0026097504', 'Dr. Charles S. C. Punuhsingon, ST, MT', '', '', '', '', '', '', '', 13, 'TEKNIK MESIN', 44, 'TEKNIK MESIN', '', '', '', '2016-05-24 09:00:22', ''),
+(167, 5500, '196509051995022001', '0005096515', 'Sartje Silimang, ST, MT', '', '', '', '', '', '', '', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', '', '90226a42057e59572747c12effcb8067.jpg', '2015-07-21 02:48:48', ''),
+(168, 5650, '195910161990031001', '0016105909', 'Deane R.O. Walangitan', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(169, 5656, '196606111997021002', '0011066605', 'HENDRIEK HANIE KARONGKONG, ST, MT', 'Kuwil Jaga II No 21 Kec. Kalawat, Minahasa Utara, Sulawesi Utara', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', 'hendriek_hk@unsrat.ac.id', 'ea4da77c38325118437427aeebdba183.jpg', '2018-03-13 07:06:46', ''),
+(170, 5657, '196410251997021001', '0', 'Ir. Ricky S. M. Lakat, MT', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', '2016-04-12 13:58:00', ''),
+(171, 5658, '196605021999031003', '0002056607', 'Arwanto Meicky Alfius Lakat, ST., MT.', '', '', '', '', '', '', '', 13, 'TEKNIK MESIN', 44, 'TEKNIK MESIN', '', '', '', '2016-05-24 09:05:26', ''),
+(172, 5660, '196607241998022001', '0024076601', 'Lanny Dian Kusuma Manaroinsong', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(173, 5661, '196910071998031002', '0007106903', 'David Pang, ST, MT', '', '', '', '', '', '', '', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', '', '7daa5baa17fde2f567c73a293d2f54f9.jpg', '2015-07-21 02:47:56', ''),
+(174, 5662, '195411051993032001', '0005115404', 'Sompie Diantje, M.Ch', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(175, 5663, '198005092005011001', '0009058004', 'Andy A.M. Malik, ST, MT', '', '', '', '', '', '', '', 16, 'PERENCANAAN WILAYAH DAN KOTA', 42, 'ARSITEKTUR', '', '', '', '2015-07-21 02:33:25', ''),
+(176, 5665, '197505202005011002', '0020057504', 'Jefferson Mende, ST., MT.', 'Perum Wale Umbanua, Kel PaalDua Lingk 9, Manado', '', '', '', '', '', '', 13, 'TEKNIK MESIN', 44, 'TEKNIK MESIN', '', 'jeff_mende@unsrat.ac.id', '6d20ee6f6e0a01ef8c5ba72087cda6be.jpg', '2016-06-22 03:41:35', ''),
+(177, 5666, '197209132005011003', '0001037305', 'Loudy M.B. Kalalo, ST., MSc.', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', '2016-05-24 09:00:41', ''),
+(178, 5667, '198010042005011001', '0004108002', 'Oktavian Abraham Lantang, ST, MTI', 'Jl. Kamberu, Lingkungan 7 Kelurahan Lansot, Kota Tomohon Sulawesi Utara', '', '', '', '', '', '', 77, 'INFORMATIKA', 43, 'TEKNIK ELEKTRO', '', 'oktavian_lantang@unsrat.ac.id', '89457e8aedf2ebdc9c50ea224940de76.jpg', '2016-04-25 03:32:15', ''),
+(179, 5668, '197410222005011003', '0022107403', 'Romels C. A. Lumintang, ST., MT.', 'Paal IV Lk. V Kec. Tikala Manado', '', '', '', '', '', '', 13, 'TEKNIK MESIN', 44, 'TEKNIK MESIN', '', 'cresano.r.a@gmail.com', 'e96bddc717dc0fba265074377a76eb1f.jpg', '2016-06-30 07:58:55', ''),
+(180, 5669, '197712022005011002', '0002127702', 'Irvan Raymon Rondonuwu, B.Eng', '', '', '', '', '', '', '', 13, 'TEKNIK MESIN', 44, 'TEKNIK MESIN', '', '', '', '2015-07-21 02:33:25', ''),
+(181, 5670, '197709292005011005', '0029097703', 'Alwin Melkie Sambul, S.T., M.Eng., Ph.D.', 'Jln. Sesawi No.63 Kelurahan Sario Kotabaru Manado', '', '', '', '', '', '', 77, 'INFORMATIKA', 43, 'TEKNIK ELEKTRO', '', 'asambul@unsrat.ac.id', '0e7082db2a72a7bbaa70b4323165c386.jpg', '2018-09-03 07:18:51', ''),
+(182, 5671, '197603102005011001', '0010037601', 'Michael E. Rembet, ST, MT', 'Jl. Raya Tomohon Tondano, Lingk. Satu, Kel. Matani Satu, Kec. Tomohon Tengah, Kota Tomohon', '', '', '', '', '', '', 13, 'TEKNIK MESIN', 44, 'TEKNIK MESIN', '', 'michael_r@unsrat.ac.id', '86ba645f6d67db54081bbd76ddd128f4.jpg', '2016-06-09 02:35:27', ''),
+(183, 5672, '197801122006042002', '0012017805', 'Pingkan Ane Kristy Pratasis', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(184, 5673, '197106212002121002', '0021067104', 'Verry Lahamendu, ST', '', '', '', '', '', '', '', 16, 'PERENCANAAN WILAYAH DAN KOTA', 42, 'ARSITEKTUR', '', '', '', '2015-07-21 02:33:25', ''),
+(185, 5674, '198201192006042004', '0019018204', 'Feisy Diane Kambey, ST., MT.', '', '', '', '', '', '', '', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', '', '', '2016-05-24 09:05:07', ''),
+(186, 5675, '197507292006041001', '0029077507', 'Brave Angkasa Sugiarso, ST, MT', 'Jl. Bape Palar / Rike Nomor : 93, Kelurahan Tanjung Batu Lingkungan V Kec. Wanea Manado', '', '', '', '', '', '', 77, 'INFORMATIKA', 43, 'TEKNIK ELEKTRO', '', 'brave@unsrat.ac.id', '', '2016-11-23 02:54:24', ''),
+(187, 5676, '197809112006041004', '', 'Steven Lintong, ST', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', '2015-07-21 02:33:25', ''),
+(188, 5677, '197709202006042001', '0020097703', 'Sesty Ester J. Imbar', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', NULL, ''),
+(189, 5678, '197710042006042002', '0004107706', 'Sary D. E. Paturusi, ST, M.Eng', '', '', '', '', '', '', '', 77, 'INFORMATIKA', 43, 'TEKNIK ELEKTRO', '', '', '', '2015-07-21 03:12:27', ''),
+(190, 5679, '197602262006042001', '0026027603', 'Amanda Sembel, ST., MT., MSc.', '', '', '', '', '', '', '', 16, 'PERENCANAAN WILAYAH DAN KOTA', 42, 'ARSITEKTUR', '', '', '', '2016-05-24 09:03:46', ''),
+(191, 6926, '199002232018031001', '', 'Daniel Febrian Sengkey', '', '', '', '', '', '', '', 77, 'INFORMATIKA', 43, 'TEKNIK ELEKTRO', '', '', '', NULL, ''),
+(192, 6927, '198906242018031001', '', 'Dirko Gustaafiano Setyadharmaputra Ruindungan', '', '', '', '', '', '', '', 77, 'INFORMATIKA', 43, 'TEKNIK ELEKTRO', '', '', '', NULL, '');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `ft_judul`
 --
 
@@ -1028,6 +1256,108 @@ CREATE TABLE `ft_judul_apply` (
   `tglUpdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `userUpdate` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ft_publikasi`
+--
+
+CREATE TABLE `ft_publikasi` (
+  `publikasiId` int(11) NOT NULL,
+  `dosenId` int(11) NOT NULL,
+  `judul` mediumtext NOT NULL,
+  `di` mediumtext NOT NULL,
+  `tempat` varchar(100) NOT NULL,
+  `tahun` year(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `ft_publikasi`
+--
+
+INSERT INTO `ft_publikasi` (`publikasiId`, `dosenId`, `judul`, `di`, `tempat`, `tahun`) VALUES
+(1, 145, 'Studi Tinjauan Perbandingan KIPI dan CMMI sebagai Kerangka Kerja Kematangan Industri Perangkat Lunak', 'TEKNO Volume 07 No.54', '', 2010),
+(2, 145, 'Analisa dan Perancangan Aplikasi Dormitory Management berbasis Web dengan Menggunakan Metode USDP', 'TEKNO Volume 09/No.57/Desember 2011', '', 2011),
+(3, 145, 'Perencanaan Strategis SI/TI berbasis Manfaat Bisnis dengan menggunakan Metodologi Be Vissta Planning Studi Kasus: Dinas Pendapatan Daerah Provinsi Sulawesi Utara', 'TEKNO Volume 09/No.57/Desember 2011', '', 2011),
+(4, 145, 'Analisa dan Perancangan Aplikasi Portal Web Kantor Sinode Gereja Masehi Injili di Minahasa (GMIM)', 'Prosiding Seminar Nasional Dies Natalis ke-48 Fakultas Teknik Universitas Sam Ratulangi', '', 2012),
+(5, 145, 'Quantifying IT Business Value: Case Study of North Sulawesi Province, Indonesia(Link)', 'Proceedings 2012 International Conference on Advanced Computer Science and Information Systems - ICACSIS', 'Jakarta, Indonesia', 2012),
+(6, 145, 'Analysis and Design Web Portal Amazing North Sulawesi using Agile Unified Process Methodology', 'Prosiding Seminar Nasional Teknologi Informasi (SNTI) IX 2012, ISSN: 1829-9156, Vol. 9 No.1', 'Jakarta', 2012),
+(7, 160, 'Service Oriented Architecture Blueprint', 'Proceedings of International Conference on Advanced Computer Science and Information Systems, pg.149-154, ISSN:2086-1796', 'Universitas Indonesia', 2009),
+(8, 160, 'Enhancing Learning Experience For Young Child Through Educational Content Using Multimedia', 'Prosiding Konferensi Nasional Sistem Informasi', 'Makasar', 2014),
+(9, 160, 'Development of Decision Support System for Manado\'s BAPERJAKAT using DAD and AHP', 'Proceedings of International Conference on Wireless and Telematics', 'Manado', 2016),
+(10, 155, 'IntelligEnsia For energy Sustainability Case Study : Indonesia', 'European Modelling Symposium (EMS), IEEE 2013', 'Manchester, England', 2013),
+(11, 155, 'Missing Data Solution of Electricity Consumption based on Lagrange Interpolation Case Study Intelligensia Data', '“The 5th International Conference on Electrical Engineering and Informatics 2015', 'Bali, Indonesia', 2015),
+(12, 155, 'Penentuan Jalur Alternatif Terdekat Trayek  01/02 Angkutan Umum di Kota Manado dengan Algoritma Greedy', 'Jurnal  Ilmiah Badan Diklat Provinsi Sulawesi Utara', 'Manado, Indonesia', 2014),
+(75, 155, 'MIMO System Data  Modelling  Based on  Adaptive Linear Neuron  Algorithm', 'ICWT 2015', 'Manado, Indonesia', 2015),
+(73, 155, 'Prediction Analytics of Electricity Consumption  using IntelligEnSia Smart-meter System', 'NBISC 2016', 'Helsinki, Finland', 2016),
+(76, 155, 'Radio Frequency Identification dengan Akses Multi-Level Berbasis Web', 'Seminar Nasional FATEK UNSRAT 2016', 'Manado, Indonesia', 2016),
+(17, 155, 'Monitoring and Controlling Green House Application   Case Study: Tomato Plant', 'ICWT 2015', 'Manado, Indonesia', 2015),
+(15, 155, 'Aplikasi Simulasi Body Mass Index Berbasis WEB Menggunakan Metode Fuzzy Logic', '“Seminar Nasinal Riset dan Teknologi Terapan” Unika Widya Mandala Surabaya', 'Surabaya, Indonesia', 2015),
+(18, 155, 'Air Pollution Detection Application using Microcontroller', 'ICWT 2015', 'Manado, Indonesia', 2015),
+(19, 155, 'SISTEM LAMPU LALU LINTAS DENGAN LOGIKA KELABU', 'Jurnal RealTech UNIKA De La Salle Manado', 'Manado, Indonesia', 2012),
+(20, 155, 'Pemanfaatan Limbah Ternak Untuk Biogas', 'Workshop SEDS Canada  2014” Humber Institute of Technologi and Advance Learning', 'Manado, Indonesia', 2014),
+(21, 155, 'Robotika Sebagai Media Edukasi Anak', 'Suara Pembaca Harian Tribun Manado', 'Manado, Indonesia', 2013),
+(22, 77, 'Biology Agriculture and Healthcare', 'International Institute For Science,Technology and Education', 'IISTE US Office', 2013),
+(23, 142, 'Kendali Dynamic Voltage Restorer Menggunakan Jaring Saraf Tiruan Counterpropagation', 'SNATI', 'UII Jogyakarta', 2008),
+(24, 142, 'Kendali Fuzzy Logic untuk Dynamic Voltage Restorer', 'SNPs VIII 2008', 'ITS Surabaya', 2008),
+(25, 142, 'Control of Dynamic Voltage Restorer for Voltage Sag Mitigation', 'ICTS', 'ITS Surabaya', 2008),
+(26, 142, 'A New Simplified Sensorless Speed Control of Induction Motor Using D-axis Voltage', 'Proceeding of The International Conference on Electrical Machines and Systems (ICEMS), No. LS4B-1, pp.1-6 (2012.10)', 'Hokkaido Japan', 2012),
+(27, 142, 'Stability Study of a Permanent Magnet Synchronous Motor Sensorless Vector Control System Based on Extended EMF Mode', 'IEEJ Journal of Industry Applications, Vol.1, No. 3, pp.148-154 (2012.11)', '', 2012),
+(28, 142, 'Transient Characteristics of a New Simplified Speed Sensorless Vector Control for Induction Motors', 'Proceeding of The International Conference on Electrical Machines and Systems (ICEMS), No. IMD-0245, pp.2018-2023 (2013.10)', 'South Korea', 2013),
+(29, 142, 'A Simplified Speed-Sensorless Vector Control of Induction Motor', 'IEEJ Journal of Industry Applications, Vol.3, No. 2, pp. (2014.3)', '', 2013),
+(30, 142, 'Stability Comparison of New Simplified Speed Sensorless Vector Control Systems for Induction Motors', 'Journal of International Conference on Electrical Machines and Systems, Vol. 3, No. 2, pp.126-131 (2014.6)', '', 2014),
+(31, 142, 'Design and Implementation of Programming on Electrical Power System as an E-learning Subject Course at University of Sam Ratulangi Indonesia', 'IEICE 2016', 'Japan', 2016),
+(32, 6, 'May We Obtain Thermal Comfort with Passive and Low Energy Building? Study of Thermal Comfort in Humid Tropical Classroom', 'CLIMA 2013 - 11th REHVA World Congress and the 8th International Conference on Indoor Air Quality, Ventilation and Energy Conservation in Buildings, 16. - 19. 6. 2013', 'Prague Congress Centre, Czech Republic', 2013),
+(33, 6, 'Investigation of Thermal Comfort in a Passive and Low Energy Classroom Building. From Gender\'s Point of View', 'Indoor air 2014. The 13th International Conference on Indoor Air Quality and Climate, July 7 – 12, 2014,', 'Hong Kong', 2014),
+(34, 6, 'Design of Smart Shading Device for Buildings in a Tropical Humid Climate', '31th International Passive and Low Energy Architecture (PLEA) Conference, 9-11 September 2015', 'Bologna Italy', 2015),
+(35, 6, 'Natural Ventilation: From Computational Fluid Dynamics, To Artificial Neural Networks, For Thermal Comfort', 'ISBN 978-979-17509-1-2', 'Sam Ratulangi University Press', 2010),
+(36, 6, 'Manado’s Coastal Line Area Development, A Concept of Urban Design and Environmental Management of Water Front City', 'The 7th International Seminar on Sustainable Environment and Architecture, 20-21 November 2006', 'Hasanuddin University Makassar', 2006),
+(37, 6, 'Indirect Evaporative Cooling for Thermal Comfort in Buildings in a Humid Tropical Climate', 'International Joint-Conference of SENVAR-iNTA-AVAN 2015: Wisdom of the Tropics: Past, Present and Future', 'Universiti Teknologi Malaysia, Johor Bahru', 2015),
+(38, 6, 'Applicability of Design Elements and Passive Design for Comfort Ventilation', 'The 2nd International Networks for Tropical Architecture (iNTA) Conference, 3-5 April 2006', 'Yogyakarta', 2006),
+(39, 6, 'The Effects of Surrounding Buildings on Wind-Induced Air Motion in Multi Storey Building', 'The 6th International Seminar on Sustainable Environment and Architecture, 19-20 September 2005', 'ITB, Bandung', 2005),
+(40, 6, 'Investigasi Pola Aliran Udara dalam bangunan Bertingkat Akibat pengaruh Penghalang di depan dan di Belakangnya', 'Jurnal Dimensi Teknik Arsitektur, vol.33, no.1 Desember 2005', 'Universitas Kristen Petra Surabaya', 2005),
+(41, 6, 'Pengaruh Tipe Jendela Terhadap Pola Aliran Udara Dalam Ruang', 'Jurnal Dimensi Teknik Arsitektur, vol.31, no.1, Juli 2003', 'Universitas Kristen Petra Surabaya', 2003),
+(42, 6, 'Studi Aliran Udara dengan Metode Gas Dalam Jaringan (Lattice Gas Method)', 'Jurnal Dimensi Teknik Arsitektur, vol.30, no.2 Desember 2002', 'Universitas Kristen Petra Surabaya', 2002),
+(43, 6, 'Aplikasi Jaringan Saraf Tiruan untuk Perancangan Ventilasi Optimal pada Bangunan di Iklim Tropis Lembab', 'Jurnal Dimensi Teknik Arsitektur, vol.29, no.1 Juli 2001', 'Universitas Kristen Petra Surabaya', 2001),
+(44, 6, 'Contribution à l’étude des coefficient de vitesse à l’aide de réseaux de neurons – Application à l’écoulement de l’air dans les bâtiments pour le confort thermique en climat tropical humide', 'Thèse de Docteur, INSA de Lyon', 'INSA de Lyon', 1997),
+(45, 6, 'Window and Roof Configurations for Comfort Ventilation', 'Int. Journal of Building Research and Information 1997, vol.25, no.4, p.215-225', 'UK', 1997),
+(46, 6, 'Using Artificial Neural Networks to Predict the Interior Velocity Coefficients', 'Int. Journal of Building and Environment, 1997, vol.323, no.4, p.295-303', 'Elsevier', 1997),
+(47, 6, 'Application aux ecoulement de l’air dans les batiments', 'Revue Generale de Thermique, 1997, vol.36, no.3, p.180-191', 'Elsevier', 1997),
+(48, 6, 'Effects of Roof Shapes on Wind-Induced Air Motion Inside Buildings', 'Int. Journal of Building and Environment, 1997, vol.32, no.1, p.1-11', 'Elsevier', 1997),
+(49, 6, 'Artificial Neural Networks and Naturally Ventilated Buildings', 'Int. Journal of Building Research and Information, 1996, vol.24, p. 203-208', 'UK', 1996),
+(50, 6, 'Investigation of Natural Ventilation with Computational Fluid Dynamics. A Comparison Study with Wind Tunnel Results', 'Architectural Science Review, 1996, vol. 39, no.2, p.113-120', 'University of Sydney Australia', 1996),
+(51, 6, 'Coefficient de Vitesse en Bâtiments Large Ouverture sur l’Exteriuer', 'Memoire de DEA, INSA de Lyon', 'INSA de Lyon France', 1993),
+(52, 115, 'Application of Grey Model for Machine Degradation Prognostics', 'Journal of Mechanical Science and Technology', '', 2011),
+(53, 156, 'Network packet data online processing for intrusion detection system', '2015 1st International Conference on Wireless and Telematics (ICWT)', 'Manado Indonesia', 2015),
+(54, 162, 'Penentuan Beban Pendinginan AC pada Ruangan Maengket Hall di Hotel Sahid Kawanua Manado', 'TEKNO (vol. 05/no. 43/April 2007, ISSN 0212-9617)', 'Fakultas Teknik UNSRAT Manado', 2007),
+(55, 162, 'Characteristics of a Solar Cell', 'TEKNO (vol. 09/no. 55/April 2011, ISSN 0212-9617)', 'Fakultas Teknik UNSRAT Manado', 2011),
+(56, 162, 'Determination of the Efficiency of a Solar Air Collector', 'TEKNO (vol. 09/no. 55/April 2011, ISSN 0212-9617)', 'Fakultas Teknik UNSRAT Manado', 2011),
+(57, 162, 'Geothermal Energy in Lahendong, North Sulawesi, Indonesia', 'Lambert Academic Publishing', 'Jerman', 2011),
+(58, 162, 'Solar Cooker', 'TEKNO (vol. 09/no. 57/Desember 2011, ISSN 0212-9617)', 'Fakultas Teknik UNSRAT Manado', 2011),
+(59, 162, 'Constructing an Automatic Weather Station', 'TEKNO (vol. 09/no. 57/Desember 2011, ISSN 0212-9617)', 'Fakultas Teknik UNSRAT Manado', 2011),
+(60, 162, 'Biogas Generation and Water Heating Test', 'TEKNO (vol. 10/no. 58/April 2012, ISSN 0212-9617)', 'Fakultas Teknik UNSRAT Manado', 2012),
+(61, 162, 'Perbandingan Laju Produksi Kondensat pada Mesin Pendingin Unit SN 1016-10149011 Antara yang Menggunakan Refrigeran CFC-R12 dengan Refrigeran Musicool-MC12', 'TEKNO MESIN (vol. 1/no. 1/Juni 2014, ISSN 2355-9721)', 'Jurusan Teknik Mesin FATEK UNSRAT Manado', 2014),
+(62, 162, 'Pyranometer Calibration', 'TEKNO MESIN (vol. 1/no. 2/Oktober 2014, ISSN 2355-9721)', 'Jurusan Teknik Mesin FATEK UNSRAT Manado', 2014),
+(63, 162, 'Determination of the Efficiency Curve for a Small Inverter', 'TEKNO MESIN (vol. 2/no. 1/Juni 2015, ISSN 2355-9721)', 'Jurusan Teknik Mesin FATEK UNSRAT Manado', 2015),
+(64, 162, 'Pengaruh tinggi Level Uap Air Panas Terhadap Proses Pengeringan Gabah', 'TEKNO MESIN (vol. 2/no. 2/Oktober 2015, ISSN 2355-9721)', 'Jurusan Teknik Mesin FATEK UNSRAT Manado', 2015),
+(65, 162, 'Uji Model Turbin Jenis Pelton Untuk Menentukan Daya Head dan Kapasitas Prototipe Turbin Pelton pada Desa Berair Terjun Pinaras di Minahasa', 'TEKNO MESIN (vol. 2/no. 3/Februari 2016, ISSN 2355-9721)', 'Jurusan Teknik Mesin FATEK UNSRAT Manado', 2016),
+(66, 128, 'Pengaruh Peningkatan Bilangan Reynold dan Jarak Penghalang Kapsul Terhadap Penguatan Vortex pada Saluran Berpenampang Segiempat', 'Jurnal Tekno Mesin', 'Teknik Mesin Unsrat Manado', 2014),
+(67, 128, 'Studi tentang Pengaruh Peningkatan Bilangan Reynold dan Variasi Jarak Penghalang terhadap Kenaikan Tinggi Tekanan yang Dihasilkan Sebelum dan Sesudah Melewati Penghalang', 'Jurnal Tekno Mesin', 'Teknik Mesin Unsrat Manado', 2014),
+(68, 128, 'Perbandingan Kadar Air Gabah Pada Proses Pengeringan Gabah Antara Alat Pengering Yang Menggunakan Penutup dan Tanpa Penutup Dengan Fluida Kerja Air Panas', 'Jurnal Tekno Mesin', 'Teknik Mesin Unsrat Manado', 2015),
+(69, 128, 'Pengaruh Tinggi Level Uap Air Panas Terhadap Proses Pengeringan Gabah', 'Jurnal Tekno Mesin', 'Teknik Mesin Unsrat Manado', 2015),
+(70, 128, 'Uji Model Turbin Jenis Pelton Untuk Menentukan Daya Head dan Kapasitas Prototipe Turbin Pelton Pada Desa Berair Terjun Pinaras di Minahasa', 'Jurnal Tekno Mesin', 'Teknik Mesin Unsrat Manado', 2016),
+(71, 155, 'Sistem Pengamanan Pintu Jamak dengan RFID Sensor berbasis Web', 'Jurnal Elektro, Vol 8 No.2', 'Unika Atma Jaya Jakarta', 2015),
+(74, 155, 'Factors Influencing Electricity Demand : a Case of Jakarta, Indonesia', 'NBISC 2016', 'Helsinki, Finland', 2016),
+(77, 155, 'Pemodelan Data Konsumsi Listrik melalui IntelligEnSia Smart-meter Sistem', 'Seminar Nasional Keteknikkan  2016', 'Manado, Indonesia', 2016),
+(78, 155, 'Komunikasi Data IntelligEnSia Smart-Meter SistemNew Generation', 'Seminar Nasional Keteknikkan  2016', 'Manado, Indonesia', 2016),
+(79, 155, 'Sistem Keamanan dan Billing Pintu Rumah Kost Menggunakan Near Field Communication berbasis web : solusi wireless', 'Seminar Nasional Keteknikkan  2016', 'Manado, Indonesia', 2016),
+(80, 186, 'Komputasi Grid Berbasiskan GRIA (grid Recources For Industrial Application)', 'Malang', 'Universitas Brawijaya malang', 2012),
+(81, 142, 'Student Perceptions of Virtual Programming Lab on ELearning Class at University of Sam Ratulangi', 'ICTS 2016', 'Surabaya', 2016),
+(82, 6, 'Cooling Performance of Spraying Water Automatically on the Roof Surface for Thermal Comfort in Buildings in Manado', '11th International Symposium on Architectural Interchanges in Asia (ISAIA 2016)', 'Tohoku University, Sendai, Japan', 2016),
+(83, 6, 'Design of Evaporative-Cooling Roof for Decreasing Air Temperatures in Buildings in the Humid Tropics', 'the 5th Engineering International Conference', 'UNNES Semarang', 2016),
+(95, 155, 'A Novel Smart Meter Controlling System with Dynamic IP Addresses', 'Proceeding of The 26th IEEE International Symposium on Industrial Electronics, pages: 1465-1470, 2017, Presented at: 26th IEEE International Symposium on Industrial Electronics (ISIE),', 'Edingburg, UK', 2017),
+(96, 155, 'Modeling of electricity consumption in one of the Asia’s most populous cities – Jakarta, Indonesia', 'The 12th SDEWES Conference on Sustainable Development of Energy, Water and Environment Systems', 'Dubrovnik, Croatia', 2017);
 
 -- --------------------------------------------------------
 
@@ -1101,6 +1431,12 @@ ALTER TABLE `ft_dokumen_user`
   ADD KEY `trxdokumenuser_fk1` (`dokumenId`);
 
 --
+-- Indexes for table `ft_dosen`
+--
+ALTER TABLE `ft_dosen`
+  ADD PRIMARY KEY (`dosenId`);
+
+--
 -- Indexes for table `ft_judul`
 --
 ALTER TABLE `ft_judul`
@@ -1111,6 +1447,12 @@ ALTER TABLE `ft_judul`
 --
 ALTER TABLE `ft_judul_apply`
   ADD PRIMARY KEY (`applyId`);
+
+--
+-- Indexes for table `ft_publikasi`
+--
+ALTER TABLE `ft_publikasi`
+  ADD PRIMARY KEY (`publikasiId`);
 
 --
 -- Indexes for table `ref_docgroup`
@@ -1135,6 +1477,12 @@ ALTER TABLE `ft_dokumen`
   MODIFY `dokumenId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=578;
 
 --
+-- AUTO_INCREMENT for table `ft_dosen`
+--
+ALTER TABLE `ft_dosen`
+  MODIFY `dosenId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=193;
+
+--
 -- AUTO_INCREMENT for table `ft_judul`
 --
 ALTER TABLE `ft_judul`
@@ -1145,6 +1493,12 @@ ALTER TABLE `ft_judul`
 --
 ALTER TABLE `ft_judul_apply`
   MODIFY `applyId` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `ft_publikasi`
+--
+ALTER TABLE `ft_publikasi`
+  MODIFY `publikasiId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
 
 --
 -- AUTO_INCREMENT for table `ref_docgroup`

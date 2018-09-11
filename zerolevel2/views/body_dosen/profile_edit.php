@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 
 			<div class="block-header">
-                <h2>EDIT PROFILE</h2>
+                <h2><?php echo $pageTitle;?></h2>
             </div>
 
             <?php if($this->session->flashdata('message')) {?>  

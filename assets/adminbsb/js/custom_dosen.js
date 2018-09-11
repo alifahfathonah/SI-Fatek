@@ -31,6 +31,80 @@ $(function () {
     });
 });
 
+//Modal form publikasi
+$(function () {
+    $('#modalFormPublikasi').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var id = button.data('id');
+        var form = button.data('form');
+        $('form').validate().resetForm();
+        $('form [name="tahun"]').selectpicker("refresh");
+
+        if (form == "formTambah") {
+            $(this).find('form')[0].reset();
+            $(this).find('form').attr('action', window.location.href + '/tambah');
+            $(this).find(':submit').addClass('buttonTambah').removeClass('buttonEdit');
+            $(this).find('.modal-title').text('Tambah Publikasi')
+        }
+        else if (form == "formEdit") {
+            $(this).find(':submit').addClass('buttonEdit').removeClass('buttonTambah');
+            $(this).find('form').attr('action', window.location.href + '/edit');
+            $(this).find('.modal-title').text('Edit Publikasi')
+
+            $.ajax({
+                url : window.location.href + '/detail/' + id,
+                type: "GET",
+                dataType: "JSON",
+                success: function(data)
+                {
+                    $('form [name="publikasiId"]').val(data.publikasiId);
+                    $('form [name="judul"]').val(data.judul);
+                    $('form [name="jurnal"]').val(data.di);
+                    $('form [name="tempat"]').val(data.tempat);
+                    $('form [name="tahun"]').selectpicker('val',data.tahun);
+
+                },
+                error: function (jqXHR, textStatus, errorThrown)
+                {
+                    alert('Error get data from ajax');
+                }
+            });
+        }
+    });
+
+    $('.buttonHapusPublikasi').on('click', function () {
+        var id = $(this).data('id');
+        swal({
+            title: "Are you sure?",
+            text: "You will not be able to recover!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: false,
+        }, function() {
+            $.ajax({
+                type: "POST",
+                url : window.location.href + '/delete/',
+                data: {"publikasiId":id},
+            })
+            .done(function() {
+                swal({
+                    title: "Deleted", 
+                    text: "Publikasi berhasil dihapus", 
+                    type: "success"
+                },function() {
+                    location.reload();
+                });
+            })
+            .error(function(jqXHR, textStatus, errorThrown) {
+                swal("Oops", "We couldn't connect to the server!", "error");
+            });
+        });    
+
+    });
+});
+
 
 //Modal form judul
 $(function () {
@@ -71,7 +145,7 @@ $(function () {
         }
     });
 
-    $('.buttonHapus').on('click', function () {
+    $('.buttonHapusJudul').on('click', function () {
         var id = $(this).data('id');
         swal({
             title: "Are you sure?",

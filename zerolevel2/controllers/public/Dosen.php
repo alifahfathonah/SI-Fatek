@@ -25,19 +25,19 @@ class Dosen extends CI_Controller {
 
 		switch ($jur) {
 			case "sipil":
-		        $data['dosen'] 		= $this->Tabel_dosen->get(array('jurusan'=>'TEKNIK SIPIL'));
+		        $data['dosen'] 		= $this->Tabel_dosen->get(array('kodeJurusan'=> 45), 'nip ASC');
 		        $data['pageTitle'] 	= "Data Dosen Jurusan Teknik Sipil";
 		        break;
 		    case "arsitektur":
-		        $data['dosen'] 		= $this->Tabel_dosen->get(array('jurusan'=>'TEKNIK SIPIL'));
+		        $data['dosen'] 		= $this->Tabel_dosen->get(array('kodeJurusan'=> 42), 'nip ASC');
 		        $data['pageTitle'] 	= "Data Dosen Jurusan Arsitektur";
 		        break;
 		    case "elektro":
-		        $data['dosen'] 		= $this->Tabel_dosen->get(array('jurusan'=>'TEKNIK SIPIL'));
+		        $data['dosen'] 		= $this->Tabel_dosen->get(array('kodeJurusan'=> 43),'nip ASC');
 		        $data['pageTitle'] 	= "Data Dosen Jurusan Teknik Elektro";
 		        break;
 		    case "mesin":
-		        $data['dosen'] 		= $this->Tabel_dosen->get(array('jurusan'=>'TEKNIK SIPIL'));
+		        $data['dosen'] 		= $this->Tabel_dosen->get(array('kodeJurusan'=> 44),'nip ASC');
 		        $data['pageTitle'] 	= "Data Dosen Jurusan Teknik Mesin";
 		        break;
 		    default:
@@ -60,31 +60,31 @@ class Dosen extends CI_Controller {
 
 		switch ($prodi) {
 			case "sipil":
-		        $data['dosen'] 		= $this->Tabel_dosen->get(array('prodi'=>'TEKNIK SIPIL'));
+		        $data['dosen'] 		= $this->Tabel_dosen->get(array('kodeProdi'=> 14), 'nip ASC');
 		        $data['pageTitle'] 	= "Data Dosen Prodi Teknik Sipil";
 		        break;
 		 	case "lingkungan":
-		        $data['dosen'] 		= $this->Tabel_dosen->get(array('prodi'=>'TEKNIK LINGKUNGAN'));
+		        $data['dosen'] 		= $this->Tabel_dosen->get(array('kodeProdi'=> 94), 'nip ASC');
 		        $data['pageTitle'] 	= "Data Dosen Prodi Teknik Lingkungan";
 		        break;
 		    case "arsitektur":
-		        $data['dosen'] 		= $this->Tabel_dosen->get(array('prodi'=>'ARSITEKTUR'));
+		        $data['dosen'] 		= $this->Tabel_dosen->get(array('kodeProdi'=> 15), 'nip ASC');
 		        $data['pageTitle'] 	= "Data Dosen Prodi Arsitektur";
 		        break;
 		    case "pwk":
-		        $data['dosen'] 		= $this->Tabel_dosen->get(array('prodi'=>'PERENCANAAN WILAYAH DAN KOTA'));
+		        $data['dosen'] 		= $this->Tabel_dosen->get(array('kodeProdi'=> 16), 'nip ASC');
 		        $data['pageTitle'] 	= "Data Dosen Prodi Perencanaan Wilayah dan Kota";
 		        break;    
 		    case "elektro":
-		        $data['dosen'] 		= $this->Tabel_dosen->get(array('prodi'=>'TEKNIK ELEKTRO'));
+		        $data['dosen'] 		= $this->Tabel_dosen->get(array('kodeProdi'=> 12), 'nip ASC');
 		        $data['pageTitle'] 	= "Data Dosen Prodi Teknik Elektro";
 		        break;
 		    case "informatika":
-		        $data['dosen'] 		= $this->Tabel_dosen->get(array('prodi'=>'INFORMATIKA'));
+		        $data['dosen'] 		= $this->Tabel_dosen->get(array('kodeProdi'=> 77), 'nip ASC');
 		        $data['pageTitle'] 	= "Data Dosen Prodi Informatika";
 		        break;
 		    case "mesin":
-		        $data['dosen'] 		= $this->Tabel_dosen->get(array('prodi'=>'TEKNIK MESIN'));
+		        $data['dosen'] 		= $this->Tabel_dosen->get(array('kodeProdi'=> 13), 'nip ASC');
 		        $data['pageTitle'] 	= "Data Dosen Prodi Teknik Mesin";
 		        break;
 		    default:
