@@ -27,7 +27,10 @@ zerolevel2/logs/*
 /vendor/
 
 .DS_Store
+zerolevel2/.DS_Store
+zerolevel2/controller/.DS_Store
 composer.lock
+
 
 # IDE Files
 #-------------------------
