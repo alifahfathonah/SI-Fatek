@@ -38,7 +38,7 @@
                                             <td><?php echo $list['di']." ".$list['tempat'];?></td>
                                             <td style='white-space: nowrap'>
                                                 <button type="button" class="btn btn-xs btn-warning waves-effect" data-toggle="modal" data-target="#modalFormPublikasi" data-form="formEdit" data-id="<?php echo $list['publikasiId'];?>">Edit</button>
-                                                <button class="btn btn-xs btn-danger waves-effect buttonHapusPublikasi" data-id="<?php echo $list['publikasiId'];?>">Delete</button>
+                                                <button class="btn btn-xs btn-danger waves-effect buttonHapus" data-id="<?php echo $list['publikasiId'];?>">Delete</button>
                                             </td>
                                         </tr> 
                                         <?php }?>                           

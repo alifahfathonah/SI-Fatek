@@ -89,8 +89,8 @@ class Publikasi extends CI_Controller {
 	
 	public function delete() {
 
-		$id 		= $this->input->post('publikasiId');
-		$response 	= $this->Tabel_publikasi->delete($id);
+		$id_publikasi 	= $this->input->post('id');
+		$response 		= $this->Tabel_publikasi->delete($id_publikasi);
 
 		$this->session->set_flashdata('type', 'success');
 		$this->session->set_flashdata('message', 'Berhasil di hapus!');

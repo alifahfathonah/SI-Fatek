@@ -51,9 +51,10 @@ $(function () {
     });
 });
 
-// Modal pada form Publikasi with AJAX (JQuery Plugin: Select Plugin, SweetAlert)
+// Script untuk modal with AJAX request (JQuery Plugin: Select Plugin, Bootstrap Tags Input, SweetAlert)
 $(function () {
 
+    // Modal form Publikasi
     $('#modalFormPublikasi').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget);
         var id = button.data('id');
@@ -70,7 +71,7 @@ $(function () {
         else if (form == "formEdit") {
             $(this).find(':submit').addClass('buttonEdit').removeClass('buttonTambah');
             $(this).find('form').attr('action', window.location.href + '/edit');
-            $(this).find('.modal-title').text('Edit Publikasi')
+            $(this).find('.modal-title').text('Edit Publikasi');
 
             $.ajax({
                 url : window.location.href + '/detail/' + id,
@@ -93,42 +94,7 @@ $(function () {
         }
     });
 
-    $('.buttonHapusPublikasi').on('click', function () {
-        var id = $(this).data('id');
-        swal({
-            title: "Are you sure?",
-            text: "You will not be able to recover!",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Yes, delete it!",
-            closeOnConfirm: false,
-        }, function() {
-            $.ajax({
-                type: "POST",
-                url : window.location.href + '/delete/',
-                data: {"publikasiId":id},
-            })
-            .done(function() {
-                swal({
-                    title: "Deleted", 
-                    text: "Publikasi berhasil dihapus", 
-                    type: "success"
-                },function() {
-                    location.reload();
-                });
-            })
-            .error(function(jqXHR, textStatus, errorThrown) {
-                swal("Oops", "We couldn't connect to the server!", "error");
-            });
-        });    
-
-    });
-});
-
-
-// Modal pada form Judul Skripsi with AJAX (JQuery Plugin: Select Plugin, Bootstrap Tags Input, SweetAlert)
-$(function () {
+    // Modal form Judul skripsi
     $('#modalFormJudul').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget);
         var id = button.data('id');
@@ -140,7 +106,7 @@ $(function () {
             $(this).find('form')[0].reset();
             $(this).find('form').attr('action', window.location.href + '/tambah');
             $(this).find(':submit').addClass('buttonTambah').removeClass('buttonEdit');
-            $(this).find('.modal-title').text('Tambah Usulan Judul')
+            $(this).find('.modal-title').text('Tambah Usulan Judul');
         }
         else if (form == "formEdit") {
             $(this).find(':submit').addClass('buttonEdit').removeClass('buttonTambah');
@@ -166,41 +132,7 @@ $(function () {
         }
     });
 
-    $('.buttonHapusJudul').on('click', function () {
-        var id = $(this).data('id');
-        swal({
-            title: "Are you sure?",
-            text: "You will not be able to recover!",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Yes, delete it!",
-            closeOnConfirm: false,
-        }, function() {
-            $.ajax({
-                type: "POST",
-                url : window.location.href + '/delete/',
-                data: {"judulId":id},
-            })
-            .done(function() {
-                swal({
-                    title: "Deleted", 
-                    text: "Judul skripsi berhasil dihapus", 
-                    type: "success"
-                },function() {
-                    location.reload();
-                });
-            })
-            .error(function(jqXHR, textStatus, errorThrown) {
-                swal("Oops", "We couldn't connect to the server!", "error");
-            });
-        });    
-
-    });
-});
-
-// Modal pada form Kelola User with AJAX (JQuery Plugin: Select Plugin, SweetAlert)
-$(function () {
+    // Modal form Kelola user
     $('#modalFormUser').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget);
         var id = button.data('id');
@@ -243,35 +175,40 @@ $(function () {
         }
     });
 
-    $('.buttonHapusUser').on('click', function () {
+
+});
+
+// Script untuk hapus data via AJAX request (JQuery Plugin: SweetAlert)
+$(function () {
+    $('.buttonHapus').on('click', function () {
         var csrf_test_name = $("input[name=csrf_test_name]").val();
         var id = $(this).data('id');
 
         swal({
-            title: "Are you sure?",
-            text: "You will not be able to recover!",
+            title: "Apakah anda yakin?",
+            text: "Data ini akan dihapus?",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Yes, delete it!",
+            confirmButtonText: "Sangat yakin!",
             closeOnConfirm: false,
         }, function() {
             $.ajax({
                 type: "POST",
                 url : window.location.href + '/delete/',
-                data: {'csrf_test_name' : csrf_test_name, "userId":id},
+                data: {'csrf_test_name' : csrf_test_name, 'id':id},
             })
             .done(function() {
                 swal({
-                    title: "Deleted", 
-                    text: "Akun user berhasil dihapus", 
+                    title: "Berhasil", 
+                    text: "Data berhasil dihapus",
                     type: "success"
                 },function() {
                     location.reload();
                 });
             })
             .error(function(jqXHR, textStatus, errorThrown) {
-                swal("Oops", "We couldn't connect to the server!", "error");
+                swal("Gagal", "Data gagal dihapus!", "error");
             });
         });    
 

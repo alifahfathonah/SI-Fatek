@@ -44,7 +44,7 @@
                                             <td><?php echo $list['lastLogin'];?></td>
                                             <td style='white-space: nowrap'>
                                                 <button type="button" class="btn btn-xs btn-warning waves-effect" data-toggle="modal" data-target="#modalFormUser" data-form="formEdit" data-id="<?php echo $list['userId'];?>">Edit</button>
-                                                <button class="btn btn-xs btn-danger waves-effect buttonHapusUser" data-id="<?php echo $list['userId'];?>">Delete</button>
+                                                <button class="btn btn-xs btn-danger waves-effect buttonHapus" data-id="<?php echo $list['userId'];?>">Delete</button>
                                             </td>
                                         </tr> 
                                         <?php }?>                           

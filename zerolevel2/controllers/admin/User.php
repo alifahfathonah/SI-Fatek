@@ -90,8 +90,8 @@ class User extends CI_Controller {
 	
 	public function delete() {
 
-		$id 		= $this->input->post('userId');
-		$response 	= $this->Tabel_user->delete($id);
+		$id_user 	= $this->input->post('id');
+		$response 	= $this->Tabel_user->delete($id_user);
 
 		$this->session->set_flashdata('type', 'success');
 		$this->session->set_flashdata('message', 'Berhasil di hapus!');
