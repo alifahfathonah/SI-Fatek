@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 12, 2018 at 04:27 AM
+-- Generation Time: Sep 12, 2018 at 05:37 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -37,7 +37,7 @@ CREATE TABLE `ft_dokumen` (
   `dokumenTahun` year(4) DEFAULT NULL,
   `dokumenFile` varchar(100) NOT NULL,
   `dokumenIsPersonalDoc` tinyint(4) NOT NULL,
-  `tglUpdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `tglUpdate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `userUpdate` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -1236,24 +1236,7 @@ CREATE TABLE `ft_judul` (
   `judulKodeProdi` smallint(6) NOT NULL,
   `judulTglUsul` date NOT NULL,
   `judulStatus` enum('Available','On proposed','Not Available') NOT NULL DEFAULT 'Available',
-  `tglUpdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `userUpdate` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `ft_judul_apply`
---
-
-CREATE TABLE `ft_judul_apply` (
-  `applyId` int(11) NOT NULL,
-  `applyJudulId` int(11) NOT NULL,
-  `applyNim` varchar(50) NOT NULL,
-  `applyFileProposal` varchar(255) NOT NULL,
-  `applyTgl` datetime NOT NULL,
-  `applyStatus` enum('Request','Diterima','DItolak') NOT NULL DEFAULT 'Request',
-  `tglUpdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `tglUpdate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `userUpdate` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -1269,95 +1252,97 @@ CREATE TABLE `ft_publikasi` (
   `judul` mediumtext NOT NULL,
   `di` mediumtext NOT NULL,
   `tempat` varchar(100) NOT NULL,
-  `tahun` year(4) NOT NULL
+  `tahun` year(4) NOT NULL,
+  `tglUpdate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `userUpdate` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `ft_publikasi`
 --
 
-INSERT INTO `ft_publikasi` (`publikasiId`, `dosenId`, `judul`, `di`, `tempat`, `tahun`) VALUES
-(1, 145, 'Studi Tinjauan Perbandingan KIPI dan CMMI sebagai Kerangka Kerja Kematangan Industri Perangkat Lunak', 'TEKNO Volume 07 No.54', '', 2010),
-(2, 145, 'Analisa dan Perancangan Aplikasi Dormitory Management berbasis Web dengan Menggunakan Metode USDP', 'TEKNO Volume 09/No.57/Desember 2011', '', 2011),
-(3, 145, 'Perencanaan Strategis SI/TI berbasis Manfaat Bisnis dengan menggunakan Metodologi Be Vissta Planning Studi Kasus: Dinas Pendapatan Daerah Provinsi Sulawesi Utara', 'TEKNO Volume 09/No.57/Desember 2011', '', 2011),
-(4, 145, 'Analisa dan Perancangan Aplikasi Portal Web Kantor Sinode Gereja Masehi Injili di Minahasa (GMIM)', 'Prosiding Seminar Nasional Dies Natalis ke-48 Fakultas Teknik Universitas Sam Ratulangi', '', 2012),
-(5, 145, 'Quantifying IT Business Value: Case Study of North Sulawesi Province, Indonesia(Link)', 'Proceedings 2012 International Conference on Advanced Computer Science and Information Systems - ICACSIS', 'Jakarta, Indonesia', 2012),
-(6, 145, 'Analysis and Design Web Portal Amazing North Sulawesi using Agile Unified Process Methodology', 'Prosiding Seminar Nasional Teknologi Informasi (SNTI) IX 2012, ISSN: 1829-9156, Vol. 9 No.1', 'Jakarta', 2012),
-(7, 160, 'Service Oriented Architecture Blueprint', 'Proceedings of International Conference on Advanced Computer Science and Information Systems, pg.149-154, ISSN:2086-1796', 'Universitas Indonesia', 2009),
-(8, 160, 'Enhancing Learning Experience For Young Child Through Educational Content Using Multimedia', 'Prosiding Konferensi Nasional Sistem Informasi', 'Makasar', 2014),
-(9, 160, 'Development of Decision Support System for Manado\'s BAPERJAKAT using DAD and AHP', 'Proceedings of International Conference on Wireless and Telematics', 'Manado', 2016),
-(10, 155, 'IntelligEnsia For energy Sustainability Case Study : Indonesia', 'European Modelling Symposium (EMS), IEEE 2013', 'Manchester, England', 2013),
-(11, 155, 'Missing Data Solution of Electricity Consumption based on Lagrange Interpolation Case Study Intelligensia Data', '“The 5th International Conference on Electrical Engineering and Informatics 2015', 'Bali, Indonesia', 2015),
-(12, 155, 'Penentuan Jalur Alternatif Terdekat Trayek  01/02 Angkutan Umum di Kota Manado dengan Algoritma Greedy', 'Jurnal  Ilmiah Badan Diklat Provinsi Sulawesi Utara', 'Manado, Indonesia', 2014),
-(75, 155, 'MIMO System Data  Modelling  Based on  Adaptive Linear Neuron  Algorithm', 'ICWT 2015', 'Manado, Indonesia', 2015),
-(73, 155, 'Prediction Analytics of Electricity Consumption  using IntelligEnSia Smart-meter System', 'NBISC 2016', 'Helsinki, Finland', 2016),
-(76, 155, 'Radio Frequency Identification dengan Akses Multi-Level Berbasis Web', 'Seminar Nasional FATEK UNSRAT 2016', 'Manado, Indonesia', 2016),
-(17, 155, 'Monitoring and Controlling Green House Application   Case Study: Tomato Plant', 'ICWT 2015', 'Manado, Indonesia', 2015),
-(15, 155, 'Aplikasi Simulasi Body Mass Index Berbasis WEB Menggunakan Metode Fuzzy Logic', '“Seminar Nasinal Riset dan Teknologi Terapan” Unika Widya Mandala Surabaya', 'Surabaya, Indonesia', 2015),
-(18, 155, 'Air Pollution Detection Application using Microcontroller', 'ICWT 2015', 'Manado, Indonesia', 2015),
-(19, 155, 'SISTEM LAMPU LALU LINTAS DENGAN LOGIKA KELABU', 'Jurnal RealTech UNIKA De La Salle Manado', 'Manado, Indonesia', 2012),
-(20, 155, 'Pemanfaatan Limbah Ternak Untuk Biogas', 'Workshop SEDS Canada  2014” Humber Institute of Technologi and Advance Learning', 'Manado, Indonesia', 2014),
-(21, 155, 'Robotika Sebagai Media Edukasi Anak', 'Suara Pembaca Harian Tribun Manado', 'Manado, Indonesia', 2013),
-(22, 77, 'Biology Agriculture and Healthcare', 'International Institute For Science,Technology and Education', 'IISTE US Office', 2013),
-(23, 142, 'Kendali Dynamic Voltage Restorer Menggunakan Jaring Saraf Tiruan Counterpropagation', 'SNATI', 'UII Jogyakarta', 2008),
-(24, 142, 'Kendali Fuzzy Logic untuk Dynamic Voltage Restorer', 'SNPs VIII 2008', 'ITS Surabaya', 2008),
-(25, 142, 'Control of Dynamic Voltage Restorer for Voltage Sag Mitigation', 'ICTS', 'ITS Surabaya', 2008),
-(26, 142, 'A New Simplified Sensorless Speed Control of Induction Motor Using D-axis Voltage', 'Proceeding of The International Conference on Electrical Machines and Systems (ICEMS), No. LS4B-1, pp.1-6 (2012.10)', 'Hokkaido Japan', 2012),
-(27, 142, 'Stability Study of a Permanent Magnet Synchronous Motor Sensorless Vector Control System Based on Extended EMF Mode', 'IEEJ Journal of Industry Applications, Vol.1, No. 3, pp.148-154 (2012.11)', '', 2012),
-(28, 142, 'Transient Characteristics of a New Simplified Speed Sensorless Vector Control for Induction Motors', 'Proceeding of The International Conference on Electrical Machines and Systems (ICEMS), No. IMD-0245, pp.2018-2023 (2013.10)', 'South Korea', 2013),
-(29, 142, 'A Simplified Speed-Sensorless Vector Control of Induction Motor', 'IEEJ Journal of Industry Applications, Vol.3, No. 2, pp. (2014.3)', '', 2013),
-(30, 142, 'Stability Comparison of New Simplified Speed Sensorless Vector Control Systems for Induction Motors', 'Journal of International Conference on Electrical Machines and Systems, Vol. 3, No. 2, pp.126-131 (2014.6)', '', 2014),
-(31, 142, 'Design and Implementation of Programming on Electrical Power System as an E-learning Subject Course at University of Sam Ratulangi Indonesia', 'IEICE 2016', 'Japan', 2016),
-(32, 6, 'May We Obtain Thermal Comfort with Passive and Low Energy Building? Study of Thermal Comfort in Humid Tropical Classroom', 'CLIMA 2013 - 11th REHVA World Congress and the 8th International Conference on Indoor Air Quality, Ventilation and Energy Conservation in Buildings, 16. - 19. 6. 2013', 'Prague Congress Centre, Czech Republic', 2013),
-(33, 6, 'Investigation of Thermal Comfort in a Passive and Low Energy Classroom Building. From Gender\'s Point of View', 'Indoor air 2014. The 13th International Conference on Indoor Air Quality and Climate, July 7 – 12, 2014,', 'Hong Kong', 2014),
-(34, 6, 'Design of Smart Shading Device for Buildings in a Tropical Humid Climate', '31th International Passive and Low Energy Architecture (PLEA) Conference, 9-11 September 2015', 'Bologna Italy', 2015),
-(35, 6, 'Natural Ventilation: From Computational Fluid Dynamics, To Artificial Neural Networks, For Thermal Comfort', 'ISBN 978-979-17509-1-2', 'Sam Ratulangi University Press', 2010),
-(36, 6, 'Manado’s Coastal Line Area Development, A Concept of Urban Design and Environmental Management of Water Front City', 'The 7th International Seminar on Sustainable Environment and Architecture, 20-21 November 2006', 'Hasanuddin University Makassar', 2006),
-(37, 6, 'Indirect Evaporative Cooling for Thermal Comfort in Buildings in a Humid Tropical Climate', 'International Joint-Conference of SENVAR-iNTA-AVAN 2015: Wisdom of the Tropics: Past, Present and Future', 'Universiti Teknologi Malaysia, Johor Bahru', 2015),
-(38, 6, 'Applicability of Design Elements and Passive Design for Comfort Ventilation', 'The 2nd International Networks for Tropical Architecture (iNTA) Conference, 3-5 April 2006', 'Yogyakarta', 2006),
-(39, 6, 'The Effects of Surrounding Buildings on Wind-Induced Air Motion in Multi Storey Building', 'The 6th International Seminar on Sustainable Environment and Architecture, 19-20 September 2005', 'ITB, Bandung', 2005),
-(40, 6, 'Investigasi Pola Aliran Udara dalam bangunan Bertingkat Akibat pengaruh Penghalang di depan dan di Belakangnya', 'Jurnal Dimensi Teknik Arsitektur, vol.33, no.1 Desember 2005', 'Universitas Kristen Petra Surabaya', 2005),
-(41, 6, 'Pengaruh Tipe Jendela Terhadap Pola Aliran Udara Dalam Ruang', 'Jurnal Dimensi Teknik Arsitektur, vol.31, no.1, Juli 2003', 'Universitas Kristen Petra Surabaya', 2003),
-(42, 6, 'Studi Aliran Udara dengan Metode Gas Dalam Jaringan (Lattice Gas Method)', 'Jurnal Dimensi Teknik Arsitektur, vol.30, no.2 Desember 2002', 'Universitas Kristen Petra Surabaya', 2002),
-(43, 6, 'Aplikasi Jaringan Saraf Tiruan untuk Perancangan Ventilasi Optimal pada Bangunan di Iklim Tropis Lembab', 'Jurnal Dimensi Teknik Arsitektur, vol.29, no.1 Juli 2001', 'Universitas Kristen Petra Surabaya', 2001),
-(44, 6, 'Contribution à l’étude des coefficient de vitesse à l’aide de réseaux de neurons – Application à l’écoulement de l’air dans les bâtiments pour le confort thermique en climat tropical humide', 'Thèse de Docteur, INSA de Lyon', 'INSA de Lyon', 1997),
-(45, 6, 'Window and Roof Configurations for Comfort Ventilation', 'Int. Journal of Building Research and Information 1997, vol.25, no.4, p.215-225', 'UK', 1997),
-(46, 6, 'Using Artificial Neural Networks to Predict the Interior Velocity Coefficients', 'Int. Journal of Building and Environment, 1997, vol.323, no.4, p.295-303', 'Elsevier', 1997),
-(47, 6, 'Application aux ecoulement de l’air dans les batiments', 'Revue Generale de Thermique, 1997, vol.36, no.3, p.180-191', 'Elsevier', 1997),
-(48, 6, 'Effects of Roof Shapes on Wind-Induced Air Motion Inside Buildings', 'Int. Journal of Building and Environment, 1997, vol.32, no.1, p.1-11', 'Elsevier', 1997),
-(49, 6, 'Artificial Neural Networks and Naturally Ventilated Buildings', 'Int. Journal of Building Research and Information, 1996, vol.24, p. 203-208', 'UK', 1996),
-(50, 6, 'Investigation of Natural Ventilation with Computational Fluid Dynamics. A Comparison Study with Wind Tunnel Results', 'Architectural Science Review, 1996, vol. 39, no.2, p.113-120', 'University of Sydney Australia', 1996),
-(51, 6, 'Coefficient de Vitesse en Bâtiments Large Ouverture sur l’Exteriuer', 'Memoire de DEA, INSA de Lyon', 'INSA de Lyon France', 1993),
-(52, 115, 'Application of Grey Model for Machine Degradation Prognostics', 'Journal of Mechanical Science and Technology', '', 2011),
-(53, 156, 'Network packet data online processing for intrusion detection system', '2015 1st International Conference on Wireless and Telematics (ICWT)', 'Manado Indonesia', 2015),
-(54, 162, 'Penentuan Beban Pendinginan AC pada Ruangan Maengket Hall di Hotel Sahid Kawanua Manado', 'TEKNO (vol. 05/no. 43/April 2007, ISSN 0212-9617)', 'Fakultas Teknik UNSRAT Manado', 2007),
-(55, 162, 'Characteristics of a Solar Cell', 'TEKNO (vol. 09/no. 55/April 2011, ISSN 0212-9617)', 'Fakultas Teknik UNSRAT Manado', 2011),
-(56, 162, 'Determination of the Efficiency of a Solar Air Collector', 'TEKNO (vol. 09/no. 55/April 2011, ISSN 0212-9617)', 'Fakultas Teknik UNSRAT Manado', 2011),
-(57, 162, 'Geothermal Energy in Lahendong, North Sulawesi, Indonesia', 'Lambert Academic Publishing', 'Jerman', 2011),
-(58, 162, 'Solar Cooker', 'TEKNO (vol. 09/no. 57/Desember 2011, ISSN 0212-9617)', 'Fakultas Teknik UNSRAT Manado', 2011),
-(59, 162, 'Constructing an Automatic Weather Station', 'TEKNO (vol. 09/no. 57/Desember 2011, ISSN 0212-9617)', 'Fakultas Teknik UNSRAT Manado', 2011),
-(60, 162, 'Biogas Generation and Water Heating Test', 'TEKNO (vol. 10/no. 58/April 2012, ISSN 0212-9617)', 'Fakultas Teknik UNSRAT Manado', 2012),
-(61, 162, 'Perbandingan Laju Produksi Kondensat pada Mesin Pendingin Unit SN 1016-10149011 Antara yang Menggunakan Refrigeran CFC-R12 dengan Refrigeran Musicool-MC12', 'TEKNO MESIN (vol. 1/no. 1/Juni 2014, ISSN 2355-9721)', 'Jurusan Teknik Mesin FATEK UNSRAT Manado', 2014),
-(62, 162, 'Pyranometer Calibration', 'TEKNO MESIN (vol. 1/no. 2/Oktober 2014, ISSN 2355-9721)', 'Jurusan Teknik Mesin FATEK UNSRAT Manado', 2014),
-(63, 162, 'Determination of the Efficiency Curve for a Small Inverter', 'TEKNO MESIN (vol. 2/no. 1/Juni 2015, ISSN 2355-9721)', 'Jurusan Teknik Mesin FATEK UNSRAT Manado', 2015),
-(64, 162, 'Pengaruh tinggi Level Uap Air Panas Terhadap Proses Pengeringan Gabah', 'TEKNO MESIN (vol. 2/no. 2/Oktober 2015, ISSN 2355-9721)', 'Jurusan Teknik Mesin FATEK UNSRAT Manado', 2015),
-(65, 162, 'Uji Model Turbin Jenis Pelton Untuk Menentukan Daya Head dan Kapasitas Prototipe Turbin Pelton pada Desa Berair Terjun Pinaras di Minahasa', 'TEKNO MESIN (vol. 2/no. 3/Februari 2016, ISSN 2355-9721)', 'Jurusan Teknik Mesin FATEK UNSRAT Manado', 2016),
-(66, 128, 'Pengaruh Peningkatan Bilangan Reynold dan Jarak Penghalang Kapsul Terhadap Penguatan Vortex pada Saluran Berpenampang Segiempat', 'Jurnal Tekno Mesin', 'Teknik Mesin Unsrat Manado', 2014),
-(67, 128, 'Studi tentang Pengaruh Peningkatan Bilangan Reynold dan Variasi Jarak Penghalang terhadap Kenaikan Tinggi Tekanan yang Dihasilkan Sebelum dan Sesudah Melewati Penghalang', 'Jurnal Tekno Mesin', 'Teknik Mesin Unsrat Manado', 2014),
-(68, 128, 'Perbandingan Kadar Air Gabah Pada Proses Pengeringan Gabah Antara Alat Pengering Yang Menggunakan Penutup dan Tanpa Penutup Dengan Fluida Kerja Air Panas', 'Jurnal Tekno Mesin', 'Teknik Mesin Unsrat Manado', 2015),
-(69, 128, 'Pengaruh Tinggi Level Uap Air Panas Terhadap Proses Pengeringan Gabah', 'Jurnal Tekno Mesin', 'Teknik Mesin Unsrat Manado', 2015),
-(70, 128, 'Uji Model Turbin Jenis Pelton Untuk Menentukan Daya Head dan Kapasitas Prototipe Turbin Pelton Pada Desa Berair Terjun Pinaras di Minahasa', 'Jurnal Tekno Mesin', 'Teknik Mesin Unsrat Manado', 2016),
-(71, 155, 'Sistem Pengamanan Pintu Jamak dengan RFID Sensor berbasis Web', 'Jurnal Elektro, Vol 8 No.2', 'Unika Atma Jaya Jakarta', 2015),
-(74, 155, 'Factors Influencing Electricity Demand : a Case of Jakarta, Indonesia', 'NBISC 2016', 'Helsinki, Finland', 2016),
-(77, 155, 'Pemodelan Data Konsumsi Listrik melalui IntelligEnSia Smart-meter Sistem', 'Seminar Nasional Keteknikkan  2016', 'Manado, Indonesia', 2016),
-(78, 155, 'Komunikasi Data IntelligEnSia Smart-Meter SistemNew Generation', 'Seminar Nasional Keteknikkan  2016', 'Manado, Indonesia', 2016),
-(79, 155, 'Sistem Keamanan dan Billing Pintu Rumah Kost Menggunakan Near Field Communication berbasis web : solusi wireless', 'Seminar Nasional Keteknikkan  2016', 'Manado, Indonesia', 2016),
-(80, 186, 'Komputasi Grid Berbasiskan GRIA (grid Recources For Industrial Application)', 'Malang', 'Universitas Brawijaya malang', 2012),
-(81, 142, 'Student Perceptions of Virtual Programming Lab on ELearning Class at University of Sam Ratulangi', 'ICTS 2016', 'Surabaya', 2016),
-(82, 6, 'Cooling Performance of Spraying Water Automatically on the Roof Surface for Thermal Comfort in Buildings in Manado', '11th International Symposium on Architectural Interchanges in Asia (ISAIA 2016)', 'Tohoku University, Sendai, Japan', 2016),
-(83, 6, 'Design of Evaporative-Cooling Roof for Decreasing Air Temperatures in Buildings in the Humid Tropics', 'the 5th Engineering International Conference', 'UNNES Semarang', 2016),
-(95, 155, 'A Novel Smart Meter Controlling System with Dynamic IP Addresses', 'Proceeding of The 26th IEEE International Symposium on Industrial Electronics, pages: 1465-1470, 2017, Presented at: 26th IEEE International Symposium on Industrial Electronics (ISIE),', 'Edingburg, UK', 2017),
-(96, 155, 'Modeling of electricity consumption in one of the Asia’s most populous cities – Jakarta, Indonesia', 'The 12th SDEWES Conference on Sustainable Development of Energy, Water and Environment Systems', 'Dubrovnik, Croatia', 2017);
+INSERT INTO `ft_publikasi` (`publikasiId`, `dosenId`, `judul`, `di`, `tempat`, `tahun`, `tglUpdate`, `userUpdate`) VALUES
+(1, 145, 'Studi Tinjauan Perbandingan KIPI dan CMMI sebagai Kerangka Kerja Kematangan Industri Perangkat Lunak', 'TEKNO Volume 07 No.54', '', 2010, NULL, ''),
+(2, 145, 'Analisa dan Perancangan Aplikasi Dormitory Management berbasis Web dengan Menggunakan Metode USDP', 'TEKNO Volume 09/No.57/Desember 2011', '', 2011, NULL, ''),
+(3, 145, 'Perencanaan Strategis SI/TI berbasis Manfaat Bisnis dengan menggunakan Metodologi Be Vissta Planning Studi Kasus: Dinas Pendapatan Daerah Provinsi Sulawesi Utara', 'TEKNO Volume 09/No.57/Desember 2011', '', 2011, NULL, ''),
+(4, 145, 'Analisa dan Perancangan Aplikasi Portal Web Kantor Sinode Gereja Masehi Injili di Minahasa (GMIM)', 'Prosiding Seminar Nasional Dies Natalis ke-48 Fakultas Teknik Universitas Sam Ratulangi', '', 2012, NULL, ''),
+(5, 145, 'Quantifying IT Business Value: Case Study of North Sulawesi Province, Indonesia(Link)', 'Proceedings 2012 International Conference on Advanced Computer Science and Information Systems - ICACSIS', 'Jakarta, Indonesia', 2012, NULL, ''),
+(6, 145, 'Analysis and Design Web Portal Amazing North Sulawesi using Agile Unified Process Methodology', 'Prosiding Seminar Nasional Teknologi Informasi (SNTI) IX 2012, ISSN: 1829-9156, Vol. 9 No.1', 'Jakarta', 2012, NULL, ''),
+(7, 160, 'Service Oriented Architecture Blueprint', 'Proceedings of International Conference on Advanced Computer Science and Information Systems, pg.149-154, ISSN:2086-1796', 'Universitas Indonesia', 2009, NULL, ''),
+(8, 160, 'Enhancing Learning Experience For Young Child Through Educational Content Using Multimedia', 'Prosiding Konferensi Nasional Sistem Informasi', 'Makasar', 2014, NULL, ''),
+(9, 160, 'Development of Decision Support System for Manado\'s BAPERJAKAT using DAD and AHP', 'Proceedings of International Conference on Wireless and Telematics', 'Manado', 2016, NULL, ''),
+(10, 155, 'IntelligEnsia For energy Sustainability Case Study : Indonesia', 'European Modelling Symposium (EMS), IEEE 2013', 'Manchester, England', 2013, NULL, ''),
+(11, 155, 'Missing Data Solution of Electricity Consumption based on Lagrange Interpolation Case Study Intelligensia Data', '“The 5th International Conference on Electrical Engineering and Informatics 2015', 'Bali, Indonesia', 2015, NULL, ''),
+(12, 155, 'Penentuan Jalur Alternatif Terdekat Trayek  01/02 Angkutan Umum di Kota Manado dengan Algoritma Greedy', 'Jurnal  Ilmiah Badan Diklat Provinsi Sulawesi Utara', 'Manado, Indonesia', 2014, NULL, ''),
+(75, 155, 'MIMO System Data  Modelling  Based on  Adaptive Linear Neuron  Algorithm', 'ICWT 2015', 'Manado, Indonesia', 2015, NULL, ''),
+(73, 155, 'Prediction Analytics of Electricity Consumption  using IntelligEnSia Smart-meter System', 'NBISC 2016', 'Helsinki, Finland', 2016, NULL, ''),
+(76, 155, 'Radio Frequency Identification dengan Akses Multi-Level Berbasis Web', 'Seminar Nasional FATEK UNSRAT 2016', 'Manado, Indonesia', 2016, NULL, ''),
+(17, 155, 'Monitoring and Controlling Green House Application   Case Study: Tomato Plant', 'ICWT 2015', 'Manado, Indonesia', 2015, NULL, ''),
+(15, 155, 'Aplikasi Simulasi Body Mass Index Berbasis WEB Menggunakan Metode Fuzzy Logic', '“Seminar Nasinal Riset dan Teknologi Terapan” Unika Widya Mandala Surabaya', 'Surabaya, Indonesia', 2015, NULL, ''),
+(18, 155, 'Air Pollution Detection Application using Microcontroller', 'ICWT 2015', 'Manado, Indonesia', 2015, NULL, ''),
+(19, 155, 'SISTEM LAMPU LALU LINTAS DENGAN LOGIKA KELABU', 'Jurnal RealTech UNIKA De La Salle Manado', 'Manado, Indonesia', 2012, NULL, ''),
+(20, 155, 'Pemanfaatan Limbah Ternak Untuk Biogas', 'Workshop SEDS Canada  2014” Humber Institute of Technologi and Advance Learning', 'Manado, Indonesia', 2014, NULL, ''),
+(21, 155, 'Robotika Sebagai Media Edukasi Anak', 'Suara Pembaca Harian Tribun Manado', 'Manado, Indonesia', 2013, NULL, ''),
+(22, 77, 'Biology Agriculture and Healthcare', 'International Institute For Science,Technology and Education', 'IISTE US Office', 2013, NULL, ''),
+(23, 142, 'Kendali Dynamic Voltage Restorer Menggunakan Jaring Saraf Tiruan Counterpropagation', 'SNATI', 'UII Jogyakarta', 2008, NULL, ''),
+(24, 142, 'Kendali Fuzzy Logic untuk Dynamic Voltage Restorer', 'SNPs VIII 2008', 'ITS Surabaya', 2008, NULL, ''),
+(25, 142, 'Control of Dynamic Voltage Restorer for Voltage Sag Mitigation', 'ICTS', 'ITS Surabaya', 2008, NULL, ''),
+(26, 142, 'A New Simplified Sensorless Speed Control of Induction Motor Using D-axis Voltage', 'Proceeding of The International Conference on Electrical Machines and Systems (ICEMS), No. LS4B-1, pp.1-6 (2012.10)', 'Hokkaido Japan', 2012, NULL, ''),
+(27, 142, 'Stability Study of a Permanent Magnet Synchronous Motor Sensorless Vector Control System Based on Extended EMF Mode', 'IEEJ Journal of Industry Applications, Vol.1, No. 3, pp.148-154 (2012.11)', '', 2012, NULL, ''),
+(28, 142, 'Transient Characteristics of a New Simplified Speed Sensorless Vector Control for Induction Motors', 'Proceeding of The International Conference on Electrical Machines and Systems (ICEMS), No. IMD-0245, pp.2018-2023 (2013.10)', 'South Korea', 2013, NULL, ''),
+(29, 142, 'A Simplified Speed-Sensorless Vector Control of Induction Motor', 'IEEJ Journal of Industry Applications, Vol.3, No. 2, pp. (2014.3)', '', 2013, NULL, ''),
+(30, 142, 'Stability Comparison of New Simplified Speed Sensorless Vector Control Systems for Induction Motors', 'Journal of International Conference on Electrical Machines and Systems, Vol. 3, No. 2, pp.126-131 (2014.6)', '', 2014, NULL, ''),
+(31, 142, 'Design and Implementation of Programming on Electrical Power System as an E-learning Subject Course at University of Sam Ratulangi Indonesia', 'IEICE 2016', 'Japan', 2016, NULL, ''),
+(32, 6, 'May We Obtain Thermal Comfort with Passive and Low Energy Building? Study of Thermal Comfort in Humid Tropical Classroom', 'CLIMA 2013 - 11th REHVA World Congress and the 8th International Conference on Indoor Air Quality, Ventilation and Energy Conservation in Buildings, 16. - 19. 6. 2013', 'Prague Congress Centre, Czech Republic', 2013, NULL, ''),
+(33, 6, 'Investigation of Thermal Comfort in a Passive and Low Energy Classroom Building. From Gender\'s Point of View', 'Indoor air 2014. The 13th International Conference on Indoor Air Quality and Climate, July 7 – 12, 2014,', 'Hong Kong', 2014, NULL, ''),
+(34, 6, 'Design of Smart Shading Device for Buildings in a Tropical Humid Climate', '31th International Passive and Low Energy Architecture (PLEA) Conference, 9-11 September 2015', 'Bologna Italy', 2015, NULL, ''),
+(35, 6, 'Natural Ventilation: From Computational Fluid Dynamics, To Artificial Neural Networks, For Thermal Comfort', 'ISBN 978-979-17509-1-2', 'Sam Ratulangi University Press', 2010, NULL, ''),
+(36, 6, 'Manado’s Coastal Line Area Development, A Concept of Urban Design and Environmental Management of Water Front City', 'The 7th International Seminar on Sustainable Environment and Architecture, 20-21 November 2006', 'Hasanuddin University Makassar', 2006, NULL, ''),
+(37, 6, 'Indirect Evaporative Cooling for Thermal Comfort in Buildings in a Humid Tropical Climate', 'International Joint-Conference of SENVAR-iNTA-AVAN 2015: Wisdom of the Tropics: Past, Present and Future', 'Universiti Teknologi Malaysia, Johor Bahru', 2015, NULL, ''),
+(38, 6, 'Applicability of Design Elements and Passive Design for Comfort Ventilation', 'The 2nd International Networks for Tropical Architecture (iNTA) Conference, 3-5 April 2006', 'Yogyakarta', 2006, NULL, ''),
+(39, 6, 'The Effects of Surrounding Buildings on Wind-Induced Air Motion in Multi Storey Building', 'The 6th International Seminar on Sustainable Environment and Architecture, 19-20 September 2005', 'ITB, Bandung', 2005, NULL, ''),
+(40, 6, 'Investigasi Pola Aliran Udara dalam bangunan Bertingkat Akibat pengaruh Penghalang di depan dan di Belakangnya', 'Jurnal Dimensi Teknik Arsitektur, vol.33, no.1 Desember 2005', 'Universitas Kristen Petra Surabaya', 2005, NULL, ''),
+(41, 6, 'Pengaruh Tipe Jendela Terhadap Pola Aliran Udara Dalam Ruang', 'Jurnal Dimensi Teknik Arsitektur, vol.31, no.1, Juli 2003', 'Universitas Kristen Petra Surabaya', 2003, NULL, ''),
+(42, 6, 'Studi Aliran Udara dengan Metode Gas Dalam Jaringan (Lattice Gas Method)', 'Jurnal Dimensi Teknik Arsitektur, vol.30, no.2 Desember 2002', 'Universitas Kristen Petra Surabaya', 2002, NULL, ''),
+(43, 6, 'Aplikasi Jaringan Saraf Tiruan untuk Perancangan Ventilasi Optimal pada Bangunan di Iklim Tropis Lembab', 'Jurnal Dimensi Teknik Arsitektur, vol.29, no.1 Juli 2001', 'Universitas Kristen Petra Surabaya', 2001, NULL, ''),
+(44, 6, 'Contribution à l’étude des coefficient de vitesse à l’aide de réseaux de neurons – Application à l’écoulement de l’air dans les bâtiments pour le confort thermique en climat tropical humide', 'Thèse de Docteur, INSA de Lyon', 'INSA de Lyon', 1997, NULL, ''),
+(45, 6, 'Window and Roof Configurations for Comfort Ventilation', 'Int. Journal of Building Research and Information 1997, vol.25, no.4, p.215-225', 'UK', 1997, NULL, ''),
+(46, 6, 'Using Artificial Neural Networks to Predict the Interior Velocity Coefficients', 'Int. Journal of Building and Environment, 1997, vol.323, no.4, p.295-303', 'Elsevier', 1997, NULL, ''),
+(47, 6, 'Application aux ecoulement de l’air dans les batiments', 'Revue Generale de Thermique, 1997, vol.36, no.3, p.180-191', 'Elsevier', 1997, NULL, ''),
+(48, 6, 'Effects of Roof Shapes on Wind-Induced Air Motion Inside Buildings', 'Int. Journal of Building and Environment, 1997, vol.32, no.1, p.1-11', 'Elsevier', 1997, NULL, ''),
+(49, 6, 'Artificial Neural Networks and Naturally Ventilated Buildings', 'Int. Journal of Building Research and Information, 1996, vol.24, p. 203-208', 'UK', 1996, NULL, ''),
+(50, 6, 'Investigation of Natural Ventilation with Computational Fluid Dynamics. A Comparison Study with Wind Tunnel Results', 'Architectural Science Review, 1996, vol. 39, no.2, p.113-120', 'University of Sydney Australia', 1996, NULL, ''),
+(51, 6, 'Coefficient de Vitesse en Bâtiments Large Ouverture sur l’Exteriuer', 'Memoire de DEA, INSA de Lyon', 'INSA de Lyon France', 1993, NULL, ''),
+(52, 115, 'Application of Grey Model for Machine Degradation Prognostics', 'Journal of Mechanical Science and Technology', '', 2011, NULL, ''),
+(53, 156, 'Network packet data online processing for intrusion detection system', '2015 1st International Conference on Wireless and Telematics (ICWT)', 'Manado Indonesia', 2015, NULL, ''),
+(54, 162, 'Penentuan Beban Pendinginan AC pada Ruangan Maengket Hall di Hotel Sahid Kawanua Manado', 'TEKNO (vol. 05/no. 43/April 2007, ISSN 0212-9617)', 'Fakultas Teknik UNSRAT Manado', 2007, NULL, ''),
+(55, 162, 'Characteristics of a Solar Cell', 'TEKNO (vol. 09/no. 55/April 2011, ISSN 0212-9617)', 'Fakultas Teknik UNSRAT Manado', 2011, NULL, ''),
+(56, 162, 'Determination of the Efficiency of a Solar Air Collector', 'TEKNO (vol. 09/no. 55/April 2011, ISSN 0212-9617)', 'Fakultas Teknik UNSRAT Manado', 2011, NULL, ''),
+(57, 162, 'Geothermal Energy in Lahendong, North Sulawesi, Indonesia', 'Lambert Academic Publishing', 'Jerman', 2011, NULL, ''),
+(58, 162, 'Solar Cooker', 'TEKNO (vol. 09/no. 57/Desember 2011, ISSN 0212-9617)', 'Fakultas Teknik UNSRAT Manado', 2011, NULL, ''),
+(59, 162, 'Constructing an Automatic Weather Station', 'TEKNO (vol. 09/no. 57/Desember 2011, ISSN 0212-9617)', 'Fakultas Teknik UNSRAT Manado', 2011, NULL, ''),
+(60, 162, 'Biogas Generation and Water Heating Test', 'TEKNO (vol. 10/no. 58/April 2012, ISSN 0212-9617)', 'Fakultas Teknik UNSRAT Manado', 2012, NULL, ''),
+(61, 162, 'Perbandingan Laju Produksi Kondensat pada Mesin Pendingin Unit SN 1016-10149011 Antara yang Menggunakan Refrigeran CFC-R12 dengan Refrigeran Musicool-MC12', 'TEKNO MESIN (vol. 1/no. 1/Juni 2014, ISSN 2355-9721)', 'Jurusan Teknik Mesin FATEK UNSRAT Manado', 2014, NULL, ''),
+(62, 162, 'Pyranometer Calibration', 'TEKNO MESIN (vol. 1/no. 2/Oktober 2014, ISSN 2355-9721)', 'Jurusan Teknik Mesin FATEK UNSRAT Manado', 2014, NULL, ''),
+(63, 162, 'Determination of the Efficiency Curve for a Small Inverter', 'TEKNO MESIN (vol. 2/no. 1/Juni 2015, ISSN 2355-9721)', 'Jurusan Teknik Mesin FATEK UNSRAT Manado', 2015, NULL, ''),
+(64, 162, 'Pengaruh tinggi Level Uap Air Panas Terhadap Proses Pengeringan Gabah', 'TEKNO MESIN (vol. 2/no. 2/Oktober 2015, ISSN 2355-9721)', 'Jurusan Teknik Mesin FATEK UNSRAT Manado', 2015, NULL, ''),
+(65, 162, 'Uji Model Turbin Jenis Pelton Untuk Menentukan Daya Head dan Kapasitas Prototipe Turbin Pelton pada Desa Berair Terjun Pinaras di Minahasa', 'TEKNO MESIN (vol. 2/no. 3/Februari 2016, ISSN 2355-9721)', 'Jurusan Teknik Mesin FATEK UNSRAT Manado', 2016, NULL, ''),
+(66, 128, 'Pengaruh Peningkatan Bilangan Reynold dan Jarak Penghalang Kapsul Terhadap Penguatan Vortex pada Saluran Berpenampang Segiempat', 'Jurnal Tekno Mesin', 'Teknik Mesin Unsrat Manado', 2014, NULL, ''),
+(67, 128, 'Studi tentang Pengaruh Peningkatan Bilangan Reynold dan Variasi Jarak Penghalang terhadap Kenaikan Tinggi Tekanan yang Dihasilkan Sebelum dan Sesudah Melewati Penghalang', 'Jurnal Tekno Mesin', 'Teknik Mesin Unsrat Manado', 2014, NULL, ''),
+(68, 128, 'Perbandingan Kadar Air Gabah Pada Proses Pengeringan Gabah Antara Alat Pengering Yang Menggunakan Penutup dan Tanpa Penutup Dengan Fluida Kerja Air Panas', 'Jurnal Tekno Mesin', 'Teknik Mesin Unsrat Manado', 2015, NULL, ''),
+(69, 128, 'Pengaruh Tinggi Level Uap Air Panas Terhadap Proses Pengeringan Gabah', 'Jurnal Tekno Mesin', 'Teknik Mesin Unsrat Manado', 2015, NULL, ''),
+(70, 128, 'Uji Model Turbin Jenis Pelton Untuk Menentukan Daya Head dan Kapasitas Prototipe Turbin Pelton Pada Desa Berair Terjun Pinaras di Minahasa', 'Jurnal Tekno Mesin', 'Teknik Mesin Unsrat Manado', 2016, NULL, ''),
+(71, 155, 'Sistem Pengamanan Pintu Jamak dengan RFID Sensor berbasis Web', 'Jurnal Elektro, Vol 8 No.2', 'Unika Atma Jaya Jakarta', 2015, NULL, ''),
+(74, 155, 'Factors Influencing Electricity Demand : a Case of Jakarta, Indonesia', 'NBISC 2016', 'Helsinki, Finland', 2016, NULL, ''),
+(77, 155, 'Pemodelan Data Konsumsi Listrik melalui IntelligEnSia Smart-meter Sistem', 'Seminar Nasional Keteknikkan  2016', 'Manado, Indonesia', 2016, NULL, ''),
+(78, 155, 'Komunikasi Data IntelligEnSia Smart-Meter SistemNew Generation', 'Seminar Nasional Keteknikkan  2016', 'Manado, Indonesia', 2016, NULL, ''),
+(79, 155, 'Sistem Keamanan dan Billing Pintu Rumah Kost Menggunakan Near Field Communication berbasis web : solusi wireless', 'Seminar Nasional Keteknikkan  2016', 'Manado, Indonesia', 2016, NULL, ''),
+(80, 186, 'Komputasi Grid Berbasiskan GRIA (grid Recources For Industrial Application)', 'Malang', 'Universitas Brawijaya malang', 2012, NULL, ''),
+(81, 142, 'Student Perceptions of Virtual Programming Lab on ELearning Class at University of Sam Ratulangi', 'ICTS 2016', 'Surabaya', 2016, NULL, ''),
+(82, 6, 'Cooling Performance of Spraying Water Automatically on the Roof Surface for Thermal Comfort in Buildings in Manado', '11th International Symposium on Architectural Interchanges in Asia (ISAIA 2016)', 'Tohoku University, Sendai, Japan', 2016, NULL, ''),
+(83, 6, 'Design of Evaporative-Cooling Roof for Decreasing Air Temperatures in Buildings in the Humid Tropics', 'the 5th Engineering International Conference', 'UNNES Semarang', 2016, NULL, ''),
+(95, 155, 'A Novel Smart Meter Controlling System with Dynamic IP Addresses', 'Proceeding of The 26th IEEE International Symposium on Industrial Electronics, pages: 1465-1470, 2017, Presented at: 26th IEEE International Symposium on Industrial Electronics (ISIE),', 'Edingburg, UK', 2017, NULL, ''),
+(96, 155, 'Modeling of electricity consumption in one of the Asia’s most populous cities – Jakarta, Indonesia', 'The 12th SDEWES Conference on Sustainable Development of Energy, Water and Environment Systems', 'Dubrovnik, Croatia', 2017, NULL, '');
 
 -- --------------------------------------------------------
 
@@ -1368,7 +1353,7 @@ INSERT INTO `ft_publikasi` (`publikasiId`, `dosenId`, `judul`, `di`, `tempat`, `
 CREATE TABLE `ref_docgroup` (
   `docgroupId` int(4) NOT NULL,
   `docgroupJenisDoc` varchar(255) NOT NULL,
-  `tglUpdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `tglUpdate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `userUpdate` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -1377,12 +1362,12 @@ CREATE TABLE `ref_docgroup` (
 --
 
 INSERT INTO `ref_docgroup` (`docgroupId`, `docgroupJenisDoc`, `tglUpdate`, `userUpdate`) VALUES
-(1, 'Pendidikan & Pengajaran', '2018-08-19 11:25:13', ''),
-(2, 'Penelitian', '2018-08-19 11:25:13', ''),
-(3, 'Pengabdian Masyarakat', '2018-08-19 11:25:13', ''),
-(4, 'Penunjang', '2018-08-19 11:25:13', ''),
-(5, 'Ijazah', '2018-08-19 11:25:13', ''),
-(6, 'SK Pangkat / Fungsional', '2018-08-19 11:25:13', '');
+(1, 'Pendidikan & Pengajaran', NULL, ''),
+(2, 'Penelitian', NULL, ''),
+(3, 'Pengabdian Masyarakat', NULL, ''),
+(4, 'Penunjang', NULL, ''),
+(5, 'Ijazah', NULL, ''),
+(6, 'SK Pangkat / Fungsional', NULL, '');
 
 -- --------------------------------------------------------
 
@@ -1394,7 +1379,7 @@ CREATE TABLE `ref_labstudio` (
   `labstudioId` int(11) NOT NULL,
   `labstudioNama` varchar(100) NOT NULL,
   `labstudioJurKode` smallint(6) NOT NULL,
-  `tglUpdate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  `tglUpdate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `userUpdate` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -1403,14 +1388,14 @@ CREATE TABLE `ref_labstudio` (
 --
 
 INSERT INTO `ref_labstudio` (`labstudioId`, `labstudioNama`, `labstudioJurKode`, `tglUpdate`, `userUpdate`) VALUES
-(1, 'Laboratorium Tenaga Listrik', 43, '0000-00-00 00:00:00', ''),
-(2, 'Laboratorium Sistem Komputer', 43, '0000-00-00 00:00:00', ''),
-(3, 'Laboratorium Elektronika', 43, '0000-00-00 00:00:00', ''),
-(4, 'Laboratorium Teknik Kendali', 43, '0000-00-00 00:00:00', ''),
-(5, 'Laboratorium Teknologi Informasi dan Komunikasi', 43, '0000-00-00 00:00:00', ''),
-(6, 'Laboratorium Rekayasa Perangkat Lunak', 43, '0000-00-00 00:00:00', ''),
-(7, 'Laboratorium Multimedia Dan Grafika Komputer', 43, '0000-00-00 00:00:00', ''),
-(8, 'Laboratorium Basis Data', 43, '0000-00-00 00:00:00', '');
+(1, 'Laboratorium Tenaga Listrik', 43, NULL, ''),
+(2, 'Laboratorium Sistem Komputer', 43, NULL, ''),
+(3, 'Laboratorium Elektronika', 43, NULL, ''),
+(4, 'Laboratorium Teknik Kendali', 43, NULL, ''),
+(5, 'Laboratorium Teknologi Informasi dan Komunikasi', 43, NULL, ''),
+(6, 'Laboratorium Rekayasa Perangkat Lunak', 43, NULL, ''),
+(7, 'Laboratorium Multimedia Dan Grafika Komputer', 43, NULL, ''),
+(8, 'Laboratorium Basis Data', 43, NULL, '');
 
 -- --------------------------------------------------------
 
@@ -1426,21 +1411,23 @@ CREATE TABLE `x_user` (
   `grup` enum('admin','fakultas','wd','jurusan','prodi','lab/studio') NOT NULL,
   `namaUnit` varchar(100) NOT NULL,
   `kodeUnit` smallint(6) DEFAULT NULL,
-  `lastLogin` datetime DEFAULT NULL
+  `lastLogin` datetime DEFAULT NULL,
+  `tglUpdate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `userUpdate` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `x_user`
 --
 
-INSERT INTO `x_user` (`userId`, `nama`, `username`, `password`, `grup`, `namaUnit`, `kodeUnit`, `lastLogin`) VALUES
-(1, 'Administrator', 'admin', '827ccb0eea8a706c4c34a16891f84e7b', 'admin', 'Admin Portal', NULL, NULL),
-(2, 'Alwin Sambul', '197709292005011005', '25415ecab0612fa5827d86f615b6f75a', 'admin', 'Admin Portal', NULL, NULL),
-(3, 'Fabian Manoppo', '196210141992031001', '3b349fcf2601c3f6932339759f4f04b5', 'fakultas', 'Dekan Fakultas Teknik', NULL, NULL),
-(4, 'Steenie E. Wallah', '196507141991031004', 'd2a374929f52c4496497365f4a751221', 'wd', 'Wakil Dekan Bidang Akademik', 1, NULL),
-(5, 'Vecky C. Poekoel', '196705101997021001', '80d2fa30567e19380c7a95a9c92fa571', 'jurusan', 'Jurusan Teknik Elektro', 43, NULL),
-(6, 'Steven R. Sentinuwo', '198007092005011002', '0cdc54d5668a47c51efd8968ee14f27b', 'prodi', 'Prodi. Teknik Informatika', 77, NULL),
-(7, 'Xaverius Najoan', '197711202010121002', '827ccb0eea8a706c4c34a16891f84e7b', 'lab/studio', 'Lab. Rekayasa Perangkat Lunak', 6, NULL);
+INSERT INTO `x_user` (`userId`, `nama`, `username`, `password`, `grup`, `namaUnit`, `kodeUnit`, `lastLogin`, `tglUpdate`, `userUpdate`) VALUES
+(1, 'Administrator', 'admin', '827ccb0eea8a706c4c34a16891f84e7b', 'admin', 'Admin Portal', NULL, NULL, NULL, ''),
+(2, 'Alwin Sambul', '197709292005011005', '25415ecab0612fa5827d86f615b6f75a', 'admin', 'Admin Portal', NULL, NULL, NULL, ''),
+(3, 'Fabian Manoppo', '196210141992031001', '3b349fcf2601c3f6932339759f4f04b5', 'fakultas', 'Dekan Fakultas Teknik', NULL, NULL, NULL, ''),
+(4, 'Steenie E. Wallah', '196507141991031004', 'd2a374929f52c4496497365f4a751221', 'wd', 'Wakil Dekan Bidang Akademik', 1, NULL, NULL, ''),
+(5, 'Vecky C. Poekoel', '196705101997021001', '80d2fa30567e19380c7a95a9c92fa571', 'jurusan', 'Jurusan Teknik Elektro', 43, NULL, NULL, ''),
+(6, 'Steven R. Sentinuwo', '198007092005011002', '0cdc54d5668a47c51efd8968ee14f27b', 'prodi', 'Prodi. Teknik Informatika', 77, NULL, NULL, ''),
+(7, 'Xaverius Najoan', '197711202010121002', '827ccb0eea8a706c4c34a16891f84e7b', 'lab/studio', 'Lab. Rekayasa Perangkat Lunak', 6, NULL, NULL, '');
 
 --
 -- Indexes for dumped tables
@@ -1471,12 +1458,6 @@ ALTER TABLE `ft_dosen`
 --
 ALTER TABLE `ft_judul`
   ADD PRIMARY KEY (`judulId`);
-
---
--- Indexes for table `ft_judul_apply`
---
-ALTER TABLE `ft_judul_apply`
-  ADD PRIMARY KEY (`applyId`);
 
 --
 -- Indexes for table `ft_publikasi`
@@ -1525,16 +1506,10 @@ ALTER TABLE `ft_judul`
   MODIFY `judulId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `ft_judul_apply`
---
-ALTER TABLE `ft_judul_apply`
-  MODIFY `applyId` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `ft_publikasi`
 --
 ALTER TABLE `ft_publikasi`
-  MODIFY `publikasiId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
+  MODIFY `publikasiId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 
 --
 -- AUTO_INCREMENT for table `ref_docgroup`
@@ -1552,7 +1527,7 @@ ALTER TABLE `ref_labstudio`
 -- AUTO_INCREMENT for table `x_user`
 --
 ALTER TABLE `x_user`
-  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
