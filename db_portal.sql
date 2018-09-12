@@ -1434,13 +1434,13 @@ CREATE TABLE `x_user` (
 --
 
 INSERT INTO `x_user` (`userId`, `nama`, `username`, `password`, `grup`, `namaUnit`, `kodeUnit`, `lastLogin`) VALUES
-(1, 'Administrator', 'admin', 'd60e31d831b206e7b59053595eab7ce9', 'admin', 'Admin Portal', NULL, NULL),
+(1, 'Administrator', 'admin', '827ccb0eea8a706c4c34a16891f84e7b', 'admin', 'Admin Portal', NULL, NULL),
 (2, 'Alwin Sambul', '197709292005011005', '25415ecab0612fa5827d86f615b6f75a', 'admin', 'Admin Portal', NULL, NULL),
 (3, 'Fabian Manoppo', '196210141992031001', '3b349fcf2601c3f6932339759f4f04b5', 'fakultas', 'Dekan Fakultas Teknik', NULL, NULL),
 (4, 'Steenie E. Wallah', '196507141991031004', 'd2a374929f52c4496497365f4a751221', 'wd', 'Wakil Dekan Bidang Akademik', 1, NULL),
 (5, 'Vecky C. Poekoel', '196705101997021001', '80d2fa30567e19380c7a95a9c92fa571', 'jurusan', 'Jurusan Teknik Elektro', 43, NULL),
 (6, 'Steven R. Sentinuwo', '198007092005011002', '0cdc54d5668a47c51efd8968ee14f27b', 'prodi', 'Prodi. Teknik Informatika', 77, NULL),
-(7, 'Xaverius Najoan', '197711202010121002', 'a774eda49e9eee544d3e2cc2dec2d6e1', 'lab/studio', 'Lab. Rekayasa Perangkat Lunak', 6, NULL);
+(7, 'Xaverius Najoan', '197711202010121002', '827ccb0eea8a706c4c34a16891f84e7b', 'lab/studio', 'Lab. Rekayasa Perangkat Lunak', 6, NULL);
 
 --
 -- Indexes for dumped tables
