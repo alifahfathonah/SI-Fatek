@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Judul extends CI_Controller {
 
-	private $layout = 'layout/public';
+	private $layout = 'themes/public';
 
 	public function __construct() {
 		parent::__construct();
@@ -14,7 +14,7 @@ class Judul extends CI_Controller {
 	
 		$data['alumni'] 	= $this->apicall->get(URL_API."judul/fakultas?id=2");
 		$data['pageTitle'] 	= "Database Judul Skripsi/TA Fakultas Teknik";
-		$data['body_page'] 	= 'body_public/judul_list';
+		$data['body_page'] 	= 'body/public/judul_list';
 
 		$this->load->view($this->layout,$data);
 	
@@ -43,7 +43,7 @@ class Judul extends CI_Controller {
 		        echo "Data not found";die;
 		}
 
-		$data['body_page'] = 'body_public/judul_list';
+		$data['body_page'] = 'body/public/judul_list';
 
 		$this->load->view($this->layout,$data);
 	
@@ -84,7 +84,7 @@ class Judul extends CI_Controller {
 		        echo "Data not found";die;
 		}
 
-		$data['body_page'] = 'body_public/judul_list';
+		$data['body_page'] = 'body/public/judul_list';
 
 		$this->load->view($this->layout,$data);	
 

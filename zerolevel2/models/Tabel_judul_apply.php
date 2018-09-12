@@ -33,9 +33,8 @@ class Tabel_judul_apply extends CI_Model {
 	}	
 
 	public function tambah($data) {
-		$data += array('userUpdate' => $this->session->userdata['username']);
-		$this->db->insert('ft_judul_apply', $data);
-		return $this->db->insert_id();
+
+		return $this->db->insert('ft_judul_apply', $data);
 	}
 	
 	public function delete($id) {
@@ -43,7 +42,7 @@ class Tabel_judul_apply extends CI_Model {
 	}
 	
 	public function update($data) {
-		$data += array('userUpdate' => $this->session->userdata['username']);
+
 		$this->db->where('applyId', $data['applyId']);
 		return $this->db->update('ft_judul_apply', $data);
 	}	

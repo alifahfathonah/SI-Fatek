@@ -5,13 +5,13 @@ class Login extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		$this->load->model(array('Tabel_dosen'));
+		$this->load->model(array('Tabel_dosen', 'Tabel_user'));
 		$this->icon = "<p><span class=\"glyphicon glyphicon-remove\"></span>&nbsp;";
 		
 	}
 	
 	public function index() {
-		if(!isset($this->session->userdata['logged_in_admin'])) {
+		if(!isset($this->session->userdata['logged_in_portal']['admin'])) {
 
 			if ($this->session->lock_status_adm == 'locked') {
 				$this->session->set_flashdata('message_login_adm', '<span class="glyphicon glyphicon-remove"></span> Password salah 3x! Akun terkunci 5 menit!');
@@ -24,29 +24,29 @@ class Login extends CI_Controller {
 				if ($this->form_validation->run() == true) {
 					$username 	= $this->input->post('username',TRUE);
 					$pwd 		= $this->input->post('password',TRUE);
+					//$result		= $this->Tabel_user->detail(array('username'=> $username, 'password' => md5($pwd)));
 					$result 	= $pwd == $username;
 
 					if ($result) {
-				
-						$sess_data['username'] = $username;
-						$sess_data['nama'] = "Xaverius Najoan";
-						$sess_data['kodeRole'] = 6;
-						$sess_data['namaRole'] = "Kepala Laboratorium/Studio";
-						$sess_data['kodeUnit'] = 18;
-						$sess_data['namaUnit'] = "Laboratorium Rekayasa Perangkat Lunak";
-						
 
-						$this->session->set_userdata('logged_in_admin',$sess_data);
-						$this->session->set_userdata('username',$username);
+						$sess_data['nama'] = "Xaverius Najoan";
+						$sess_data['info'] = "Administrator";
+						$sess_data['foto'] = "";
+				
+						$sess_data['admin']['userId'] = 1;
+						$sess_data['admin']['group'] = "admin";
+						$sess_data['admin']['kodeUnit'] = 0;
+
+						$this->session->set_userdata('logged_in_portal',$sess_data);
 						$this->session->unset_userdata('login_attempt_adm');
 
-						switch ($this->session->userdata['logged_in_admin']['kodeRole']) {
-							case 2 : redirect(site_url('dekan')); break;
-							case 3: redirect(site_url('wd1')); break;
-							case 4 : redirect(site_url('kajur')); break;
-							case 5 : redirect(site_url('koprodi')); break;
-							case 6 : redirect(site_url('kalab')); break;
-							default : redirect(site_url('admin')); break;
+						switch ($this->session->userdata['logged_in_portal']['admin']['group']) {
+							case 'fakultas' : redirect(site_url('dekan')); break;
+							case 'wd': redirect(site_url('wd1')); break;
+							case 'jurusan' : redirect(site_url('kajur')); break;
+							case 'prodi' : redirect(site_url('koprodi')); break;
+							case 'labstudio' : redirect(site_url('kalab')); break;
+							default : redirect(site_url('admin/user')); break;
 						}
 						
 					}  else {
@@ -72,26 +72,24 @@ class Login extends CI_Controller {
 			$this->load->view('login/admin');
 
 		} else {
-			switch ($this->session->userdata['logged_in_admin']['kodeRole']) {
-				case 1 : redirect(site_url('dekan')); break;
-				case 2 : redirect(site_url('wd1')); break;
-				case 3 : redirect(site_url('kajur')); break;
-				case 4 : redirect(site_url('koprodi')); break;
-				case 5 : redirect(site_url('kalab')); break;
-				case 6 : redirect(site_url('koprodi')); break;
+			switch ($this->session->userdata['logged_in_portal']['admin']['group']) {
+				case 'fakultas' : redirect(site_url('dekan')); break;
+				case 'wd': redirect(site_url('wd1')); break;
+				case 'jurusan' : redirect(site_url('kajur')); break;
+				case 'prodi' : redirect(site_url('koprodi')); break;
+				case 'labstudio' : redirect(site_url('kalab')); break;
 				default : redirect(site_url('admin')); break;
 			}
 		}
 	}
 	
 	public function logout() {
-		$this->session->unset_userdata('logged_in_admin');
-		$this->session->unset_userdata('username');
-		redirect(site_url('login'));
+		$this->session->unset_userdata('logged_in_portal');
+		redirect(site_url());
 	}
 
 	public function dosen() {
-		if(!isset($this->session->userdata['logged_in_dosen'])) {
+		if(!isset($this->session->userdata['logged_in_portal']['dosen'])) {
 
 			if ($this->session->lock_status_dsn == 'locked') {
 				$this->session->set_flashdata('message_login_dosen', '<span class="glyphicon glyphicon-remove"></span> Password salah 3x! Akun terkunci 5 menit!');
@@ -110,19 +108,19 @@ class Login extends CI_Controller {
 
 					if ($result) {
 
-						$cek_member = $this->Tabel_dosen->detail(array('nip' => $username));
+						$member = $this->Tabel_dosen->detail(array('nip' => $username));
 
-						if ($cek_member) {
-								
-							$data = $this->apicall->get(URL_API.'dosen?nip='.$username);
-							$sess_data['nip'] = $data->nip;
-							$sess_data['nama'] = $cek_member['nama'];
-							$sess_data['kodeProdi'] = $data->kodeProdi;
-							$sess_data['kodeJur'] = $data->kodeJurusan;
-							$sess_data['kodeFak'] = $data->kodeFakultas;
+						if ($member) {
+
+							$sess_data['nama'] = $member['nama'];
+							$sess_data['info'] = $member['nip'];
+							$sess_data['foto'] = (!empty($member['foto'])) ? URL_FOTO_DOSEN.$member['foto'] : URL_FOTO_DOSEN."default.jpg";
+					
+							$sess_data['dosen']['nip']       = $member['nip'];
+							$sess_data['dosen']['kodeProdi'] = $member['kodeProdi'];
+							$sess_data['dosen']['kodeJur']   = $member['kodeJurusan'];
 							
-							$this->session->set_userdata('logged_in_dosen',$sess_data);
-							$this->session->set_userdata('username',$username);
+							$this->session->set_userdata('logged_in_portal',$sess_data);
 							$this->session->unset_userdata('login_attempt_dsn');
 							redirect(site_url('dosen'));
 						
@@ -159,13 +157,12 @@ class Login extends CI_Controller {
 	}
 	
 	public function logout_dosen() {
-		$this->session->unset_userdata('logged_in_dosen');
-		$this->session->unset_userdata('username');
+		$this->session->unset_userdata('logged_in_portal');
 		redirect(site_url('dosen'));
 	}
 
 public function mahasiswa() {
-		if(!isset($this->session->userdata['logged_in_mahasiswa'])) {
+		if(!isset($this->session->userdata['logged_in_portal']['mhs'])) {
 
 			if ($this->session->lock_status_mhs == 'locked') {
 				$this->session->set_flashdata('message_login_mhs', '<span class="glyphicon glyphicon-remove"></span> Password salah 3x! Akun terkunci 5 menit!');
@@ -184,19 +181,21 @@ public function mahasiswa() {
 					if ($result) {
 
 						$data = $this->apicall->get(URL_API.'mahasiswa?nim='.$username);
-						$sess_data['nim'] = $data->nim;
+
 						$sess_data['nama'] = $data->nama;
-						$sess_data['kodeProdi'] = $data->kodeProdi;
-						$sess_data['kodeJur'] = $data->kodeJurusan;
-						$sess_data['kodeFak'] = $data->kodeFakultas;
+						$sess_data['info'] = $data->nim;
 						$sess_data['foto'] = $data->foto;
+
+						$sess_data['mhs']['nim'] 	   = $data->nim;
+						$sess_data['mhs']['kodeProdi'] = $data->kodeProdi;
+						$sess_data['mhs']['kodeJur']   = $data->kodeJurusan;
+						$sess_data['mhs']['kodeFak']   = $data->kodeFakultas;
 
 						if ($sess_data['kodeFak'] == '2') {
 
-							$this->session->set_userdata('logged_in_mahasiswa',$sess_data);
-							$this->session->set_userdata('username',$username);
+							$this->session->set_userdata('logged_in_portal',$sess_data);
 							$this->session->unset_userdata('login_attempt_mhs');
-							redirect(site_url('mahasiswa'));
+							redirect(site_url('login/mahasiswa'));
 						} else  {
 							$this->session->set_flashdata('message_login_mhs', '<span class="glyphicon glyphicon-remove"></span> Tidak punya hak akses disini');
 						}
@@ -229,8 +228,7 @@ public function mahasiswa() {
 	}
 	
 	public function logout_mahasiswa() {
-		$this->session->unset_userdata('logged_in_mahasiswa');
-		$this->session->unset_userdata('username');
+		$this->session->unset_userdata('logged_in_portal');
 		redirect(site_url('mahasiswa'));
 	}	
 	

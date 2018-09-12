@@ -102,4 +102,4 @@
                     </div>
                 </div>
             </div>
-            <!-- #END# Modals utk menampilkan form input judul -->              
+            <!-- #END# Modals utk menampilkan form input publikasi -->              

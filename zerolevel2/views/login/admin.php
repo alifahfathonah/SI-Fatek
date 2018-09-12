@@ -45,6 +45,11 @@ http://fatek.unsrat.ac.id
             <div class="body">
                 <?php echo form_open('login','id="sign_in"');?>
                     <div class="msg">Sign in to start your session</div>
+                    
+                    <?php if($this->session->flashdata('message_login_adm')) {?>
+                            <div class="alert alert-warning"><?php echo $this->session->flashdata('message_login_adm');?></div>
+                        <?php }?>
+
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>
@@ -61,15 +66,13 @@ http://fatek.unsrat.ac.id
                             <input type="password" class="form-control" name="password" placeholder="Password" required>
                         </div>
                     </div>
-                    <?php if($this->session->flashdata('message_login_adm')) {?>
-							<div class="alert alert-warning"><?php echo $this->session->flashdata('message_login_adm');?></div>
-							<?php }?>
+                    
                     <div class="row">
-
                         <div class="col-xs-12">
                             <button class="btn btn-block bg-pink waves-effect" type="submit">SIGN IN</button>
                         </div>
                     </div>
+
                 </form>
             </div>
         </div>

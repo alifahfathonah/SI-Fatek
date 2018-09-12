@@ -30,9 +30,8 @@ class Tabel_dokumen extends CI_Model {
 	}
 
 	public function tambah($data) {
-		$data += array('userUpdate' => $this->session->userdata['username']);
-		$this->db->insert('ft_dokumen', $data);
-		return $this->db->insert_id();
+
+		return $this->db->insert('ft_dokumen', $data);
 	}	
 	
 	public function delete($id) {
@@ -40,7 +39,7 @@ class Tabel_dokumen extends CI_Model {
 	}
 	
 	public function update($data) {
-		$data += array('userUpdate' => $this->session->userdata['username']);
+
 		$this->db->where('dokumenId', $data['dokumenId']);
 		return $this->db->update('ft_dokumen', $data);
 	}		

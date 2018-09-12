@@ -3,14 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Profile extends CI_Controller {
 	
-	private $layout = 'layout/dosen';
-
 	public function __construct() {
 		
 		parent::__construct();
 		$this->load->model(array('Tabel_dosen','Tabel_publikasi'));
 
-		if (!isset($this->session->userdata['logged_in_dosen'])) {
+		if (!isset($this->session->userdata['logged_in_portal']['dosen'])) {
 			redirect(site_url('login/dosen'));
 		}
 		
@@ -18,31 +16,34 @@ class Profile extends CI_Controller {
 
 	public function index() {
 		
-		$data['pageTitle'] = "Home";
-		$data['body_page'] = "body_dosen/profile_view";
+		$data['pageTitle']	= "Profil Dosen";
+		$data['body_page'] 	= "body/dosen/profile_view";
+		$data['menu_page'] 	= "menu/dosen";
 
-		$data['dosen'] 			= $this->Tabel_dosen->detail(array('nip'=> $this->session->userdata['logged_in_dosen']['nip']));
+		$dosenNip 				= $this->session->userdata['logged_in_portal']['dosen']['nip'];
+		$data['dosen'] 			= $this->Tabel_dosen->detail(array('nip'=> $dosenNip));
 		$data['dosen']['foto'] 	= (!empty($data['dosen']['foto'])) ? URL_FOTO_DOSEN.$data['dosen']['foto'] : URL_FOTO_DOSEN."default.jpg";
-
-		$data['publikasi'] 		= $this->Tabel_publikasi->get($data['dosen']['dosenId']);
-		$data['dosenAPI'] 		= $this->apicall->get(URL_API.'pegawai?nip='. $this->session->userdata['logged_in_dosen']['nip']);
-
+		$data['publikasi'] 		= $this->Tabel_publikasi->get(array('dosenId'=> $data['dosen']['dosenId']),'tahun DESC');
+		$data['dosenAPI'] 		= $this->apicall->get(URL_API.'pegawai?nip='.$dosenNip);
 
 		if (!empty($data['dosen']['sintaId'])) $data['dosen']['sintaUrl'] = URL_SINTA.$data['dosen']['sintaId']."&view=overview";
 		if (!empty($data['dosen']['googleId'])) $data['dosen']['googleUrl'] = URL_GOOGLE.$data['dosen']['googleId'];
 		if (!empty($data['dosen']['scopusId'])) $data['dosen']['scopusUrl'] = URL_SCOPUS.$data['dosen']['scopusId'];
 
-		$this->load->view($this->layout,$data);
+		$this->load->view(SITE_THEME,$data);
 	}
 
 	public function edit() {
 		
-		$data['pageTitle'] 		= "Edit Profil";
-		$data['body_page'] 		= "body_dosen/profile_edit";
-		$data['dosen'] 			= $this->Tabel_dosen->detail(array('nip'=> $this->session->userdata['logged_in_dosen']['nip']));
+		$data['pageTitle'] 	= "Edit Profil Dosen";
+		$data['body_page'] 	= "body/dosen/profile_edit";
+		$data['menu_page']	= "menu/dosen";
+
+		$dosenNip 				= $this->session->userdata['logged_in_portal']['dosen']['nip'];
+		$data['dosen'] 			= $this->Tabel_dosen->detail(array('nip'=> $dosenNip));
 		$data['dosen']['foto'] 	= (!empty($data['dosen']['foto'])) ? URL_FOTO_DOSEN.$data['dosen']['foto'] : URL_FOTO_DOSEN."default.jpg";
 
-		$this->load->view($this->layout,$data);
+		$this->load->view(SITE_THEME,$data);
 
 	}
 	
@@ -79,6 +80,8 @@ class Profile extends CI_Controller {
 	}
 
 	public function change_pic() {
+
+		$dosenNip = $this->session->userdata['logged_in_portal']['dosen']['nip'];
 		
 		if(!empty($_FILES['fotodosen']['name'])) {
 
@@ -90,7 +93,7 @@ class Profile extends CI_Controller {
 				
 			} else {
 
-				$file	= $this->Tabel_dosen->detail(array('nip'=> $this->session->userdata['logged_in_dosen']['nip']))['foto'];
+				$file	= $this->Tabel_dosen->detail(array('nip'=> $dosenNip))['foto'];
 
 				if (!empty($file) AND file_exists(FCPATH .DIR_FOTO_DOSEN .$file)) {
 					unlink(FCPATH .DIR_FOTO_DOSEN .$file);

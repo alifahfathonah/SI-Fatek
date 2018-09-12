@@ -81,3 +81,7 @@ $route['wd1'] = 'wd1/dashboard';
 
 //Siteview Dekan Routes
 $route['dekan'] = 'dekan/dashboard';
+
+//Siteview Admin Routes
+$route['admin'] = 'admin/user';
+$route['admin/logout'] = 'login/logout';

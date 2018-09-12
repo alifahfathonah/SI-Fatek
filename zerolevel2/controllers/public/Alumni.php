@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Alumni extends CI_Controller {
 
-	private $layout = 'layout/public';
+	private $layout = 'themes/public';
 
 	public function __construct() {
 		parent::__construct();
@@ -12,7 +12,7 @@ class Alumni extends CI_Controller {
 	public function index() {
 
 		$data['alumni'] 	= $this->apicall->get(URL_API."alumni/fakultas?id=2");
-		$data['body_page'] 	= 'body_public/alumni_list';
+		$data['body_page'] 	= 'body/public/alumni_list';
 		$data['pageTitle'] 	= "Data Alumni Fakultas Teknik";
 
 		$this->load->view($this->layout,$data);
@@ -42,7 +42,7 @@ class Alumni extends CI_Controller {
 		        echo "Data not found";die;
 		}
 
-		$data['body_page'] = 'body_public/alumni_list';	
+		$data['body_page'] = 'body/public/alumni_list';	
 
 		$this->load->view($this->layout,$data);
 	
@@ -83,7 +83,7 @@ class Alumni extends CI_Controller {
 		        echo "Data not found";die;
 		}
 
-		$data['body_page'] = 'body_public/alumni_list';	
+		$data['body_page'] = 'body/public/alumni_list';	
 
 		$this->load->view($this->layout,$data);	
 
@@ -97,7 +97,7 @@ class Alumni extends CI_Controller {
 		if ($data['alumni']) {
 
 			$data['pageTitle'] = $data['alumni']->nama;
-			$data['body_page'] = 'body_public/alumni_detail';	
+			$data['body_page'] = 'body/public/alumni_detail';	
 
 			$this->load->view($this->layout,$data);
 

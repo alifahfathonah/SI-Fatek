@@ -26,17 +26,17 @@ class Tabel_dosen extends CI_Model {
 	}	
 
 	public function tambah($data) {
-		$data += array('userUpdate' => $this->session->userdata['username']);
-		$this->db->insert('ft_dosen', $data);
-		return $this->db->insert_id();
+
+		return $this->db->insert('ft_dosen', $data);
 	}
 	
 	public function delete($id) {
+		
 		return $this->db->delete('ft_dosen', array('dosenId' => $id));
 	}
 	
 	public function update($data) {
-		$data += array('userUpdate' => $this->session->userdata['username']);
+
 		$this->db->where('dosenId', $data['dosenId']);
 		return $this->db->update('ft_dosen', $data);
 	}

@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Dosen extends CI_Controller {
 
-	private $layout = 'layout/public';
+	private $layout = 'themes/public';
 
 	public function __construct() {
 		parent::__construct();
@@ -15,7 +15,7 @@ class Dosen extends CI_Controller {
 	
 		$data['dosen'] 		= $this->Tabel_dosen->get();
 		$data['pageTitle'] 	= "Data Dosen Fakultas Teknik";
-		$data['body_page'] 	= 'body_public/dosen_list';
+		$data['body_page'] 	= 'body/public/dosen_list';
 
 		$this->load->view($this->layout,$data);
 	
@@ -44,7 +44,7 @@ class Dosen extends CI_Controller {
 		        echo "Data not found";die;
 		}
 
-		$data['body_page'] = 'body_public/dosen_list';
+		$data['body_page'] = 'body/public/dosen_list';
 
 		if ($format == "json") {
 			header('Access-Control-Allow-Origin: *');
@@ -91,7 +91,7 @@ class Dosen extends CI_Controller {
 		        echo "Data not found";die;
 		}
 
-		$data['body_page'] = 'body_public/dosen_list';
+		$data['body_page'] = 'body/public/dosen_list';
 
 		if ($format == "json") {
 			header('Access-Control-Allow-Origin: *');
@@ -117,7 +117,7 @@ class Dosen extends CI_Controller {
 			if (!empty($data['dosen']['scopusId'])) $data['dosen']['scopusId'] = URL_SCOPUS.$data['dosen']['scopusId'];
 
 			$data['pageTitle'] = $data['dosen']['nama'];
-			$data['body_page'] = 'body_public/dosen_detail';
+			$data['body_page'] = 'body/public/dosen_detail';
 
 			if ($format == "json") {
 				header('Access-Control-Allow-Origin: *');

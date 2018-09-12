@@ -7,6 +7,14 @@
 
 .htaccess
 
+#Configuration files
+index.php
+config/config.php
+config/ft_config.php
+config/database.php
+system/*
+
+
 user_guide_src/build/*
 user_guide_src/cilexer/build/*
 user_guide_src/cilexer/dist/*
@@ -27,10 +35,10 @@ composer.lock
 .idea/*
 
 ## Sublime Text cache files
-*.tmlanguage.cache
-*.tmPreferences.cache
-*.stTheme.cache
-*.sublime-workspace
-*.sublime-project
+.tmlanguage.cache
+.tmPreferences.cache
+.stTheme.cache
+.sublime-workspace
+.sublime-project
 /tests/tests/
 /tests/results/

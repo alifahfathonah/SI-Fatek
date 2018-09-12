@@ -3,14 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Publikasi extends CI_Controller {
 
-	private $layout = 'layout/dosen';
-
 	public function __construct() {
 		
 		parent::__construct();
 		$this->load->model(array('Tabel_dosen','Tabel_publikasi'));
 
-		if (!isset($this->session->userdata['logged_in_dosen'])) {
+		if (!isset($this->session->userdata['logged_in_portal']['dosen'])) {
 			redirect(site_url('login/dosen'));
 		}
 		
@@ -18,12 +16,15 @@ class Publikasi extends CI_Controller {
 	
 	public function index() {
 
-		$data['pageTitle'] 	= "Publikasi";
-		$data['body_page'] 	= "body_dosen/publikasi";
-		$data['dosen'] 		= $this->Tabel_dosen->detail(array('nip'=> $this->session->userdata['logged_in_dosen']['nip']));
+		$data['pageTitle'] 	= "Publikasi Dosen";
+		$data['body_page'] 	= "body/dosen/publikasi";
+		$data['menu_page'] 	= "menu/dosen";
+
+		$dosenNip 			= $this->session->userdata['logged_in_portal']['dosen']['nip'];
+		$data['dosen'] 		= $this->Tabel_dosen->detail(array('nip'=> $dosenNip));
 		$data['publikasi'] 	= $this->Tabel_publikasi->get(array('dosenId'=> $data['dosen']['dosenId']),'tahun DESC');
 
-		$this->load->view($this->layout,$data);
+		$this->load->view(SITE_THEME,$data);
 
 	}
 
@@ -44,9 +45,7 @@ class Publikasi extends CI_Controller {
 			$this->Tabel_publikasi->tambah($database);
 			
 			$this->session->set_flashdata('type', 'success');
-			$this->session->set_flashdata('message', 'Berhasil di simpan!');
-
-			
+			$this->session->set_flashdata('message', 'Berhasil di simpan!');			
 
 		} else {
 
@@ -67,7 +66,7 @@ class Publikasi extends CI_Controller {
 		
 		if ($this->form_validation->run() == TRUE) {
 
-			$database['dosenId']= $this->input->post('dosenId');
+			$database['dosenId']	= $this->input->post('dosenId');
 			$database['judul']		= $this->input->post('judul');
 			$database['di'] 		= $this->input->post('jurnal');
 			$database['tempat'] 	= $this->input->post('tempat');

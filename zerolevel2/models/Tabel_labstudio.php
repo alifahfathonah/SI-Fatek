@@ -24,17 +24,16 @@ class Tabel_labstudio extends CI_Model {
 	}	
 
 	public function tambah($data) {
-		$data += array('userUpdate' => $this->session->userdata['username']);
-		$this->db->insert('ref_labstudio', $data);
-		return $this->db->insert_id();
+
+		return $this->db->insert('ref_labstudio', $data);
 	}
 	
 	public function delete($id) {
+		
 		return $this->db->delete('ref_labstudio', array('labstudioKode' => $id));
 	}
 	
 	public function update($data) {
-		$data += array('userUpdate' => $this->session->userdata['username']);
 		$this->db->where('labstudioKode', $data['labstudioKode']);
 		return $this->db->update('ref_labstudio', $data);
 	}	
