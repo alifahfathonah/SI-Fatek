@@ -35,38 +35,6 @@ Codeigniter engine (/system) are exclude in the project directory. Feel free to 
 $system_path = '../system' in /[root]/index.php
 ```
 
-### Siteview Layout
-
-1. Dosen siteview
-```
-/view/layout/dosen.php
-```
-
-2. Mahasiswa siteview
-```
-/view/layout/mahasiswa.php
-```
-
-3. Kaprodi/Kajur/WD/Dekan siteview
-```
-/view/layout/admin.php
-```
-
-4. Debug siteview
-```
-/view/layout/debug.php
-```
-
-### Model structure
-
-Function untuk mengakses database luar, diletakkan pada file model masing-masing.
-```
-/model/akademika_portal.php
-/model/akademika_sdm.php
-/model/akademika_sia.php
-```
-In the future, akan dikembangkan webservice untuk mengakses database luar.
-
 ### Testing Controller
 Create your own testing controller in folder testing. Note: This directory will be remove in production stage
 ```
