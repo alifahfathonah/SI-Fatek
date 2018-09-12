@@ -109,7 +109,7 @@ class Dosen extends CI_Controller {
 
 		if ($data['dosen']) {
 			$data['edu'] = $this->apicall->get(URL_API."dosen?nip=".$nip)->edu;
-			$data['publikasi'] = $this->Tabel_publikasi->get($data['dosen']['dosenId']);
+			$data['publikasi'] = $this->Tabel_publikasi->get(array('dosenNip' => $data['dosen']['nip']));
 
 			$data['dosen']['foto'] = (!empty($data['dosen']['foto'])) ? URL_FOTO_DOSEN.$data['dosen']['foto'] : URL_FOTO_DOSEN."default.jpg";
 			if (!empty($data['dosen']['sintaId'])) $data['dosen']['sintaId'] = URL_SINTA.$data['dosen']['sintaId']."&view=overview";
@@ -131,17 +131,6 @@ class Dosen extends CI_Controller {
 		} else {
 			echo "Data not found.";die;
 		}
-	}
-
-	public function publikasi($id) {
-		
-		$data['publikasi'] = $this->Tabel_publikasi->get($id);
-
-		if ($data['publikasi']) {
-			header('Access-Control-Allow-Origin: *');
-			header('Content-type: application/json');
-			echo json_encode($data['publikasi']);
-		}	
 	}
 	
 }

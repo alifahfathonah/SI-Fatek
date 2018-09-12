@@ -29,32 +29,4 @@ class Tabel_dokumen extends CI_Model {
 		return $result;
 	}
 
-	public function tambah($data) {
-
-		return $this->db->insert('ft_dokumen', $data);
-	}	
-	
-	public function delete($id) {
-		return $this->db->delete('ft_dokumen', array('dokumenId' => $id));
-	}
-	
-	public function update($data) {
-
-		$this->db->where('dokumenId', $data['dokumenId']);
-		return $this->db->update('ft_dokumen', $data);
-	}		
-	
-	public function link_user($data) {
-		$this->db->trans_start();
-		foreach ($data as $trans) {
-			$this->db->insert('ft_dokumen_user', $trans);
-		}
-		$this->db->trans_complete();
-		return $this->db->trans_status();
-	}	
-	
-	public function unlink_user($dokumenId,$userId) {
-		return $this->db->delete('ft_dokumen_user', array('dokumenId' => $idDokumen, 'userId' => $id_user));
-	}	
-
 }

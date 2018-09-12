@@ -13,29 +13,35 @@ class Tabel_docgroup extends CI_Model {
 		if ($limit) $this->db->limit($limit);
 		$query = $this->db->get('ref_docgroup');
 		$result = $query->result_array();
+		
 		return $result;
 	}
 
 	public function detail($condition) {
 		$this->db->where($condition);
 		$query = $this->db->get('ref_docgroup');
-		return $query->row_array();
+		$result = $query->row_array();
 		
+		return $result;
 	}	
 
 	public function tambah($data) {
 
-		return $this->db->insert('ref_docgroup', $data);
+		$this->db->insert('ref_docgroup', $data);
+		return $this->db->affected_rows();
 	}
 	
 	public function delete($id) {
-		return $this->db->delete('ref_docgroup', array('docgroupId' => $id));
+
+		$this->db->delete('ref_docgroup', array('docgroupId' => $id));
+		return $this->db->affected_rows();
 	}
 	
 	public function update($data) {
 
-		$this->db->where('ref_docgroup', $data['docgroupId']);
-		return $this->db->update('ref_docgroup', $data);
+		$this->db->where('docgroupId', $data['docgroupId']);
+		$this->db->update('ref_docgroup', $data);
+		return $this->db->affected_rows();
 	}	
 
 }

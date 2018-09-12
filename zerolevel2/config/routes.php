@@ -64,7 +64,7 @@ $route['dosen'] = 'dosen/profile';
 $route['dosen/logout'] = 'login/logout_dosen';
 
 //Siteview Mahasiswa Routes
-$route['mahasiswa'] = 'mahasiswa/dashboard';
+$route['mahasiswa'] = 'mahasiswa/profile';
 $route['mahasiswa/logout'] = 'login/logout_mahasiswa';
 
 //Siteview Kalab Routes

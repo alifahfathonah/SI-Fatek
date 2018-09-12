@@ -27,18 +27,21 @@ class Tabel_publikasi extends CI_Model {
 	
 	public function tambah($data) {
 
-		return $this->db->insert('ft_publikasi', $data);
+		$this->db->insert('ft_publikasi', $data);
+		return $this->db->affected_rows();
 	}
 	
 	public function delete($id) {
 
-		return $this->db->delete('ft_publikasi', array('publikasiId' => $id));
+		$this->db->delete('ft_publikasi', array('publikasiId' => $id));
+		return $this->db->affected_rows();
 	}
 	
 	public function update($data) {
 		
 		$this->db->where('publikasiId', $data['publikasiId']);
-		return $this->db->update('ft_publikasi', $data);
+		$this->db->update('ft_publikasi', $data);
+		return $this->db->affected_rows();
 	}
 	
 }

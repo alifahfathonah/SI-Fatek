@@ -22,7 +22,7 @@ class Publikasi extends CI_Controller {
 
 		$dosenNip 			= $this->session->userdata['logged_in_portal']['dosen']['nip'];
 		$data['dosen'] 		= $this->Tabel_dosen->detail(array('nip'=> $dosenNip));
-		$data['publikasi'] 	= $this->Tabel_publikasi->get(array('dosenId'=> $data['dosen']['dosenId']),'tahun DESC');
+		$data['publikasi'] 	= $this->Tabel_publikasi->get(array('dosenNip'=> $dosenNip),'tahun DESC');
 
 		$this->load->view(SITE_THEME,$data);
 
@@ -37,20 +37,27 @@ class Publikasi extends CI_Controller {
 		
 		if ($this->form_validation->run() == TRUE) {
 
-			$database['dosenId']= $this->input->post('dosenId');
-			$database['judul']	= $this->input->post('judul');
-			$database['di'] 	= $this->input->post('jurnal');
-			$database['tempat'] = $this->input->post('tempat');
-			$database['tahun'] 	= $this->input->post('tahun');
-			$this->Tabel_publikasi->tambah($database);
+			$database['dosenNip']	= $this->input->post('nip');
+			$database['judul']		= $this->input->post('judul');
+			$database['di'] 		= $this->input->post('jurnal');
+			$database['tempat'] 	= $this->input->post('tempat');
+			$database['tahun'] 		= $this->input->post('tahun');
 			
-			$this->session->set_flashdata('type', 'success');
-			$this->session->set_flashdata('message', 'Berhasil di simpan!');			
+			if ($this->Tabel_publikasi->tambah($database)) {
+
+				$this->session->set_flashdata('type', 'success');
+				$this->session->set_flashdata('message', 'Berhasil disimpan!');	
+
+			} else {
+			
+				$this->session->set_flashdata('type', 'danger');
+				$this->session->set_flashdata('message', 'Gagal disimpan!');
+			}
 
 		} else {
 
-			$this->session->set_flashdata('type', 'danger');
-			$this->session->set_flashdata('message', validation_errors('Gagal di simpan! '));
+			$this->session->set_flashdata('type', 'warning');
+			$this->session->set_flashdata('message', validation_errors('Form tidak lengkap! '));
 		}
 
 		redirect(site_url('dosen/publikasi'));
@@ -66,21 +73,29 @@ class Publikasi extends CI_Controller {
 		
 		if ($this->form_validation->run() == TRUE) {
 
-			$database['dosenId']	= $this->input->post('dosenId');
+			$database['publikasiId']= $this->input->post('id');
+			$database['dosenNip']	= $this->input->post('nip');
 			$database['judul']		= $this->input->post('judul');
 			$database['di'] 		= $this->input->post('jurnal');
 			$database['tempat'] 	= $this->input->post('tempat');
 			$database['tahun'] 		= $this->input->post('tahun');
-			$database['publikasiId']= $this->input->post('publikasiId');
-			$this->Tabel_publikasi->update($database);
+			$database['userUpdate']	= $this->session->userdata['logged_in_portal']['nama'];
 			
-			$this->session->set_flashdata('type', 'success');
-			$this->session->set_flashdata('message', 'Berhasil di simpan!');
+			if ($this->Tabel_publikasi->update($database)) {
+				
+				$this->session->set_flashdata('type', 'success');
+				$this->session->set_flashdata('message', 'Berhasil diupdate!');
+
+			} else {
+			
+				$this->session->set_flashdata('type', 'danger');
+				$this->session->set_flashdata('message', 'Gagal diupdate!');
+			}
 
 		} else {
 
-			$this->session->set_flashdata('type', 'danger');
-			$this->session->set_flashdata('message', validation_errors('Gagal di simpan! '));
+			$this->session->set_flashdata('type', 'warning');
+			$this->session->set_flashdata('message', validation_errors('Form tidak lengkap! '));
 		}
 
 		redirect(site_url('dosen/publikasi'));
@@ -90,10 +105,18 @@ class Publikasi extends CI_Controller {
 	public function delete() {
 
 		$id_publikasi 	= $this->input->post('id');
-		$response 		= $this->Tabel_publikasi->delete($id_publikasi);
 
-		$this->session->set_flashdata('type', 'success');
-		$this->session->set_flashdata('message', 'Berhasil di hapus!');
+		if ($this->Tabel_publikasi->delete($id_publikasi)) {
+				
+			$this->session->set_flashdata('type', 'success');
+			$this->session->set_flashdata('message', 'Berhasil dihapus!');
+
+		} else {
+		
+			$this->session->set_flashdata('type', 'danger');
+			$this->session->set_flashdata('message', 'Gagal dihapus!');
+			$this->output->set_status_header('500');
+		}
 
 	}
 

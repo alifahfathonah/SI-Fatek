@@ -35,17 +35,20 @@ class Tabel_judul extends CI_Model {
 	public function tambah($data) {
 
 		$this->db->insert('ft_judul', $data);
-		return $this->db->insert_id();
+		return $this->db->affected_rows();
 	}
 	
 	public function delete($id) {
-		return $this->db->delete('ft_judul', array('judulId' => $id));
+		
+		$this->db->delete('ft_judul', array('judulId' => $id));
+		return $this->db->affected_rows();
 	}
 	
 	public function update($data) {
 
 		$this->db->where('judulId', $data['judulId']);
-		return $this->db->update('ft_judul', $data);
+		$this->db->update('ft_judul', $data);
+		return $this->db->affected_rows();
 	}
 
 }

@@ -8,8 +8,7 @@
  *
  */
 
-
-// Add li class 'active' for selected left menu. (JQuery)
+ //Add li class 'active' for selected left menu
 $(function () {
     var url = window.location;
     var element = $('ul.list a').filter(function() {
@@ -79,7 +78,7 @@ $(function () {
                 dataType: "JSON",
                 success: function(data)
                 {
-                    $('form [name="publikasiId"]').val(data.publikasiId);
+                    $('form [name="id"]').val(data.publikasiId);
                     $('form [name="judul"]').val(data.judul);
                     $('form [name="jurnal"]').val(data.di);
                     $('form [name="tempat"]').val(data.tempat);
@@ -118,7 +117,7 @@ $(function () {
                 dataType: "JSON",
                 success: function(data)
                 {
-                    $('form [name="judulId"]').val(data.judulId);
+                    $('form [name="id"]').val(data.judulId);
                     $('form [name="judul"]').val(data.judulTa);
                     $('form [name="labstudio"]').selectpicker('val',data.judulKodeLabstudio);
                     $('form [name="keyword"]').tagsinput('add',data.judulKeyword);
@@ -139,6 +138,7 @@ $(function () {
         var form = button.data('form');
         $('form').validate().resetForm();
         $('form [name="grup"]').selectpicker("refresh");
+        $('form [name="password"]').prop("required",false);
         $('.pass-empty').text('');
 
         if (form == "formTambah") {
@@ -146,6 +146,7 @@ $(function () {
             $(this).find('form').attr('action', window.location.href + '/tambah');
             $(this).find(':submit').addClass('buttonTambah').removeClass('buttonEdit');
             $(this).find('.modal-title').text('Tambah User');
+            $('form [name="password"]').prop("required",true);
         }
 
         else if (form == "formEdit") {
@@ -160,7 +161,7 @@ $(function () {
                 dataType: "JSON",
                 success: function(data)
                 {
-                    $('form [name="userId"]').val(data.userId);
+                    $('form [name="id"]').val(data.userId);
                     $('form [name="nama"]').val(data.nama);
                     $('form [name="username"]').val(data.username);
                     $('form [name="grup"]').selectpicker('val',data.grup);
@@ -201,14 +202,14 @@ $(function () {
             .done(function() {
                 swal({
                     title: "Berhasil", 
-                    text: "Data berhasil dihapus",
+                    text: "Berhasil dihapus",
                     type: "success"
                 },function() {
                     location.reload();
                 });
             })
             .error(function(jqXHR, textStatus, errorThrown) {
-                swal("Gagal", "Data gagal dihapus!", "error");
+                swal("Gagal", "Gagal dihapus!", "error");
             });
         });    
 

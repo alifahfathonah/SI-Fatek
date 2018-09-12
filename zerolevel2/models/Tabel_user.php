@@ -13,30 +13,35 @@ class Tabel_user extends CI_Model {
 		if ($limit) $this->db->limit($limit);
 		$query = $this->db->get('x_user');
 		$result = $query->result_array();
+		
 		return $result;
 	}
 
 	public function detail($condition) {
 		$this->db->where($condition);
 		$query = $this->db->get('x_user');
-		return $query->row_array();
+		$result = $query->row_array();
+		return $result;
 		
 	}	
 
 	public function tambah($data) {
 
-		return $this->db->insert('x_user', $data);
+		$this->db->insert('x_user', $data);
+		return $this->db->affected_rows();
 	}
 	
 	public function delete($id) {
 
-		return $this->db->delete('x_user', array('userId' => $id));
+		$this->db->delete('x_user', array('userId' => $id));
+		return $this->db->affected_rows();
 	}
 	
 	public function update($data) {
 		
 		$this->db->where('userId', $data['userId']);
-		return $this->db->update('x_user', $data);
+		$this->db->update('x_user', $data);
+		return $this->db->affected_rows();
 	}	
 
 }

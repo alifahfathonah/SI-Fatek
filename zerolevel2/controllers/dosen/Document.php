@@ -16,7 +16,7 @@ class Document extends CI_Controller {
 	
 	public function index() {
 
-		$data['pageTitle'] 	= "Dokumen dosen";
+		$data['pageTitle'] 	= "Dokumen Dosen";
 		$data['body_page'] 	= "body/dosen/dokumen";
 		$data['menu_page']  = "menu/dosen";
 

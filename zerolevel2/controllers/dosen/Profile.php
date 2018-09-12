@@ -16,14 +16,13 @@ class Profile extends CI_Controller {
 
 	public function index() {
 		
-		$data['pageTitle']	= "Profil Dosen";
-		$data['body_page'] 	= "body/dosen/profile_view";
+		$data['pageTitle']	= "Profile Dosen";
+		$data['body_page'] 	= "body/dosen/profile";
 		$data['menu_page'] 	= "menu/dosen";
 
 		$dosenNip 				= $this->session->userdata['logged_in_portal']['dosen']['nip'];
 		$data['dosen'] 			= $this->Tabel_dosen->detail(array('nip'=> $dosenNip));
 		$data['dosen']['foto'] 	= (!empty($data['dosen']['foto'])) ? URL_FOTO_DOSEN.$data['dosen']['foto'] : URL_FOTO_DOSEN."default.jpg";
-		$data['publikasi'] 		= $this->Tabel_publikasi->get(array('dosenId'=> $data['dosen']['dosenId']),'tahun DESC');
 		$data['dosenAPI'] 		= $this->apicall->get(URL_API.'pegawai?nip='.$dosenNip);
 
 		if (!empty($data['dosen']['sintaId'])) $data['dosen']['sintaUrl'] = URL_SINTA.$data['dosen']['sintaId']."&view=overview";
@@ -33,21 +32,7 @@ class Profile extends CI_Controller {
 		$this->load->view(SITE_THEME,$data);
 	}
 
-	public function edit() {
-		
-		$data['pageTitle'] 	= "Edit Profil Dosen";
-		$data['body_page'] 	= "body/dosen/profile_edit";
-		$data['menu_page']	= "menu/dosen";
-
-		$dosenNip 				= $this->session->userdata['logged_in_portal']['dosen']['nip'];
-		$data['dosen'] 			= $this->Tabel_dosen->detail(array('nip'=> $dosenNip));
-		$data['dosen']['foto'] 	= (!empty($data['dosen']['foto'])) ? URL_FOTO_DOSEN.$data['dosen']['foto'] : URL_FOTO_DOSEN."default.jpg";
-
-		$this->load->view(SITE_THEME,$data);
-
-	}
-	
-	public function simpan() {
+	public function update() {
 		
 		$this->form_validation->set_rules('nama', 'Nama', 'trim|required');
 		$this->form_validation->set_rules('email', 'Email', 'valid_email');
@@ -65,17 +50,26 @@ class Profile extends CI_Controller {
 			$database['scopusId'] 	= $this->input->post('scopusId');
 			$database['interest'] 	= $this->input->post('interest');
 			$database['bio'] 		= $this->input->post('bio');
-			$this->Tabel_dosen->update($database);
+			$database['userUpdate']	= $this->session->userdata['logged_in_portal']['nama'];
 
-			$this->session->set_flashdata('type', 'success');
-			$this->session->set_flashdata('message', 'Berhasil di simpan!');
+			if ($this->Tabel_dosen->update($database)) {
+				
+				$this->session->set_flashdata('type', 'success');
+				$this->session->set_flashdata('message', 'Berhasil diupdate!');
+
+			} else {
+			
+				$this->session->set_flashdata('type', 'danger');
+				$this->session->set_flashdata('message', 'Gagal diupdate!');
+			}
 
 		} else {
-			$this->session->set_flashdata('type', 'danger');
-			$this->session->set_flashdata('message', validation_errors('Gagal di simpan! '));
+
+			$this->session->set_flashdata('type', 'warning');
+			$this->session->set_flashdata('message', validation_errors('Form tidak lengkap! '));
 		}
 
-		redirect(site_url('dosen/profile/edit'));
+		redirect(site_url('dosen/profile'));
 
 	}
 
@@ -89,7 +83,7 @@ class Profile extends CI_Controller {
 			
 			if (!$this->upload->do_upload('fotodosen')) {
 				$this->session->set_flashdata('type', 'danger');
-				$this->session->set_flashdata('message', $this->upload->display_errors());	
+				$this->session->set_flashdata('message', 'Gagal disimpan! '.$this->upload->display_errors());	
 				
 			} else {
 
@@ -113,12 +107,12 @@ class Profile extends CI_Controller {
 				$this->image_lib->clear();
 
 				$this->session->set_flashdata('type', 'success');
-				$this->session->set_flashdata('message', 'Berhasil di simpan!');
+				$this->session->set_flashdata('message', 'Berhasil disimpan!');
 			}
 			
 		}
 
-		redirect(site_url('dosen/profile/edit'));
+		redirect(site_url('dosen/profile'));
 
 	}
 

@@ -61,8 +61,8 @@
 
                         <div class="modal-body">
                             <?php echo form_open(site_url('dosen/publikasi/tambah'));?>
-                                <input type="hidden" name="dosenId" value="<?php echo $dosen['dosenId'];?>">
-                                <input type="hidden" name="publikasiId">
+                                <input type="hidden" name="nip" value="<?php echo $dosen['nip'];?>">
+                                <input type="hidden" name="id">
                                 <div class="form-group form-float">
                                     <label class="form-label">Judul Publikasi</label>
                                     <div class="form-line">

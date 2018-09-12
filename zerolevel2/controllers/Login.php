@@ -30,8 +30,8 @@ class Login extends CI_Controller {
 					if ($result) {
 
 						$sess_data['nama'] = "Xaverius Najoan";
-						$sess_data['info'] = "Administrator";
-						$sess_data['foto'] = "";
+						$sess_data['desc'] = "Admin Portal"; //Nama Unit
+						$sess_data['foto'] = base_url('images/user.png');
 				
 						$sess_data['admin']['userId'] = 1;
 						$sess_data['admin']['group'] = "admin";
@@ -113,7 +113,7 @@ class Login extends CI_Controller {
 						if ($member) {
 
 							$sess_data['nama'] = $member['nama'];
-							$sess_data['info'] = $member['nip'];
+							$sess_data['desc'] = $member['nip'];
 							$sess_data['foto'] = (!empty($member['foto'])) ? URL_FOTO_DOSEN.$member['foto'] : URL_FOTO_DOSEN."default.jpg";
 					
 							$sess_data['dosen']['nip']       = $member['nip'];
@@ -122,7 +122,7 @@ class Login extends CI_Controller {
 							
 							$this->session->set_userdata('logged_in_portal',$sess_data);
 							$this->session->unset_userdata('login_attempt_dsn');
-							redirect(site_url('dosen'));
+							redirect(site_url('dosen/profile'));
 						
 						} else {
 							$this->session->set_flashdata('message_login_dosen', '<span class="glyphicon glyphicon-remove"></span> Tidak ada akses disini');
@@ -152,7 +152,7 @@ class Login extends CI_Controller {
 
 		} else {
 
-			redirect(site_url('dosen'));
+			redirect(site_url('dosen/profile'));
 		}
 	}
 	
@@ -180,22 +180,19 @@ public function mahasiswa() {
 
 					if ($result) {
 
-						$data = $this->apicall->get(URL_API.'mahasiswa?nim='.$username);
-
 						$sess_data['nama'] = $data->nama;
-						$sess_data['info'] = $data->nim;
-						$sess_data['foto'] = $data->foto;
+						$sess_data['desc'] = $data->nim;
+						$sess_data['foto'] = (!empty($data->foto)) ? $data->foto : base_url('images/user.png');
 
 						$sess_data['mhs']['nim'] 	   = $data->nim;
 						$sess_data['mhs']['kodeProdi'] = $data->kodeProdi;
 						$sess_data['mhs']['kodeJur']   = $data->kodeJurusan;
-						$sess_data['mhs']['kodeFak']   = $data->kodeFakultas;
 
-						if ($sess_data['kodeFak'] == '2') {
+						if ($data->kodeFakultas == '2') {
 
 							$this->session->set_userdata('logged_in_portal',$sess_data);
 							$this->session->unset_userdata('login_attempt_mhs');
-							redirect(site_url('login/mahasiswa'));
+							redirect(site_url('mahasiswa/profile'));
 						} else  {
 							$this->session->set_flashdata('message_login_mhs', '<span class="glyphicon glyphicon-remove"></span> Tidak punya hak akses disini');
 						}
@@ -223,7 +220,7 @@ public function mahasiswa() {
 			$this->load->view('login/mahasiswa');
 
 		} else {
-			redirect(site_url('mahasiswa'));
+			redirect(site_url('mahasiswa/profile'));
 		}
 	}
 	

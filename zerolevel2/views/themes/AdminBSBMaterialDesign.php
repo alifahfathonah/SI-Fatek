@@ -105,7 +105,7 @@ http://fatek.unsrat.ac.id
                         <b><?php echo $this->session->userdata['logged_in_portal']['nama'];?></b>
                     </div>
                     <div class="email">
-                        <small><?php echo $this->session->userdata['logged_in_portal']['info'];?></small>
+                        <small><?php echo $this->session->userdata['logged_in_portal']['desc'];?></small>
                     </div>
                 </div>
             </div>

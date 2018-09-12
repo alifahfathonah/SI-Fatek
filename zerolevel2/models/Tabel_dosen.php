@@ -27,18 +27,21 @@ class Tabel_dosen extends CI_Model {
 
 	public function tambah($data) {
 
-		return $this->db->insert('ft_dosen', $data);
+		$this->db->insert('ft_dosen', $data);
+		return $this->db->affected_rows();
 	}
 	
 	public function delete($id) {
 		
-		return $this->db->delete('ft_dosen', array('dosenId' => $id));
+		$this->db->delete('ft_dosen', array('dosenId' => $id));
+		return $this->db->affected_rows();
 	}
 	
 	public function update($data) {
 
 		$this->db->where('dosenId', $data['dosenId']);
-		return $this->db->update('ft_dosen', $data);
+		$this->db->update('ft_dosen', $data);
+		return $this->db->affected_rows();
 	}
 
 }
