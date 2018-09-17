@@ -33,6 +33,15 @@ $(function () {
     $('.basicTabel').DataTable({
         responsive: true,
     });
+
+    $('.tabelDosen').DataTable({
+        dom: 'Bfrtip',
+        responsive: true,
+        "pageLength":50,
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    });
 });
 
 // Untuk pengaturan validasi form (JQuery Plugin: Jquery Validation)
@@ -55,14 +64,16 @@ $(function () {
 
     // Modal form Publikasi
     $('#modalFormPublikasi').on('show.bs.modal', function (event) {
+
         var button = $(event.relatedTarget);
         var id = button.data('id');
         var form = button.data('form');
+        $(this).find('form')[0].reset();
         $('form').validate().resetForm();
+        $('form [name="id"]').val('');
         $('form [name="tahun"]').selectpicker("refresh");
 
         if (form == "formTambah") {
-            $(this).find('form')[0].reset();
             $(this).find('form').attr('action', window.location.href + '/tambah');
             $(this).find(':submit').addClass('buttonTambah').removeClass('buttonEdit');
             $(this).find('.modal-title').text('Tambah Publikasi')
@@ -95,14 +106,18 @@ $(function () {
 
     // Modal form Judul skripsi
     $('#modalFormJudul').on('show.bs.modal', function (event) {
+
         var button = $(event.relatedTarget);
         var id = button.data('id');
         var form = button.data('form');
+        $(this).find('form')[0].reset();
         $('form').validate().resetForm();
+        $('form [name="id"]').val('');
         $('form [name="keyword"]').tagsinput('removeAll');
         $('form [name="labstudio"]').selectpicker("refresh");
+        
         if (form == "formTambah") {
-            $(this).find('form')[0].reset();
+
             $(this).find('form').attr('action', window.location.href + '/tambah');
             $(this).find(':submit').addClass('buttonTambah').removeClass('buttonEdit');
             $(this).find('.modal-title').text('Tambah Usulan Judul');
@@ -133,16 +148,19 @@ $(function () {
 
     // Modal form Kelola user
     $('#modalFormUser').on('show.bs.modal', function (event) {
+        
         var button = $(event.relatedTarget);
         var id = button.data('id');
         var form = button.data('form');
+        $(this).find('form')[0].reset();
         $('form').validate().resetForm();
+        $('form [name="id"]').val('');
         $('form [name="grup"]').selectpicker("refresh");
         $('form [name="password"]').prop("required",false);
         $('.pass-empty').text('');
 
         if (form == "formTambah") {
-            $(this).find('form')[0].reset();
+
             $(this).find('form').attr('action', window.location.href + '/tambah');
             $(this).find(':submit').addClass('buttonTambah').removeClass('buttonEdit');
             $(this).find('.modal-title').text('Tambah User');
@@ -176,12 +194,147 @@ $(function () {
         }
     });
 
+    // Modal form Kelola kategori dokumen
+    $('#modalFormDocgroup').on('show.bs.modal', function (event) {
+
+        var button = $(event.relatedTarget);
+        var id = button.data('id');
+        var form = button.data('form');
+        $(this).find('form')[0].reset();
+        $('form').validate().resetForm();
+        $('form [name="id"]').val('');
+
+        if (form == "formTambah") {
+
+            $(this).find('form').attr('action', window.location.href + '/tambah');
+            $(this).find(':submit').addClass('buttonTambah').removeClass('buttonEdit');
+            $(this).find('.modal-title').text('Tambah Kategori Dokumen');
+        }
+
+        else if (form == "formEdit") {
+
+            $(this).find(':submit').addClass('buttonEdit').removeClass('buttonTambah');
+            $(this).find('form').attr('action', window.location.href + '/edit');
+            $(this).find('.modal-title').text('Edit Kategori Dokumen');
+
+            $.ajax({
+                url : window.location.href + '/detail/' + id,
+                type: "GET",
+                dataType: "JSON",
+                success: function(data)
+                {
+                    $('form [name="id"]').val(data.docgroupId);
+                    $('form [name="nama"]').val(data.docgroupJenisDoc);
+                },
+                error: function (jqXHR, textStatus, errorThrown)
+                {
+                    alert('Error get data from ajax');
+                }
+            });
+        }
+    });
+
+    // Modal form Kelola lab/studio
+    $('#modalFormLabstudio').on('show.bs.modal', function (event) {
+        
+        var button = $(event.relatedTarget);
+        var id = button.data('id');
+        var form = button.data('form');
+        $(this).find('form')[0].reset();
+        $('form').validate().resetForm();
+        $('form [name="id"]').val('');
+        $('form [name="jurusan"]').selectpicker("refresh");
+
+        if (form == "formTambah") {
+        
+            $(this).find('form').attr('action', window.location.href + '/tambah');
+            $(this).find(':submit').addClass('buttonTambah').removeClass('buttonEdit');
+            $(this).find('.modal-title').text('Tambah Laboratorium / Studio');
+        }
+
+        else if (form == "formEdit") {
+            $(this).find(':submit').addClass('buttonEdit').removeClass('buttonTambah');
+            $(this).find('form').attr('action', window.location.href + '/edit');
+            $(this).find('.modal-title').text('Edit Laboratorium / Studio');
+
+            $.ajax({
+                url : window.location.href + '/detail/' + id,
+                type: "GET",
+                dataType: "JSON",
+                success: function(data)
+                {
+                    $('form [name="id"]').val(data.labstudioId);
+                    $('form [name="nama"]').val(data.labstudioNama);
+                    $('form [name="jurusan"]').selectpicker('val',data.labstudioJurKode);
+                },
+                error: function (jqXHR, textStatus, errorThrown)
+                {
+                    alert('Error get data from ajax');
+                }
+            });
+        }
+    });
+
+    // Modal form Kelola dosen
+    $('#modalFormDosen').on('show.bs.modal', function (event) {
+        
+        var button = $(event.relatedTarget);
+        var id = button.data('id');
+        var form = button.data('form');
+        $(this).find('form')[0].reset();
+        $('form').validate().resetForm();
+        $('form [name="id"]').val('');
+        $('form [name="jurusan"]').selectpicker("refresh");
+        $('form [name="prodi"]').selectpicker("refresh");
+
+        if (form == "formTambah") {
+            $(this).find('form').attr('action', window.location.href + '/tambah');
+            $(this).find(':submit').addClass('buttonTambah').removeClass('buttonEdit');
+            $(this).find('.modal-title').text('Tambah Dosen');
+        }
+
+        else if (form == "formEdit") {
+            $(this).find(':submit').addClass('buttonEdit').removeClass('buttonTambah');
+            $(this).find('form').attr('action', window.location.href + '/edit');
+            $(this).find('.modal-title').text('Edit Dosen');
+
+            $.ajax({
+                url : window.location.href + '/detail/' + id + '/json',
+                type: "GET",
+                dataType: "JSON",
+                success: function(data)
+                {
+                    $('form [name="id"]').val(data.dosenId);
+                    $('form [name="nama"]').val(data.nama);
+                    $('form [name="nip"]').val(data.nip);
+                    $('form [name="nidn"]').val(data.nidn);
+                    $('form [name="kodePegawai"]').val(data.kodePegawai);
+                    $('form [name="jabatan"]').val(data.jabatan);
+                    $('form [name="alamat"]').val(data.alamat);
+                    $('form [name="jurusan"]').selectpicker('val',data.kodeJurusan + '|' + data.jurusan);
+                    $('form [name="prodi"]').selectpicker('val',data.kodeProdi + '|' + data.prodi);
+                    $('form [name="email"]').val(data.email);
+                    $('form [name="hp"]').val(data.hp);
+                    $('form [name="sintaId"]').val(data.sintaId);
+                    $('form [name="googleId"]').val(data.googleId);
+                    $('form [name="scopusId"]').val(data.scopusId);
+                    $('form [name="interest"]').val(data.interest);
+                    $('form [name="bio"]').val(data.bio);
+                },
+                error: function (jqXHR, textStatus, errorThrown)
+                {
+                    alert('Error get data from ajax');
+                }
+            });
+        }
+    });      
 
 });
 
 // Script untuk hapus data via AJAX request (JQuery Plugin: SweetAlert)
 $(function () {
-    $('.buttonHapus').on('click', function () {
+    $('#tabelData').on('click', ".buttonHapus", function() {
+
         var csrf_test_name = $("input[name=csrf_test_name]").val();
         var id = $(this).data('id');
 

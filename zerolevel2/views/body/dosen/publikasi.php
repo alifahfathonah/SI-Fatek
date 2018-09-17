@@ -21,7 +21,7 @@
                             </div>
 
                             <div class="table-responsive">
-                                <table id="tabel-publikasi" class="table table-hover">
+                                <table id="tabelData" class="table table-bordered table-striped table-hover dataTable basicTabel">
                                     <thead>
                                         <tr>
                                             <th>Tahun</th>
@@ -66,19 +66,19 @@
                                 <div class="form-group form-float">
                                     <label class="form-label">Judul Publikasi</label>
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="judul" required>
+                                        <input type="text" name="judul" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="form-group form-float">
                                     <label class="form-label">Jurnal / Prosiding</label>
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="jurnal" required>
+                                        <input type="text" name="jurnal" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="form-group form-float">
                                     <label class="form-label">Tempat</label>
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="tempat">
+                                        <input type="text" name="tempat" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group form-float">

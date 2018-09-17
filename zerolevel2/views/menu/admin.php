@@ -6,8 +6,13 @@
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo site_url('admin/group_dokumen');?>">
-                            <span>Kelola Group Dokumen</span>
+                        <a href="<?php echo site_url('admin/dosen');?>">
+                            <span>Kelola Data Dosen</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo site_url('admin/docgroup');?>">
+                            <span>Kelola Kategori Dokumen</span>
                         </a>
                     </li>
                     <li>

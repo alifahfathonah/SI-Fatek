@@ -33,13 +33,13 @@ class Tabel_labstudio extends CI_Model {
 	
 	public function delete($id) {
 		
-		$this->db->delete('ref_labstudio', array('labstudioKode' => $id));
+		$this->db->delete('ref_labstudio', array('labstudioId' => $id));
 		return $this->db->affected_rows();
 	}
 	
 	public function update($data) {
 		
-		$this->db->where('labstudioKode', $data['labstudioKode']);
+		$this->db->where('labstudioId', $data['labstudioId']);
 		$this->db->update('ref_labstudio', $data);
 		return $this->db->affected_rows();
 	}	

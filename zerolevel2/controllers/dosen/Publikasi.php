@@ -24,7 +24,7 @@ class Publikasi extends CI_Controller {
 		$data['dosen'] 		= $this->Tabel_dosen->detail(array('nip'=> $dosenNip));
 		$data['publikasi'] 	= $this->Tabel_publikasi->get(array('dosenNip'=> $dosenNip),'tahun DESC');
 
-		$this->load->view(SITE_THEME,$data);
+		$this->load->view(THEME_DOSEN,$data);
 
 	}
 

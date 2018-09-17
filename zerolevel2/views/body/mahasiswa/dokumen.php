@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 
             <div class="block-header">
-                <h2>DOKUMEN MAHASISWA</h2>
+                <h2><?php echo $pageTitle;?></h2>
             </div>
             
             <div class="row clearfix">
@@ -10,13 +10,14 @@
                         <div class="body">
                             <!-- Tabel dokumen -->
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-hover dataTable basicTabel">
+                                <table id="tabelData" class="table table-bordered table-striped table-hover dataTable basicTabel">
                                     <thead>
                                         <tr>
                                             <th>No</th>
                                             <th>Nama Dokumen / Deskripsi</th>
                                             <th>Nomor</th>
                                             <th>Tahun</th>
+                                            <th>Kategori</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -31,6 +32,7 @@
                                             </td>
                                             <td><?php echo $list['dokumenNomor'];?></td>
                                             <td><?php echo $list['dokumenTahun'];?></td>
+                                            <td><?php echo $list['docgroupJenisDoc'];?></td>
                                         </tr>
                                         <?php $i++;}?>
                                     </tbody>

@@ -10,7 +10,7 @@
                         <div class="body">
                             <!-- Tabel dokumen -->
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-hover dataTable basicTabel">
+                                <table id="tabelData" class="table table-bordered table-striped table-hover dataTable basicTabel">
                                     <thead>
                                         <tr>
                                             <th>No</th>

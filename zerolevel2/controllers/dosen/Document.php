@@ -28,7 +28,7 @@ class Document extends CI_Controller {
 			$val['dokumenFile'] = URL_DOKUMEN.$val['dokumenFile'];
 		}
 		
-		$this->load->view(SITE_THEME,$data);
+		$this->load->view(THEME_DOSEN,$data);
 
 	}
 	

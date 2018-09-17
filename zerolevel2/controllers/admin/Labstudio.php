@@ -1,12 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Docgroup extends CI_Controller {
+class Labstudio extends CI_Controller {
 	
 	public function __construct() {
 		
 		parent::__construct();
-		$this->load->model(array('Tabel_docgroup'));
+		$this->load->model(array('Tabel_labstudio'));
 
 		if (!isset($this->session->userdata['logged_in_portal']['admin'])) {
 			redirect(site_url('login'));
@@ -16,25 +16,27 @@ class Docgroup extends CI_Controller {
 
 	public function index() {
 		
-		$data['pageTitle'] 	= "Kelola Kategori Dokumen";
-		$data['body_page'] 	= "body/admin/docgroup";
+		$data['pageTitle'] 	= "Kelola Laboratorium / Studio";
+		$data['body_page'] 	= "body/admin/labstudio";
 		$data['menu_page'] 	= "menu/admin";
 		
-		$data['docgroups'] 	= $this->Tabel_docgroup->get();
+		$data['labstudio'] 	= $this->Tabel_labstudio->get(FALSE,'labstudioJurKode ASC');
 
 		$this->load->view(THEME_ADMIN,$data);
 	}
 
 	public function tambah() {
 
-		$this->form_validation->set_rules('nama', 'Kategori Dokumen', 'trim|required');
+		$this->form_validation->set_rules('nama', 'Nama Lab/Studio', 'trim|required');
+		$this->form_validation->set_rules('jurusan', 'Jurusan', 'required');
 		
 		if ($this->form_validation->run() == TRUE) {
 
-			$database['docgroupId']			= $this->input->post('id');
-			$database['docgroupJenisDoc']	= $this->input->post('nama');
+			$database['labstudioId']		= $this->input->post('id');
+			$database['labstudioNama']		= $this->input->post('nama');
+			$database['labstudioJurKode']	= $this->input->post('jurusan');
 
-			if ($this->Tabel_docgroup->tambah($database)) {
+			if ($this->Tabel_labstudio->tambah($database)) {
 
 				$this->session->set_flashdata('type', 'success');
 				$this->session->set_flashdata('message', 'Berhasil disimpan!');	
@@ -51,21 +53,23 @@ class Docgroup extends CI_Controller {
 			$this->session->set_flashdata('message', validation_errors('Form tidak lengkap! '));
 		}
 
-		redirect(site_url('admin/docgroup'));
+		redirect(site_url('admin/labstudio'));
 	
 	}
 
 	public function edit() {
 
-		$this->form_validation->set_rules('nama', 'Kategori Dokumen', 'trim|required');
+		$this->form_validation->set_rules('nama', 'Nama Lab/Studio', 'trim|required');
+		$this->form_validation->set_rules('jurusan', 'Jurusan', 'required');
 		
 		if ($this->form_validation->run() == TRUE) {
 
-			$database['docgroupId']			= $this->input->post('id');
-			$database['docgroupJenisDoc']	= $this->input->post('nama');
+			$database['labstudioId']		= $this->input->post('id');
+			$database['labstudioNama']		= $this->input->post('nama');
+			$database['labstudioJurKode']	= $this->input->post('jurusan');
 			$database['userUpdate']			= $this->session->userdata['logged_in_portal']['nama'];
 
-			if ($this->Tabel_docgroup->update($database)) {
+			if ($this->Tabel_labstudio->update($database)) {
 				
 				$this->session->set_flashdata('type', 'success');
 				$this->session->set_flashdata('message', 'Berhasil diupdate!');
@@ -82,15 +86,15 @@ class Docgroup extends CI_Controller {
 			$this->session->set_flashdata('message', validation_errors('Form tidak lengkap! '));
 		}
 
-		redirect(site_url('admin/docgroup'));
+		redirect(site_url('admin/labstudio'));
 	
 	}	
 	
 	public function delete() {
 
-		$id_docgroup = $this->input->post('id');
+		$id_labstudio = $this->input->post('id');
 
-		if ($this->Tabel_docgroup->delete($id_docgroup)) {
+		if ($this->Tabel_labstudio->delete($id_labstudio)) {
 				
 			$this->session->set_flashdata('type', 'success');
 			$this->session->set_flashdata('message', 'Berhasil dihapus!');
@@ -106,7 +110,7 @@ class Docgroup extends CI_Controller {
 
 	public function detail($id) {
 
-		$output = $this->Tabel_docgroup->detail(array('docgroupId'=> $id));
+		$output = $this->Tabel_labstudio->detail(array('labstudioId'=> $id));
 		echo json_encode($output);
 
 	}	

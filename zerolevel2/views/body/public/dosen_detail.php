@@ -8,10 +8,19 @@
                                 <img src="<?php echo $dosen['foto'];?>" class="img-responsive img-thumbnail foto-dosen" alt=""/>
                             </div>
                             <div class="col-xs-12 col-sm-8 col-md-8">
-                                <h3 id="nama"><?php echo $dosen['nama'];?></h3>
+                                <blockquote>
+                                    <h3 id="nama"><?php echo $dosen['nama'];?></h3>
+                                    <?php if ($dosen['jabatan']) {?>
+                                        <small><?php echo $dosen['jabatan'];?></small>
+                                    <?php }?>
+                                </blockquote>
+
+                                <?php if ($dosen['bio']) {?>
                                 <div class="well well-sm">
                                     <span class="biografi"><?php echo $dosen['bio'];?></span>
                                 </div>
+                                <?php }?>
+
                                 <dl class="dl-horizontal">
                                     
                                     <dt>ID</dt>

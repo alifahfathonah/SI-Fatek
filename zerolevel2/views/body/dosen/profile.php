@@ -50,8 +50,8 @@
                         </div>
                         <div class="body">
                             <dl class="dl-horizontal">
-                                <dt>Biografi singkat</dt>
-                                <dd><?php echo $dosen['bio'];?>&nbsp;</dd>
+                                <dt>Jabatan</dt>
+                                <dd><?php echo $dosen['jabatan'];?>&nbsp;</dd>
                                 <dt>Office Address</dt>
                                 <dd><?php echo $dosen['alamat'];?>&nbsp;</dd>                                  
                                 <dt>Nomor HP</dt>
@@ -72,10 +72,17 @@
                                 <dd><?php echo $dosen['scopusId'];?>&nbsp;</dd>
 
                             </dl>
+
+                            <div class="biografi">
+                                <div class="well">
+                                    <small><?php echo $dosen['bio'];?></small>
+                                </div>
+                            </div>
+
                             <div class="link">
                                 <h5>External Link</h5>
                                 <div class="list-group">
-                                    <a href="<?php echo site_url('public/dosen/id/'. $dosen['nip']);?>" target="_blank" class="list-group-item list-group-item-action">Fatek Digital Card - Public Access</a>
+                                    <a href="<?php echo site_url('public/dosen/id/'. $dosen['nip']);?>" target="_blank" class="list-group-item list-group-item-action">Fatek Digital Card</a>
                                     <?php if (isset($dosen['sintaUrl'])) {?> <a href="<?php echo $dosen['sintaUrl'];?>" target="_blank" class="list-group-item list-group-item-action">Science and Technology Index</a><?php }?>
                                     <?php if (isset($dosen['googleUrl'])) {?> <a href="<?php echo $dosen['googleUrl'];?>" target="_blank" class="list-group-item list-group-item-action">Google Scholar</a><?php }?>
                                     <?php if (isset($dosen['scopusUrl'])) {?> <a href="<?php echo $dosen['scopusUrl'];?>" target="_blank" class="list-group-item list-group-item-action">Scopus Author</a><?php }?>
@@ -86,42 +93,74 @@
                     </div>
                 </div>
                 <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
+
                     <div class="card">
-                        <div class="header bg-green">
+                        <div class="header bg-blue">
                             <h2>
-                                <?php echo $dosenAPI->nama;?> <small>Source: Database Kepegawaian Unsrat</small>
+                                <?php echo $dosenSiaAPI->nama;?> <small>Source: Database Akademik Unsrat</small>
                             </h2>
                         </div>
                         <div class="body">
                             <dl class="dl-horizontal">
                                 <dt>NIP</dt>
-                                <dd><?php echo $dosenAPI->nip; ?>&nbsp;</dd>                                  
+                                <dd><?php echo $dosenSiaAPI->nip; ?>&nbsp;</dd>                                  
                                 <dt>NIDN</dt>
-                                <dd><?php echo $dosenAPI->nidn; ?>&nbsp;</dd>
-                                <dt>Alamat Rumah</dt>
-                                <dd><?php echo $dosenAPI->alamat; ?>&nbsp;</dd>
-                                <dt>Tempat Tanggal Lahir</dt>
-                                <dd><?php echo $dosenAPI->tempatLahir." ".$dosenAPI->tanggalLahir; ?>&nbsp;</dd>                                  
-                                <dt>Jenis Kelamin</dt>
-                                <dd><?php echo $dosenAPI->jenisKelamin; ?>&nbsp;</dd>
+                                <dd><?php echo $dosenSiaAPI->nidn; ?>&nbsp;</dd>
+                                <dt>Fakultas</dt>
+                                <dd><?php echo $dosenSiaAPI->fakultas; ?>&nbsp;</dd>
+                                <dt>Jurusan</dt>
+                                <dd><?php echo $dosenSiaAPI->jurusan; ?>&nbsp;</dd>                              
+                                <dt>Prodi</dt>
+                                <dd><?php echo $dosenSiaAPI->prodi; ?>&nbsp;</dd>
+                                <dt>Jenis Pegawai</dt>
+                                <dd><?php echo $dosenSiaAPI->jenisPegawai; ?>&nbsp;</dd>
+                                <dt>Status Ikatan Kerja</dt>
+                                <dd><?php echo $dosenSiaAPI->statusIkatanKerja; ?>&nbsp;</dd>                              
+                                <dt>Status Aktifitas</dt>
+                                <dd><?php echo $dosenSiaAPI->statusAktifitas; ?>&nbsp;</dd>
                                 <dt>Status Pegawai</dt>
-                                <dd><?php echo $dosenAPI->statusPegawai; ?>&nbsp;</dd>
+                                <dd><?php echo $dosenSiaAPI->statusPegawai; ?>&nbsp;</dd>                                
+                            </dl>
+                            <small>Last Update: <?php echo $dosenSiaAPI->lastUpdate; ?></small>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="header bg-green">
+                            <h2>
+                                <?php echo $dosenSdmAPI->nama;?> <small>Source: Database Kepegawaian Unsrat</small>
+                            </h2>
+                        </div>
+                        <div class="body">
+                            <dl class="dl-horizontal">
+                                <dt>NIP</dt>
+                                <dd><?php echo $dosenSdmAPI->nip; ?>&nbsp;</dd>                                  
+                                <dt>Kode Lain</dt>
+                                <dd><?php echo $dosenSdmAPI->kodeLain; ?>&nbsp;</dd>
+                                <dt>Alamat Rumah</dt>
+                                <dd><?php echo $dosenSdmAPI->alamat; ?>&nbsp;</dd>
+                                <dt>Tempat Tanggal Lahir</dt>
+                                <dd><?php echo $dosenSdmAPI->tempatLahir." ".$dosenSdmAPI->tanggalLahir; ?>&nbsp;</dd>                                  
+                                <dt>Jenis Kelamin</dt>
+                                <dd><?php echo $dosenSdmAPI->jenisKelamin; ?>&nbsp;</dd>
+                                <dt>Status Pegawai</dt>
+                                <dd><?php echo $dosenSdmAPI->statusPegawai; ?>&nbsp;</dd>
                                 <dt>No Karpeg</dt>
-                                <dd><?php echo $dosenAPI->noKarpeg; ?>&nbsp;</dd>                                
+                                <dd><?php echo $dosenSdmAPI->noKarpeg; ?>&nbsp;</dd>                                
                                 <dt>Tahun Serdos</dt>
-                                <dd><?php echo $dosenAPI->tahunSerdos; ?>&nbsp;</dd>
+                                <dd><?php echo $dosenSdmAPI->tahunSerdos; ?>&nbsp;</dd>
                                 <dt>Jabatan Fungsional</dt>
-                                <dd><?php echo $dosenAPI->jabatanFungsional; ?>&nbsp;</dd>                                  
+                                <dd><?php echo $dosenSdmAPI->jabatanFungsional; ?>&nbsp;</dd>                                  
                                 <dt>Pangkat/Golongan</dt>
-                                <dd><?php echo $dosenAPI->pangkatGolongan; ?>&nbsp;</dd>                                  
+                                <dd><?php echo $dosenSdmAPI->pangkatGolongan; ?>&nbsp;</dd>                                  
                                 <dt>Agama</dt>
-                                <dd><?php echo $dosenAPI->agama; ?>&nbsp;</dd>
+                                <dd><?php echo $dosenSdmAPI->agama; ?>&nbsp;</dd>
                                 <dt>Status Nikah</dt>
-                                <dd><?php echo $dosenAPI->statusNikah; ?>&nbsp;</dd>                                  
+                                <dd><?php echo $dosenSdmAPI->statusNikah; ?>&nbsp;</dd>                                  
                                 <dt>No Hp</dt>
-                                <dd><?php echo $dosenAPI->noHp; ?>&nbsp;</dd>
+                                <dd><?php echo $dosenSdmAPI->noHp; ?>&nbsp;</dd>
                                 <dt>Email</dt>
-                                <dd><?php echo $dosenAPI->email; ?>&nbsp;</dd>
+                                <dd><?php echo $dosenSdmAPI->email; ?>&nbsp;</dd>
                             </dl>
                             <h5>Riwayat Pendidikan</h5>
                             <table id="tabel-publikasi" class="table table-hover">
@@ -133,7 +172,7 @@
                                     </tr>
                                 </thead>
                                 <tbody> 
-                                    <?php foreach($dosenAPI->edu as $list) { ?>
+                                    <?php foreach($dosenSdmAPI->edu as $list) { ?>
                                     <tr>
                                         <td><?php echo $list->tahunLulus;?></td>
                                         <td><?php echo $list->jenjang." ".$list->bidangIlmu;?></td>
@@ -142,9 +181,10 @@
                                     <?php }?>                           
                                 </tbody>
                             </table>
-                            <small>Last Update: <?php echo $dosenAPI->lastUpdate; ?></small>
+                            <small>Last Update: <?php echo $dosenSdmAPI->lastUpdate; ?></small>
                         </div>
                     </div>
+
                 </div>
             </div>
 
@@ -161,31 +201,41 @@
                                 <input name="dosenId" type="hidden" value="<?php echo $dosen['dosenId']; ?>">
 
                                 <div class="form-group">
-                                    <label>Nama Lengkap</label>
+                                    <label class="form-label">Nama Lengkap</label>
                                     <div class="form-line">
-                                        <input name="nama" class="form-control" value="<?php echo $dosen['nama'];?>" required>
+                                        <input type="text" name="nama" class="form-control" value="<?php echo $dosen['nama'];?>" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <label class="form-label">Nip</label>
+                                            <div class="form-line">
+                                                <input type="number" name="nip" class="form-control" value="<?php echo $dosen['nip'];?>" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <label class="form-label">NIDN</label>
+                                            <div class="form-line">
+                                                <input type="number" name="nidn" class="form-control" value="<?php echo $dosen['nidn'];?>">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label>Office Address</label>
-                                    <div class="form-line">
-                                        <input name="alamat" class="form-control" value="<?php echo $dosen['alamat'];?>">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
                                     <div class="row">
                                         <div class="col-xs-6">
-                                            <label>Email</label>
+                                            <label class="form-label">Jabatan</label>
                                             <div class="form-line">
-                                                <input name="email" type="email" class="form-control" value="<?php echo $dosen['email'];?>">
+                                                <input type="text" name="jabatan" class="form-control" value="<?php echo $dosen['jabatan'];?>">
                                             </div>
                                         </div>
                                         <div class="col-xs-6">
-                                            <label>Nomor HP</label>
+                                            <label class="form-label">Alamat Kantor</label>
                                             <div class="form-line">
-                                                <input name="hp" type="number" class="form-control" value="<?php echo $dosen['hp'];?>">
+                                                <input type="text" name="alamat" class="form-control" value="<?php echo $dosen['alamat'];?>" placeholder="Nama gedung/ruangan/studio/lab/unit tempat anda berkantor" >
                                             </div>
                                         </div>
                                     </div>
@@ -193,38 +243,55 @@
 
                                 <div class="form-group">
                                     <div class="row">
-                                        <div class="col-xs-4">
-                                            <label>Sinta ID</label>
+                                        <div class="col-xs-6">
+                                            <label class="form-label">Email</label>
                                             <div class="form-line">
-                                                <input name="sintaId" class="form-control" value="<?php echo $dosen['sintaId'];?>">
+                                                <input type="email" name="email" class="form-control" value="<?php echo $dosen['email'];?>">
                                             </div>
                                         </div>
-                                        <div class="col-xs-4">
-                                            <label>Google Scholar ID</label>
+                                        <div class="col-xs-6">
+                                            <label class="form-label">Nomor HP</label>
                                             <div class="form-line">
-                                                <input name="googleId" class="form-control" value="<?php echo $dosen['googleId'];?>">
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <label>Scopus Author ID</label>
-                                            <div class="form-line">
-                                                <input name="scopusId" class="form-control" value="<?php echo $dosen['scopusId'];?>">
+                                                <input type="number" name="hp" class="form-control" value="<?php echo $dosen['hp'];?>">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Research Field</label>
-                                    <div class="form-line">
-                                        <input name="interest" class="form-control" value="<?php echo $dosen['interest'];?>">
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <label class="form-label">Sinta ID</label>
+                                            <div class="form-line">
+                                                <input type="text" name="sintaId" class="form-control" value="<?php echo $dosen['sintaId'];?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <label class="form-label">Google Scholar ID</label>
+                                            <div class="form-line">
+                                                <input type="text" name="googleId" class="form-control" value="<?php echo $dosen['googleId'];?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <label class="form-label">Scopus Author ID</label>
+                                            <div class="form-line">
+                                                <input type="text" name="scopusId" class="form-control" value="<?php echo $dosen['scopusId'];?>">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Biografi singkat</label>
+                                    <label class="form-label">Research Field</label>
                                     <div class="form-line">
-                                        <textarea rows="4" class="form-control no-resize" placeholder="Biografi singkat tentang anda" name="bio"><?php echo $dosen['bio'];?></textarea>
+                                        <input type="text" name="interest" class="form-control" value="<?php echo $dosen['interest'];?>">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Introduced yourself</label>
+                                    <div class="form-line">
+                                        <textarea rows="4" class="form-control no-resize" placeholder="About you. Summary of yourself. Who are you?" name="bio"><?php echo $dosen['bio'];?></textarea>
                                     </div>
                                 </div>
 

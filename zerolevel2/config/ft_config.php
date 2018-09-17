@@ -25,7 +25,9 @@ define('DIR_DOKUMEN',		"../ft_data/dokumen/");
 define('URL_API',			"http://localhost/unsrat-api/");
 define('API_KEY',			"USR-API-KEY: b9QKaYcC0okSG9kkVa4PM6pw9S5BU7");
 
-define('SITE_THEME',		"themes/AdminBSBMaterialDesign");
+define('THEME_ADMIN',		"themes/AdminBSBMaterialDesign");
+define('THEME_DOSEN',		"themes/AdminBSBMaterialDesign");
+define('THEME_MHS',			"themes/AdminBSBMaterialDesign");
 
 $config['pasfoto_dosen'] = array(
 	'upload_path' 		=> DIR_FOTO_DOSEN,

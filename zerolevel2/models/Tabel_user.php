@@ -21,8 +21,8 @@ class Tabel_user extends CI_Model {
 		$this->db->where($condition);
 		$query = $this->db->get('x_user');
 		$result = $query->row_array();
+
 		return $result;
-		
 	}	
 
 	public function tambah($data) {

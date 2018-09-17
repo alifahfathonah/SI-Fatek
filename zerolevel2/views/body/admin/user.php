@@ -21,7 +21,7 @@
                             </div>
 
                             <div class="table-responsive">
-                                <table id="tabel-publikasi" class="table table-bordered table-striped table-hover dataTable basicTabel">
+                                <table id="tabelData" class="table table-bordered table-striped table-hover dataTable basicTabel">
                                     <thead>
                                         <tr>
                                             <th>Nama</th>
@@ -71,13 +71,13 @@
                                 <div class="form-group form-float">
                                     <label class="form-label">Nama</label>
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="nama" required>
+                                        <input type="text" name="nama" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="form-group form-float">
                                     <label class="form-label">Username</label>
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="username" required>
+                                        <input type="text" name="username" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="form-group form-float">
@@ -95,19 +95,19 @@
                                 <div class="form-group form-float">
                                     <label class="form-label">Nama Unit</label>
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="namaUnit" required>
+                                        <input type="text" name="namaUnit" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="form-group form-float">
                                     <label class="form-label">Kode Unit</label>
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="kodeUnit">
+                                        <input type="text" name="kodeUnit" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group form-float">
                                     <label class="form-label">Password</label>
                                     <div class="form-line">
-                                        <input type="password" class="form-control" name="password">
+                                        <input type="password" name="password" class="form-control">
                                     </div>
                                     <small><span class="pass-empty"></span></small>
                                 </div>

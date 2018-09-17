@@ -24,24 +24,25 @@ class Login extends CI_Controller {
 				if ($this->form_validation->run() == true) {
 					$username 	= $this->input->post('username',TRUE);
 					$pwd 		= $this->input->post('password',TRUE);
-					//$result		= $this->Tabel_user->detail(array('username'=> $username, 'password' => md5($pwd)));
-					$result 	= $pwd == $username;
+					$result		= $this->Tabel_user->detail(array('username'=> $username, 'password' => md5($pwd)));
+					//$result 	= $pwd == $username;
 
 					if ($result) {
 
-						$sess_data['nama'] = "Xaverius Najoan";
-						$sess_data['desc'] = "Admin Portal"; //Nama Unit
+						$sess_data['nama'] = $result['nama'];
+						$sess_data['desc'] = $result['namaUnit']; //Nama Unit
 						$sess_data['foto'] = base_url('images/user.png');
 				
-						$sess_data['admin']['userId'] = 1;
-						$sess_data['admin']['group'] = "admin";
-						$sess_data['admin']['kodeUnit'] = 0;
+						$sess_data['admin']['userId'] 	= $result['userId'];
+						$sess_data['admin']['grup'] 	= $result['grup'];
+						$sess_data['admin']['kodeUnit'] = $result['kodeUnit'];
 
 						$this->session->set_userdata('logged_in_portal',$sess_data);
 						$this->session->unset_userdata('login_attempt_adm');
+						$this->Tabel_user->update(array('userId'=> $result['userId'], 'lastLogin'=> date('Y-m-d H:i:s')));
 
-						switch ($this->session->userdata['logged_in_portal']['admin']['group']) {
-							case 'fakultas' : redirect(site_url('dekan')); break;
+						switch ($this->session->userdata['logged_in_portal']['admin']['grup']) {
+							case 'fakultas' : redirect(site_url('dekan/dashboard')); break;
 							case 'wd': redirect(site_url('wd1')); break;
 							case 'jurusan' : redirect(site_url('kajur')); break;
 							case 'prodi' : redirect(site_url('koprodi')); break;
@@ -73,12 +74,12 @@ class Login extends CI_Controller {
 
 		} else {
 			switch ($this->session->userdata['logged_in_portal']['admin']['group']) {
-				case 'fakultas' : redirect(site_url('dekan')); break;
+				case 'fakultas' : redirect(site_url('dekan/dashboard')); break;
 				case 'wd': redirect(site_url('wd1')); break;
 				case 'jurusan' : redirect(site_url('kajur')); break;
 				case 'prodi' : redirect(site_url('koprodi')); break;
 				case 'labstudio' : redirect(site_url('kalab')); break;
-				default : redirect(site_url('admin')); break;
+				default : redirect(site_url('admin/user')); break;
 			}
 		}
 	}
@@ -103,8 +104,8 @@ class Login extends CI_Controller {
 					$username 	= $this->input->post('identity',TRUE);
 					$pwd 		= $this->input->post('password',TRUE);
 
-					//$result	 	= $this->apicall->get(URL_API.'login/dosen?user='.$username.'&pass='.$pwd)->status;
-					$result 	= $pwd == $username;
+					$result	 	= $this->apicall->get(URL_API.'login/dosen?user='.$username.'&pass='.$pwd)->status;
+					//$result 	= $pwd == $username;
 
 					if ($result) {
 
@@ -161,7 +162,7 @@ class Login extends CI_Controller {
 		redirect(site_url('dosen'));
 	}
 
-public function mahasiswa() {
+	public function mahasiswa() {
 		if(!isset($this->session->userdata['logged_in_portal']['mhs'])) {
 
 			if ($this->session->lock_status_mhs == 'locked') {
@@ -179,7 +180,7 @@ public function mahasiswa() {
 					$result 	= $pwd == $username;
 
 					if ($result) {
-
+						$data		=  $this->apicall->get(URL_API.'mahasiswa?nim='.$username);
 						$sess_data['nama'] = $data->nama;
 						$sess_data['desc'] = $data->nim;
 						$sess_data['foto'] = (!empty($data->foto)) ? $data->foto : base_url('images/user.png');

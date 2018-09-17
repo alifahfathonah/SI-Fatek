@@ -22,7 +22,7 @@ class User extends CI_Controller {
 		
 		$data['users'] 		= $this->Tabel_user->get(array('grup !=' => 'admin'));
 
-		$this->load->view(SITE_THEME,$data);
+		$this->load->view(THEME_ADMIN,$data);
 	}
 
 	public function tambah() {
