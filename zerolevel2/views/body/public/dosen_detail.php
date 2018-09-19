@@ -33,7 +33,7 @@
                                     <dd id="office"><?php echo $dosen['email'];?></dd>
 
                                     <dt>Departement</dt>
-                                    <dd id="departement"><?php echo ucwords(strtolower($dosen['jurusan']))." / ".ucwords(strtolower($dosen['prodi']));?></dd>
+                                    <dd id="departement"><?php echo $dosen['jurusan']." / ".$dosen['prodi'];?></dd>
                                     
                                     <dt>Research Field</dt>
                                     <dd id="interest"><?php echo $dosen['interest'];?></dd>

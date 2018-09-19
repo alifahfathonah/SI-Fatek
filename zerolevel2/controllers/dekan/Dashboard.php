@@ -45,10 +45,6 @@ class Dashboard extends CI_Controller {
 			$data['API']['dosjur'][$i]->label = $data['API']['dosjur'][$i]->jurusan;
 			$data['API']['dosjur'][$i]->value = $data['API']['dosjur'][$i]->jumlah;
 		}
-
-		
-
-
 		
 		$this->load->view(THEME_ADMIN,$data);
 	}

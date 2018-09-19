@@ -22,26 +22,23 @@
                                     <dt>Angkatan</dt>
                                     <dd><?php echo $alumni->angkatan;?></dd>
 
+                                    <dt>Jurusan / Prodi</dt>
+                                    <dd><?php echo $alumni->jurusan." / ".$alumni->prodi;?></dd>
+
                                     <dt>Tanggal Lulus</dt>
                                     <dd><?php echo $alumni->tanggalLulus;?></dd>
-                                    
-                                    <dt>Jurusan</dt>
-                                    <dd><?php echo $alumni->jurusan;?></dd>
-                                    
-                                    <dt>Program Studi</dt>
-                                    <dd><?php echo $alumni->prodi;?></dd>
 
-                                    <dt>No Ijazah</dt>
-                                    <dd><?php echo $alumni->noIjazah;?></dd>
-                                    
+                                    <dt>Tanggal Wisuda</dt>
+                                    <dd><?php echo $alumni->tanggalWisuda;?></dd>
+
                                     <dt>Tanggal Ijazah</dt>
                                     <dd><?php echo $alumni->tanggalIjazah;?></dd>
 
-                                    <dt>Predikat Kelulusan</dt>
-                                    <dd ><?php echo $alumni->predikatKelulusan;?></dd>
-                                    
-                                    <dt>Gelar</dt>
-                                    <dd><?php echo $alumni->gelar;?></dd>
+                                    <dt>No Ijazah</dt>
+                                    <dd><?php echo $alumni->noIjazah;?></dd>
+
+                                    <dt>Gelar / Predikat</dt>
+                                    <dd ><?php echo $alumni->gelar." / ".$alumni->predikatKelulusan;?></dd>
 
                                     <dt>Dosen Pembimbing</dt>
                                     <dd>

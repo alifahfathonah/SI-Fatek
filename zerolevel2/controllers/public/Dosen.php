@@ -17,6 +17,11 @@ class Dosen extends CI_Controller {
 		$data['pageTitle'] 	= "Data Dosen Fakultas Teknik";
 		$data['body_page'] 	= 'body/public/dosen_list';
 
+		foreach ($data['dosen'] as $key => $value) {
+			$data['dosen'][$key]['jurusan'] = ucwords(strtolower($value['jurusan']));
+			$data['dosen'][$key]['prodi'] = ucwords(strtolower($value['prodi']));
+		}
+
 		$this->load->view($this->layout,$data);
 	
 	}
@@ -42,6 +47,11 @@ class Dosen extends CI_Controller {
 		        break;
 		    default:
 		        echo "Data not found";die;
+		}
+
+		foreach ($data['dosen'] as $key => $value) {
+			$data['dosen'][$key]['jurusan'] = ucwords(strtolower($value['jurusan']));
+			$data['dosen'][$key]['prodi'] = ucwords(strtolower($value['prodi']));
 		}
 
 		$data['body_page'] = 'body/public/dosen_list';
@@ -91,6 +101,11 @@ class Dosen extends CI_Controller {
 		        echo "Data not found";die;
 		}
 
+		foreach ($data['dosen'] as $key => $value) {
+			$data['dosen'][$key]['jurusan'] = ucwords(strtolower($value['jurusan']));
+			$data['dosen'][$key]['prodi'] = ucwords(strtolower($value['prodi']));
+		}
+
 		$data['body_page'] = 'body/public/dosen_list';
 
 		if ($format == "json") {
@@ -112,6 +127,9 @@ class Dosen extends CI_Controller {
 			$data['publikasi'] = $this->Tabel_publikasi->get(array('dosenNip' => $data['dosen']['nip']));
 
 			$data['dosen']['foto'] = (!empty($data['dosen']['foto'])) ? URL_FOTO_DOSEN.$data['dosen']['foto'] : URL_FOTO_DOSEN."default.jpg";
+			$data['dosen']['jurusan'] = ucwords(strtolower($data['dosen']['jurusan']));
+			$data['dosen']['prodi'] = ucwords(strtolower($data['dosen']['prodi']));
+			if (!empty($data['dosen']['email'])) $data['dosen']['email'] = str_replace("@", "[a]", $data['dosen']['email']);
 			if (!empty($data['dosen']['sintaId'])) $data['dosen']['sintaId'] = URL_SINTA.$data['dosen']['sintaId']."&view=overview";
 			if (!empty($data['dosen']['googleId'])) $data['dosen']['googleId'] = URL_GOOGLE.$data['dosen']['googleId'];
 			if (!empty($data['dosen']['scopusId'])) $data['dosen']['scopusId'] = URL_SCOPUS.$data['dosen']['scopusId'];
