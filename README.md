@@ -21,11 +21,13 @@ Versi 1.0.0
 4. Before working the code, don't forget to create a branch with your name in it
 5. Customize these two file with your development environment
 ```
-$config['base_url'] in /project/zerolevel2/config/config.php
-/project/zerolevel2/config/database.php
+$config['base_url'] in /{project_name}/zerolevel2/config/config.php
+/{project_name}/zerolevel2/config/database.php
 ```
-6. Working the code
-7. Publish the branch
+6. Working the code at your branch only
+7. Commit to your branch
+8. Push to origin at your branch 
+9. Create pull request to merge your branch to the main branch
 
 ## Project Structure
 
@@ -39,12 +41,6 @@ $system_path = '../system' in /[root]/index.php
 Create your own testing controller in folder testing. Note: This directory will be remove in production stage
 ```
 /controller/testing/
-```
-
-### Images and assets
-Place your editable custom css and js in to
-```
-/assets/custom_css/ & /assets/custom_js/
 ```
 
 ## Tim Pengembang
