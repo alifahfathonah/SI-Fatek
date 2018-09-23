@@ -29,6 +29,7 @@
                                             <th>Nip</th>
                                             <th>Jurusan</th>
                                             <th>Prodi</th>
+                                            <th>Show in Public</th>
                                             <th>Last Update</th>
                                             <th></th>
                                         </tr>
@@ -42,6 +43,7 @@
                                             <td><?php echo $list['nip'];?></td>
                                             <td><?php echo $list['jurusan'];?></td>
                                             <td><?php echo $list['prodi'];?></td>
+                                            <td><?php echo $list['showInPublic'];?></td>
                                             <td><?php echo $list['tglUpdate'];?></td>
                                             <td style='white-space: nowrap'>
                                                 <button type="button" class="btn btn-xs btn-warning waves-effect" data-toggle="modal" data-target="#modalFormDosen" data-form="formEdit" data-id="<?php echo $list['dosenId'];?>">Edit</button>

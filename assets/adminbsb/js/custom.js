@@ -31,9 +31,12 @@ $(function () {
     //Widgets count
     $('.count-to').countTo();
 
-    for (var i = 0; i < graphs.length; i++) {
-        getMorris(graphs[i].type, graphs[i].element, graphs[i].data, graphs[i].param);
-    } 
+    if (typeof graphs !== 'undefined') {
+        for (var i = 0; i < graphs.length; i++) {
+            getMorris(graphs[i].type, graphs[i].element, graphs[i].data, graphs[i].param);
+        } 
+    }
+
 })
 
 // DataTable pada tabel spesifik. (JQuery Plugin: JQuery DataTable)

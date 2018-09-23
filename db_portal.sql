@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: db.unsrat.ac.id
--- Generation Time: Sep 23, 2018 at 02:01 PM
+-- Generation Time: Sep 23, 2018 at 02:46 PM
 -- Server version: 5.5.49
 -- PHP Version: 5.5.38
 
@@ -1022,15 +1022,15 @@ CREATE TABLE IF NOT EXISTS `ft_dosen` (
   `tglUpdate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `userUpdate` varchar(50) NOT NULL,
   PRIMARY KEY (`dosenId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=196 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=206 ;
 
 --
 -- Dumping data for table `ft_dosen`
 --
 
 INSERT INTO `ft_dosen` (`dosenId`, `kodePegawai`, `nip`, `nidn`, `nama`, `alamat`, `jabatan`, `bio`, `interest`, `sintaId`, `googleId`, `scopusId`, `kodeProdi`, `prodi`, `kodeJurusan`, `jurusan`, `hp`, `email`, `foto`, `showInPublic`, `tglUpdate`, `userUpdate`) VALUES
-(1, 4101, '194902261976031002', '', 'Prof. Ir. Bonny Sompie,MS', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, NULL, ''),
-(2, 4118, '195409061980121001', '0006095405', 'Bonny M.M. Ointu', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, NULL, ''),
+(1, 4101, '194902261976031002', '', 'Prof. Ir. Bonny Sompie,MS', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 0, NULL, ''),
+(2, 4118, '195409061980121001', '0006095405', 'Ir. Bonny M.M. Ointu M.Sc', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, '2018-09-23 14:54:41', 'Administrator'),
 (3, 4119, '195008271979031002', '', 'Ir. R.J.M.Mandagi, MSc', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, NULL, ''),
 (4, 4120, '195205121980121004', '0012055207', 'Prof. Dr. Ir. H. Manalip, MSc, DEA', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, '2016-04-08 01:33:40', ''),
 (5, 4121, '196007091986032001', '0009076007', 'Prof. Dr. Ir. E. J. Kumaat, MSc. DEA', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, '2016-04-08 01:33:40', ''),
@@ -1047,11 +1047,11 @@ INSERT INTO `ft_dosen` (`dosenId`, `kodePegawai`, `nip`, `nidn`, `nama`, `alamat
 (16, 4179, '195405081983031003', '0008055404', 'Ir. Syachrul Balamba, MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, '2015-07-21 02:33:25', ''),
 (17, 4180, '195707041988031001', '0004075707', 'Ir. Joseph Rengkung, MT', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', 1, '2015-07-21 02:33:25', ''),
 (18, 4319, '195010051980032002', '', 'Ir. Linkan Kawet, M.Si', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, NULL, ''),
-(19, 4320, '195308091982032001', '0009085301', 'Eveline Maria Wuisan', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, NULL, ''),
-(20, 4322, '196602171994031001', '0017026603', 'Dwight Moody Rondonuwu', '', '', '', '', '', '', '', 16, 'PERENCANAAN WILAYAH DAN KOTA', 42, 'ARSITEKTUR', '', '', '', 1, NULL, ''),
-(21, 4323, '195805311987031003', '', 'Ir. Kussoy W. John, MT', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', 1, NULL, ''),
+(19, 4320, '195308091982032001', '0009085301', 'Ir. Eveline Maria Wuisan M.Sc.', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, '2018-09-23 14:23:56', ''),
+(20, 4322, '196602171994031001', '0017026603', 'Dwight Moody Rondonuwu ST.MT.', '', '', '', '', '', '', '', 16, 'PERENCANAAN WILAYAH DAN KOTA', 42, 'ARSITEKTUR', '', '', '', 1, '2018-09-23 14:24:31', ''),
+(21, 4323, '195805311987031003', '', 'Ir. Kussoy W. John, MT', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', 0, '2018-09-23 14:21:34', ''),
 (22, 4324, '195808181986012001', '0018085809', 'Ir. Reny Syafriny, CES', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', 1, '2015-07-21 02:33:25', ''),
-(23, 4325, '195405161990011001', '0016055403', 'Fuad Halim', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, NULL, ''),
+(23, 4325, '195405161990011001', '0016055403', 'Ir. Fuad Halim MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, '2018-09-23 14:25:05', ''),
 (24, 4563, '195103191979031001', '-', 'Ir. M. J. Paransa, MT.', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, '2016-06-06 04:39:59', ''),
 (25, 4564, '195301091979031002', '0009015303', 'Ir. Jan Soukotta, MSi.', '', '', '', '', '', '', '', 13, 'TEKNIK MESIN', 44, 'TEKNIK MESIN', '', '', '', 1, '2016-05-26 06:25:17', ''),
 (26, 4565, '195711171987032001', '0017105703', 'Ir. Roosje J. Poluan, MSi', '', '', '', '', '', '', '', 16, 'PERENCANAAN WILAYAH DAN KOTA', 42, 'ARSITEKTUR', '', '', '', 1, '2015-07-21 02:33:25', ''),
@@ -1064,7 +1064,7 @@ INSERT INTO `ft_dosen` (`dosenId`, `kodePegawai`, `nip`, `nidn`, `nama`, `alamat
 (33, 4572, '196210141992031001', '0014106203', 'Prof. Dr. Ir. Fabian J. Manoppo, MAgr', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', 'Fabian_jm@unsrat.ac.id', '2c4817ca3da5b16d6ab735f191cd0e1a.jpeg', 1, '2018-03-10 04:47:05', ''),
 (34, 4573, '196404191993031002', '0019046405', 'Dr. Eng. Ir. Ariestides K. T. Dundu, MAgr', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', 'torry@unsrat.ac.id', '', 1, '2016-06-23 16:51:59', ''),
 (35, 4575, '196510141994031003', '0014106503', 'Ir. S. T. G. Kaunang, MT', '', '', '', '', '', '', '', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', '', '', 1, '2015-07-21 02:33:25', ''),
-(36, 4576, '195712121988031003', '0012125712', 'Papia Jonkers Corneles Franklin', '', '', '', '', '', '', '', 16, 'PERENCANAAN WILAYAH DAN KOTA', 42, 'ARSITEKTUR', '', '', '', 1, NULL, ''),
+(36, 4576, '195712121988031003', '0012125712', 'Ir Papia Jonkers Corneles Franklin M.Si', '', '', '', '', '', '', '', 16, 'PERENCANAAN WILAYAH DAN KOTA', 42, 'ARSITEKTUR', '', '', '', 1, '2018-09-23 14:25:50', ''),
 (37, 4577, '196001011989101001', '0001016040', 'Drs. Ellia Kendek Allo, MSc', '', '', '', '', '', '', '', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', 'kendekallo@ymail.com', '34c71bc030a401eca516b951ba78f37b.jpg', 1, '2016-05-25 01:36:52', ''),
 (38, 4578, '196006211991031001', '0021066006', 'Dr. Eng. Ir. Sukarno, MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, '2016-05-24 08:55:34', ''),
 (39, 4579, '196610251994031001', '0025106604', 'Prof. Dr. Ir. O. B. A. Sompie, M.Eng', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, '2016-05-24 08:51:28', ''),
@@ -1083,7 +1083,7 @@ INSERT INTO `ft_dosen` (`dosenId`, `kodePegawai`, `nip`, `nidn`, `nama`, `alamat
 (52, 4593, '196909071998021002', '0007096904', 'Reky Stenly Windah, ST, MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, '2015-07-21 02:33:25', ''),
 (53, 4594, '196701211997021001', '0021016702', 'Frits O. P. Siregar, ST, MSc', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', 1, '2015-07-21 02:33:25', ''),
 (54, 4595, '195701261989031002', '0026015701', 'Dr. Ir. James A. Timboeleng, DEA', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, '2016-04-08 01:33:40', ''),
-(55, 4596, '195307291987031001', '0029075302', 'Deddy Erdiono', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', 1, NULL, ''),
+(55, 4596, '195307291987031001', '0029075302', 'Ir. Deddy Erdiono MT.', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', 1, '2018-09-23 14:26:24', ''),
 (56, 4597, '196510061995121001', '0006106504', 'Ir. Sonny Tilaar, MSi', '', '', '', '', '', '', '', 16, 'PERENCANAAN WILAYAH DAN KOTA', 42, 'ARSITEKTUR', '', 'stilaar@ymail.com', '', 1, '2016-05-13 05:04:08', ''),
 (57, 4598, '196503241993031002', '0024036506', 'Dr.Eng. Ir. Jeffry S. Frans Sumarauw, MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, '2016-05-24 08:59:35', ''),
 (58, 4599, '197409132001122002', '0013097505', 'Windy Mononimbar, ST, MT', '', '', '', '', '', '', '', 16, 'PERENCANAAN WILAYAH DAN KOTA', 42, 'ARSITEKTUR', '', '', '', 1, '2015-07-21 02:33:25', ''),
@@ -1091,7 +1091,7 @@ INSERT INTO `ft_dosen` (`dosenId`, `kodePegawai`, `nip`, `nidn`, `nama`, `alamat
 (60, 4885, '195606031987031001', '0003065602', 'Ir. Longdong Jefferson, MA', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, '2015-07-21 02:33:25', ''),
 (61, 4886, '195401291990031001', '0029015406', 'Ir. Alex Binilang, MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, '2015-07-21 02:33:25', ''),
 (62, 4887, '195804021989031002', '0002045804', 'Ir. Hanny Tangkudung, MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, '2015-07-21 02:33:25', ''),
-(63, 4888, '196107271992031002', '0027076101', 'Julianus A.R. Sondakh,', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', 1, NULL, ''),
+(63, 4888, '196107271992031002', '0027076101', 'Ir. Julianus A.R. Sondakh, MT', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', 1, '2018-09-23 14:27:22', ''),
 (64, 4889, '196309081994031001', '0008096302', 'Ir. Hans Tumaliang, MT', '', '', '', '', '', '', '', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', '', '9e5ed4a7bc86e8585b3cd0efa8087b45.jpg', 1, '2015-07-21 02:37:26', ''),
 (65, 4890, '196311281994121001', '0028116306', 'Ir. Jeffry Dantje Mamoto, MAgr', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, '2015-07-21 02:33:25', ''),
 (66, 4891, '196608141994031002', '0014086602', 'Rudy Poeng, ST, MT', '', '', '', '', '', '', '', 13, 'TEKNIK MESIN', 44, 'TEKNIK MESIN', '', 'rudypoeng@yahoo.com', 'a77b5a2dd879b1e01c2a72f9e2dc00ec.jpg', 1, '2016-06-30 01:14:14', ''),
@@ -1100,55 +1100,55 @@ INSERT INTO `ft_dosen` (`dosenId`, `kodePegawai`, `nip`, `nidn`, `nama`, `alamat
 (69, 4894, '197202021998022001', '0002027206', 'Dr. Pingkan P. Egam, ST, MT', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', 1, '2016-05-24 08:58:41', ''),
 (70, 4895, '196511191994122001', '0019126505', 'Dr. Nita Carolina V. Monintja, ST, MT', '', '', '', '', '', '', '', 13, 'TEKNIK MESIN', 44, 'TEKNIK MESIN', '', '', '', 1, '2016-05-24 08:59:05', ''),
 (71, 4896, '196906051997021001', '0005066905', 'Jotje Rantung, ST, MT', '', '', '', '', '', '', '', 13, 'TEKNIK MESIN', 44, 'TEKNIK MESIN', '', '', '', 1, '2015-07-21 02:33:25', ''),
-(72, 4897, '195708271988031003', '0027085704', 'Herry Kapugu', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', 1, NULL, ''),
+(72, 4897, '195708271988031003', '0027085704', 'Ir. Herry Kapugu', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', 1, '2018-09-23 14:27:45', ''),
 (73, 4898, '197109302002121001', '0030097103', 'Dr. Aristotulus E. Tungka, ST, MT', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', 1, '2016-05-24 08:56:40', ''),
 (74, 4899, '197001102000122001', '0010017005', 'Lucia I. R. Lefrandt, ST, MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, '2015-07-21 02:33:25', ''),
 (75, 4901, '196602271993031003', '0027026602', 'Ir. Pierre H. Gosal, MEDS', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', 1, '2015-07-21 02:33:25', ''),
-(76, 4903, '196705151994031003', '0015056706', 'Peter Karl Bart Assa', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, NULL, ''),
+(76, 4903, '196705151994031003', '0015056706', 'Dr. Peter Karl Bart Assa ST. M.Eng', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 0, '2018-09-23 14:22:09', ''),
 (77, 4904, '195905131985021001', '0013055904', 'Dr. Drs. Bahrun, M.Kes', '', '', '', '', '', '', '', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', 'drsbahrun@rocketmail.com', '465525402979e053686aa1f3a3e7d80e.jpg', 1, '2016-04-22 02:51:59', ''),
 (78, 4905, '197401151999031003', '0015017403', 'Hengky Luntungan, ST, MT', '', '', '', '', '', '', '', 13, 'TEKNIK MESIN', 44, 'TEKNIK MESIN', '', '', '', 1, '2015-07-21 02:33:25', ''),
 (79, 4906, '197508252000031001', '0025087503', 'Dr. Tritya A. Rante Arungpadang, ST, MT', '', '', '', '', '', '', '', 13, 'TEKNIK MESIN', 44, 'TEKNIK MESIN', '', '', '', 1, '2016-05-24 09:02:35', ''),
 (80, 4907, '197501282002121002', '0028017502', 'Yaulie Deo Y. Rindengan, ST, MSc', '', '', '', '', '', '', '', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', 'rindengan@unsrat.ac.id', '418093c37376b881aad34be63066f4e9.jpg', 1, '2016-05-25 05:51:08', ''),
 (81, 4908, '197505181999031001', '0018057501', 'Dr. Eng. Markus Karamoy Umboh, ST, MT', '', '', '', '', '', '', '', 13, 'TEKNIK MESIN', 44, 'TEKNIK MESIN', '', '', '', 1, '2016-05-24 08:57:40', ''),
 (82, 4909, '195310121983031001', '0012105302', 'Ir. Oscar Hans Kaseke, MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, '2015-07-21 02:33:25', ''),
-(83, 4912, '196709031995022001', '0003096713', 'Grace Y. Malingkas', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, NULL, ''),
+(83, 4912, '196709031995022001', '0003096713', 'Grace Y. Malingkas ST.MT.', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, '2018-09-23 14:27:02', ''),
 (84, 4913, '196804031998022001', '0003046803', 'Alicia A. E. Sinsuw, ST, MT', '', '', '', '', '', '', '', 77, 'INFORMATIKA', 43, 'TEKNIK ELEKTRO', '', '', '78b22eb1978b4b93295c38eff2551c22.jpg', 1, '2018-03-13 08:20:31', ''),
-(85, 4914, '196501261993031002', '0026016502', 'Jack Hary Ticoh', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, NULL, ''),
+(85, 4914, '196501261993031002', '0026016502', 'Ir. Jack Hary Ticoh MT.', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, '2018-09-23 14:28:13', ''),
 (86, 4915, '195802271990031002', '0027025703', 'Josef Eugene Raymond Sumampouw', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, NULL, ''),
 (87, 4916, '196705271995121001', '0027056707', 'Meicsy E. I. Najoan, ST, MT', '', '', '', '', '', '', '', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', '', 'c3cb34e019648cf66c5856dbbab02734.jpg', 1, '2015-07-21 02:37:44', ''),
 (88, 4917, '196407222000032001', '0022076402', 'Dr. Veronica A. Kumurur, ST., MSi', '', '', '', '', '', '', '', 16, 'PERENCANAAN WILAYAH DAN KOTA', 42, 'ARSITEKTUR', '', 'veronicakumurur@unsrat.ac.id', '8498f57cf8b45b0285f3240c3949c2ab.jpg', 1, '2018-03-11 13:17:31', ''),
 (89, 4918, '196501121998031001', '0012016508', 'Rizal Sengkey, ST, MT', '', '', '', '', '', '', '', 77, 'INFORMATIKA', 43, 'TEKNIK ELEKTRO', '', 'rizalsengkey@gmail.com', 'acce0f5e28287ddc3437559805aca78b.jpg', 1, '2018-03-11 07:55:31', ''),
 (90, 4919, '196610161997021001', '0016106606', 'Ir. Benefit S. Narasiang, MT', '', '', '', '', '', '', '', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', 'benefitsemuel@gmail.com', '3172ddaf0da08c30d2bc423205351e31.jpg', 1, '2016-04-07 03:03:17', ''),
-(91, 5125, '195009241982032001', '-', 'Ir. Wenny J. Tamboto, MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, '2015-07-21 02:33:25', ''),
-(92, 5126, '195509241989032001', '0024095504', 'Ir. Sherly Sumilat', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, '2015-07-21 02:33:25', ''),
+(91, 5125, '195009241982032001', '', 'Ir. Wenny J. Tamboto, MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, '2018-09-23 14:29:00', ''),
+(92, 5126, '195509241989032001', '0024095504', 'Ir. Sherly Sumilat', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 0, '2018-09-23 14:19:45', ''),
 (93, 5127, '195810311987031001', '0031105802', 'Ir. Djajeng Poedjowibowo', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', 1, '2015-07-21 02:33:25', ''),
 (94, 5128, '195712121988031004', '0012125711', 'Ir. Frans Palobo Sappu, MT', '', '', '', '', '', '', '', 13, 'TEKNIK MESIN', 44, 'TEKNIK MESIN', '', 'fpsappu@yahoo.com', '', 1, '2016-12-05 11:24:37', ''),
 (95, 5129, '195811021987031003', '0002115806', 'Ir. Gerrits Dirk Soplanit, MT', '', '', '', '', '', '', '', 13, 'TEKNIK MESIN', 44, 'TEKNIK MESIN', '', '', '', 1, '2015-07-21 02:33:25', ''),
-(96, 5130, '195807131988031004', '0013075805', 'Johanes Van Rate', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', 1, NULL, ''),
+(96, 5130, '195807131988031004', '0013075805', 'Ir Johanes Van Rate MT', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', 1, '2018-09-23 14:29:27', ''),
 (97, 5131, '196004071991031002', '0007046010', 'Ir. Rachmat Prijadi, M.Ars.', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', 1, '2016-05-24 09:07:57', ''),
 (98, 5132, '196710031994031001', '0003106704', 'Servie O. Dapas, ST.MT.', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, NULL, ''),
-(99, 5133, '196507141991031004', '0014076504', 'Steenie E. Wallah', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, NULL, ''),
-(100, 5134, '195812081995121001', '0008125807', 'Hansje Jeki Tawas', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, NULL, ''),
+(99, 5133, '196507141991031004', '0014076504', 'Ir. Steenie E. Wallah MSc,Ph.D', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, '2018-09-23 14:28:48', ''),
+(100, 5134, '195812081995121001', '0008125807', 'Ir Hansje Jeki Tawas MAgr.sc', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, '2018-09-23 14:29:50', ''),
 (101, 5135, '196507021994031001', '0002076504', 'Michael M. Rengkung, ST, MSi', '', '', '', '', '', '', '', 16, 'PERENCANAAN WILAYAH DAN KOTA', 42, 'ARSITEKTUR', '', '', '', 1, '2015-07-21 02:33:25', ''),
 (102, 5136, '196308261994031001', '0026086303', 'Ir. Surijadi Supardjo, MSi', '', '', '', '', '', '', '', 16, 'PERENCANAAN WILAYAH DAN KOTA', 42, 'ARSITEKTUR', '', '', '', 1, '2015-07-21 02:33:25', ''),
 (103, 5137, '196405131993031003', '0013056404', 'Ir. Mecky R.E. Manoppo, MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', 'meckymanoppo@yahoo.com', '9a66af24c53ae436b187db3dee2352c8.jpg', 1, '2018-03-13 07:50:50', ''),
-(104, 5138, '196305311993031001', '0031056503', 'Ronny Estefanus Pandaleke', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, NULL, ''),
-(105, 5139, '196410101995031001', '0010106407', 'Muhammad I. Jasin', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, NULL, ''),
+(104, 5138, '196305311993031001', '0031056503', 'Ir. Ronny Estefanus Pandaleke MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, '2018-09-23 14:30:09', ''),
+(105, 5139, '196410101995031001', '0010106407', 'Ir. Muhammad I. Jasin M.Agr', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, '2018-09-23 14:30:37', ''),
 (106, 5140, '196604031995122001', '0003046605', 'Lily Setyowaty Patras, ST, MT', '', '', '', '', '', '', '', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', '', '6673da159bcc738b0386b882325428eb.jpg', 1, '2015-07-21 02:38:31', ''),
-(107, 5142, '196602231993032001', '0023026604', 'Febrina Pingkan Yvette. Sumanti,', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, NULL, ''),
+(107, 5142, '196602231993032001', '0023026604', 'Ir. Febrina Pingkan Yvette. Sumanti, MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, '2018-09-23 14:30:59', ''),
 (108, 5143, '196705101997021001', '0010056707', 'Dr. Eng. Vecky C. Poekoel, ST, MT', '', '', '', '', '', '', '', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', '', '7bfbfc18d138c0c9434736ef62bf7341.jpg', 1, '2015-07-23 02:11:13', ''),
-(109, 5144, '196207071997021001', '0007076205', 'Mielke R.I.A.J. Mondoringin', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, NULL, ''),
+(109, 5144, '196207071997021001', '0007076205', 'Dr.Eng. Ir Mielke R.I.A.J. Mondoringin MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, '2018-09-23 14:31:19', ''),
 (110, 5145, '197308111998021001', '0011087304', 'Theo Kurniawan Sendow, ST., MT., IPM', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', 'theosendow@yahoo.com', '7abbcfaeaddfdbe8f6214892ea6aede8.jpeg', 1, '2018-03-13 07:35:10', ''),
-(111, 5146, '197111021998022001', '0002117102', 'Alva Noviana Sarajar', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, NULL, ''),
+(111, 5146, '197111021998022001', '0002117102', 'Alva Noviana Sarajar ST.MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, '2018-09-23 14:31:43', ''),
 (112, 5147, '197603212000121001', '0021037601', 'Dr. Agung Sutrisno, ST, MT', '', '', '', '', '', '', '', 13, 'TEKNIK MESIN', 44, 'TEKNIK MESIN', '', '', '', 1, '2016-05-24 08:58:17', ''),
 (113, 5148, '196103101988031004', '0010036104', 'Ir. Mardan M. Anasiru', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', 1, '2016-04-12 13:57:04', ''),
-(114, 5149, '196104021989032002', '0002046107', 'Joice Elfrida Waani', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, NULL, ''),
+(114, 5149, '196104021989032002', '0002046107', 'Dr. Ir. Joice Elfrida Waani M.Si.', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, '2018-09-23 14:32:05', ''),
 (115, 5150, '197509152000031002', '0015097504', 'Dr.Eng. Stenly Tangkuman, ST, MT', '', '', '', '', '', '', '', 13, 'TEKNIK MESIN', 44, 'TEKNIK MESIN', '', 'st75@unsrat.ac.id', 'a9b593f011a328934a0d376f14ec65de.jpg', 1, '2018-03-16 06:24:01', ''),
-(116, 5151, '197608152003121003', '0015087603', 'Semuel Yacob Recky Rompis', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, NULL, ''),
-(117, 5152, '196301091993032001', '0009016304', 'Agnes Tekla Mandagi', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, NULL, ''),
-(118, 5153, '197202021997021001', '0002027205', 'Banu Dwi Handono', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, NULL, ''),
+(116, 5151, '197608152003121003', '0015087603', 'Semuel Yacob Recky Rompis ST.,MT.,M.Eng.,PhD', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, '2018-09-23 14:32:26', ''),
+(117, 5152, '196301091993032001', '0009016304', 'Ir. Agnes Tekla Mandagi MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, '2018-09-23 14:32:45', ''),
+(118, 5153, '197202021997021001', '0002027205', 'Banu Dwi Handono ST.MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, '2018-09-23 14:33:03', ''),
 (119, 5154, '197304172000031001', '0017047302', 'Arie S. M. Lumenta, ST, MT', 'Jurusan Teknik Elektro', '', 'Dad, teacher, civil servants', 'Computer Architecture, Computer Networks, E-Learning, Database, IoT', '6026265', '6JtdrBEAAAAJ', '57189059738', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', 'al@unsrat.ac.id', '3f0a6f7970a9746a14edbcf9d8084ec6.jpg', 1, '2016-06-27 15:18:49', '197304172000031001'),
-(120, 5155, '197407062001122002', '0006077403', 'Cindy Jeane Supit', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, NULL, ''),
+(120, 5155, '197407062001122002', '0006077403', 'Dr.Eng. Cindy Jeane Supit ST.MSi.', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, '2018-09-23 14:33:22', ''),
 (121, 5156, '197008242000122001', '0024087005', 'Faizah Mastutie', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', 1, NULL, ''),
 (122, 5157, '197110211997022001', '0021107102', 'Herawati Riogilang', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, NULL, ''),
 (123, 5158, '197312212000121001', '0021127301', 'Raymond Ch. Tarore, ST, MT', '', '', '', '', '', '', '', 16, 'PERENCANAAN WILAYAH DAN KOTA', 42, 'ARSITEKTUR', '', '', '', 1, '2015-07-21 02:33:25', ''),
@@ -1176,7 +1176,7 @@ INSERT INTO `ft_dosen` (`dosenId`, `kodePegawai`, `nip`, `nidn`, `nama`, `alamat
 (145, 5477, '197808212009121003', '0021087806', 'Stanley David Sualang Karouw, ST, MTI', '', '', '', '', '', '', '', 77, 'INFORMATIKA', 43, 'TEKNIK ELEKTRO', '', 'stanley.karouw@unsrat.ac.id', '515ea2f732cc86ce295c0ae88c3cc5d7.jpg', 1, '2015-07-21 02:35:23', ''),
 (146, 5478, '198608142009122007', '0014088601', 'Kartika Harlesi Tanudjaja', '', '', '', '', '', '', '', 77, 'INFORMATIKA', 43, 'TEKNIK ELEKTRO', '', '', '', 1, NULL, ''),
 (147, 5479, '198012092008011004', '0009128003', 'Jimmy Reagen Robot, ST, M.Kom', '', '', '', '', '', '', '', 77, 'INFORMATIKA', 43, 'TEKNIK ELEKTRO', '', '', '88acd6c8234184726fe17f0df0042423.jpg', 1, '2015-07-21 02:41:28', ''),
-(148, 5480, '196205211991031002', '0021056204', 'George Moningka', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, NULL, ''),
+(148, 5480, '196205211991031002', '0021056204', 'Ir. George Moningka MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 0, '2018-09-23 14:20:34', ''),
 (149, 5481, '197409292001122003', '0029097402', 'Steeva G. Rondonuwu', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, NULL, ''),
 (150, 5482, '197501122008122001', '0012017505', 'Nancy Jeane Tuturoong, ST, M.Kom', '', '', '', '', '', '', '', 77, 'INFORMATIKA', 43, 'TEKNIK ELEKTRO', '', '', 'f67f413fa17175df3cd572b44ea4c48d.jpg', 1, '2015-07-21 02:41:16', ''),
 (151, 5483, '197405042005011001', '0004057403', 'Hendra Riogilang', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, NULL, ''),
@@ -1185,7 +1185,7 @@ INSERT INTO `ft_dosen` (`dosenId`, `kodePegawai`, `nip`, `nidn`, `nama`, `alamat
 (154, 5486, '198803142012121001', '0014038801', 'Muhamad Dwisnanto Putro, ST, M.Eng', '', '', '', '', '', '', '', 77, 'INFORMATIKA', 43, 'TEKNIK ELEKTRO', '', 'dwisnantoputro@unsrat.ac.id', '08b733091c1f3adb4695d959b3bc7e22.jpg', 1, '2016-01-13 10:37:22', ''),
 (155, 5487, '198002282012121002', '0028028006', 'Pinrolinvic Manembu, ST., MT.', '', '', '', '', '', '', '', 77, 'INFORMATIKA', 43, 'TEKNIK ELEKTRO', '', 'pmanembu@gmail.com', 'f5720f350c70f386d3edd3fbb10d7c48.jpg', 1, '2016-11-13 11:41:53', ''),
 (156, 5488, '197908042014041001', '0004087908', 'Agustinus Jacobus, ST, M.Cs', '', '', '', '', '', '', '', 77, 'INFORMATIKA', 43, 'TEKNIK ELEKTRO', '', '', 'a639a50b495800bcf5278afa0853cafa.jpg', 1, '2016-06-21 02:56:03', ''),
-(157, 5489, '197309182002122001', '0018097302', 'INGERID LIDIA MONIAGA, ST, MSi', '', '', '', '', '', '', '', 16, 'PERENCANAAN WILAYAH DAN KOTA', 42, 'ARSITEKTUR', '', 'ingeridmoniaga73@gmail.com', '', 1, '2018-03-13 07:14:35', ''),
+(157, 5489, '197309182002122001', '0018097302', 'Ingerid Lidia Moniaga ST.,Msi', '', '', '', '', '', '', '', 16, 'PERENCANAAN WILAYAH DAN KOTA', 42, 'ARSITEKTUR', '', 'ingeridmoniaga73@gmail.com', '', 1, '2018-09-23 14:53:58', 'Administrator'),
 (158, 5490, '198006112003122002', '0011068001', 'Jane Litouw, ST., MT.', '', '', '', '', '', '', '', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', '', '', 1, '2016-05-24 09:04:46', ''),
 (159, 5492, '198208052010122003', '0005088206', 'Leidy Magrid Rompas, ST, MT', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', 1, '2015-07-21 02:33:25', ''),
 (160, 5493, '198409062010122007', '0006098403', 'Virginia Tulenan, S.Kom, MTI', '', '', '', '', '', '', '', 77, 'INFORMATIKA', 43, 'TEKNIK ELEKTRO', '', 'virginia.tulenan@unsrat.ac.id', 'cbe26901befe36aa7f748c154ff28096.jpg', 1, '2016-01-26 08:13:54', ''),
@@ -1197,7 +1197,7 @@ INSERT INTO `ft_dosen` (`dosenId`, `kodePegawai`, `nip`, `nidn`, `nama`, `alamat
 (166, 5499, '197509262006041001', '0026097504', 'Dr. Charles S. C. Punuhsingon, ST, MT', '', '', '', '', '', '', '', 13, 'TEKNIK MESIN', 44, 'TEKNIK MESIN', '', '', '', 1, '2016-05-24 09:00:22', ''),
 (167, 5500, '196509051995022001', '0005096515', 'Sartje Silimang, ST, MT', '', '', '', '', '', '', '', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', '', '90226a42057e59572747c12effcb8067.jpg', 1, '2015-07-21 02:48:48', ''),
 (168, 5650, '195910161990031001', '0016105909', 'Deane R.O. Walangitan', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, NULL, ''),
-(169, 5656, '196606111997021002', '0011066605', 'HENDRIEK HANIE KARONGKONG, ST, MT', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', 'hendriek_hk@unsrat.ac.id', 'ea4da77c38325118437427aeebdba183.jpg', 1, '2018-03-13 07:06:46', ''),
+(169, 5656, '196606111997021002', '0011066605', 'Hendriek H. Karongkong ST.,MT', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', 'hendriek_hk@unsrat.ac.id', 'ea4da77c38325118437427aeebdba183.jpg', 1, '2018-09-23 14:53:17', ''),
 (170, 5657, '196410251997021001', '0', 'Ir. Ricky S. M. Lakat, MT', '', '', '', '', '', '', '', 15, 'ARSITEKTUR', 42, 'ARSITEKTUR', '', '', '', 1, '2016-04-12 13:58:00', ''),
 (171, 5658, '196605021999031003', '0002056607', 'Arwanto Meicky Alfius Lakat, ST., MT.', '', '', '', '', '', '', '', 13, 'TEKNIK MESIN', 44, 'TEKNIK MESIN', '', '', '', 1, '2016-05-24 09:05:26', ''),
 (172, 5660, '196607241998022001', '0024076601', 'Lanny Dian Kusuma Manaroinsong', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, NULL, ''),
@@ -1223,7 +1223,17 @@ INSERT INTO `ft_dosen` (`dosenId`, `kodePegawai`, `nip`, `nidn`, `nama`, `alamat
 (192, 6927, '198906242018031001', '', 'Dirko Gustaafiano Setyadharmaputra Ruindungan', '', '', '', '', '', '', '', 77, 'INFORMATIKA', 43, 'TEKNIK ELEKTRO', '', '', '', 1, NULL, ''),
 (193, 5664, '197603192005011005', '0019037604', 'Maickel Tuegeh, ST, MT', '', '', '', '', '', '', '', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', '', '', 1, '2018-09-07 15:14:54', ''),
 (194, 4574, '196509241993031003', '0019037604', 'Ir. Isri Ronald Mangangka, M.Eng., Ph.D.', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', 'isri.mangangka@unsrat.ac.id', '26b3f1974d7b2f6cb19504868903c7f5.jpg', 1, '2018-09-07 15:19:18', ''),
-(195, 5476, '196503271995121001', '0027036506', 'Ir. Abdul Haris Ontowirjo, MT.', '', '', '', '', '', '', '', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', '', '', 1, '2018-09-07 15:28:13', '');
+(195, 5476, '196503271995121001', '0027036506', 'Ir. Abdul Haris Ontowirjo, MT.', '', '', '', '', '', '', '', 12, 'TEKNIK ELEKTRO', 43, 'TEKNIK ELEKTRO', '', '', '', 1, '2018-09-07 15:28:13', ''),
+(196, 4101, '195208241980011001', '0024085203', 'Ir. Jorry D. Pangouw M.Sc', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, NULL, ''),
+(197, 4902, '195807071989031001', '0007075807', 'Ir. Frederik T. Andries', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, NULL, ''),
+(198, 4911, '195903291992021001', '0029035903', 'Ir. Nicolaas J.A. Tangkudung DEA', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, NULL, ''),
+(199, 4178, '196004051988031002', '', 'Ir. Ronny Bumulo, MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 0, NULL, ''),
+(200, 5141, '196306081994031002', '0008066306', 'Ir. Tisano Tjakrawala Arsjad MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, NULL, ''),
+(201, 4910, '196306281994121001', '0028066304', 'Ir Vicky H. Makarau M.Si', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, NULL, ''),
+(202, 4900, '196308271994031002', '0027086305', 'Ir. Kennie Abraham Lempoy MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, NULL, ''),
+(203, 4581, '196403241993121001', '0024036402', 'Ir. Maxi Lolong MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, NULL, ''),
+(204, 5653, '196711081994031001', '0008116710', 'Regie Fransiscus Luntungan ST', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, NULL, ''),
+(205, 5472, '198002202008012008', '', 'Liliana Aisyah Permatadewi Monoarfa ST.MT', '', '', '', '', '', '', '', 14, 'TEKNIK SIPIL', 45, 'TEKNIK SIPIL', '', '', '', 1, NULL, '');
 
 -- --------------------------------------------------------
 
@@ -1429,7 +1439,7 @@ CREATE TABLE IF NOT EXISTS `x_user` (
 --
 
 INSERT INTO `x_user` (`userId`, `nama`, `username`, `password`, `grup`, `namaUnit`, `kodeUnit`, `lastLogin`) VALUES
-(1, 'Administrator', 'admin', 'a774eda49e9eee544d3e2cc2dec2d6e1', 'admin', 'Administrator Portal', NULL, '2018-09-13 18:01:11');
+(1, 'Administrator', 'admin', 'a774eda49e9eee544d3e2cc2dec2d6e1', 'admin', 'Administrator Portal', NULL, '2018-09-23 22:40:39');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
