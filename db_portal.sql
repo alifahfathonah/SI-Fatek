@@ -1439,7 +1439,7 @@ CREATE TABLE IF NOT EXISTS `x_user` (
 --
 
 INSERT INTO `x_user` (`userId`, `nama`, `username`, `password`, `grup`, `namaUnit`, `kodeUnit`, `lastLogin`) VALUES
-(1, 'Administrator', 'admin', 'a774eda49e9eee544d3e2cc2dec2d6e1', 'admin', 'Administrator Portal', NULL, '2018-09-23 22:40:39');
+(1, 'Administrator', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', 'Administrator Portal', NULL, '2018-09-23 22:40:39');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
