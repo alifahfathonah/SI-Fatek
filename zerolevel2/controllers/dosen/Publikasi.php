@@ -17,7 +17,7 @@ class Publikasi extends CI_Controller {
 	public function index() {
 
 		$data['pageTitle'] 	= "Publikasi Dosen";
-		$data['body_page'] 	= "body/dosen/publikasi";
+		$data['body_page'] 	= "body/publikasi/list";
 		$data['menu_page'] 	= "menu/dosen";
 
 		$dosenNip 			= $this->session->userdata['logged_in_portal']['dosen']['nip'];

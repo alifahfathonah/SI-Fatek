@@ -35,6 +35,7 @@ class Login extends CI_Controller {
 				
 						$sess_data['admin']['userId'] 	= $result['userId'];
 						$sess_data['admin']['grup'] 	= $result['grup'];
+						$sess_data['admin']['namaUnit'] = $result['namaUnit'];
 						$sess_data['admin']['kodeUnit'] = $result['kodeUnit'];
 
 						$this->session->set_userdata('logged_in_portal',$sess_data);
@@ -42,12 +43,12 @@ class Login extends CI_Controller {
 						$this->Tabel_user->update(array('userId'=> $result['userId'], 'lastLogin'=> date('Y-m-d H:i:s')));
 
 						switch ($this->session->userdata['logged_in_portal']['admin']['grup']) {
-							case 'fakultas' : redirect(site_url('dekan/dashboard')); break;
-							case 'wd': redirect(site_url('wd1')); break;
-							case 'jurusan' : redirect(site_url('kajur')); break;
-							case 'prodi' : redirect(site_url('koprodi')); break;
-							case 'labstudio' : redirect(site_url('kalab')); break;
-							default : redirect(site_url('admin/user')); break;
+							case 'fakultas' 	: redirect(site_url('fakultas/dashboard')); break;
+							case 'wd1'			: redirect(site_url('wd1/dashboard')); break;
+							case 'jurusan' 		: redirect(site_url('jurusan/dashboard')); break;
+							case 'prodi' 		: redirect(site_url('prodi/dashboard')); break;
+							case 'labstudio'	: redirect(site_url('lab-studio/dashboard')); break;
+							default 			: redirect(site_url('admin/user')); break;
 						}
 						
 					}  else {
@@ -73,13 +74,13 @@ class Login extends CI_Controller {
 			$this->load->view('login/admin');
 
 		} else {
-			switch ($this->session->userdata['logged_in_portal']['admin']['group']) {
-				case 'fakultas' : redirect(site_url('dekan/dashboard')); break;
-				case 'wd': redirect(site_url('wd1')); break;
-				case 'jurusan' : redirect(site_url('kajur')); break;
-				case 'prodi' : redirect(site_url('koprodi')); break;
-				case 'labstudio' : redirect(site_url('kalab')); break;
-				default : redirect(site_url('admin/user')); break;
+			switch ($this->session->userdata['logged_in_portal']['admin']['grup']) {
+				case 'fakultas' 	: redirect(site_url('fakultas/dashboard')); break;
+				case 'wd1'			: redirect(site_url('wd1/dashboard')); break;
+				case 'jurusan' 		: redirect(site_url('jurusan/dashboard')); break;
+				case 'prodi' 		: redirect(site_url('prodi/dashboard')); break;
+				case 'labstudio'	: redirect(site_url('lab-studio/dashboard')); break;
+				default 			: redirect(site_url('admin/user')); break;
 			}
 		}
 	}
@@ -104,8 +105,8 @@ class Login extends CI_Controller {
 					$username 	= $this->input->post('identity',TRUE);
 					$pwd 		= $this->input->post('password',TRUE);
 
-					$result	 	= $this->apicall->get(URL_API.'login/dosen?user='.$username.'&pass='.$pwd)->status;
-					//$result 	= $pwd == $username;
+					//$result	 	= $this->apicall->get(URL_API.'login/dosen?user='.$username.'&pass='.$pwd)->status;
+					$result 	= $pwd == $username;
 
 					if ($result) {
 

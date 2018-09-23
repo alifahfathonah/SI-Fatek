@@ -1,15 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-/**
- * 
- * @package         CodeIgniter 3.0
- * @category        Library
- * @author          Xaverius Najoan
- * @license         MIT
- */
-
-class Apicall {
+class Apicall extends CI_Model {
+	
+	public function __construct() {
+		parent::__construct();	
+	}
 
 	public function get($uri) {
 
@@ -37,4 +33,5 @@ class Apicall {
 		return json_decode($data);
 
 	}
+
 }

@@ -52,6 +52,7 @@ class Dosen extends CI_Controller {
 			$database['scopusId'] 	= $this->input->post('scopusId');
 			$database['interest'] 	= $this->input->post('interest');
 			$database['bio'] 		= $this->input->post('bio');
+			$database['showInPublic']= $this->input->post('showInPublic');
 
 			if ($this->Tabel_dosen->tambah($database)) {
 
@@ -103,6 +104,7 @@ class Dosen extends CI_Controller {
 			$database['interest'] 	= $this->input->post('interest');
 			$database['bio'] 		= $this->input->post('bio');
 			$database['userUpdate']	= $this->session->userdata['logged_in_portal']['nama'];
+			$database['showInPublic']= $this->input->post('showInPublic');
 
 			if ($this->Tabel_dosen->update($database)) {
 				

@@ -17,7 +17,7 @@ class Document extends CI_Controller {
 	public function index() {
 
 		$data['pageTitle'] 	= "Dokumen Dosen";
-		$data['body_page'] 	= "body/dosen/dokumen";
+		$data['body_page'] 	= "body/dokumen/list";
 		$data['menu_page']  = "menu/dosen";
 
 		$dosenNip 			= $this->session->userdata['logged_in_portal']['dosen']['nip'];

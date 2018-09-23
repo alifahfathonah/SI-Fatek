@@ -17,7 +17,7 @@ class Document extends CI_Controller {
 	public function index() {
 
 		$data['pageTitle'] 	= "Dokumen Mahasiswa";
-		$data['body_page'] 	= "body/dosen/dokumen";
+		$data['body_page'] 	= "body/dokumen/list";
 		$data['menu_page']  = "menu/mahasiswa";
 
 		$mhsNim 			= $this->session->userdata['logged_in_portal']['mhs']['nim'];

@@ -58,7 +58,7 @@
                 </div>
             </div>
 
-            <!-- Modals utk menampilkan form input lab/studio -->
+            <!-- Modals utk menampilkan form input dosen -->
             <div class="modal fade" id="modalFormDosen" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
@@ -200,6 +200,16 @@
                                     </div>
                                 </div>
 
+                                <div class="form-group">
+                                    <label class="form-label">Show in Public</label>
+                                    <div class="form-line">
+                                        <select class="form-control show-tick" data-live-search="true" name="showInPublic">
+                                            <option value="0" selected>Don't show</option>
+                                            <option value="1">Show</option>
+                                        </select>
+                                    </div>
+                                </div>
+
                                 <button class="btn btn-primary waves-effect" type="submit">SIMPAN</button>
                             </form>
                         </div>
@@ -209,4 +219,4 @@
                     </div>
                 </div>
             </div>
-            <!-- #END# Modals utk menampilkan form input lab/studio -->                 
+            <!-- #END# Modals utk menampilkan form input dosen -->                 

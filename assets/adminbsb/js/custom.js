@@ -19,12 +19,30 @@ $(function () {
     }
 });
 
+$(function () {
+    //Tooltip
+    $('[data-toggle="tooltip"]').tooltip({
+        container: 'body'
+    });
+
+    //Popover
+    $('[data-toggle="popover"]').popover();
+
+    //Widgets count
+    $('.count-to').countTo();
+
+    for (var i = 0; i < graphs.length; i++) {
+        getMorris(graphs[i].type, graphs[i].element, graphs[i].data, graphs[i].param);
+    } 
+})
+
 // DataTable pada tabel spesifik. (JQuery Plugin: JQuery DataTable)
 $(function () {
     //Exportable table
     $('.js-exportable').DataTable({
         dom: 'Bfrtip',
         responsive: true,
+        "pageLength":50,
         buttons: [
             'copy', 'csv', 'excel', 'pdf', 'print'
         ]
@@ -32,7 +50,7 @@ $(function () {
 
     $('.basicTabel').DataTable({
         responsive: true,
-    });
+    }); 
 
     $('.tabelDosen').DataTable({
         dom: 'Bfrtip',
@@ -286,6 +304,7 @@ $(function () {
         $('form [name="id"]').val('');
         $('form [name="jurusan"]').selectpicker("refresh");
         $('form [name="prodi"]').selectpicker("refresh");
+        $('form [name="showInPublic"]').selectpicker("refresh");
 
         if (form == "formTambah") {
             $(this).find('form').attr('action', window.location.href + '/tambah');
@@ -320,6 +339,7 @@ $(function () {
                     $('form [name="scopusId"]').val(data.scopusId);
                     $('form [name="interest"]').val(data.interest);
                     $('form [name="bio"]').val(data.bio);
+                    $('form [name="showInPublic"]').selectpicker('val',data.showInPublic);
                 },
                 error: function (jqXHR, textStatus, errorThrown)
                 {
@@ -327,7 +347,7 @@ $(function () {
                 }
             });
         }
-    });      
+    });       
 
 });
 
@@ -368,3 +388,47 @@ $(function () {
 
     });
 });
+
+// Script untuk chart (JQuery Plugin: MorrisChart)
+function getMorris(type, element, data, param) {
+    if (type === 'line') {
+        Morris.Line({
+            element: element,
+            data: data,
+            xkey: param.xkey,
+            ykeys: param.ykeys,
+            labels: param.labels,
+            lineColors: param.lineColors,
+            lineWidth: param.lineWidth,
+        });
+    } else if (type === 'bar') {
+        Morris.Bar({
+            element: element,
+            data: data,
+            xkey: param.xkey,
+            ykeys: param.ykeys,
+            labels: param.labels,
+            barColors: param.barColors,
+        });
+    } else if (type === 'area') {
+        Morris.Area({
+            element: element,
+            data: data,
+            xkey: param.xkey,
+            ykeys: param.ykeys,
+            labels: param.labels,
+            pointSize: param.pointSize,
+            hideHover: param.hideHover,
+            lineColors: param.lineColors,
+        });
+    } else if (type === 'donut') {
+        Morris.Donut({
+            element: element,
+            data: data,
+            colors: param.colors,
+            formatter: function (y) {
+                return y
+          }
+        });
+    }
+}

@@ -3,13 +3,6 @@
             <div class="block-header">
                 <h2><?php echo $pageTitle;?></h2>
             </div>
-
-            <?php if($this->session->flashdata('message')) {?>  
-            <div class="alert alert-dismissable alert-<?php echo $this->session->flashdata('type');?>">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <?php echo $this->session->flashdata('message');?>
-            </div>
-            <?php }?> 
             
             <div class="row clearfix">
                 <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">

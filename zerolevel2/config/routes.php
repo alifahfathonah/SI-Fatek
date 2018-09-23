@@ -67,21 +67,14 @@ $route['dosen/logout'] = 'login/logout_dosen';
 $route['mahasiswa'] = 'mahasiswa/profile';
 $route['mahasiswa/logout'] = 'login/logout_mahasiswa';
 
-//Siteview Kalab Routes
-$route['kalab'] = 'kalab/dashboard';
-
-//Siteview Koprodi Routes
-$route['koprodi'] = 'koprodi/dashboard';
-
-//Siteview Kajur Routes
-$route['kajur'] = 'kajur/dashboard';
-
-//Siteview WD1 Routes
-$route['wd1'] = 'wd1/dashboard';
-
-//Siteview Dekan Routes
-$route['dekan'] = 'dekan/dashboard';
-
 //Siteview Admin Routes
-$route['admin'] = 'admin/user';
 $route['admin/logout'] = 'login/logout';
+
+//Siteview Routes
+$route['fakultas/dashboard'] = 'admin/dashboard/fakultas';
+$route['jurusan/dashboard'] = 'admin/dashboard/jurusan';
+$route['prodi/dashboard'] = 'admin/dashboard/prodi';
+
+$route['fakultas/data/(:any)'] = 'admin/data/$1';
+$route['jurusan/data/(:any)'] = 'admin/data/$1';
+$route['prodi/data/(:any)'] = 'admin/data/$1';

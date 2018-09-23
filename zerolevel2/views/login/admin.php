@@ -92,7 +92,7 @@ http://fatek.unsrat.ac.id
 
     <!-- Custom Js -->
     <script src="<?php echo base_url("assets/adminbsb/js/admin.js");?>"></script>
-    <script src="<?php echo base_url("assets/adminbsb/js/pages/examples/sign-in.js");?>"></script>
+    <script src="<?php echo base_url("assets/adminbsb/js/sign-in.js");?>"></script>
 </body>
 
 </html>

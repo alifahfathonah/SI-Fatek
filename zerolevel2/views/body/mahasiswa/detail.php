@@ -50,7 +50,7 @@
                                 <dt>Program Studi</dt>
                                 <dd><?php echo $mhs->prodi; ?>&nbsp;</dd>
                                 <dt>Pembimbing Akademik</dt>
-                                <dd><?php echo $mhs->dosenPembimbingAkademik;?>&nbsp;</dd>
+                                <dd><a href="<?php echo site_url('admin/detail/dosen/').$mhs->nipDosenPembimbingAkademik;?>"><?php echo $mhs->dosenPembimbingAkademik;?></a>&nbsp;</dd>
                                 <dt>Status Mahasiswa</dt>
                                 <dd><?php echo $mhs->statusMahasiswa; ?>&nbsp;</dd>
                                 <dt>Hobi</dt>

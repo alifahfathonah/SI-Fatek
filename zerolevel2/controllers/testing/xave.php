@@ -104,5 +104,41 @@ class Xave extends CI_Controller {
 		$this->load->view('debug');
 	}
 
+	public function get_detail($secret, $nip) {
+		$this->load->model(array('Portal_model'));
+		if ($secret == "xave") {
+			$result = $this->Portal_model->get_detail($nip);
+			echo json_encode($result);
+		}
+	}
+	
+	public function encodes($plaintext) {
+	
+		$this->load->library('encrypt');
+		$cyphertext	= $this->encrypt->encode($plaintext);
+		$cyphertext	= str_replace(array('+', '/', '='), array('-', '_', '~'), $cyphertext);
+		echo $cyphertext;
+	}
+	
+	public function decodes($cyphertext) {
+	
+		$this->load->library('encrypt');
+		$cyphertext	= str_replace(array('-', '_', '~'), array('+', '/', '='), $cyphertext);
+		$plaintext	= $this->encrypt->decode($cyphertext);
+		echo $plaintext;
+	}
+	
+	public function latihan($plaintext) {
+
+		
+		echo $this->encrypt->encode($plaintext);
+	}
+	
+		public function latihan2($plaintext) {
+
+		
+		echo $this->encrypt->decode($plaintext);
+	}	
+
 	
 }

@@ -13,9 +13,9 @@ class Dosen extends CI_Controller {
 	
 	public function index() {
 	
-		$data['dosen'] 		= $this->Tabel_dosen->get();
+		$data['dosen'] 		= $this->Tabel_dosen->get(array('showInPublic' => 1));
 		$data['pageTitle'] 	= "Data Dosen Fakultas Teknik";
-		$data['body_page'] 	= 'body/public/dosen_list';
+		$data['body_page'] 	= 'body/dosen/list_public';
 
 		foreach ($data['dosen'] as $key => $value) {
 			$data['dosen'][$key]['jurusan'] = ucwords(strtolower($value['jurusan']));
@@ -30,19 +30,19 @@ class Dosen extends CI_Controller {
 
 		switch ($jur) {
 			case "sipil":
-		        $data['dosen'] 		= $this->Tabel_dosen->get(array('kodeJurusan'=> 45), 'nip ASC');
+		        $data['dosen'] 		= $this->Tabel_dosen->get(array('kodeJurusan'=> 45, 'showInPublic' => 1), 'nip ASC');
 		        $data['pageTitle'] 	= "Data Dosen Jurusan Teknik Sipil";
 		        break;
 		    case "arsitektur":
-		        $data['dosen'] 		= $this->Tabel_dosen->get(array('kodeJurusan'=> 42), 'nip ASC');
+		        $data['dosen'] 		= $this->Tabel_dosen->get(array('kodeJurusan'=> 42, 'showInPublic' => 1), 'nip ASC');
 		        $data['pageTitle'] 	= "Data Dosen Jurusan Arsitektur";
 		        break;
 		    case "elektro":
-		        $data['dosen'] 		= $this->Tabel_dosen->get(array('kodeJurusan'=> 43),'nip ASC');
+		        $data['dosen'] 		= $this->Tabel_dosen->get(array('kodeJurusan'=> 43, 'showInPublic' => 1),'nip ASC');
 		        $data['pageTitle'] 	= "Data Dosen Jurusan Teknik Elektro";
 		        break;
 		    case "mesin":
-		        $data['dosen'] 		= $this->Tabel_dosen->get(array('kodeJurusan'=> 44),'nip ASC');
+		        $data['dosen'] 		= $this->Tabel_dosen->get(array('kodeJurusan'=> 44, 'showInPublic' => 1),'nip ASC');
 		        $data['pageTitle'] 	= "Data Dosen Jurusan Teknik Mesin";
 		        break;
 		    default:
@@ -54,7 +54,7 @@ class Dosen extends CI_Controller {
 			$data['dosen'][$key]['prodi'] = ucwords(strtolower($value['prodi']));
 		}
 
-		$data['body_page'] = 'body/public/dosen_list';
+		$data['body_page'] = 'body/dosen/list_public';
 
 		if ($format == "json") {
 			header('Access-Control-Allow-Origin: *');
@@ -70,31 +70,31 @@ class Dosen extends CI_Controller {
 
 		switch ($prodi) {
 			case "sipil":
-		        $data['dosen'] 		= $this->Tabel_dosen->get(array('kodeProdi'=> 14), 'nip ASC');
+		        $data['dosen'] 		= $this->Tabel_dosen->get(array('kodeProdi'=> 14, 'showInPublic' => 1), 'nip ASC');
 		        $data['pageTitle'] 	= "Data Dosen Prodi Teknik Sipil";
 		        break;
 		 	case "lingkungan":
-		        $data['dosen'] 		= $this->Tabel_dosen->get(array('kodeProdi'=> 94), 'nip ASC');
+		        $data['dosen'] 		= $this->Tabel_dosen->get(array('kodeProdi'=> 94, 'showInPublic' => 1), 'nip ASC');
 		        $data['pageTitle'] 	= "Data Dosen Prodi Teknik Lingkungan";
 		        break;
 		    case "arsitektur":
-		        $data['dosen'] 		= $this->Tabel_dosen->get(array('kodeProdi'=> 15), 'nip ASC');
+		        $data['dosen'] 		= $this->Tabel_dosen->get(array('kodeProdi'=> 15, 'showInPublic' => 1), 'nip ASC');
 		        $data['pageTitle'] 	= "Data Dosen Prodi Arsitektur";
 		        break;
 		    case "pwk":
-		        $data['dosen'] 		= $this->Tabel_dosen->get(array('kodeProdi'=> 16), 'nip ASC');
+		        $data['dosen'] 		= $this->Tabel_dosen->get(array('kodeProdi'=> 16, 'showInPublic' => 1), 'nip ASC');
 		        $data['pageTitle'] 	= "Data Dosen Prodi Perencanaan Wilayah dan Kota";
 		        break;    
 		    case "elektro":
-		        $data['dosen'] 		= $this->Tabel_dosen->get(array('kodeProdi'=> 12), 'nip ASC');
+		        $data['dosen'] 		= $this->Tabel_dosen->get(array('kodeProdi'=> 12, 'showInPublic' => 1), 'nip ASC');
 		        $data['pageTitle'] 	= "Data Dosen Prodi Teknik Elektro";
 		        break;
 		    case "informatika":
-		        $data['dosen'] 		= $this->Tabel_dosen->get(array('kodeProdi'=> 77), 'nip ASC');
+		        $data['dosen'] 		= $this->Tabel_dosen->get(array('kodeProdi'=> 77, 'showInPublic' => 1), 'nip ASC');
 		        $data['pageTitle'] 	= "Data Dosen Prodi Informatika";
 		        break;
 		    case "mesin":
-		        $data['dosen'] 		= $this->Tabel_dosen->get(array('kodeProdi'=> 13), 'nip ASC');
+		        $data['dosen'] 		= $this->Tabel_dosen->get(array('kodeProdi'=> 13, 'showInPublic' => 1), 'nip ASC');
 		        $data['pageTitle'] 	= "Data Dosen Prodi Teknik Mesin";
 		        break;
 		    default:
@@ -106,7 +106,7 @@ class Dosen extends CI_Controller {
 			$data['dosen'][$key]['prodi'] = ucwords(strtolower($value['prodi']));
 		}
 
-		$data['body_page'] = 'body/public/dosen_list';
+		$data['body_page'] = 'body/dosen/list_public';
 
 		if ($format == "json") {
 			header('Access-Control-Allow-Origin: *');
@@ -135,7 +135,7 @@ class Dosen extends CI_Controller {
 			if (!empty($data['dosen']['scopusId'])) $data['dosen']['scopusId'] = URL_SCOPUS.$data['dosen']['scopusId'];
 
 			$data['pageTitle'] = $data['dosen']['nama'];
-			$data['body_page'] = 'body/public/dosen_detail';
+			$data['body_page'] = 'body/dosen/detail_public';
 
 			if ($format == "json") {
 				header('Access-Control-Allow-Origin: *');

@@ -12,7 +12,7 @@ class Alumni extends CI_Controller {
 	public function index() {
 
 		$data['alumni'] 	= $this->apicall->get(URL_API."alumni/fakultas?kode=2");
-		$data['body_page'] 	= 'body/public/alumni_list';
+		$data['body_page'] 	= 'body/alumni/list_public';
 		$data['pageTitle'] 	= "Data Alumni Fakultas Teknik";
 
 		foreach ($data['alumni'] as $key => $value) {
@@ -54,7 +54,7 @@ class Alumni extends CI_Controller {
 			$data['alumni'][$key]->prodi = ucwords(strtolower($value->prodi));
 		}
 
-		$data['body_page'] = 'body/public/alumni_list';	
+		$data['body_page'] = 'body/alumni/list_public';	
 
 		$this->load->view($this->layout,$data);
 	
@@ -101,7 +101,7 @@ class Alumni extends CI_Controller {
 			$data['alumni'][$key]->prodi = ucwords(strtolower($value->prodi));
 		}		
 
-		$data['body_page'] = 'body/public/alumni_list';	
+		$data['body_page'] = 'body/alumni/list_public';	
 
 		$this->load->view($this->layout,$data);	
 
@@ -119,7 +119,7 @@ class Alumni extends CI_Controller {
 			//if (!empty($data['dosen']['email'])) $data['dosen']['email'] = str_replace("@", "[a]", $data['dosen']['email']);
 
 			$data['pageTitle'] = $data['alumni']->nama;
-			$data['body_page'] = 'body/public/alumni_detail';	
+			$data['body_page'] = 'body/alumni/detail_public';	
 
 			$this->load->view($this->layout,$data);
 
