@@ -1,20 +1,22 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.10.1
--- http://www.phpmyadmin.net
+-- version 4.7.9
+-- https://www.phpmyadmin.net/
 --
--- Host: db.unsrat.ac.id
--- Generation Time: Sep 23, 2018 at 02:46 PM
--- Server version: 5.5.49
--- PHP Version: 5.5.38
+-- Host: 127.0.0.1
+-- Generation Time: Sep 24, 2018 at 02:14 AM
+-- Server version: 10.1.31-MariaDB
+-- PHP Version: 7.2.3
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `ft_data`
@@ -26,8 +28,8 @@ SET time_zone = "+00:00";
 -- Table structure for table `ft_dokumen`
 --
 
-CREATE TABLE IF NOT EXISTS `ft_dokumen` (
-  `dokumenId` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `ft_dokumen` (
+  `dokumenId` int(11) NOT NULL,
   `dokumenDocgroupId` int(4) NOT NULL,
   `dokumenNama` varchar(100) NOT NULL,
   `dokumenNomor` varchar(100) NOT NULL,
@@ -35,9 +37,8 @@ CREATE TABLE IF NOT EXISTS `ft_dokumen` (
   `dokumenTahun` year(4) DEFAULT NULL,
   `dokumenFile` varchar(100) NOT NULL,
   `tglUpdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `userUpdate` varchar(50) NOT NULL,
-  PRIMARY KEY (`dokumenId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=578 ;
+  `userUpdate` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `ft_dokumen`
@@ -514,10 +515,9 @@ INSERT INTO `ft_dokumen` (`dokumenId`, `dokumenDocgroupId`, `dokumenNama`, `doku
 -- Table structure for table `ft_dokumen_user`
 --
 
-CREATE TABLE IF NOT EXISTS `ft_dokumen_user` (
+CREATE TABLE `ft_dokumen_user` (
   `dokumenId` int(11) NOT NULL,
-  `userId` varchar(255) NOT NULL,
-  KEY `trxdokumenuser_fk1` (`dokumenId`)
+  `userId` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -998,8 +998,8 @@ INSERT INTO `ft_dokumen_user` (`dokumenId`, `userId`) VALUES
 -- Table structure for table `ft_dosen`
 --
 
-CREATE TABLE IF NOT EXISTS `ft_dosen` (
-  `dosenId` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `ft_dosen` (
+  `dosenId` int(11) NOT NULL,
   `kodePegawai` int(11) DEFAULT NULL,
   `nip` varchar(18) DEFAULT NULL,
   `nidn` varchar(10) DEFAULT NULL,
@@ -1020,9 +1020,8 @@ CREATE TABLE IF NOT EXISTS `ft_dosen` (
   `foto` varchar(100) NOT NULL,
   `showInPublic` tinyint(4) NOT NULL DEFAULT '1',
   `tglUpdate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `userUpdate` varchar(50) NOT NULL,
-  PRIMARY KEY (`dosenId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=206 ;
+  `userUpdate` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ft_dosen`
@@ -1241,17 +1240,16 @@ INSERT INTO `ft_dosen` (`dosenId`, `kodePegawai`, `nip`, `nidn`, `nama`, `alamat
 -- Table structure for table `ft_publikasi`
 --
 
-CREATE TABLE IF NOT EXISTS `ft_publikasi` (
-  `publikasiId` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `ft_publikasi` (
+  `publikasiId` int(11) NOT NULL,
   `dosenNip` varchar(25) NOT NULL,
   `judul` mediumtext NOT NULL,
   `di` mediumtext NOT NULL,
   `tempat` varchar(100) NOT NULL,
   `tahun` year(4) NOT NULL,
   `tglUpdate` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `userUpdate` varchar(50) NOT NULL,
-  PRIMARY KEY (`publikasiId`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=118 ;
+  `userUpdate` varchar(50) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `ft_publikasi`
@@ -1266,7 +1264,7 @@ INSERT INTO `ft_publikasi` (`publikasiId`, `dosenNip`, `judul`, `di`, `tempat`, 
 (6, '197808212009121003', 'Analysis and Design Web Portal Amazing North Sulawesi using Agile Unified Process Methodology', 'Prosiding Seminar Nasional Teknologi Informasi (SNTI) IX 2012, ISSN: 1829-9156, Vol. 9 No.1', 'Jakarta', 2012, NULL, ''),
 (7, '198409062010122007', 'Service Oriented Architecture Blueprint', 'Proceedings of International Conference on Advanced Computer Science and Information Systems, pg.149-154, ISSN:2086-1796', 'Universitas Indonesia', 2009, NULL, ''),
 (8, '198409062010122007', 'Enhancing Learning Experience For Young Child Through Educational Content Using Multimedia', 'Prosiding Konferensi Nasional Sistem Informasi', 'Makasar', 2014, NULL, ''),
-(9, '198409062010122007', 'Development of Decision Support System for Manado''s BAPERJAKAT using DAD and AHP', 'Proceedings of International Conference on Wireless and Telematics', 'Manado', 2016, NULL, ''),
+(9, '198409062010122007', 'Development of Decision Support System for Manado\'s BAPERJAKAT using DAD and AHP', 'Proceedings of International Conference on Wireless and Telematics', 'Manado', 2016, NULL, ''),
 (10, '198002282012121002', 'IntelligEnsia For energy Sustainability Case Study : Indonesia', 'European Modelling Symposium (EMS), IEEE 2013', 'Manchester, England', 2013, NULL, ''),
 (11, '198002282012121002', 'Missing Data Solution of Electricity Consumption based on Lagrange Interpolation Case Study Intelligensia Data', '“The 5th International Conference on Electrical Engineering and Informatics 2015', 'Bali, Indonesia', 2015, NULL, ''),
 (12, '198002282012121002', 'Penentuan Jalur Alternatif Terdekat Trayek  01/02 Angkutan Umum di Kota Manado dengan Algoritma Greedy', 'Jurnal  Ilmiah Badan Diklat Provinsi Sulawesi Utara', 'Manado, Indonesia', 2014, NULL, ''),
@@ -1290,7 +1288,7 @@ INSERT INTO `ft_publikasi` (`publikasiId`, `dosenNip`, `judul`, `di`, `tempat`, 
 (30, '197403272002121002', 'Stability Comparison of New Simplified Speed Sensorless Vector Control Systems for Induction Motors', 'Journal of International Conference on Electrical Machines and Systems, Vol. 3, No. 2, pp.126-131 (2014.6)', '', 2014, NULL, ''),
 (31, '197403272002121002', 'Design and Implementation of Programming on Electrical Power System as an E-learning Subject Course at University of Sam Ratulangi Indonesia', 'IEICE 2016', 'Japan', 2016, NULL, ''),
 (32, '196506031990031003', 'May We Obtain Thermal Comfort with Passive and Low Energy Building? Study of Thermal Comfort in Humid Tropical Classroom', 'CLIMA 2013 - 11th REHVA World Congress and the 8th International Conference on Indoor Air Quality, Ventilation and Energy Conservation in Buildings, 16. - 19. 6. 2013', 'Prague Congress Centre, Czech Republic', 2013, NULL, ''),
-(33, '196506031990031003', 'Investigation of Thermal Comfort in a Passive and Low Energy Classroom Building. From Gender''s Point of View', 'Indoor air 2014. The 13th International Conference on Indoor Air Quality and Climate, July 7 – 12, 2014,', 'Hong Kong', 2014, NULL, ''),
+(33, '196506031990031003', 'Investigation of Thermal Comfort in a Passive and Low Energy Classroom Building. From Gender\'s Point of View', 'Indoor air 2014. The 13th International Conference on Indoor Air Quality and Climate, July 7 – 12, 2014,', 'Hong Kong', 2014, NULL, ''),
 (34, '196506031990031003', 'Design of Smart Shading Device for Buildings in a Tropical Humid Climate', '31th International Passive and Low Energy Architecture (PLEA) Conference, 9-11 September 2015', 'Bologna Italy', 2015, NULL, ''),
 (35, '196506031990031003', 'Natural Ventilation: From Computational Fluid Dynamics, To Artificial Neural Networks, For Thermal Comfort', 'ISBN 978-979-17509-1-2', 'Sam Ratulangi University Press', 2010, NULL, ''),
 (36, '196506031990031003', 'Manado’s Coastal Line Area Development, A Concept of Urban Design and Environmental Management of Water Front City', 'The 7th International Seminar on Sustainable Environment and Architecture, 20-21 November 2006', 'Hasanuddin University Makassar', 2006, NULL, ''),
@@ -1367,13 +1365,12 @@ INSERT INTO `ft_publikasi` (`publikasiId`, `dosenNip`, `judul`, `di`, `tempat`, 
 -- Table structure for table `ref_docgroup`
 --
 
-CREATE TABLE IF NOT EXISTS `ref_docgroup` (
-  `docgroupId` int(4) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `ref_docgroup` (
+  `docgroupId` int(4) NOT NULL,
   `docgroupJenisDoc` varchar(255) NOT NULL,
   `tglUpdate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `userUpdate` varchar(50) NOT NULL,
-  PRIMARY KEY (`docgroupId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+  `userUpdate` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `ref_docgroup`
@@ -1393,14 +1390,13 @@ INSERT INTO `ref_docgroup` (`docgroupId`, `docgroupJenisDoc`, `tglUpdate`, `user
 -- Table structure for table `ref_labstudio`
 --
 
-CREATE TABLE IF NOT EXISTS `ref_labstudio` (
-  `labstudioId` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `ref_labstudio` (
+  `labstudioId` int(11) NOT NULL,
   `labstudioNama` varchar(100) NOT NULL,
   `labstudioJurKode` smallint(6) NOT NULL,
   `tglUpdate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `userUpdate` varchar(50) NOT NULL,
-  PRIMARY KEY (`labstudioId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+  `userUpdate` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `ref_labstudio`
@@ -1422,24 +1418,113 @@ INSERT INTO `ref_labstudio` (`labstudioId`, `labstudioNama`, `labstudioJurKode`,
 -- Table structure for table `x_user`
 --
 
-CREATE TABLE IF NOT EXISTS `x_user` (
-  `userId` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `x_user` (
+  `userId` int(11) NOT NULL,
   `nama` varchar(50) NOT NULL,
   `username` varchar(30) NOT NULL,
   `password` varchar(255) NOT NULL,
   `grup` enum('admin','fakultas','wd','jurusan','prodi','lab/studio') NOT NULL,
   `namaUnit` varchar(100) NOT NULL,
   `kodeUnit` smallint(6) DEFAULT NULL,
-  `lastLogin` datetime DEFAULT NULL,
-  PRIMARY KEY (`userId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+  `lastLogin` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `x_user`
 --
 
 INSERT INTO `x_user` (`userId`, `nama`, `username`, `password`, `grup`, `namaUnit`, `kodeUnit`, `lastLogin`) VALUES
-(1, 'Administrator', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', 'Administrator Portal', NULL, '2018-09-23 22:40:39');
+(1, 'Administrator', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', 'Administrator Portal', NULL, '2018-09-23 22:40:39'),
+(2, 'Fabian Manoppo', 'dekan', '827ccb0eea8a706c4c34a16891f84e7b', 'fakultas', 'Fakultas Teknik', 2, '2018-09-24 02:10:42'),
+(3, 'Arie Lumenta', 'kajur', '827ccb0eea8a706c4c34a16891f84e7b', 'jurusan', 'Jurusan Teknik Elektro', 43, '2018-09-24 02:12:51'),
+(4, 'Virginia Tulenan', 'koprodi', '827ccb0eea8a706c4c34a16891f84e7b', 'prodi', 'Prodi Teknik Informatika', 77, '2018-09-24 02:13:43');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `ft_dokumen`
+--
+ALTER TABLE `ft_dokumen`
+  ADD PRIMARY KEY (`dokumenId`);
+
+--
+-- Indexes for table `ft_dokumen_user`
+--
+ALTER TABLE `ft_dokumen_user`
+  ADD KEY `trxdokumenuser_fk1` (`dokumenId`);
+
+--
+-- Indexes for table `ft_dosen`
+--
+ALTER TABLE `ft_dosen`
+  ADD PRIMARY KEY (`dosenId`);
+
+--
+-- Indexes for table `ft_publikasi`
+--
+ALTER TABLE `ft_publikasi`
+  ADD PRIMARY KEY (`publikasiId`);
+
+--
+-- Indexes for table `ref_docgroup`
+--
+ALTER TABLE `ref_docgroup`
+  ADD PRIMARY KEY (`docgroupId`);
+
+--
+-- Indexes for table `ref_labstudio`
+--
+ALTER TABLE `ref_labstudio`
+  ADD PRIMARY KEY (`labstudioId`);
+
+--
+-- Indexes for table `x_user`
+--
+ALTER TABLE `x_user`
+  ADD PRIMARY KEY (`userId`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `ft_dokumen`
+--
+ALTER TABLE `ft_dokumen`
+  MODIFY `dokumenId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=578;
+
+--
+-- AUTO_INCREMENT for table `ft_dosen`
+--
+ALTER TABLE `ft_dosen`
+  MODIFY `dosenId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=206;
+
+--
+-- AUTO_INCREMENT for table `ft_publikasi`
+--
+ALTER TABLE `ft_publikasi`
+  MODIFY `publikasiId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
+
+--
+-- AUTO_INCREMENT for table `ref_docgroup`
+--
+ALTER TABLE `ref_docgroup`
+  MODIFY `docgroupId` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `ref_labstudio`
+--
+ALTER TABLE `ref_labstudio`
+  MODIFY `labstudioId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `x_user`
+--
+ALTER TABLE `x_user`
+  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
