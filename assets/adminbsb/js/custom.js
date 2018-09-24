@@ -31,6 +31,7 @@ $(function () {
     //Widgets count
     $('.count-to').countTo();
 
+    //Generate graphs
     if (typeof graphs !== 'undefined') {
         for (var i = 0; i < graphs.length; i++) {
             getMorris(graphs[i].type, graphs[i].element, graphs[i].data, graphs[i].param);
