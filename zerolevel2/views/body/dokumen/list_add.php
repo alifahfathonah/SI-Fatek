@@ -126,7 +126,7 @@
                                                 <span class="input-group-addon">
                                                     <div id="loader1" class="loader"></div>
                                                 </span>                     
-                                                <input type="number" class="form-line form-control" name="user[]" id= "1"/>
+                                                <input type="text" class="form-line form-control" name="user[]" id= "1"/>
                                                 <span class="input-group-addon">
                                                     <div id="respon1" class="respon"></div>
                                                 </span>
