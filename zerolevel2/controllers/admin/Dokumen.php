@@ -15,6 +15,10 @@ class Dokumen extends CI_Controller {
 		$this->unit		= $this->session->userdata['logged_in_portal']['admin']['grup'];
 		$this->namaUnit	= $this->session->userdata['logged_in_portal']['admin']['namaUnit'];
 		$this->kodeUnit	= $this->session->userdata['logged_in_portal']['admin']['kodeUnit'];
+
+		if ($this->unit == 'fakultas') {
+			$this->namaUnit	= "Fakultas Teknik";
+		}
 		
 	}
 	

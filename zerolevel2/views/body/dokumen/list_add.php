@@ -120,7 +120,7 @@
                                     <label class="form-label">Dosen / Mahasiswa</label>
 
                                     <div class="controls"> 
-                                        <small>Masukkan NIP dosen atau NIM mahasiswa yang terkait dengan dokumen ini. Klik icon + untuk menambah field</small>
+                                        <small>Masukkan NIP Dosen/Pegawai atau NIM mahasiswa yang terkait dengan dokumen ini. Klik icon + untuk menambah field</small>
                                         <div class="kotak">
                                             <div class="entry input-group">
                                                 <span class="input-group-addon">
@@ -146,8 +146,8 @@
                                 </div>
                                 
                                 <div class="alert alert-info">
-                                    <span class="glyphicon glyphicon-info-sign"></span>
-                                    Spesifikasi File: Filetype=pdf,jpg,jpeg; Max Size=5 Mb.
+                                     <i class="material-icons">info</i>
+                                    Spesifikasi File: Filetype=pdf jpg jpeg xls xlsx doc docx mde; Max Size=20 Mb.
                                 </div>                                
 
                                 <button class="btn btn-primary waves-effect" type="submit">SIMPAN</button>

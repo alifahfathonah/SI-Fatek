@@ -37,4 +37,3 @@
                             <span>Dokumen Fakultas</span>
                         </a>
                     </li>
-                    <li class="header">AKADEMIK</li>

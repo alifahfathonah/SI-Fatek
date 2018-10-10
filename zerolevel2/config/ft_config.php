@@ -38,8 +38,8 @@ $config['pasfoto_dosen'] = array(
 
 $config['dokumen'] = array(
 	'upload_path' 		=> DIR_DOKUMEN,
-	'allowed_types' 	=>'pdf|jpg|jpeg',
+	'allowed_types' 	=>'pdf|jpg|jpeg|xls|xlsx|mde|doc|docx',
 	'max_filename' 		=>'40',
 	'file_ext_tolower'	=> TRUE,
-	'max_size' 			=> '5000',
+	'max_size' 			=> '20000',
 );
