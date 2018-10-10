@@ -1,5 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 
+                    <li class="header">DAFTAR MENU</li>
                     <li>
                         <a href="<?php echo site_url('jurusan/dashboard');?>">
                             <i class="material-icons">dashboard</i>
@@ -22,6 +23,12 @@
                         <a href="<?php echo site_url('jurusan/data/dosen');?>">
                             <i class="material-icons">local_library</i>
                             <span>Data Dosen</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo site_url('admin/dokumen');?>">
+                            <i class="material-icons">library_books</i>
+                            <span>Dokumen Jurusan</span>
                         </a>
                     </li>
                     <li class="header">AKADEMIK</li>

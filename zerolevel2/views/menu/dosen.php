@@ -1,5 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 
+                    <li class="header">DAFTAR MENU</li>
                     <li>
                         <a href="<?php echo site_url('dosen/profile');?>">
                             <i class="material-icons">person</i>

@@ -50,6 +50,9 @@ http://fatek.unsrat.ac.id
     <!-- Custom Css -->
     <link href="<?php echo base_url("assets/adminbsb/css/style.min.css");?>" rel="stylesheet" />
 
+    <!-- Custom Fonts -->
+    <link href="<?php echo base_url("assets/adminbsb/plugins/font-awesome/css/font-awesome.min.css");?>" rel="stylesheet" type="text/css">
+
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="<?php echo base_url("assets/adminbsb/css/themes/all-themes.min.css");?>" rel="stylesheet" />
 
@@ -113,7 +116,6 @@ http://fatek.unsrat.ac.id
             <!-- Menu -->
             <div class="menu">
                 <ul class="list">
-                    <li class="header">DAFTAR MENU</li>
                     <?php if($menu_page) $this->load->view($menu_page);?>
                 </ul>
             </div>

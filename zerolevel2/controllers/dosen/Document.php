@@ -21,7 +21,7 @@ class Document extends CI_Controller {
 		$data['menu_page']  = "menu/dosen";
 
 		$dosenNip 			= $this->session->userdata['logged_in_portal']['dosen']['nip'];
-		$data['dokumen'] 	= $this->Tabel_dokumen->get(array('ft_dokumen_user.userId'=> $dosenNip),'dokumenDocgroupId ASC, dokumenTahun DESC');
+		$data['dokumen'] 	= $this->Tabel_dokumen->user_get(array('ft_dokumen_user.userId'=> $dosenNip),'dokumenTahun DESC, dokumenDocgroupId ASC');
 		$data['kategori'] 	= $this->Tabel_docgroup->get();
 		
 		foreach ($data['dokumen'] as &$val) {

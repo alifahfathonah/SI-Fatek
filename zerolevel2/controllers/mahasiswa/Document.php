@@ -21,7 +21,7 @@ class Document extends CI_Controller {
 		$data['menu_page']  = "menu/mahasiswa";
 
 		$mhsNim 			= $this->session->userdata['logged_in_portal']['mhs']['nim'];
-		$data['dokumen'] 	= $this->Tabel_dokumen->get(array('ft_dokumen_user.userId'=> $mhsNim),'dokumenDocgroupId ASC, dokumenTahun DESC');
+		$data['dokumen'] 	= $this->Tabel_dokumen->user_get(array('ft_dokumen_user.userId'=> $mhsNim),'dokumenTahun DESC, dokumenDocgroupId ASC');
 		
 		foreach ($data['dokumen'] as &$val) {
 			$val['dokumenFile'] = URL_DOKUMEN.$val['dokumenFile'];

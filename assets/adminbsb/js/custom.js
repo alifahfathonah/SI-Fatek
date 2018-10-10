@@ -38,6 +38,11 @@ $(function () {
         } 
     }
 
+    //Get from API
+    if (typeof urlApi !== 'undefined') {
+        getDataApi('userDokumen', urlApi);
+    }
+
 })
 
 // DataTable pada tabel spesifik. (JQuery Plugin: JQuery DataTable)
@@ -351,7 +356,24 @@ $(function () {
                 }
             });
         }
-    });       
+    }); 
+
+    // Modal form Dokumen
+    $('#modalFormDoc').on('show.bs.modal', function (event) {
+        
+        var button = $(event.relatedTarget);
+        var id = button.data('id');
+        var form = button.data('form');
+        $(this).find('form')[0].reset();
+        $('form').validate().resetForm();
+        $('form [name="id"]').val('');
+
+        if (form == "formTambah") {
+            $(this).find('form').attr('action', window.location.href + '/tambah');
+            $(this).find(':submit').addClass('buttonTambah').removeClass('buttonEdit');
+            $(this).find('.modal-title').text('Tambah Dokumen');
+        }
+    });          
 
 });
 
@@ -392,6 +414,89 @@ $(function () {
 
     });
 });
+
+// Script untuk getDataApi
+function getDataApi(type, url) {
+    if (type === 'userDokumen') {
+        var urlApi = url;
+
+        $(function () {
+
+            var delay = (function(){
+                var timer = 0;
+                return function(callback, ms){
+                    clearTimeout (timer);
+                    timer = setTimeout(callback, ms);
+                };
+            })();
+
+            $('#modalFormDoc').on("keyup",'.kotak .form-control',function() {
+            
+                var thisid = $(this).attr("id")
+                var loader = "#loader" + thisid;
+                var respon = "#respon" + thisid;
+                var data   = $("#" + thisid).val();
+                
+                $(loader).empty();
+                $(loader).append('<i class="fa fa-spinner fa-spin"></i>');
+                $(respon).empty();
+                
+                delay(function() {          
+                    $.ajax({
+                        type: 'GET',
+                        url: urlApi,
+                        data: {id:data},
+                        dataType:'json',
+                        success: function(data) {
+                            $(loader).empty().append('<span class="fa fa-check"></span>');
+                            $(loader).parents('.entry').removeClass('has-error').addClass('has-success');
+                            $(respon).append(data[0].nama);
+                        },
+                        
+                        error: function(error) {
+                            $(loader).empty().append('<span class="fa fa-remove"></span>');
+                            $(loader).parents('.entry').removeClass('has-success').addClass('has-error');
+                            $(respon).append('ID Tidak ditemukan!');
+                        }
+                    }); 
+                }, 1000);   
+            });
+
+            var counter = 2;
+            
+            $('#modalFormDoc').on('click', '.btn-add', function(e)
+            {
+                e.preventDefault();
+
+                var controlForm = $('.controls .kotak:first'),
+                    currentEntry = $(this).parents('.entry:first'),
+                    newEntry = $(currentEntry.clone()).appendTo(controlForm);
+
+                newEntry.find('input').val('');
+                newEntry.find('input').attr("id",counter);      
+                newEntry.find('.loader').attr("id",'loader'+counter).empty();
+                newEntry.find('.respon').attr("id",'respon'+counter).empty();
+                newEntry.find('.loader').parents('.entry').removeClass('has-error').removeClass('has-success');
+                //$(loader).parents('.entry').removeClass('has-error').addClass('has-success');
+                
+                counter++;
+                
+                controlForm.find('.entry:not(:last) .btn-add')
+                    .removeClass('btn-add').addClass('btn-remove')
+                    .removeClass('btn-success').addClass('btn-danger')
+                    .html('<i class="material-icons">remove_circle</i>');
+            }).on('click', '.btn-remove', function(e)
+            {
+                $(this).parents('.entry:first').remove();
+
+                e.preventDefault();
+                return false;
+            });
+            
+        });
+
+    }
+}
 
 // Script untuk chart (JQuery Plugin: MorrisChart)
 function getMorris(type, element, data, param) {
