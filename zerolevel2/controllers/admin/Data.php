@@ -18,6 +18,12 @@ class Data extends CI_Controller {
 		if ($this->unit == 'fakultas') {
 			$this->namaUnit	= "Fakultas Teknik";
 		}
+
+		if ($this->unit == 'admin') {
+			$this->namaUnit	= "Fakultas Teknik";
+			$this->kodeUnit	= "2";
+			$this->unit		= "fakultas";
+		}
 		
 	}
 
