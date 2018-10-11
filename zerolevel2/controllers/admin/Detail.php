@@ -25,6 +25,7 @@ class Detail extends CI_Controller {
 		$data['body_page'] 	= "body/mahasiswa/detail";	
 
 		$data['mhs'] = $this->apicall->get(URL_API.'mahasiswa?nim='.$nim);
+		//echo var_dump($data['mhs']);die;
 
 		$this->load->view(THEME_ADMIN,$data);
 	}

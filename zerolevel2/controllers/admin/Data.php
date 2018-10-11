@@ -27,16 +27,23 @@ class Data extends CI_Controller {
 		
 	}
 
-	public function mahasiswa($status=FALSE) {
+	public function mahasiswa($filter=FALSE, $by=FALSE) {
 
 		$data['pageTitle'] 	= "Data Mahasiswa";
 		$data['menu_page']	= "menu/".$this->unit;
 		$data['body_page'] 	= "body/mahasiswa/list";		
 
-		if ($status == "all") {
+		if ($filter == "all") {
 			$data['mahasiswa'] = $this->apicall->get(URL_API.'mahasiswa/'.$this->unit.'?kode='.$this->kodeUnit);
 			$data['subtitle']  = $this->namaUnit. " | All";
 				
+		} else if ($filter == "angkatan") {
+			$angkatan = ($by === FALSE) ? date('Y') : $by;
+			$data['mahasiswa'] = $this->apicall->get(URL_API.'mahasiswa/'.$this->unit.'?kode='.$this->kodeUnit.'&filter=angkatan&by='.$angkatan);
+			$data['subtitle']  = $this->namaUnit. " | Angkatan ". $angkatan;
+			$data['body_page'] 	= "body/mahasiswa/list_detail";
+			$data['angkatan'] = $angkatan;
+
 		} else {
 			$data['mahasiswa'] = $this->apicall->get(URL_API.'mahasiswa/'.$this->unit.'?kode='.$this->kodeUnit.'&filter=status&by=A');
 			$data['subtitle']  = $this->namaUnit. " | Aktif";

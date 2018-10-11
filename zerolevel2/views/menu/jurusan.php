@@ -8,11 +8,23 @@
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo site_url('jurusan/data/mahasiswa');?>">
+                        <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">people</i>
                             <span>Data Mahasiswa</span>
                         </a>
-                    </li>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="<?php echo site_url('jurusan/data/mahasiswa');?>">Mahasiswa Aktif</a>
+                            </li>
+                            <li>
+                                <a href="<?php echo site_url('admin/data/mahasiswa/angkatan/'.(date('Y')-4));?>">Per Angkatan</a>
+                            </li>
+                            <li>
+                                <a href="<?php echo site_url('admin/data/mahasiswa/all');?>">Semua Mahasiswa</a>
+                            </li>
+                            
+                        </ul>
+                    </li>                    
                     <li>
                         <a href="<?php echo site_url('jurusan/data/alumni');?>">
                             <i class="material-icons">school</i>
