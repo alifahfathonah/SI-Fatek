@@ -24,7 +24,7 @@ class Dokumen extends CI_Controller {
 		$data['dokumen'] 	= $this->Tabel_dokumen->user_get(array('ft_dokumen_user.userId'=> $mhsNim),'dokumenTahun DESC, dokumenDocgroupId ASC');
 		
 		foreach ($data['dokumen'] as &$val) {
-			$val['dokumenFile'] = URL_DOKUMEN.$val['dokumenFile'];
+			$val['dokumenFile'] = URL_DOKUMEN.$val['dokumenDocgroupId'].'/'.$val['dokumenFile'];
 		}
 		
 		$this->load->view(THEME_MHS,$data);

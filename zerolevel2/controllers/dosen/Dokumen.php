@@ -53,9 +53,9 @@ class Dokumen extends CI_Controller {
 			$database['ownerId'] 			= $this->dosenNip;
 			$database['userUpdate']			= $this->session->userdata['logged_in_portal']['nama'];
 
-			$this->config->config['dokumen']['file_name'] = $database['ownerId']."-".date('Ymd-His');
-			$this->config->config['dokumen']['upload_path'] =DIR_DOKUMEN . $database['dokumenDocgroupId'] ."/";
-			$this->load->library('upload', $this->config->item('dokumen'));
+			$this->config->config['dokumen_dosen']['file_name'] = $database['ownerId']."-".date('Ymd-His');
+			$this->config->config['dokumen_dosen']['upload_path'] =DIR_DOKUMEN . $database['dokumenDocgroupId'] ."/";
+			$this->load->library('upload', $this->config->item('dokumen_dosen'));
 
 			if(!empty($_FILES['dokumen']['name'])) {
 
