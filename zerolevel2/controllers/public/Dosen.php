@@ -124,7 +124,7 @@ class Dosen extends CI_Controller {
 
 		if ($data['dosen']) {
 			$data['edu'] = $this->apicall->get(URL_API."dosen?nip=".$nip)->edu;
-			$data['publikasi'] = $this->Tabel_publikasi->get(array('dosenNip' => $data['dosen']['nip']));
+			$data['publikasi'] = $this->Tabel_publikasi->get(array('dosenNip' => $data['dosen']['nip']), 'tahun DESC');
 
 			$data['dosen']['foto'] = (!empty($data['dosen']['foto'])) ? URL_FOTO_DOSEN.$data['dosen']['foto'] : URL_FOTO_DOSEN."default.jpg";
 			$data['dosen']['jurusan'] = ucwords(strtolower($data['dosen']['jurusan']));
