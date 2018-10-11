@@ -8,35 +8,24 @@ class Dokumen extends CI_Controller {
 		parent::__construct();
 		$this->load->model(array('Tabel_dokumen','Tabel_docgroup'));
 
-		if (!isset($this->session->userdata['logged_in_portal']['admin'])) {
-			redirect(site_url('login'));
+		if (!isset($this->session->userdata['logged_in_portal']['dosen'])) {
+			redirect(site_url('login/dosen'));
 		}
 
-		$this->unit		= $this->session->userdata['logged_in_portal']['admin']['grup'];
-		$this->namaUnit	= $this->session->userdata['logged_in_portal']['admin']['namaUnit'];
-		$this->kodeUnit	= $this->session->userdata['logged_in_portal']['admin']['kodeUnit'];
-
-		if ($this->unit == 'fakultas') {
-			$this->namaUnit	= "Fakultas Teknik";
-		}
+		$this->dosenNip = $this->session->userdata['logged_in_portal']['dosen']['nip'];
 		
 	}
 	
 	public function index() {
 
-		$data['pageTitle'] 	= "Dokumen " . $this->namaUnit;
-		$data['menu_page']	= "menu/".$this->unit;
-		$data['body_page'] 	= "body/dokumen/list_add";
+		$data['pageTitle'] 	= "Dokumen Dosen";
+		$data['body_page'] 	= "body/dokumen/list_dosen";
+		$data['menu_page']  = "menu/dosen";
 
-		$unit = $this->unit . $this->kodeUnit;
-
-		if ($this->unit == 'admin') {
-			$data['dokumen'] 	= $this->Tabel_dokumen->get(FALSE,'dokumenTahun DESC, dokumenDocgroupId ASC');
-		} else {
-			$data['dokumen'] 	= $this->Tabel_dokumen->get(array('ownerId'=> $unit),'dokumenTahun DESC, dokumenDocgroupId ASC');
-		}
 		
+		$data['dokumen'] 	= $this->Tabel_dokumen->user_get(array('ft_dokumen_user.userId'=> $this->dosenNip),'dokumenTahun DESC, dokumenDocgroupId ASC');
 		$data['docgroup'] 	= $this->Tabel_docgroup->get();
+		$data['ownerId']	= $this->dosenNip;
 		
 		foreach ($data['dokumen'] as &$val) {
 			$val['dokumenFile'] = URL_DOKUMEN.$val['dokumenDocgroupId'].'/'.$val['dokumenFile'];
@@ -49,7 +38,6 @@ class Dokumen extends CI_Controller {
 	public function tambah() {
 
 		$this->form_validation->set_rules('nama', 'Nama Dokumen', 'trim|required');
-		$this->form_validation->set_rules('user[]', 'NIP/NIM', 'numeric');
 
 		if (empty($_FILES['dokumen']['name'])) {
 			$this->form_validation->set_rules('dokumen', 'Upload Dokumen', 'required');
@@ -62,7 +50,7 @@ class Dokumen extends CI_Controller {
 			$database['dokumenNomor'] 		= $this->input->post('nomor');
 			$database['dokumenTahun']		= $this->input->post('tahun');
 			$database['dokumenDocgroupId'] 	= $this->input->post('jenis');
-			$database['ownerId'] 			= $this->unit . $this->kodeUnit;
+			$database['ownerId'] 			= $this->dosenNip;
 			$database['userUpdate']			= $this->session->userdata['logged_in_portal']['nama'];
 
 			$this->config->config['dokumen']['file_name'] = $database['ownerId']."-".date('Ymd-His');
@@ -82,11 +70,7 @@ class Dokumen extends CI_Controller {
 					$database['dokumenFile'] 	= $upload_data['file_name'];
 					
 					$id_dokumen 	= $this->Tabel_dokumen->tambah($database);
-					$user = $this->input->post('user');
-					
-					foreach ($user as $val) {
-						$multi_user[] = array('dokumenId' => $id_dokumen, 'userId' => $val);
-					}
+					$multi_user[] 	= array('dokumenId' => $id_dokumen, 'userId' => $this->dosenNip);
 					
 					if ($this->Tabel_dokumen->link_user($multi_user)) {
 					
@@ -107,7 +91,7 @@ class Dokumen extends CI_Controller {
 			$this->session->set_flashdata('message', validation_errors('Gagal disimpan. Form tidak lengkap! '));
 		}
 
-		redirect(site_url('admin/dokumen'));		
+		redirect(site_url('dosen/dokumen'));	
 
 	}
 
@@ -131,13 +115,6 @@ class Dokumen extends CI_Controller {
 			$this->output->set_status_header('500');
 		}
 
-	}
-
-	public function detail($id) {
-
-		$output = $this->Tabel_docgroup->detail(array('docgroupId'=> $id));
-		echo json_encode($output);
-
-	}			
+	}		
 	
 }

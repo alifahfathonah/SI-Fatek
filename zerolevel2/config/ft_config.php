@@ -43,3 +43,11 @@ $config['dokumen'] = array(
 	'file_ext_tolower'	=> TRUE,
 	'max_size' 			=> '20000',
 );
+
+$config['dokumen_dosen'] = array(
+	'upload_path' 		=> DIR_DOKUMEN,
+	'allowed_types' 	=>'pdf|jpg|jpeg',
+	'max_filename' 		=>'40',
+	'file_ext_tolower'	=> TRUE,
+	'max_size' 			=> '5000',
+);

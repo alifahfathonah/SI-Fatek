@@ -134,11 +134,24 @@ class Xave extends CI_Controller {
 		echo $this->encrypt->encode($plaintext);
 	}
 	
-		public function latihan2($plaintext) {
+	public function latihan2($plaintext) {
 
 		
 		echo $this->encrypt->decode($plaintext);
-	}	
+	}
+
+	public function pindahfile() {
+
+		
+		$this->load->model(array('Tabel_dokumen'));
+		$dokumen = $this->Tabel_dokumen->get();
+		//echo var_dump($dokumen);
+
+		foreach ($dokumen as $key => $value) {
+			//echo $value['dokumenFile']."</br>";
+			rename(DIR_DOKUMEN.$value['dokumenFile'], DIR_DOKUMEN.$value['dokumenDocgroupId'].'/'.$value['dokumenFile']);
+		}
+	}		
 
 	
 }

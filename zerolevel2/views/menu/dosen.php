@@ -14,7 +14,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo site_url('dosen/document');?>">
+                        <a href="<?php echo site_url('dosen/dokumen');?>">
                             <i class="material-icons">library_books</i>
                             <span>Dokumen</span>
                         </a>

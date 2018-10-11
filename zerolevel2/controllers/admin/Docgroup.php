@@ -31,7 +31,6 @@ class Docgroup extends CI_Controller {
 		
 		if ($this->form_validation->run() == TRUE) {
 
-			$database['docgroupId']			= $this->input->post('id');
 			$database['docgroupJenisDoc']	= $this->input->post('nama');
 
 			if ($this->Tabel_docgroup->tambah($database)) {

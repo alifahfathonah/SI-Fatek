@@ -27,8 +27,7 @@ class Tabel_docgroup extends CI_Model {
 
 	public function tambah($data) {
 
-		$this->db->insert('ref_docgroup', $data);
-		return $this->db->affected_rows();
+		return $this->db->insert('ref_docgroup', $data);
 	}
 	
 	public function delete($id) {

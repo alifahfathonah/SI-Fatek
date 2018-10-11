@@ -8,7 +8,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo site_url('mahasiswa/document');?>">
+                        <a href="<?php echo site_url('mahasiswa/dokumen');?>">
                             <i class="material-icons">library_books</i>
                             <span>Dokumen</span>
                         </a>

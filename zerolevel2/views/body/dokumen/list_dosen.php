@@ -9,7 +9,7 @@
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <?php echo $this->session->flashdata('message');?>
             </div>
-            <?php }?>              
+            <?php }?>   
             
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -47,8 +47,10 @@
                                             <td><?php echo $list['dokumenTahun'];?></td>
                                             <td><?php echo $list['docgroupJenisDoc'];?></td>
                                             <td style='white-space: nowrap'>
+                                                <?php if ($list['ownerId'] == $ownerId) {?>
                                                 <button class="btn btn-xs btn-danger waves-effect buttonHapus" data-id="<?php echo $list['dokumenId'];?>">Delete</button>
-                                            </td>                                            
+                                                <?php }?>
+                                            </td> 
                                         </tr>
                                         <?php $i++;}?>
                                     </tbody>
@@ -69,7 +71,7 @@
                         </div>
 
                         <div class="modal-body">
-                            <?php echo form_open_multipart(site_url('admin/dokumen/tambah'));?>
+                            <?php echo form_open_multipart(site_url('dosen/document/tambah'));?>
                                 <input type="hidden" name="id">
                                 <div class="form-group form-float">
                                     <label class="form-label">Nama Dokumen</label>
@@ -117,37 +119,13 @@
                                 </div>
 
                                 <div class="form-group form-float">
-                                    <label class="form-label">Dosen / Mahasiswa</label>
-
-                                    <div class="controls"> 
-                                        <small>Masukkan NIP Dosen/Pegawai atau NIM mahasiswa yang terkait dengan dokumen ini. Klik icon + untuk menambah field</small>
-                                        <div class="kotak">
-                                            <div class="entry input-group">
-                                                <span class="input-group-addon">
-                                                    <div id="loader1" class="loader"></div>
-                                                </span>                     
-                                                <input class="form-line form-control" name="user[]" id= "1"/>
-                                                <span class="input-group-addon">
-                                                    <div id="respon1" class="respon"></div>
-                                                </span>
-                                                <span class="input-group-addon">
-                                                </span>
-                                                <button class="btn btn-add" type="button">
-                                                    <i class="material-icons">person_add</i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group form-float">
                                     <label class="form-label">Upload Dokumen</label>
                                     <input name="dokumen" type="file">
                                 </div>
                                 
                                 <div class="alert alert-info">
                                      <i class="material-icons">info</i>
-                                    Spesifikasi File: Filetype=pdf jpg jpeg xls xlsx doc docx mde; Max Size=20 Mb.
+                                    Spesifikasi File: Filetype=pdf jpg jpeg; Max Size=5 Mb.
                                 </div>                                
 
                                 <button class="btn btn-primary waves-effect" type="submit">SIMPAN</button>
@@ -159,8 +137,4 @@
                     </div>
                 </div>
             </div>
-            <!-- #END# Modals utk menampilkan form tambah dokumen -->
-
-<script type="text/javascript">
-    var urlApi = "<?php echo URL_API . "welcome/get_user/";?>";
-</script>                          
+            <!-- #END# Modals utk menampilkan form tambah dokumen -->            
