@@ -44,8 +44,20 @@
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo site_url('admin/dokumen');?>">
+                        <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">library_books</i>
-                            <span>Dokumen Fakultas</span>
+                            <span>Repositori Fakultas</span>
                         </a>
-                    </li>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="<?php echo site_url('admin/dokumen');?>">Dokumen Fakultas</a>
+                            </li>
+                            <li>
+                                <a href="<?php echo site_url('admin/dokumen/dosen');?>">Dokumen Dosen</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Dokumen Pegawai</a>
+                            </li>
+                            
+                        </ul>
+                    </li> 

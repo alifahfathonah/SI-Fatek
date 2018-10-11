@@ -40,7 +40,7 @@
                     <li>
                         <a href="<?php echo site_url('admin/dokumen');?>">
                             <i class="material-icons">library_books</i>
-                            <span>Dokumen Prodi</span>
+                            <span>Repositori Prodi</span>
                         </a>
                     </li>
                     <li class="header">AKADEMIK</li>

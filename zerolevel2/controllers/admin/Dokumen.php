@@ -6,7 +6,7 @@ class Dokumen extends CI_Controller {
 	public function __construct() {
 
 		parent::__construct();
-		$this->load->model(array('Tabel_dokumen','Tabel_docgroup'));
+		$this->load->model(array('Tabel_dokumen','Tabel_docgroup','Tabel_dosen'));
 
 		if (!isset($this->session->userdata['logged_in_portal']['admin'])) {
 			redirect(site_url('login'));
@@ -45,6 +45,40 @@ class Dokumen extends CI_Controller {
 		$this->load->view(THEME_DOSEN,$data);
 
 	}
+
+	public function dosen($nip=FALSE) {
+
+		$data['menu_page']	= "menu/".$this->unit;
+		$unit = $this->unit . $this->kodeUnit;
+
+		if ($nip === FALSE) {
+
+			$data['pageTitle'] 	= "Dokumen Dosen";
+			$data['body_page'] 	= "body/dokumen/dosen";
+			
+			$data['dosen'] 		= $this->Tabel_dosen->get();
+			foreach ($data['dosen'] as $key => $value) {
+				$data['dosen'][$key]['jurusan'] = ucwords(strtolower($value['jurusan']));
+				$data['dosen'][$key]['prodi'] = ucwords(strtolower($value['prodi']));
+			}
+
+		} else {
+
+			$namaDosen = $this->Tabel_dosen->detail(array('nip' => $nip))['nama'];
+
+			$data['pageTitle'] 	= "Dokumen ". $namaDosen;
+			$data['body_page'] 	= "body/dokumen/list";
+
+			$data['dokumen'] 	= $this->Tabel_dokumen->user_get(array('ft_dokumen_user.userId'=> $nip),'dokumenTahun DESC, dokumenDocgroupId ASC');
+			foreach ($data['dokumen'] as &$val) {
+				$val['dokumenFile'] = URL_DOKUMEN.$val['dokumenDocgroupId'].'/'.$val['dokumenFile'];
+			}
+
+		}
+		
+		$this->load->view(THEME_DOSEN,$data);
+
+	}	
 
 	public function tambah() {
 

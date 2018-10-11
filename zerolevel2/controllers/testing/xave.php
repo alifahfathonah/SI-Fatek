@@ -140,6 +140,7 @@ class Xave extends CI_Controller {
 		echo $this->encrypt->decode($plaintext);
 	}
 
+
 	public function pindahfile() {
 
 		
@@ -150,6 +151,24 @@ class Xave extends CI_Controller {
 		foreach ($dokumen as $key => $value) {
 			//echo $value['dokumenFile']."</br>";
 			rename(DIR_DOKUMEN.$value['dokumenFile'], DIR_DOKUMEN.$value['dokumenDocgroupId'].'/'.$value['dokumenFile']);
+		}
+	}
+
+	public function updatetabeldok() {
+
+		
+		$this->load->model(array('Tabel_dokumen'));
+		$dokumen = $this->Tabel_dokumen->user_get();
+		echo var_dump($dokumen);die;
+
+		foreach ($dokumen as $key => $value) {
+			//$result = count($this->Tabel_dokumen->user_get(array('ft_dokumen_user.dokumenId' => $value['dokumenId'])));
+			//echo $result."<br/>";
+			//if ($result > 1) echo $value['dokumenId'];
+			//if ($result == 1) $this->Tabel_dokumen->update(array('dokumenId' => ));
+			$owner = $this->Tabel_dokumen->get(array('ft_dokumen_user.dokumenId' => $value['dokumenId']));
+			echo var_dump($owner)."<br/>";
+			//$this->Tabel_dokumen->update(array('dokumenId' => $value['dokumenId'], 'ownerId' => $this->Tabel_dokumen->user_get(array('ft_dokumen_user.dokumenId' => $value['dokumenId']))['ft_dokumen_user.userId']));
 		}
 	}		
 

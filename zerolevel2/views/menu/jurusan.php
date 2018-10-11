@@ -40,7 +40,7 @@
                     <li>
                         <a href="<?php echo site_url('admin/dokumen');?>">
                             <i class="material-icons">library_books</i>
-                            <span>Dokumen Jurusan</span>
+                            <span>Repositori Jurusan</span>
                         </a>
                     </li>
                     <li class="header">AKADEMIK</li>
