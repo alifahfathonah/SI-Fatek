@@ -8,15 +8,14 @@
  *
  */
 
- //Add li class 'active' for selected left menu
-$(function () {
+//Add li class 'active' for selected left menu
+ $(function () {
     var url = window.location;
-    var element = $('ul.list a').filter(function() {
+    //$('ul.list a[href="'+ url +'"]').addClass('toggled').parents('li').addClass('active').closest('ul').show();
+
+    $('ul.list a').filter(function() {
         return this.href == url;
-    }).addClass('active').parent();
-    if (element.is('li')) {
-        element.addClass('active');
-    }
+    }).addClass('toggled').parents('li').addClass('active').closest('ul').show();
 });
 
 $(function () {
