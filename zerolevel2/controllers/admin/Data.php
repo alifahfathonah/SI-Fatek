@@ -14,6 +14,7 @@ class Data extends CI_Controller {
 		$this->unit		= $this->session->userdata['logged_in_portal']['admin']['grup'];
 		$this->namaUnit	= $this->session->userdata['logged_in_portal']['admin']['namaUnit'];
 		$this->kodeUnit	= $this->session->userdata['logged_in_portal']['admin']['kodeUnit'];
+		$this->menu		= $this->session->userdata['logged_in_portal']['admin']['grup'];
 
 		if ($this->unit == 'fakultas') {
 			$this->namaUnit	= "Fakultas Teknik";
@@ -30,7 +31,7 @@ class Data extends CI_Controller {
 	public function mahasiswa($filter=FALSE, $by=FALSE) {
 
 		$data['pageTitle'] 	= "Data Mahasiswa";
-		$data['menu_page']	= "menu/".$this->unit;
+		$data['menu_page']	= "menu/".$this->menu;
 		$data['body_page'] 	= "body/mahasiswa/list";		
 
 		if ($filter == "all") {
@@ -55,7 +56,7 @@ class Data extends CI_Controller {
 	public function alumni() {
 
 		$data['pageTitle'] 	= "Data Alumni";
-		$data['menu_page']	= "menu/".$this->unit;
+		$data['menu_page']	= "menu/".$this->menu;
 		$data['subtitle']  	= $this->namaUnit;
 		$data['body_page'] 	= "body/alumni/list";
 
@@ -67,7 +68,7 @@ class Data extends CI_Controller {
 	public function dosen() {
 
 		$data['pageTitle'] 	= "Data Dosen";
-		$data['menu_page']	= "menu/".$this->unit;
+		$data['menu_page']	= "menu/".$this->menu;
 		$data['subtitle']  	= $this->namaUnit;
 
 		if ($this->unit == "fakultas") {
@@ -84,7 +85,7 @@ class Data extends CI_Controller {
 	public function pegawai() {
 
 		$data['pageTitle'] 	= "Data Pegawai";
-		$data['menu_page']	= "menu/".$this->unit;
+		$data['menu_page']	= "menu/".$this->menu;
 		$data['body_page'] 	= "body/pegawai/list";
 
 		$data['pegawai'] = $this->apicall->get(URL_API.'pegawai/non-academic?kode=13');
