@@ -20,7 +20,7 @@ class User extends CI_Controller {
 		$data['body_page'] 	= "body/admin/user";
 		$data['menu_page'] 	= "menu/admin";
 		
-		$data['users'] 		= $this->Tabel_user->get(array('userId !=' => '1'), 'grup ASC, namaUnit ASC');
+		$data['users'] 		= $this->Tabel_user->get(array('userId !=' => '1'), 'grup ASC, 	namaUnit ASC');
 
 		$this->load->view(THEME_ADMIN,$data);
 	}
@@ -81,7 +81,6 @@ class User extends CI_Controller {
 			$database['namaUnit'] 	= $this->input->post('namaUnit');
 			$database['kodeUnit'] 	= $this->input->post('kodeUnit');
 			if ($this->input->post('password')) $database['password'] = md5($this->input->post('password'));
-			$database['userUpdate']	= $this->session->userdata['logged_in_portal']['nama'];
 
 			if ($this->Tabel_user->update($database)) {
 				
