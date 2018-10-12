@@ -24,8 +24,6 @@ class Control extends CI_Controller {
 
 	public function clear_cache() {
 
-		$this->output->delete_cache('fakultas/dashboard');
-
 		$this->session->set_flashdata('type', 'success');
 		$this->session->set_flashdata('message', 'Cache files deleted!');
 

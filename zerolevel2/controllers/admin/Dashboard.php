@@ -41,7 +41,6 @@ class Dashboard extends CI_Controller {
 		$data['menu_page']	= "menu/".$this->session->userdata['logged_in_portal']['admin']['grup'];
 		$data['body_page'] 	= "body/dashboard/fakultas";
 
-		$this->output->cache(30);
 		$this->load->view(THEME_ADMIN,$data);
 		
 	}
