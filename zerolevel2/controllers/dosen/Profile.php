@@ -23,8 +23,11 @@ class Profile extends CI_Controller {
 		$dosenNip 				= $this->session->userdata['logged_in_portal']['dosen']['nip'];
 		$data['dosen'] 			= $this->Tabel_dosen->detail(array('nip'=> $dosenNip));
 		$data['dosen']['foto'] 	= (!empty($data['dosen']['foto'])) ? URL_FOTO_DOSEN.$data['dosen']['foto'] : URL_FOTO_DOSEN."default.jpg";
-		$data['dosenSdmAPI'] 		= $this->apicall->get(URL_API.'pegawai?nip='.$dosenNip);
-		$data['dosenSiaAPI'] 		= $this->apicall->get(URL_API.'dosen?nip='.$dosenNip);
+		$data['dosenSdmAPI'] 	= $this->apicall->get(URL_API.'pegawai?nip='.$dosenNip);
+		$data['dosenSiaAPI'] 	= $this->apicall->get(URL_API.'dosen?nip='.$dosenNip);
+
+		$data['dosen']['jurusan'] = ucwords(strtolower($data['dosen']['jurusan']));
+		$data['dosen']['prodi'] 	= ucwords(strtolower($data['dosen']['prodi']));
 
 		if (!empty($data['dosen']['sintaId'])) $data['dosen']['sintaUrl'] = URL_SINTA.$data['dosen']['sintaId']."&view=overview";
 		if (!empty($data['dosen']['googleId'])) $data['dosen']['googleUrl'] = URL_GOOGLE.$data['dosen']['googleId'];
@@ -36,8 +39,6 @@ class Profile extends CI_Controller {
 	public function update() {
 		
 		$this->form_validation->set_rules('nama', 'Nama', 'trim|required');
-		$this->form_validation->set_rules('nip', 'NIP', 'numeric|required');
-		$this->form_validation->set_rules('nidn', 'NIDN', 'numeric');
 		$this->form_validation->set_rules('email', 'Email', 'valid_email');
 		$this->form_validation->set_rules('hp', 'Nomor hp', 'numeric');
 
@@ -45,8 +46,6 @@ class Profile extends CI_Controller {
 
 			$database['dosenId'] 	= $this->input->post('dosenId');
 			$database['nama'] 		= $this->input->post('nama');
-			$database['nip'] 		= $this->input->post('nip');
-			$database['nidn'] 		= $this->input->post('nidn');
 			$database['jabatan'] 	= $this->input->post('jabatan');
 			$database['alamat'] 	= $this->input->post('alamat');
 			$database['email'] 		= $this->input->post('email');
