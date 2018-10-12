@@ -83,3 +83,8 @@
                             <span>Kelola Laboratorium / Studio</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="<?php echo site_url('admin/control');?>">
+                            <span>Kelola Aplikasi</span>
+                        </a>
+                    </li>

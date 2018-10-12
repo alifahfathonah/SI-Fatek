@@ -105,8 +105,10 @@ class Login extends CI_Controller {
 					$username 	= $this->input->post('identity',TRUE);
 					$pwd 		= $this->input->post('password',TRUE);
 
-					//$result	 	= $this->apicall->get(URL_API.'login/dosen?user='.$username.'&pass='.$pwd)->status;
-					$result 	= $pwd == $username;
+					//echo $pwd;die;
+
+					$result	 	= $this->apicall->get(URL_API.'login/dosen?user='.$username.'&pass='.urlencode($pwd))->status;
+					//$result 	= $pwd == $username;
 
 					if ($result) {
 
@@ -177,7 +179,7 @@ class Login extends CI_Controller {
 				if ($this->form_validation->run() == true) {
 					$username 	= $this->input->post('identity',TRUE);
 					$pwd 		= $this->input->post('password',TRUE);
-					//$result		=  $this->apicall->get(URL_API.'login/mahasiswa?user='.$username.'&pass='.$pwd)->status;
+					//$result		=  $this->apicall->get(URL_API.'login/mahasiswa?user='.$username.'&pass='.urlencode($pwd))->status;
 					$result 	= $pwd == $username;
 
 					if ($result) {
