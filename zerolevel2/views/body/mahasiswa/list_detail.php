@@ -47,6 +47,8 @@
                                             <th>SKS Lulus</th>
                                             <th>IPK</th>
                                             <th>Kontrak TA</th>
+                                            <th>Jalur Masuk</th>
+                                            <th>Beasiswa</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -62,7 +64,9 @@
                                             <td><?php echo $list->akademik->sksTotal;?></td>
                                             <td><?php echo $list->akademik->sksLulus;?></td>
                                             <td><?php echo $list->akademik->ipk;?></td>
-                                            <td><?php echo $list->akademik->statusTa;?></td>                                          
+                                            <td><?php echo $list->akademik->statusTa;?></td>
+                                            <td><?php echo $list->jalurMasuk;?></td>
+                                            <td><?php echo $list->beasiswa;?></td>                                        
 
                                         </tr>
                                         <?php $i++;}?>

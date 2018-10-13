@@ -32,17 +32,12 @@ class Data extends CI_Controller {
 
 		$data['pageTitle'] 	= "Data Mahasiswa";
 		$data['menu_page']	= "menu/".$this->menu;
-		$data['body_page'] 	= "body/mahasiswa/list";		
+		$data['body_page'] 	= "body/mahasiswa/list_detail";		
 
-		if ($filter == "all") {
-			$data['mahasiswa'] = $this->apicall->get(URL_API.'mahasiswa/'.$this->unit.'?kode='.$this->kodeUnit);
-			$data['subtitle']  = $this->namaUnit. " | All";
-				
-		} else if ($filter == "angkatan") {
-			$angkatan = ($by === FALSE) ? date('Y') : $by;
+		if ($filter == "angkatan") {
+			$angkatan = ($by === FALSE) ? (date('Y')-4) : $by;
 			$data['mahasiswa'] = $this->apicall->get(URL_API.'mahasiswa/'.$this->unit.'?kode='.$this->kodeUnit.'&filter=angkatan&by='.$angkatan);
 			$data['subtitle']  = $this->namaUnit. " | Angkatan ". $angkatan;
-			$data['body_page'] 	= "body/mahasiswa/list_detail";
 			$data['angkatan'] = $angkatan;
 
 		} else {
@@ -51,7 +46,7 @@ class Data extends CI_Controller {
 		}
 
 		$this->load->view(THEME_ADMIN,$data);
-	}
+	}	
 
 	public function alumni() {
 
