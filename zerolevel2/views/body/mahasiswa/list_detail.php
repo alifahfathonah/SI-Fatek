@@ -22,7 +22,7 @@
                                         <div class="form-group">
                                             <div class="form-line">
                                                 <select class="form-control show-tick" onchange="if (this.value) window.location.href=this.value">>
-                                                    <?php $i = date('Y'); $max = $i-8;
+                                                    <?php $i = date('Y'); $max = $i-9;
                                                     for ($i;$i>=$max;$i--) {?>
                                                         <option value="<?php echo $i;?>" <?php if ($i == $angkatan) echo "selected";?>><?php echo $i;?></option>
                                                     <?php }?>
