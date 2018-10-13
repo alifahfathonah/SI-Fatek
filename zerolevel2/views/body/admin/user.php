@@ -21,7 +21,7 @@
                             </div>
 
                             <div class="table-responsive">
-                                <table id="tabelData" class="table table-bordered table-striped table-hover dataTable basicTabel">
+                                <table id="tabelData" class="table table-bordered table-striped table-hover dataTable">
                                     <thead>
                                         <tr>
                                             <th>Nama</th>
