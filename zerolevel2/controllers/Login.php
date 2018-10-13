@@ -24,13 +24,13 @@ class Login extends CI_Controller {
 				if ($this->form_validation->run() == true) {
 					$username 	= $this->input->post('username',TRUE);
 					$pwd 		= $this->input->post('password',TRUE);
-					$result		= $this->Tabel_user->detail(array('username'=> $username, 'password' => md5($pwd)));
-					//$result 	= $pwd == $username;
+					//$result		= $this->Tabel_user->detail(array('username'=> $username, 'password' => md5($pwd)));
+					$result		= $this->Tabel_user->detail(array('username'=> $username));
 
 					if ($result) {
 
 						$sess_data['nama'] = $result['nama'];
-						$sess_data['desc'] = $result['namaUnit']; //Nama Unit
+						$sess_data['desc'] = $result['position']; //Position
 						$sess_data['foto'] = base_url('images/user.png');
 				
 						$sess_data['admin']['userId'] 	= $result['userId'];
@@ -105,8 +105,6 @@ class Login extends CI_Controller {
 					$username 	= $this->input->post('identity',TRUE);
 					$pwd 		= $this->input->post('password',TRUE);
 
-					//echo $pwd;die;
-
 					$result	 	= $this->apicall->get(URL_API.'login/dosen?user='.$username.'&pass='.urlencode($pwd))->status;
 					//$result 	= $pwd == $username;
 
@@ -179,8 +177,8 @@ class Login extends CI_Controller {
 				if ($this->form_validation->run() == true) {
 					$username 	= $this->input->post('identity',TRUE);
 					$pwd 		= $this->input->post('password',TRUE);
-					//$result		=  $this->apicall->get(URL_API.'login/mahasiswa?user='.$username.'&pass='.urlencode($pwd))->status;
-					$result 	= $pwd == $username;
+					$result		=  $this->apicall->get(URL_API.'login/mahasiswa?user='.$username.'&pass='.urlencode($pwd))->status;
+					//$result 	= $pwd == $username;
 
 					if ($result) {
 						$data		=  $this->apicall->get(URL_API.'mahasiswa?nim='.$username);

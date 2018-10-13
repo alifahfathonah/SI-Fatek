@@ -28,6 +28,7 @@
                                             <th>Username</th>
                                             <th>Grup</th>
                                             <th>Nama Unit</th>
+                                            <th>Position</th>
                                             <th>Kode Unit</th>
                                             <th>Last Login</th>
                                             <th></th>
@@ -40,6 +41,7 @@
                                             <td><?php echo $list['username'];?></td>
                                             <td><?php echo $list['grup'];?></td>
                                             <td><?php echo $list['namaUnit'];?></td>
+                                            <td><?php echo $list['position'];?></td>
                                             <td><?php echo $list['kodeUnit'];?></td>
                                             <td><?php echo $list['lastLogin'];?></td>
                                             <td style='white-space: nowrap'>
@@ -96,6 +98,12 @@
                                     <label class="form-label">Nama Unit</label>
                                     <div class="form-line">
                                         <input type="text" name="namaUnit" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="form-group form-float">
+                                    <label class="form-label">Posisi</label>
+                                    <div class="form-line">
+                                        <input type="text" name="position" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="form-group form-float">

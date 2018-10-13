@@ -210,6 +210,7 @@ $(function () {
                     $('form [name="username"]').val(data.username);
                     $('form [name="grup"]').selectpicker('val',data.grup);
                     $('form [name="namaUnit"]').val(data.namaUnit);
+                    $('form [name="position"]').val(data.position);
                     $('form [name="kodeUnit"]').val(data.kodeUnit);
                 },
                 error: function (jqXHR, textStatus, errorThrown)

@@ -31,6 +31,7 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('username', 'Username', 'trim|required');
 		$this->form_validation->set_rules('grup', 'Grup', 'trim');
 		$this->form_validation->set_rules('namaUnit', 'Nama Unit', 'required');
+		$this->form_validation->set_rules('position', 'Posisi', 'required');
 		$this->form_validation->set_rules('kodeUnit', 'Kode Unit', 'numeric');
 		$this->form_validation->set_rules('password', 'Password', 'required');
 		
@@ -40,6 +41,7 @@ class User extends CI_Controller {
 			$database['username']	= $this->input->post('username');
 			$database['grup'] 		= $this->input->post('grup');
 			$database['namaUnit'] 	= $this->input->post('namaUnit');
+			$database['position'] 	= $this->input->post('position');
 			$database['kodeUnit'] 	= $this->input->post('kodeUnit');
 			$database['password'] 	= md5($this->input->post('password'));
 
@@ -70,6 +72,7 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('username', 'Username', 'trim|required');
 		$this->form_validation->set_rules('grup', 'Grup', 'trim');
 		$this->form_validation->set_rules('namaUnit', 'Nama Unit', 'required');
+		$this->form_validation->set_rules('position', 'Posisi', 'required');
 		$this->form_validation->set_rules('kodeUnit', 'Kode Unit', 'numeric');
 		
 		if ($this->form_validation->run() == TRUE) {
@@ -79,6 +82,7 @@ class User extends CI_Controller {
 			$database['username']	= $this->input->post('username');
 			$database['grup'] 		= $this->input->post('grup');
 			$database['namaUnit'] 	= $this->input->post('namaUnit');
+			$database['position'] 	= $this->input->post('position');
 			$database['kodeUnit'] 	= $this->input->post('kodeUnit');
 			if ($this->input->post('password')) $database['password'] = md5($this->input->post('password'));
 
