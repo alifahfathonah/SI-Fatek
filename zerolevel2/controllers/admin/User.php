@@ -20,7 +20,7 @@ class User extends CI_Controller {
 		$data['body_page'] 	= "body/admin/user";
 		$data['menu_page'] 	= "menu/admin";
 		
-		$data['users'] 		= $this->Tabel_user->get(array('userId !=' => '1'), 'grup ASC, 	namaUnit ASC');
+		$data['users'] 		= $this->Tabel_user->get(array('userId !=' => '1'), 'grup ASC, 	namaUnit ASC, position ASC');
 
 		$this->load->view(THEME_ADMIN,$data);
 	}
