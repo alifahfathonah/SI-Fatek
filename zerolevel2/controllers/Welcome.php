@@ -19,5 +19,11 @@ class Welcome extends CI_Controller {
 		$this->load->view("welcome",$data);
 	
 	}
+
+	public function undercons() {
+
+		$this->load->view("undercons");
+	
+	}
 	
 }

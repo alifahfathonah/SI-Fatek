@@ -4,17 +4,28 @@
                 <h2><?php echo $pageTitle;?></h2>
             </div>
 
+
+
             <?php if($this->session->flashdata('message')) {?>  
             <div class="alert alert-dismissable alert-<?php echo $this->session->flashdata('type');?>">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <?php echo $this->session->flashdata('message');?>
             </div>
-            <?php }?>              
+            <?php }?>          
+
+
             
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="body">
+
+                                        <ul class="fa-ul">
+  <li><i class="fa-li fa fa-check-square"></i>List icons</li>
+  <li><i class="fa-li fa fa-check-square"></i>can be used</li>
+  <li><i class="fa-li fa fa-spinner fa-spin"></i>as bullets</li>
+  <li><i class="fa-li fa fa-square"></i>in lists</li>
+</ul>
 
                             <div class="button-demo">
                                 <button type="button" class="btn btn-primary btn-lg waves-effect" data-toggle="modal" data-target="#modalFormDoc" data-form="formTambah">Tambah</button>
