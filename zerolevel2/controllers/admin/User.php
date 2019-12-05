@@ -125,6 +125,49 @@ class User extends CI_Controller {
 
 	}
 
+	public function profil() {
+
+		$id_user 	= $this->input->post('id');
+
+		$this->form_validation->set_rules('nama', 'Nama User', 'trim|required');
+		$this->form_validation->set_rules('username', 'Username', 'trim|required');
+		$this->form_validation->set_rules('grup', 'Grup', 'trim');
+		$this->form_validation->set_rules('namaUnit', 'Nama Unit', 'required');
+		$this->form_validation->set_rules('position', 'Posisi', 'required');
+		$this->form_validation->set_rules('kodeUnit', 'Kode Unit', 'numeric');
+		
+		if ($this->form_validation->run() == TRUE) {
+
+			$database['userId']		= $this->input->post('id');
+			$database['nama']		= $this->input->post('nama');
+			$database['username']	= $this->input->post('username');
+			$database['grup'] 		= $this->input->post('grup');
+			$database['namaUnit'] 	= $this->input->post('namaUnit');
+			$database['position'] 	= $this->input->post('position');
+			$database['kodeUnit'] 	= $this->input->post('kodeUnit');
+			if ($this->input->post('password')) $database['password'] = md5($this->input->post('password'));
+
+			if ($this->Tabel_user->update($database)) {
+				
+				$this->session->set_flashdata('type', 'success');
+				$this->session->set_flashdata('message', 'Berhasil diupdate!');
+
+			} else {
+			
+				$this->session->set_flashdata('type', 'danger');
+				$this->session->set_flashdata('message', 'Gagal diupdate!');
+			}
+
+		} else {
+
+			$this->session->set_flashdata('type', 'warning');
+			$this->session->set_flashdata('message', validation_errors('Form tidak lengkap! '));
+		}
+
+		redirect(site_url('admin/user'));
+	
+	}		
+
 	public function detail($id) {
 
 		$output = $this->Tabel_user->detail(array('userId'=> $id));

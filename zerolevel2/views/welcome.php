@@ -104,56 +104,6 @@ http://fatek.unsrat.ac.id
 	</div>
 	<!-- /Container -->
 	
-	<!-- Modal -->
-	<div class="modal fade" id="loginMahasiswa" tabindex="-1" role="dialog" aria-labelledby="Login Mahasiswa">
-		<div class="modal-dialog modal-sm" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h3 class="modal-title" id="myModalLabel">
-						<i class="fa fa-unlock-alt fa-fw"></i> Verifikasi Akses
-					</h3>
-				</div>
-				<div class="modal-body">									
-					<div class="row">
-						<div class="col-md-12">
-							<small>Verifikasi status kemahasiswaan anda. Masukkan <strong>NIM dan Password portal akademik universitas</strong></small>
-						</div>
-					</div>
-					<br/>
-					
-					<div class="row">
-						<div class="col-md-12">
-							<div class="form-group">
-								<label for="inputUser" class="sr-only">NIM</label>
-								<input type="text" id="nim" class="form-control" value="" placeholder="NIM" required>
-							</div>	
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-md-12">
-							<div class="form-group">
-								<label for="inputPassword" class="sr-only">Password</label>
-								<input type="password" id="pass" class="form-control" placeholder="Password" required>
-							</div>
-						</div>
-					</div>
-
-					<div id="error-msg"></div>
-				</div>
-					
-				<div class="modal-footer">
-					<button type="submit" id="verified" class="btn btn-lg btn-success">
-						<i class="fa fa-unlock-alt fa-fw"></i> Verifikasi
-					</button>
-				</div>
-				
-
-			</div>
-		</div>
-	</div>		
-	
 	<!-- jQuery -->
     <script src="<?php echo base_url("assets/welcome/js/jquery.min.js");?>"></script>
     <!-- Bootstrap Core JavaScript -->

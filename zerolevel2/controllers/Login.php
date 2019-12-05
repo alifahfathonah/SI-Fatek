@@ -105,8 +105,8 @@ class Login extends CI_Controller {
 					$username 	= $this->input->post('identity',TRUE);
 					$pwd 		= $this->input->post('password',TRUE);
 
-					$result	 	= $this->apicall->get(URL_API.'login/dosen?user='.$username.'&pass='.urlencode($pwd))->status;
-					//$result 	= $pwd == $username;
+					//$result	 	= $this->apicall->get(URL_API.'login/dosen?user='.$username.'&pass='.urlencode($pwd))->status;
+					$result 	= $pwd == $username;
 
 					if ($result) {
 

@@ -20,13 +20,6 @@
                     <div class="card">
                         <div class="body">
 
-                                        <ul class="fa-ul">
-  <li><i class="fa-li fa fa-check-square"></i>List icons</li>
-  <li><i class="fa-li fa fa-check-square"></i>can be used</li>
-  <li><i class="fa-li fa fa-spinner fa-spin"></i>as bullets</li>
-  <li><i class="fa-li fa fa-square"></i>in lists</li>
-</ul>
-
                             <div class="button-demo">
                                 <button type="button" class="btn btn-primary btn-lg waves-effect" data-toggle="modal" data-target="#modalFormDoc" data-form="formTambah">Tambah</button>
                             </div>
@@ -58,6 +51,7 @@
                                             <td><?php echo $list['dokumenTahun'];?></td>
                                             <td><?php echo $list['docgroupJenisDoc'];?></td>
                                             <td style='white-space: nowrap'>
+                                                <button type="button" class="btn btn-xs btn-warning waves-effect" data-toggle="modal" data-target="#modalFormDoc" data-form="formEdit" data-id="<?php echo $list['dokumenId'];?>">Edits</button>
                                                 <button class="btn btn-xs btn-danger waves-effect buttonHapus" data-id="<?php echo $list['dokumenId'];?>">Delete</button>
                                             </td>                                            
                                         </tr>
@@ -153,12 +147,14 @@
 
                                 <div class="form-group form-float">
                                     <label class="form-label">Upload Dokumen</label>
-                                    <input name="dokumen" type="file">
+                                    <span class="infoDok"></span>
+                                    <input name="dokumen" type="file"><span class="namaFile"></span>
+
                                 </div>
                                 
                                 <div class="alert alert-info">
                                      <i class="material-icons">info</i>
-                                    Spesifikasi File: Filetype=pdf jpg jpeg xls xlsx doc docx mde; Max Size=20 Mb.
+                                    Spesifikasi File: Filetype=pdf jpg jpeg xls xlsx doc docx mde; Max Size=20 Mb.<br/>
                                 </div>                                
 
                                 <button class="btn btn-primary waves-effect" type="submit">SIMPAN</button>
