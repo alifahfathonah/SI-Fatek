@@ -100,9 +100,26 @@
                         </div>
                         <div class="body">
                             <dl class="dl-horizontal">
-                                Not available                               
+                                <dt>NIP</dt>
+                                <dd><?=$dosenSiaAPI->nip?>&nbsp;</dd>                                  
+                                <dt>NIDN</dt>
+                                <dd><?=$dosenSiaAPI->nidn?>&nbsp;</dd>
+                                <dt>Fakultas</dt>
+                                <dd><?=$dosenSiaAPI->fakultas?>&nbsp;</dd>
+                                <dt>Jurusan</dt>
+                                <dd><?=$dosenSiaAPI->jurusan?>&nbsp;</dd>                              
+                                <dt>Prodi</dt>
+                                <dd><?=$dosenSiaAPI->prodi?>&nbsp;</dd>
+                                <dt>Jenis Pegawai</dt>
+                                <dd><?=$dosenSiaAPI->jenisPegawai?>&nbsp;</dd>
+                                <dt>Status Ikatan Kerja</dt>
+                                <dd><?=$dosenSiaAPI->statusIkatanKerja?>&nbsp;</dd>                              
+                                <dt>Status Aktifitas</dt>
+                                <dd><?=$dosenSiaAPI->statusAktifitas?>&nbsp;</dd>
+                                <dt>Status Pegawai</dt>
+                                <dd><?=$dosenSiaAPI->statusPegawai?>&nbsp;</dd>                                
                             </dl>
-                            
+                            <small>Last Update: <?=$dosenSiaAPI->lastUpdate?></small>
                         </div>
                     </div>
 
@@ -114,9 +131,55 @@
                         </div>
                         <div class="body">
                             <dl class="dl-horizontal">
-                                Not available
+                                <dt>NIP</dt>
+                                <dd><?=$dosenSdmAPI->nip?>&nbsp;</dd>                                  
+                                <dt>Kode Lain</dt>
+                                <dd><?=$dosenSdmAPI->kodeLain?>&nbsp;</dd>
+                                <dt>Alamat Rumah</dt>
+                                <dd><?=$dosenSdmAPI->alamat?>&nbsp;</dd>
+                                <dt>Tempat Tanggal Lahir</dt>
+                                <dd><?=$dosenSdmAPI->tempatLahir." ".$dosenSdmAPI->tanggalLahir?>&nbsp;</dd>                                  
+                                <dt>Jenis Kelamin</dt>
+                                <dd><?=$dosenSdmAPI->jenisKelamin?>&nbsp;</dd>
+                                <dt>Status Pegawai</dt>
+                                <dd><?=$dosenSdmAPI->statusPegawai?>&nbsp;</dd>
+                                <dt>No Karpeg</dt>
+                                <dd><?=$dosenSdmAPI->noKarpeg?>&nbsp;</dd>                                
+                                <dt>Tahun Serdos</dt>
+                                <dd><?=$dosenSdmAPI->tahunSerdos?>&nbsp;</dd>
+                                <dt>Jabatan Fungsional</dt>
+                                <dd><?=$dosenSdmAPI->jabatanFungsional?>&nbsp;</dd>                                  
+                                <dt>Pangkat/Golongan</dt>
+                                <dd><?=$dosenSdmAPI->pangkatGolongan?>&nbsp;</dd>                                  
+                                <dt>Agama</dt>
+                                <dd><?=$dosenSdmAPI->agama?>&nbsp;</dd>
+                                <dt>Status Nikah</dt>
+                                <dd><?=$dosenSdmAPI->statusNikah?>&nbsp;</dd>                                  
+                                <dt>No Hp</dt>
+                                <dd><?=$dosenSdmAPI->noHp?>&nbsp;</dd>
+                                <dt>Email</dt>
+                                <dd><?=$dosenSdmAPI->email?>&nbsp;</dd>
                             </dl>
-                            
+                            <h5>Riwayat Pendidikan</h5>
+                            <table id="tabel-publikasi" class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Tahun</th>
+                                        <th>Bidang Ilmu</th>
+                                        <th>Perguruan Tinggi</th>
+                                    </tr>
+                                </thead>
+                                <tbody> 
+                                    <?php foreach($dosenSdmAPI->edu as $list) { ?>
+                                    <tr>
+                                        <td><?=$list->tahunLulus?></td>
+                                        <td><?=$list->jenjang." ".$list->bidangIlmu?></td>
+                                        <td><?=$list->pt." ".$list->lokasi?></td>
+                                    </tr> 
+                                    <?php }?>                           
+                                </tbody>
+                            </table>
+                            <small>Last Update: <?=$dosenSdmAPI->lastUpdate?></small>
                         </div>
                     </div>
 

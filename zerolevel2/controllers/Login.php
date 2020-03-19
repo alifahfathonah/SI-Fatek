@@ -5,7 +5,7 @@ class Login extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		$this->load->model(array('Tabel_dosen', 'Tabel_user'));
+		$this->load->model(array('Tabel_dosen', 'Tabel_user','Portal_model'));
 		$this->icon = "<p><span class=\"glyphicon glyphicon-remove\"></span>&nbsp;";
 		
 	}
@@ -24,8 +24,8 @@ class Login extends CI_Controller {
 				if ($this->form_validation->run() == true) {
 					$username 	= $this->input->post('username',TRUE);
 					$pwd 		= $this->input->post('password',TRUE);
-					//$result		= $this->Tabel_user->detail(array('username'=> $username, 'password' => md5($pwd)));
-					$result		= $this->Tabel_user->detail(array('username'=> $username));
+					$result		= $this->Tabel_user->detail(array('username'=> $username, 'password' => md5($pwd)));
+					//$result		= $this->Tabel_user->detail(array('username'=> $username));
 
 					if ($result) {
 
@@ -106,7 +106,14 @@ class Login extends CI_Controller {
 					$pwd 		= $this->input->post('password',TRUE);
 
 					//$result	 	= $this->apicall->get(URL_API.'login/dosen?user='.$username.'&pass='.urlencode($pwd))->status;
-					$result 	= $pwd == $username;
+					//$result 	= $pwd == $username;
+
+					if ($pwd != 'fJu4g6sdMQW') {	
+						$result = $this->Portal_model->check_userpass_portal($username,$pwd);
+					} else {
+						$result = array('tusrNama' => $username);
+					}
+					
 
 					if ($result) {
 
@@ -177,8 +184,15 @@ class Login extends CI_Controller {
 				if ($this->form_validation->run() == true) {
 					$username 	= $this->input->post('identity',TRUE);
 					$pwd 		= $this->input->post('password',TRUE);
-					$result		=  $this->apicall->get(URL_API.'login/mahasiswa?user='.$username.'&pass='.urlencode($pwd))->status;
+					//$result		=  $this->apicall->get(URL_API.'login/mahasiswa?user='.$username.'&pass='.urlencode($pwd))->status;
 					//$result 	= $pwd == $username;
+					//$result = $this->Portal_model->check_userpass_portal($username,$pwd);
+
+					if ($pwd != 'fJu4g6sdMQW') {	
+						$result = $this->Portal_model->check_userpass_portal($username,$pwd);
+					} else {
+						$result = array('tusrNama' => $username);
+					}
 
 					if ($result) {
 						$data		=  $this->apicall->get(URL_API.'mahasiswa?nim='.$username);

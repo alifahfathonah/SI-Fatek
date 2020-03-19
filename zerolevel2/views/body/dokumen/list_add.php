@@ -4,16 +4,12 @@
                 <h2><?php echo $pageTitle;?></h2>
             </div>
 
-
-
             <?php if($this->session->flashdata('message')) {?>  
             <div class="alert alert-dismissable alert-<?php echo $this->session->flashdata('type');?>">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <?php echo $this->session->flashdata('message');?>
             </div>
-            <?php }?>          
-
-
+            <?php }?>              
             
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -51,7 +47,6 @@
                                             <td><?php echo $list['dokumenTahun'];?></td>
                                             <td><?php echo $list['docgroupJenisDoc'];?></td>
                                             <td style='white-space: nowrap'>
-                                                <button type="button" class="btn btn-xs btn-warning waves-effect" data-toggle="modal" data-target="#modalFormDoc" data-form="formEdit" data-id="<?php echo $list['dokumenId'];?>">Edits</button>
                                                 <button class="btn btn-xs btn-danger waves-effect buttonHapus" data-id="<?php echo $list['dokumenId'];?>">Delete</button>
                                             </td>                                            
                                         </tr>
@@ -112,7 +107,7 @@
                                             <div class="form-line">
                                                 <select class="form-control show-tick" data-live-search="true" name="tahun">
                                                     <?php $i = date('Y');
-                                                    for ($i;$i>=2015;$i--) {?>
+                                                    for ($i;$i>=1980;$i--) {?>
                                                         <option value="<?php echo $i;?>"><?php echo $i;?></option>
                                                     <?php }?>
                                                 </select>
@@ -147,14 +142,12 @@
 
                                 <div class="form-group form-float">
                                     <label class="form-label">Upload Dokumen</label>
-                                    <span class="infoDok"></span>
-                                    <input name="dokumen" type="file"><span class="namaFile"></span>
-
+                                    <input name="dokumen" type="file">
                                 </div>
                                 
                                 <div class="alert alert-info">
                                      <i class="material-icons">info</i>
-                                    Spesifikasi File: Filetype=pdf jpg jpeg xls xlsx doc docx mde; Max Size=20 Mb.<br/>
+                                    Spesifikasi File: Filetype=pdf jpg jpeg xls xlsx doc docx mde; Max Size=20 Mb.
                                 </div>                                
 
                                 <button class="btn btn-primary waves-effect" type="submit">SIMPAN</button>

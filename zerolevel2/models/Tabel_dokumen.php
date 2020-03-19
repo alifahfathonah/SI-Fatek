@@ -40,13 +40,6 @@ class Tabel_dokumen extends CI_Model {
 		return $result;
 	}
 
-	public function get_user_dokumen($condition) {
-		$this->db->where($condition);
-		$query = $this->db->get('ft_dokumen_user');
-		$result = $query->result_array();
-		return $result;
-	}
-
 	public function tambah($data) {
 
 		$this->db->insert('ft_dokumen', $data);

@@ -32,7 +32,6 @@ $(function () {
 
     //Generate graphs
     if (typeof graphs !== 'undefined') {
-        console.log('tes');
         for (var i = 0; i < graphs.length; i++) {
             getMorris(graphs[i].type, graphs[i].element, graphs[i].data, graphs[i].param);
         } 
@@ -368,41 +367,12 @@ $(function () {
         $(this).find('form')[0].reset();
         $('form').validate().resetForm();
         $('form [name="id"]').val('');
-        $('.infoDok').text("");
-        $('.namaFile').text("");
 
         if (form == "formTambah") {
             $(this).find('form').attr('action', window.location.href + '/tambah');
             $(this).find(':submit').addClass('buttonTambah').removeClass('buttonEdit');
             $(this).find('.modal-title').text('Tambah Dokumen');
         }
-
-        else if (form == "formEdit") {
-            $(this).find(':submit').addClass('buttonEdit').removeClass('buttonTambah');
-            $(this).find('form').attr('action', window.location.href + '/edit');
-            $(this).find('.modal-title').text('Edit Dokumen');
-
-            $.ajax({
-                url : window.location.href + '/detail/' + id + '/json',
-                type: "GET",
-                dataType: "JSON",
-                success: function(data)
-                {
-                    $('form [name="id"]').val(data.dokumenId);
-                    $('form [name="nama"]').val(data.dokumenNama);
-                    $('form [name="deskripsi"]').val(data.dokumenDeskripsi);
-                    $('form [name="nomor"]').val(data.dokumenNomor);
-                    $('form [name="jenis"]').selectpicker('val',data.dokumenDocgroupId);
-                    $('form [name="tahun"]').selectpicker('val',data.dokumenTahun);
-                    $('.namaFile').text(data.dokumenFile);
-                    $('.infoDok').text(". Leave it, if you don't want to upload a new file");
-                },
-                error: function (jqXHR, textStatus, errorThrown)
-                {
-                    alert('Error get data from ajax');
-                }
-            });
-        }        
     });          
 
 });

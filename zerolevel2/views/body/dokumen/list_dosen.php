@@ -109,7 +109,7 @@
                                             <div class="form-line">
                                                 <select class="form-control show-tick" data-live-search="true" name="tahun">
                                                     <?php $i = date('Y');
-                                                    for ($i;$i>=2015;$i--) {?>
+                                                    for ($i;$i>=1980;$i--) {?>
                                                         <option value="<?php echo $i;?>"><?php echo $i;?></option>
                                                     <?php }?>
                                                 </select>

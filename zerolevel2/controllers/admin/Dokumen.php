@@ -145,29 +145,6 @@ class Dokumen extends CI_Controller {
 
 	}
 
-	public function edit($dokumenId) {
-
-		$data['menu_page']	= "menu/".$this->unit;
-		$unit = $this->unit . $this->kodeUnit;
-
-		$data['pageTitle'] 	= "Edit Dokumen";
-		$data['body_page'] 	= "body/dokumen/edit";
-
-		if ($nip === FALSE) {
-
-			$data['pageTitle'] 	= "Dokumen Dosen";
-			$data['body_page'] 	= "body/dokumen/dosen";
-			
-			$data['dosen'] 		= $this->Tabel_dosen->get();
-			foreach ($data['dosen'] as $key => $value) {
-				$data['dosen'][$key]['jurusan'] = ucwords(strtolower($value['jurusan']));
-				$data['dosen'][$key]['prodi'] = ucwords(strtolower($value['prodi']));
-			}
-
-		}	
-
-	}	
-
 	public function delete() {
 
 		$id_dokumen = $this->input->post('id');
@@ -192,12 +169,9 @@ class Dokumen extends CI_Controller {
 
 	public function detail($id) {
 
-		$output = $this->Tabel_dokumen->detail(array('dokumenId'=> $id));
-		$userDokumen = array('user' => $this->Tabel_dokumen->get_user_dokumen(array('dokumenId'=> $id)));
-		$output = array_merge($output,$userDokumen);
-		//$output .= "testa";
+		$output = $this->Tabel_docgroup->detail(array('docgroupId'=> $id));
 		echo json_encode($output);
 
-	}		
+	}			
 	
 }
