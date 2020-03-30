@@ -4,12 +4,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Control extends CI_Controller {
 	
 	public function __construct() {
-		
 		parent::__construct();
 
-		if ($this->session->userdata['logged_in_portal']['admin']['grup'] != 'admin') {
-			show_error('Access Denied');
+		//* Check if current-user is admin *//
+		if (!isset($this->session->userdata['logged_in_portal']['admin'])) {
+			if (!isset($this->session->userdata['logged_in_portal'])) {
+				redirect(base_url());
+			} else {
+				show_error('Access denied!');
+			}
 		}
+
+		//* Initialize class variables. current-user identity. To be used throughout this class *//
+		$this->user = array(
+			'nama' 		=> $this->session->userdata['logged_in_portal']['dosen']['nama'],
+			'id'		=> $this->session->userdata['logged_in_portal']['dosen']['userid'],
+		);	
 		
 	}
 

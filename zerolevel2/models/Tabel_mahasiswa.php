@@ -39,7 +39,7 @@ class Tabel_mahasiswa extends CI_Model {
 	}
 	
 	public function update($data) {
-		$this->db->where('idMahasiswa', $data['idMahasiswa']);
+		$this->db->where('nim', $data['nim']);
 		return $this->db->update('ft_mahasiswa', $data);
 	}		
 	

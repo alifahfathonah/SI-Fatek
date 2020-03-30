@@ -4,15 +4,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Docgroup extends CI_Controller {
 	
 	public function __construct() {
-		
 		parent::__construct();
-		$this->load->model(array('Tabel_docgroup'));
-
+		
+		//* Check if current-user is admin *//
 		if (!isset($this->session->userdata['logged_in_portal']['admin'])) {
-			redirect(site_url('login/dosen'));
+			if (!isset($this->session->userdata['logged_in_portal'])) {
+				redirect(base_url());
+			} else {
+				show_error('Access denied!');
+			}
 		}
 
-		$this->admin = $this->session->userdata['logged_in_portal']['admin']['userid'];
+		//* Load model, library, helper, etc *//
+		$this->load->model(array('Tabel_docgroup'));
+
+		//* Initialize class variables. current-user identity. To be used throughout this class *//
+
+		$this->user = array(
+			'nama' 		=> $this->session->userdata['logged_in_portal']['admin']['nama'],
+			'id'		=> $this->session->userdata['logged_in_portal']['admin']['userid'],
+		);
 		
 	}
 
@@ -63,7 +74,7 @@ class Docgroup extends CI_Controller {
 
 			$database['idDocgroup']			= $this->input->post('id');
 			$database['docgroupJenisDoc']	= $this->input->post('nama');
-			$database['userUpdate']			= $this->admin;
+			$database['userUpdate']			= $this->user['nama'];
 
 			if ($this->Tabel_docgroup->update($database)) {
 				

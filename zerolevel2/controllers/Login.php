@@ -205,6 +205,12 @@ class Login extends CI_Controller {
 		redirect(base_url());
 	}
 
+	public function undercons() {
+
+		$this->load->view("undercons");
+	
+	}
+
 	private function login_protection() {
 	//* Procedur for limiting the login attempt. CI Library  *//
 

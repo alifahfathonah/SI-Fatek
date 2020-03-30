@@ -50,7 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'login';
-//$route['default_controller'] = 'welcome/undercons';
+//$route['default_controller'] = 'login/undercons';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = TRUE;
 
@@ -60,13 +60,4 @@ $route['translate_uri_dashes'] = TRUE;
 | -------------------------------------------------------------------------
 */
 
-//Siteview Dosen Routes
-//$route['dosen'] = 'dosen/profile';
-//$route['dosen/logout'] = 'login/logout_dosen';
-
-//Siteview Mahasiswa Routes
-//$route['mahasiswa'] = 'mahasiswa/profile';
-//$route['mahasiswa/logout'] = 'login/logout_mahasiswa';
-
-//Siteview Admin Routes
-//$route['admin/logout'] = 'login/logout';
+$route['logout'] = 'login/logout';

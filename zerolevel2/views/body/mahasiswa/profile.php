@@ -206,7 +206,7 @@
                                     </p>
                                 </div>
                             </div>
-
+                            <small>Last Update: <?php echo $mahasiswa['last_update']; ?></small>
                         </div>
                     </div>
                 </div>

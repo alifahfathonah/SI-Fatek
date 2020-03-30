@@ -8,9 +8,13 @@ class Detail extends CI_Controller {
 		parent::__construct();
 		$this->load->model(array('Tabel_dosen','Tabel_mahasiswa', 'Tabel_proposal'));
 
+		//* Check if current-user is logged user *//
 		if (!isset($this->session->userdata['logged_in_portal'])) {
-			redirect(site_url());
+			redirect(base_url());
 		}
+
+		//* Load model, library, helper, etc *//
+		$this->load->model(array('Tabel_dosen','Tabel_mahasiswa', 'Tabel_proposal'));
 		
 	}
 

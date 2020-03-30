@@ -4,16 +4,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class User extends CI_Controller {
 	
 	public function __construct() {
-		
 		parent::__construct();
-		$this->load->model(array('Tabel_user'));
-
+		
+		//* Check if current-user is admin *//
 		if (!isset($this->session->userdata['logged_in_portal']['admin'])) {
-			redirect(site_url('login/dosen'));
+			if (!isset($this->session->userdata['logged_in_portal'])) {
+				redirect(base_url());
+			} else {
+				show_error('Access denied!');
+			}
 		}
 
-		$this->admin = $this->session->userdata['logged_in_portal']['admin']['userid'];
-		
+		//* Load model, library, helper, etc *//
+		$this->load->model(array('Tabel_user'));
+
+		//* Initialize class variables. current-user identity. To be used throughout this class *//
+
+		$this->user = array(
+			'nama' 		=> $this->session->userdata['logged_in_portal']['admin']['nama'],
+			'id'		=> $this->session->userdata['logged_in_portal']['admin']['userid'],
+		);
 	}
 
 	public function index() {
@@ -21,7 +31,7 @@ class User extends CI_Controller {
 		$data['pageTitle'] 	= "Kelola User";
 		$data['body_page'] 	= "body/admin/user";
 		
-		$data['users'] 		= $this->Tabel_user->get(array('idUser !=' => '1'), 'grup ASC, 	namaUnit ASC, position ASC');
+		$data['users'] 		= $this->Tabel_user->get(array('idUser !=' => '1'), 'grup ASC, 	namaUnit ASC');
 
 		$this->load->view(THEME,$data);
 	}

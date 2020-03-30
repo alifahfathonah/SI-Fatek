@@ -8,7 +8,11 @@ class Dokumen extends CI_Controller {
 
 		//* Check if current-user is mahasiswa *//
 		if (!isset($this->session->userdata['logged_in_portal']['mhs'])) {
-			redirect(site_url('login/mahasiswa'));
+			if (!isset($this->session->userdata['logged_in_portal'])) {
+				redirect(base_url());
+			} else {
+				show_error('Access denied!');
+			}
 		}
 
 		//* Load model, library, helper, etc *//
@@ -16,9 +20,9 @@ class Dokumen extends CI_Controller {
 
 		//* Initialize class variables. current-user identity. To be used throughout this class *//
 		$this->user = array(
-			'nama' 		=> $this->session->userdata['logged_in_portal']['nama'],
-			'id'		=> $this->session->userdata['logged_in_portal']['desc'],
-		);		
+			'nama' 		=> $this->session->userdata['logged_in_portal']['mhs']['nama'],
+			'id'		=> $this->session->userdata['logged_in_portal']['mhs']['userid'],
+		);	
 	}
 	
 	public function index() {
