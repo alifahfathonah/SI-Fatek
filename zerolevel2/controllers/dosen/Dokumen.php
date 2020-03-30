@@ -70,7 +70,7 @@ class Dokumen extends CI_Controller {
 			$database['dokumenNomor'] 		= $this->input->post('nomor');
 			$database['dokumenTahun']		= $this->input->post('tahun');
 			$database['dokumenDocgroupId'] 	= $this->input->post('jenis');
-			$database['ownerId'] 			= $this->user['id'];
+			$database['ownerId'] 			= $this->user['nama'];
 
 			//* Check if dokumen has submit *//
 			if(!empty($_FILES['dokumen']['name'])) {

@@ -98,7 +98,7 @@ class Publikasi extends CI_Controller {
 			$database['di'] 		= $this->input->post('jurnal');
 			$database['tempat'] 	= $this->input->post('tempat');
 			$database['tahun'] 		= $this->input->post('tahun');
-			$database['userUpdate']	= $this->user['id'];
+			$database['userUpdate']	= $this->user['nama'];
 			
 			//* Add var $database to be update in the database*//
 			if ($this->Tabel_publikasi->update($database)) {

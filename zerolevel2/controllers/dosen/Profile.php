@@ -68,7 +68,7 @@ class Profile extends CI_Controller {
 			$database['scopusId'] 	= $this->input->post('scopusId');
 			$database['interest'] 	= $this->input->post('interest');
 			$database['bio'] 		= $this->input->post('bio');
-			$database['userUpdate']	= $this->user['id'];
+			$database['userUpdate']	= $this->user['nama'];
 
 			//* Add var $database to be input in the database*//
 			if ($this->Tabel_dosen->update($database)) {

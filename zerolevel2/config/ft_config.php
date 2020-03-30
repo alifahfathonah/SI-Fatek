@@ -10,21 +10,21 @@
 */
 
 /* ----- Constant and configuration in localhost environment for testing purpose */
-define('URL_DOKUMEN',		"http://localhost/fatek.unsrat.ac.id/ft_data/dokumen/test/");
-define('URL_DOKUMEN_TMP',	"http://localhost/fatek.unsrat.ac.id/ft_data/dokumen/test/tmp/");
+//define('URL_DOKUMEN',		"http://localhost/fatek.unsrat.ac.id/ft_data/dokumen/test/");
+//define('URL_DOKUMEN_TMP',	"http://localhost/fatek.unsrat.ac.id/ft_data/dokumen/test/tmp/");
 //define('URL_FOTO_DOSEN',	"http://localhost/fatek.unsrat.ac.id/ft_data/fotodosen/");
-define('URL_API',			"http://localhost/unsrat-api/");
-define('DIR_DOKUMEN',		"../ft_data/dokumen/test/");
-define('DIR_DOKUMEN_TMP',	"../ft_data/dokumen/test/tmp/");
+//define('URL_API',			"http://localhost/unsrat-api/");
+//define('DIR_DOKUMEN',		"../ft_data/dokumen/test/");
+//define('DIR_DOKUMEN_TMP',	"../ft_data/dokumen/test/tmp/");
 /* ----- End Of Constant and configuration in localhost environment for testing purpose */
 
 /* ----- Constant and configuration in live-server environment */
-//define('URL_DOKUMEN',		"http://fatek.unsrat.ac.id/ft_data/dokumen/");
-//define('URL_DOKUMEN_TMP',	"http://fatek.unsrat.ac.id/ft_data/dokumen/tmp/");
+define('URL_DOKUMEN',		"http://fatek.unsrat.ac.id/ft_data/dokumen/");
+define('URL_DOKUMEN_TMP',	"http://fatek.unsrat.ac.id/ft_data/dokumen/tmp/");
 define('URL_FOTO_DOSEN',	"https://fatek.unsrat.ac.id/ft_data/fotodosen/");
-//define('URL_API',			"https://sitdev.unsrat.ac.id/tikdev/usr_api/");
-//define('DIR_DOKUMEN',		"../ft_data/dokumen/");
-//define('DIR_DOKUMEN_TMP',	"../ft_data/dokumen/tmp/");
+define('URL_API',			"https://sitdev.unsrat.ac.id/tikdev/usr_api/");
+define('DIR_DOKUMEN',		"../ft_data/dokumen/");
+define('DIR_DOKUMEN_TMP',	"../ft_data/dokumen/tmp/");
 /* ----- End Of Constant and configuration in live-server environment */
 
 /* ----- Constant and configuration in all environment */
