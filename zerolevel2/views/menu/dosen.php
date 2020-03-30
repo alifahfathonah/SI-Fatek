@@ -4,18 +4,18 @@
                     <li>
                         <a href="<?php echo site_url('dosen/profile');?>">
                             <i class="material-icons">person</i>
-                            <span>Profile</span>
+                            <span>My Profile</span>
                         </a>
                     </li>
                     <li>
                         <a href="<?php echo site_url('dosen/publikasi');?>">
                             <i class="material-icons">import_contacts</i>
-                            <span>Publikasi</span>
+                            <span>My Publications</span>
                         </a>
                     </li>
                     <li>
                         <a href="<?php echo site_url('dosen/dokumen');?>">
                             <i class="material-icons">library_books</i>
-                            <span>Dokumen</span>
+                            <span>My Documents</span>
                         </a>
                     </li>

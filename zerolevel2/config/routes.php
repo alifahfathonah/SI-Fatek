@@ -49,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'welcome';
+$route['default_controller'] = 'login';
 //$route['default_controller'] = 'welcome/undercons';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = TRUE;
@@ -61,21 +61,12 @@ $route['translate_uri_dashes'] = TRUE;
 */
 
 //Siteview Dosen Routes
-$route['dosen'] = 'dosen/profile';
-$route['dosen/logout'] = 'login/logout_dosen';
+//$route['dosen'] = 'dosen/profile';
+//$route['dosen/logout'] = 'login/logout_dosen';
 
 //Siteview Mahasiswa Routes
-$route['mahasiswa'] = 'mahasiswa/profile';
-$route['mahasiswa/logout'] = 'login/logout_mahasiswa';
+//$route['mahasiswa'] = 'mahasiswa/profile';
+//$route['mahasiswa/logout'] = 'login/logout_mahasiswa';
 
 //Siteview Admin Routes
-$route['admin/logout'] = 'login/logout';
-
-//Siteview Routes
-$route['fakultas/dashboard'] = 'admin/dashboard/fakultas';
-$route['jurusan/dashboard'] = 'admin/dashboard/jurusan';
-$route['prodi/dashboard'] = 'admin/dashboard/prodi';
-
-$route['fakultas/data/(:any)'] = 'admin/data/$1';
-$route['jurusan/data/(:any)'] = 'admin/data/$1';
-$route['prodi/data/(:any)'] = 'admin/data/$1';
+//$route['admin/logout'] = 'login/logout';

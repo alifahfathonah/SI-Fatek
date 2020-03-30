@@ -14,8 +14,10 @@
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
+                        <div class="header">
+                            <h2><?php echo $subtitle;?></h2>
+                        </div>
                         <div class="body">
-
                             <div class="button-demo">
                                 <button type="button" class="btn btn-primary btn-lg waves-effect" data-toggle="modal" data-target="#modalFormPublikasi" data-form="formTambah">Tambah</button>
                             </div>
@@ -37,8 +39,8 @@
                                             <td><?php echo $list['judul'];?></td>
                                             <td><?php echo $list['di']." ".$list['tempat'];?></td>
                                             <td style='white-space: nowrap'>
-                                                <button type="button" class="btn btn-xs btn-warning waves-effect" data-toggle="modal" data-target="#modalFormPublikasi" data-form="formEdit" data-id="<?php echo $list['publikasiId'];?>">Edit</button>
-                                                <button class="btn btn-xs btn-danger waves-effect buttonHapus" data-id="<?php echo $list['publikasiId'];?>">Delete</button>
+                                                <button type="button" class="btn btn-xs btn-warning waves-effect" data-toggle="modal" data-target="#modalFormPublikasi" data-form="formEdit" data-id="<?php echo $list['idPublikasi'];?>">Edit</button>
+                                                <button class="btn btn-xs btn-danger waves-effect buttonHapus" data-id="<?php echo $list['idPublikasi'];?>">Delete</button>
                                             </td>
                                         </tr> 
                                         <?php }?>                           
@@ -61,7 +63,6 @@
 
                         <div class="modal-body">
                             <?php echo form_open(site_url('dosen/publikasi/tambah'));?>
-                                <input type="hidden" name="nip" value="<?php echo $dosen['nip'];?>">
                                 <input type="hidden" name="id">
                                 <div class="form-group form-float">
                                     <label class="form-label">Judul Publikasi</label>

@@ -74,11 +74,9 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default'] = array(
-	'port'	=> '3309',
-	'dsn'	=> '',
-	'hostname' => '103.84.116.110',
-	'username' => 'fatekuser',
-	'password' => 'Y2uG2Dd99Upm2uuA',
+	'hostname' => 'localhost',
+	'username' => 'root',
+	'password' => '',
 	'database' => 'ft_data',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',

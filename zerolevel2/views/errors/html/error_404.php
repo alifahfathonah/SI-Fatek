@@ -27,18 +27,18 @@
         <div class="error-code">404</div>
         <div class="error-message"><?php echo $message;?></div>
         <div class="button-place">
-            <a href="javascript: history.go(-1)" class="btn btn-default btn-lg waves-effect">BACK</a>
+            <a href="javascript: history.go(-1)" class="btn btn-primary btn-lg waves-effect">BACK TO PORTAL</a>
         </div>
     </div>
 
     <!-- Jquery Core Js -->
-   <script src="<?php echo config_item('base_url');?>/assets/adminbsb/plugins/jquery/jquery.min.js"></script>
+    <script src="<?php echo config_item('base_url');?>/assets/adminbsb/plugins/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core Js -->
     <script src="<?php echo config_item('base_url');?>/assets/adminbsb/plugins/bootstrap/js/bootstrap.js"></script>
 
     <!-- Waves Effect Plugin Js -->
-    <script src="<?php echo config_item('base_url');?>/assets/adminbsb/plugins/node-waves/waves.js"z></script>
+    <script src="<?php echo config_item('base_url');?>/assets/adminbsb/plugins/node-waves/waves.js"></script>
 </body>
 
 </html>

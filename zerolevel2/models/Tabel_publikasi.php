@@ -33,13 +33,13 @@ class Tabel_publikasi extends CI_Model {
 	
 	public function delete($id) {
 
-		$this->db->delete('ft_publikasi', array('publikasiId' => $id));
+		$this->db->delete('ft_publikasi', array('idPublikasi' => $id));
 		return $this->db->affected_rows();
 	}
 	
 	public function update($data) {
 		
-		$this->db->where('publikasiId', $data['publikasiId']);
+		$this->db->where('idPublikasi', $data['idPublikasi']);
 		$this->db->update('ft_publikasi', $data);
 		return $this->db->affected_rows();
 	}

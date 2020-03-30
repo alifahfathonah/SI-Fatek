@@ -33,13 +33,13 @@ class Tabel_user extends CI_Model {
 	
 	public function delete($id) {
 
-		$this->db->delete('x_user', array('userId' => $id));
+		$this->db->delete('x_user', array('idUser' => $id));
 		return $this->db->affected_rows();
 	}
 	
 	public function update($data) {
 		
-		$this->db->where('userId', $data['userId']);
+		$this->db->where('idUser', $data['idUser']);
 		$this->db->update('x_user', $data);
 		return $this->db->affected_rows();
 	}	

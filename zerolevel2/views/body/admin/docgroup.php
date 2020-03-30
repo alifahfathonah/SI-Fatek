@@ -33,8 +33,8 @@
                                         <tr>
                                             <td><?php echo $list['docgroupJenisDoc'];?></td>
                                             <td style='white-space: nowrap'>
-                                                <button type="button" class="btn btn-xs btn-warning waves-effect" data-toggle="modal" data-target="#modalFormDocgroup" data-form="formEdit" data-id="<?php echo $list['docgroupId'];?>">Edit</button>
-                                                <button class="btn btn-xs btn-danger waves-effect buttonHapus" data-id="<?php echo $list['docgroupId'];?>">Delete</button>
+                                                <button type="button" class="btn btn-xs btn-warning waves-effect" data-toggle="modal" data-target="#modalFormDocgroup" data-form="formEdit" data-id="<?php echo $list['idDocgroup'];?>">Edit</button>
+                                                <button class="btn btn-xs btn-danger waves-effect buttonHapus" data-id="<?php echo $list['idDocgroup'];?>">Delete</button>
                                             </td>
                                         </tr> 
                                         <?php }?>                           

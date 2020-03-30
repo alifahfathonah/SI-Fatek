@@ -1,34 +1,31 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 
-                    <li class="header">DAFTAR MENU</li>
+                    <li class="header">MENU PRODI</li>
                     <li>
-                        <a href="<?php echo site_url('prodi/dashboard');?>">
-                            <i class="material-icons">dashboard</i>
-                            <span>Dashboard</span>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">account_balance</i>
+                            <span>Akademik</span>
                         </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="#">
+                                    <span>Daftar Ajuan Seminar Proposal</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span>Daftar Ajuan Seminar Hasil</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span>Daftar Ajuan Sidang Sarjana</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span>Daftar Ajuan Yudisium</span>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
-                    <li>
-                        <a href="<?php echo site_url('admin/data/mahasiswa/angkatan/'.(date('Y')-4));?>">
-                            <i class="material-icons">people</i>
-                            <span>Data Mahasiswa</span>
-                        </a>
-                    </li> 
-                    <li>
-                        <a href="<?php echo site_url('prodi/data/alumni');?>">
-                            <i class="material-icons">school</i>
-                            <span>Data Alumni</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo site_url('prodi/data/dosen');?>">
-                            <i class="material-icons">local_library</i>
-                            <span>Data Dosen</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo site_url('admin/dokumen');?>">
-                            <i class="material-icons">library_books</i>
-                            <span>Repositori Prodi</span>
-                        </a>
-                    </li>
-                    <li class="header">AKADEMIK</li>

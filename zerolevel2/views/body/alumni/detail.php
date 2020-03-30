@@ -1,71 +1,250 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 
-			<div class="block-header">
+            <div class="block-header">
                 <h2><?php echo $pageTitle;?></h2>
             </div>
-
+           
             <div class="row clearfix">
-                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header bg-green">
                             <h2>Foto Profil</h2>
                         </div>
                         <div class="body">
-                             <img src="<?php echo $alumni->foto;?>" class="img-responsive img-thumbnail" alt=""/>
+                            <img src="<?php echo $mhsAPI->foto;?>" class="img-responsive img-thumbnail"/>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header bg-green">
                             <h2>
-                                <?php echo $alumni->nama;?> <small>Source: Database Akademik Unsrat</small>
+                                <?php echo $mhsAPI->nama;?>
+                                <small>NIM: <?php echo $mhsAPI->nim;?></small>
                             </h2>
                         </div>
                         <div class="body">
-                            <dl class="dl-horizontal">
-                                
-                                <dt>Nim</dt>
-                                <dd><?php echo $alumni->nim;?></dd>
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                                <li role="presentation" class="active"><a href="#home" data-toggle="tab">DATA UTAMA</a></li>
+                                <li role="presentation"><a href="#address" data-toggle="tab">DATA ALAMAT</a></li>
+                                <li role="presentation"><a href="#family" data-toggle="tab">DATA KELUARGA</a></li>
+                                <li role="presentation"><a href="#other" data-toggle="tab">DATA LAIN</a></li>
+                            </ul>
 
-                                <dt>Judul Skripsi/TA</dt>
-                                <dd><?php echo $alumni->judulTa;?></dd>
-                                
-                                <dt>Angkatan</dt>
-                                <dd><?php echo $alumni->angkatan;?></dd>
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade in active" id="home">
+                                    <dl class="dl-horizontal">
+                                        <dt>Tempat Tanggal Lahir</dt>
+                                        <dd><?php echo $mahasiswa['tempat_lahir']. " ".$mhsAPI->tanggalLahir;?></dd>
 
-                                <dt>Jurusan / Prodi</dt>
-                                <dd><?php echo $alumni->jurusan." / ".$alumni->prodi;?></dd>
+                                        <dt>Jenis Kelamin</dt>
+                                        <dd><?php echo $mhsAPI->jenisKelamin;?></dd>
 
-                                <dt>Tanggal Lulus</dt>
-                                <dd><?php echo $alumni->tanggalLulus;?></dd>
+                                        <dt>Jurusan / Program Studi</dt>
+                                        <dd><?php echo $mhsAPI->jurusan; ?> / <?php echo $mhsAPI->prodi; ?></dd>
+    
+                                        <dt>Angkatan</dt>
+                                        <dd><?php echo $mhsAPI->angkatan; ?></dd>                           
 
-                                <dt>Tanggal Wisuda</dt>
-                                <dd><?php echo $alumni->tanggalWisuda;?></dd>
+                                        <dt>Jalur Masuk</dt>
+                                        <dd><?php echo $mahasiswa['jalur_masuk']; ?></dd>
 
-                                <dt>Tanggal Ijazah</dt>
-                                <dd><?php echo $alumni->tanggalIjazah;?></dd>
+                                        <dt>Beasiswa</dt>
+                                        <dd><?php echo $mahasiswa['beasiswa']; ?></dd>
 
-                                <dt>No Ijazah</dt>
-                                <dd><?php echo $alumni->noIjazah;?></dd>
+                                        <dt>Email</dt>
+                                        <dd><?php echo $mahasiswa['email']; ?></dd>
 
-                                <dt>Gelar / Predikat</dt>
-                                <dd ><?php echo $alumni->gelar." / ".$alumni->predikatKelulusan;?></dd>
+                                        <dt>Nomor Handphone</dt>
+                                        <dd><?php echo $mahasiswa['nohp']; ?></dd>
+                                        
+                                        <dt>Status Pernikahan</dt>
+                                        <dd><?php echo $mahasiswa['status_nikah']; ?></dd>
+                                        
+                                        <dt>Agama</dt>
+                                        <dd><?php echo $mhsAPI->agama; ?></dd>
+                                        
+                                    </dl>
+                                    <label><i class="fa fa-graduation-cap fa-fw"></i> Riwayat Pendidikan</label>
+                                    <ol>
+                                        <li><span class="label label-info">SD</span> <?php echo $mahasiswa['sd']; ?></li>
+                                        <li><span class="label label-info">SMP</span> <?php echo $mahasiswa['smp']; ?></li>
+                                        <li><span class="label label-info">SMA</span> <?php echo $mahasiswa['sma']; ?></li>
+                                    </ol>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="address">
+                                    <p>
+                                        <label>Alamat Rumah (Asal)</label><br/>
+                                        <?php echo $mahasiswa['alamat'];?>
+                                    </p>
+                                    <p>
+                                        <label>Alamat Orang Tua / Wali</label><br/>
+                                        <?php echo $mahasiswa['alamat_ortu'];?>
+                                    </p>
+                                    <p>
+                                        <label>Alamat di Manado</label><br/>
+                                        <?php echo $mahasiswa['alamat_manado'];?>
+                                    </p>
+                                    <p>
+                                        <label>Status Tempat Tinggal di Manado</label><br/>
+                                        <?php echo $mahasiswa['status_rumah']; ?>
+                                    </p>
+                                    <p>
+                                        <label>Jarak dari Kampus</label><br/>
+                                        <?php echo $mahasiswa['jarak']; ?> Km
+                                    </p>
+                                    <p>
+                                        <label>Transportasi yang digunakan</label><br/>
+                                        <?php echo $mahasiswa['transportasi']; ?>
+                                    </p>    
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="family">
+                                    <p>
+                                        <label>Anak Ke-</label><?php echo $mahasiswa['anak_ke'];?> 
+                                        <label>Dari </label> <?php echo $mahasiswa['bersaudara'];?> <label> bersaudara</label>
+                                    </p>
+                                    <div class="row">
+                                        <div class="col-xs-1">
+                                            <span class="label label-info">Ayah</span>
+                                        </div>
+                                        <div class="col-xs-11">
+                                                <label>Nama</label>
+                                                <?php echo $mahasiswa['nama_ayah'];?><br/>
 
-                                <dt>Dosen Pembimbing</dt>
-                                <dd>
-                                    <?php foreach($alumni->pembimbing as $list) { ?>
-                                        <a href="<?php echo site_url('admin/detail/dosen/').$list->nip;?>"><?php echo $list->nama;?></a><br/>
+                                                <label>Pekerjaan</label>
+                                                <?php echo $mahasiswa['pekerjaan_ayah'];?><br/>
+
+                                                <label>Pendidikan Terakhir</label>
+                                                <?php echo $mahasiswa['pendidikan_ayah'];?><br/>
+                                                
+                                                <label>No Telp.</label>
+                                                <?php echo $mahasiswa['telp_ayah'];?><br/>                                  
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-1">
+                                            <span class="label label-info">Ibu</span>
+                                        </div>
+                                        <div class="col-xs-11">
+                                                <label>Nama</label>
+                                                <?php echo $mahasiswa['nama_ibu'];?><br/>
+
+                                                <label>Pekerjaan</label>
+                                                <?php echo $mahasiswa['pekerjaan_ibu'];?><br/>
+
+                                                <label>Pendidikan Terakhir</label>
+                                                <?php echo $mahasiswa['pendidikan_ibu'];?><br/>
+                                                
+                                                <label>No Telp.</label>
+                                                <?php echo $mahasiswa['telp_ibu'];?><br/>                                   
+                                        </div>
+                                    </div>
+                                    <?php if ($mahasiswa['nama_wali']) {?>
+                                    <div class="row">
+                                        <div class="col-xs-1">
+                                            <span class="label label-info">Wali</span>
+                                        </div>
+                                        <div class="col-xs-11">
+                                                <label>Nama</label>
+                                                <?php echo $mahasiswa['nama_wali'];?><br/>
+
+                                                <label>Pekerjaan</label>
+                                                <?php echo $mahasiswa['pekerjaan_wali'];?><br/>
+
+                                                <label>Pendidikan Terakhir</label>
+                                                <?php echo $mahasiswa['pendidikan_wali'];?><br/>
+                                                
+                                                <label>No Telp.</label>
+                                                <?php echo $mahasiswa['telp_wali'];?><br/>                                  
+                                        </div>
+                                    </div>
                                     <?php }?>
-                                </dd>
-                                <dt>Email</dt>
-                                <dd><?php echo $alumni->email;?></dd>
-                                <dt>No Hp</dt>
-                                <dd><?php echo $alumni->noHp;?></dd>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="other">
+                                    <p>
+                                        <label><i class="fa fa-facebook-square"></i> Facebook</label><br/>
+                                        <?php echo $mahasiswa['facebook'];?>
+                                    </p>
+                                    <p>
+                                        <label><i class="fa fa-twitter-square"></i> Twitter</label><br/>
+                                        <?php echo $mahasiswa['twitter'];?>
+                                    </p>
+                                    <p>
+                                        <label>Website Pribadi</label><br/>
+                                        <?php echo $mahasiswa['website']; ?>
+                                    </p>
+                                    <p>
+                                        <label>Hobi</label><br/>
+                                        <?php echo $mahasiswa['hobi']; ?>
+                                    </p>
+                                    <p>
+                                        <label>Cita-cita masa kecil</label><br/>
+                                        <?php echo $mahasiswa['cita_cita']; ?>
+                                    </p>
+                                    <p>
+                                        <label>Organisasi yg pernah diikuti</label><br/>
+                                        <?php echo $mahasiswa['organisasi']; ?>
+                                    </p>
+                                </div>
+                            </div>
 
-                            </dl>                   
                         </div>
                     </div>
                 </div>
-            </div>      
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header bg-green">
+                            <h2>Data Alumni <small>Source: Database Akademik Unsrat</small></h2>
+                        </div>
+                        <div class="body">
+                            <?php if ($alumniAPI) {?>
+                            <p>
+                                <label>Pembimbing Akademik</label><br/>
+                                <?php foreach($alumniAPI->pembimbing as $list) { ?>
+                                    <a href="<?php echo site_url('detail/dosen/').$list->nip;?>"><?php echo $list->nama;?></a>
+                                <?php }?>
+                            </p>
+                            <p>
+                                <label>Judul Skripsi/TA</label><br/>
+                                <?php echo $alumniAPI->judulTa;?>
+                            </p>
+                            <p>
+                                <label>Tanggal Lulus</label><br/>
+                                <?php echo $alumniAPI->alumniAPI;?>
+                            </p>
+                            <p>
+                                <label>Tanggal Wisuda</label><br/>
+                                <?php echo $alumniAPI->tanggalWisuda;?>
+                            </p>
+                            <p>
+                                <label>Tanggal Ijazah</label><br/>
+                                <?php echo $alumniAPI->tanggalIjazah;?>
+                            </p>
+                            <p>
+                                <label>No Ijazah</label><br/>
+                                <?php echo $alumniAPI->noIjazah;?>
+                            </p>
+                            <p>
+                                <label>Gelar / Predikat</label><br/>
+                                <?php echo $alumniAPI->gelar." / ".$alumniAPI->predikatKelulusan;?>
+                            </p>
+                            <p>
+                                <label>Tanggal Ijazah</label><br/>
+                                <?php echo $alumniAPI->tanggalIjazah;?>
+                            </p>
+                            <p>
+                                <label>Tanggal Ijazah</label><br/>
+                                <?php echo $alumniAPI->tanggalIjazah;?>
+                            </p>
+                            <p>
+                                <label>Tanggal Ijazah</label><br/>
+                                <?php echo $alumniAPI->tanggalIjazah;?>
+                            </p>
+                            <?php } else echo "Not available";?>
+                        </div>
+                    </div>
+                </div>
+            </div>

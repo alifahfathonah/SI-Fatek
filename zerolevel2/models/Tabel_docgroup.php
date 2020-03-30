@@ -32,13 +32,13 @@ class Tabel_docgroup extends CI_Model {
 	
 	public function delete($id) {
 
-		$this->db->delete('ref_docgroup', array('docgroupId' => $id));
+		$this->db->delete('ref_docgroup', array('idDocgroup' => $id));
 		return $this->db->affected_rows();
 	}
 	
 	public function update($data) {
 
-		$this->db->where('docgroupId', $data['docgroupId']);
+		$this->db->where('idDocgroup', $data['idDocgroup']);
 		$this->db->update('ref_docgroup', $data);
 		return $this->db->affected_rows();
 	}	

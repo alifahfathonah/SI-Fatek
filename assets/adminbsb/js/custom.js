@@ -1,4 +1,4 @@
-﻿/*!
+/*!
  * Custom Javascript for Bootstrap Admin BSB Material Design 
  * 
  * Crafted by: 
@@ -18,6 +18,15 @@
     }).addClass('toggled').parents('li').addClass('active').closest('ul').show();
 });
 
+//function for color modal
+$(function () {
+    $('.js-modal-buttons').on('click', function () {
+        var color = $(this).data('color');
+        $('.modalColored .modal-content').removeAttr('class').addClass('modal-content modal-col-' + color);
+
+    });
+});
+
 $(function () {
     //Tooltip
     $('[data-toggle="tooltip"]').tooltip({
@@ -29,6 +38,10 @@ $(function () {
 
     //Widgets count
     $('.count-to').countTo();
+
+    $("#checkAll").click(function(){
+        $('input:checkbox').not(this).prop('checked', this.checked);
+    });
 
     //Generate graphs
     if (typeof graphs !== 'undefined') {
@@ -58,7 +71,37 @@ $(function () {
 
     $('.basicTabel').DataTable({
         responsive: true,
-    }); 
+    });
+
+    $('.actionTabel').DataTable({
+        responsive: true,
+        paging: false,
+        "columnDefs": [{
+            'sortable': false, 
+            "targets": 'no-sort',
+        }],
+        "order": [[ 4, "asc" ]]
+    });  
+
+    $('.tblListAllDoc').DataTable({
+        responsive: true,
+        "pageLength":10,
+        "columnDefs": [
+            {
+                "targets": [ 4 ],
+                "visible": false,
+                "searchable": true
+            },
+            {
+                "targets": [ 5 ],
+                "searchable": false
+            }
+        ]
+    });
+
+    if (typeof kodeUnit !== 'undefined') {
+        $('.tblListAllDoc').DataTable().column(4).search(kodeUnit).draw();
+    }
 
     $('.tabelDosen').DataTable({
         dom: 'Bfrtip',
@@ -68,6 +111,82 @@ $(function () {
             'copy', 'csv', 'excel', 'pdf', 'print'
         ]
     });
+});
+
+//function for select angkatan
+$(function () {
+    var table = $('.tblListMhsApi').DataTable({
+       dom: 'Bfrtip',
+        responsive: true,
+        "pageLength":50,
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ],
+    });
+
+    $('#table-filter').on('change', function(){
+       table.columns(3).search(this.value).draw();
+       if (this.value == "") {$('.subtitle').text('Semua Angkatan');}
+       else {$('.subtitle').text('Angkatan '+this.value);}
+    });
+});
+
+
+//function for typeahead and bloodhound
+$(function () {
+    if (typeof prefetch_dsn !== 'undefined') {
+        
+        var dosen = new Bloodhound({
+          datumTokenizer: Bloodhound.tokenizers.obj.whitespace('nama'),
+          queryTokenizer: Bloodhound.tokenizers.whitespace,
+          prefetch: prefetch_dsn,
+
+        });
+
+        dosen.initialize();
+
+        $('#tags-input-dosen').tagsinput({
+            itemValue: 'id',
+            itemText: 'nama',
+            typeaheadjs: {
+                name: 'dosen',
+                displayKey: 'nama',
+                source: dosen.ttAdapter(),
+                templates: {
+                    empty: [
+                    '<div>unable to find</div>'
+                    ].join('\n'),
+                    suggestion: function(e) { return ('<div><strong>' + e.nama + '</strong> - ' + e.id + '</div>')}, 
+                }
+            } 
+        });
+
+        var mhs = new Bloodhound({
+          datumTokenizer: Bloodhound.tokenizers.obj.whitespace('nama'),
+          queryTokenizer: Bloodhound.tokenizers.whitespace,
+          prefetch: prefetch_mhs,
+
+        });
+
+        mhs.initialize();
+
+        $('#tags-input-mhs').tagsinput({
+            itemValue: 'id',
+            itemText: 'nama',
+            typeaheadjs: {
+                name: 'mhs',
+                displayKey: 'nama',
+                source: mhs.ttAdapter(),
+                templates: {
+                    empty: [
+                    '<div>unable to find</div>'
+                    ].join('\n'),
+                    suggestion: function(e) { return ('<div><strong>' + e.nama + '</strong> - ' + e.id + '</div>')}, 
+                }
+            } 
+        });
+
+    }
 });
 
 // Untuk pengaturan validasi form (JQuery Plugin: Jquery Validation)
@@ -115,53 +234,11 @@ $(function () {
                 dataType: "JSON",
                 success: function(data)
                 {
-                    $('form [name="id"]').val(data.publikasiId);
+                    $('form [name="id"]').val(data.idPublikasi);
                     $('form [name="judul"]').val(data.judul);
                     $('form [name="jurnal"]').val(data.di);
                     $('form [name="tempat"]').val(data.tempat);
                     $('form [name="tahun"]').selectpicker('val',data.tahun);
-
-                },
-                error: function (jqXHR, textStatus, errorThrown)
-                {
-                    alert('Error get data from ajax');
-                }
-            });
-        }
-    });
-
-    // Modal form Judul skripsi
-    $('#modalFormJudul').on('show.bs.modal', function (event) {
-
-        var button = $(event.relatedTarget);
-        var id = button.data('id');
-        var form = button.data('form');
-        $(this).find('form')[0].reset();
-        $('form').validate().resetForm();
-        $('form [name="id"]').val('');
-        $('form [name="keyword"]').tagsinput('removeAll');
-        $('form [name="labstudio"]').selectpicker("refresh");
-        
-        if (form == "formTambah") {
-
-            $(this).find('form').attr('action', window.location.href + '/tambah');
-            $(this).find(':submit').addClass('buttonTambah').removeClass('buttonEdit');
-            $(this).find('.modal-title').text('Tambah Usulan Judul');
-        }
-        else if (form == "formEdit") {
-            $(this).find(':submit').addClass('buttonEdit').removeClass('buttonTambah');
-            $(this).find('form').attr('action', window.location.href + '/edit');
-            $(this).find('.modal-title').text('Edit Usulan Judul')
-            $.ajax({
-                url : window.location.href + '/detail/' + id,
-                type: "GET",
-                dataType: "JSON",
-                success: function(data)
-                {
-                    $('form [name="id"]').val(data.judulId);
-                    $('form [name="judul"]').val(data.judulTa);
-                    $('form [name="labstudio"]').selectpicker('val',data.judulKodeLabstudio);
-                    $('form [name="keyword"]').tagsinput('add',data.judulKeyword);
 
                 },
                 error: function (jqXHR, textStatus, errorThrown)
@@ -205,7 +282,7 @@ $(function () {
                 dataType: "JSON",
                 success: function(data)
                 {
-                    $('form [name="id"]').val(data.userId);
+                    $('form [name="id"]').val(data.idUser);
                     $('form [name="nama"]').val(data.nama);
                     $('form [name="username"]').val(data.username);
                     $('form [name="grup"]').selectpicker('val',data.grup);
@@ -250,7 +327,7 @@ $(function () {
                 dataType: "JSON",
                 success: function(data)
                 {
-                    $('form [name="id"]').val(data.docgroupId);
+                    $('form [name="id"]').val(data.idDocgroup);
                     $('form [name="nama"]').val(data.docgroupJenisDoc);
                 },
                 error: function (jqXHR, textStatus, errorThrown)
@@ -290,7 +367,7 @@ $(function () {
                 dataType: "JSON",
                 success: function(data)
                 {
-                    $('form [name="id"]').val(data.labstudioId);
+                    $('form [name="id"]').val(data.idLabstudio);
                     $('form [name="nama"]').val(data.labstudioNama);
                     $('form [name="jurusan"]').selectpicker('val',data.labstudioJurKode);
                 },
@@ -332,7 +409,7 @@ $(function () {
                 dataType: "JSON",
                 success: function(data)
                 {
-                    $('form [name="id"]').val(data.dosenId);
+                    $('form [name="id"]').val(data.idDosen);
                     $('form [name="nama"]').val(data.nama);
                     $('form [name="nip"]').val(data.nip);
                     $('form [name="nidn"]').val(data.nidn);
@@ -356,24 +433,147 @@ $(function () {
                 }
             });
         }
-    }); 
+    });
 
-    // Modal form Dokumen
-    $('#modalFormDoc').on('show.bs.modal', function (event) {
-        
+    // Modal form Dokumen multipleuser
+    $('#modalFormDocMultiUser').on('show.bs.modal', function (event) {
+       //alert('tes');
         var button = $(event.relatedTarget);
         var id = button.data('id');
         var form = button.data('form');
         $(this).find('form')[0].reset();
         $('form').validate().resetForm();
         $('form [name="id"]').val('');
+        $('.doc-baru').text('');
+        $('.doc-empty').text('');
+        $('form [name="dsndoc"]').tagsinput('removeAll');
+        $('form [name="mhsdoc"]').tagsinput('removeAll'); 
 
         if (form == "formTambah") {
             $(this).find('form').attr('action', window.location.href + '/tambah');
             $(this).find(':submit').addClass('buttonTambah').removeClass('buttonEdit');
             $(this).find('.modal-title').text('Tambah Dokumen');
+            $('form [name="dokumen"]').attr("required", true);
+            if (typeof loadMe !== 'undefined') {
+                if (loadMe.tipe == 'peg') $('form [name="dsndoc"]').tagsinput('add', { "id": loadMe.id , "nama": loadMe.nama });
+                if (loadMe.tipe == 'mhs') $('form [name="mhsdoc"]').tagsinput('add', { "id": loadMe.id , "nama": loadMe.nama });
+            }
         }
-    });          
+
+        else if (form == "formEdit") {
+            $(this).find(':submit').addClass('buttonEdit').removeClass('buttonTambah');
+            $(this).find('form').attr('action', window.location.href + '/edit');
+            $(this).find('.modal-title').text('Edit Dokumen');
+            $(this).find('.doc-baru').text('Baru');
+            $('form [name="dokumen"]').attr("required", false);
+            $(this).find('.doc-empty').text('Biarkan kosong, jika tidak ingin mengganti dokumen');
+
+            $.ajax({
+                url : window.location.href + '/detail/' + id,
+                type: "GET",
+                dataType: "JSON",
+                success: function(data)
+                {
+                    $('form [name="id"]').val(data.idDokumen);
+                    $('form [name="nama"]').val(data.dokumenNama);
+                    $('form [name="deskripsi"]').val(data.dokumenDeskripsi);
+                    $('form [name="nomor"]').val(data.dokumenNomor);
+                    $('form [name="jenis"]').selectpicker('val',data.dokumenDocgroupId);
+                    $('form [name="tahun"]').selectpicker('val',data.dokumenTahun);
+
+                    $.each(data.user, function(k,v) {
+                        $.each(v.detail, function(key, value) {
+                            if (value.tipe == 'p') {
+                                $('form [name="dsndoc"]').tagsinput('add', { "id": value.id , "nama": value.nama });
+                            } else {
+                                $('form [name="mhsdoc"]').tagsinput('add', { "id": value.id , "nama": value.nama });
+                            }
+                        });
+                    });
+
+
+
+
+                },
+                error: function (jqXHR, textStatus, errorThrown)
+                {
+                    alert('Error get data from ajax');
+                }
+            });
+        }        
+    });
+
+    // Modal form Approval Proposal
+    $('#modalFormApproveProposal').on('show.bs.modal', function (event) {
+        
+        var button = $(event.relatedTarget);
+        var form = button.data('form');
+        var action = button.data('action');
+        $('form [name="comment"]').prop("required",false);
+        $("#label-comment").empty();
+
+
+        if (form == "single") {
+            var id = button.data('id');
+        }
+
+        else if (form == "bulk") {
+            var id = [];
+            $.each($(".actionTabel input[name='check']:checked"), function(){
+                id.push($(this).val());
+            });
+            id = id.join('-');
+            if (id == "") return false;
+        }
+
+        $.ajax({
+            url : window.location.href + '/get/' + id,
+            type: "GET",
+            dataType: "JSON",
+            success: function(data)
+            {
+                $.each(data, function(i, item) {
+                    var $tr = $('<tr>').append(
+                        $('<td>').text(item.nama),
+                        $('<td>').text(item.nim),
+                        $('<td>').text(item.jurusan_alias),
+                        $('<td>').text(item.prodi_alias)
+                    );
+                    $('#tabelApprove tbody').append($tr);
+                });
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+                alert('Error get data from ajax');
+            }
+        });
+
+        $(this).find('form')[0].reset();
+        $('form').validate().resetForm();
+        $('form [name="id"]').val(id);
+        $('#tabelApprove tbody').empty();
+
+        if (action == "approve") {
+
+            $(this).find('form').attr('action', window.location.href + '/approve');
+            $(this).find('.modal-title').text('Proposal judul DISETUJUI');
+            $(this).find(':submit').addClass('bg-light-blue').removeClass('bg-orange');
+            $(this).find(':submit').html('DISETUJUI');
+            $(this).find('.div-comment').empty();
+            $(this).find('#label-comment').empty();
+
+        }
+
+        else if (action == "reject") {
+            $(this).find('form').attr('action', window.location.href + '/reject');
+            $(this).find('.modal-title').text('Proposal judul DITOLAK');
+            $(this).find(':submit').addClass('bg-red').removeClass('bg-light-blue');
+            $(this).find(':submit').html('DITOLAK');
+            $(this).find('.div-comment').empty().append("<textarea rows='2' class='form-control no-resize' name='comment'></textarea>");
+            $('form [name="comment"]').prop("required",true);
+            $(this).find('#label-comment').append('Alasan ditolak');
+        }
+    });      
 
 });
 

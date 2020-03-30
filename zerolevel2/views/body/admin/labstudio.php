@@ -35,8 +35,8 @@
                                             <td><?php echo $list['labstudioNama'];?></td>
                                             <td><?php echo $list['labstudioJurKode'];?></td>
                                             <td style='white-space: nowrap'>
-                                                <button type="button" class="btn btn-xs btn-warning waves-effect" data-toggle="modal" data-target="#modalFormLabstudio" data-form="formEdit" data-id="<?php echo $list['labstudioId'];?>">Edit</button>
-                                                <button class="btn btn-xs btn-danger waves-effect buttonHapus" data-id="<?php echo $list['labstudioId'];?>">Delete</button>
+                                                <button type="button" class="btn btn-xs btn-warning waves-effect" data-toggle="modal" data-target="#modalFormLabstudio" data-form="formEdit" data-id="<?php echo $list['idLabstudio'];?>">Edit</button>
+                                                <button class="btn btn-xs btn-danger waves-effect buttonHapus" data-id="<?php echo $list['idLabstudio'];?>">Delete</button>
                                             </td>
                                         </tr> 
                                         <?php }?>                           

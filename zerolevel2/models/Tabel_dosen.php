@@ -13,6 +13,7 @@ class Tabel_dosen extends CI_Model {
 		if ($limit) $this->db->limit($limit);
 		$query = $this->db->get('ft_dosen');
 		$result = $query->result_array();
+		//print_r($this->db->last_query()); die;
 
 		return $result;
 	}
@@ -33,15 +34,27 @@ class Tabel_dosen extends CI_Model {
 	
 	public function delete($id) {
 		
-		$this->db->delete('ft_dosen', array('dosenId' => $id));
+		$this->db->delete('ft_dosen', array('idDosen' => $id));
 		return $this->db->affected_rows();
 	}
 	
 	public function update($data) {
 
-		$this->db->where('dosenId', $data['dosenId']);
+		$this->db->where('idDosen', $data['idDosen']);
 		$this->db->update('ft_dosen', $data);
 		return $this->db->affected_rows();
+	}
+
+	public function get2() {
+		$sql= "SELECT nama FROM ft_dosen";
+
+		$result = $this->db->query($sql);
+
+		//echo var_dump($result->result_array());die;
+		//$this->debugSql();
+		return $result->result_array();
+
+
 	}
 
 }

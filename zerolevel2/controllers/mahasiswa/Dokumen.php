@@ -4,30 +4,47 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Dokumen extends CI_Controller {
 
 	public function __construct() {
-
 		parent::__construct();
-		$this->load->model(array('Tabel_dokumen'));
 
+		//* Check if current-user is mahasiswa *//
 		if (!isset($this->session->userdata['logged_in_portal']['mhs'])) {
 			redirect(site_url('login/mahasiswa'));
 		}
-		
+
+		//* Load model, library, helper, etc *//
+		$this->load->model(array('Tabel_dokumen','Tabel_docgroup'));
+
+		//* Initialize class variables. current-user identity. To be used throughout this class *//
+		$this->user = array(
+			'nama' 		=> $this->session->userdata['logged_in_portal']['nama'],
+			'id'		=> $this->session->userdata['logged_in_portal']['desc'],
+		);		
 	}
 	
 	public function index() {
 
-		$data['pageTitle'] 	= "Dokumen Mahasiswa";
-		$data['body_page'] 	= "body/dokumen/list";
-		$data['menu_page']  = "menu/mahasiswa";
-
-		$mhsNim 			= $this->session->userdata['logged_in_portal']['mhs']['nim'];
-		$data['dokumen'] 	= $this->Tabel_dokumen->user_get(array('ft_dokumen_user.userId'=> $mhsNim),'dokumenTahun DESC, dokumenDocgroupId ASC');
+		//* Initialize general variables for pageview properties *//
+		$data['pageTitle'] 	= "My Documents";
+		$data['subtitle'] 	= "Daftar Dokumen";
+		$data['body_page'] 	= "body/dokumen/list_without_add";
 		
+		//* Declare variables array $data to be passing to view *//
+		$data['dokumen'] 	= $this->Tabel_dokumen->user_get(array('aso_dokumen.userId'=> $this->user['id']),'dokumenTahun DESC, dokumenDocgroupId ASC');
+		$data['docgroup'] 	= $this->Tabel_docgroup->get();
+		$data['ownerId']	= $this->user['id'];
+		$data['loadMe']		= array(
+									'tipe' => 'mhs',
+									'nama' => $this->user['nama'],
+									'id' => $this->user['id']
+									);
+		$data['fileSpec']	= "Filetype=pdf jpg jpeg; Max Size=5 Mb.";
+		
+		//* formatting the data to be view properly at the pageview *//
 		foreach ($data['dokumen'] as &$val) {
-			$val['dokumenFile'] = URL_DOKUMEN.$val['dokumenDocgroupId'].'/'.$val['dokumenFile'];
+			$val['dokumenFile'] = URL_DOKUMEN.$val['dokumenFile'];
 		}
 		
-		$this->load->view(THEME_MHS,$data);
+		$this->load->view(THEME,$data);
 
 	}
 	

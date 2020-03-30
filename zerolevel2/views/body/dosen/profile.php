@@ -36,7 +36,6 @@
                         <div class="header bg-cyan">
                             <h2>
                                 <?=$dosen['nama']?>
-                                <small>Source: Database Fatek</small>
                             </h2>
                             <ul class="header-dropdown m-r--5">
                                 <li>
@@ -90,37 +89,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
-
-                    <div class="card">
-                        <div class="header bg-blue">
-                            <h2>
-                                <small>Source: Database Akademik Unsrat</small>
-                            </h2>
-                        </div>
-                        <div class="body">
-                            <dl class="dl-horizontal">
-                                Not available                               
-                            </dl>
-                            
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="header bg-green">
-                            <h2>
-                                <small>Source: Database Kepegawaian Unsrat</small>
-                            </h2>
-                        </div>
-                        <div class="body">
-                            <dl class="dl-horizontal">
-                                Not available
-                            </dl>
-                            
-                        </div>
-                    </div>
-
-                </div>
             </div>
 
             <!-- Modals utk menampilkan form update profile -->
@@ -133,7 +101,7 @@
 
                         <div class="modal-body">
                             <?=form_open(site_url('dosen/profile/update'))?>
-                                <input name="dosenId" type="hidden" value="<?=$dosen['dosenId']?>">
+                                <input name="id" type="hidden" value="<?=$dosen['idDosen']?>">
 
                                 <div class="form-group">
                                     <label class="form-label">Name </label>
@@ -237,7 +205,7 @@
                         <div class="modal-body">
 
                             <?=form_open_multipart(site_url('dosen/profile/change-pic'))?>
-                                <input name="dosenId" type="hidden" value="<?=$dosen['dosenId']?>">
+                                <input name="id" type="hidden" value="<?=$dosen['idDosen']?>">
                                 
                                 <div class="form-group">
                                     <span class="form-control-static">

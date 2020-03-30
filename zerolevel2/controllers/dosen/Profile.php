@@ -4,47 +4,56 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Profile extends CI_Controller {
 	
 	public function __construct() {
-		
 		parent::__construct();
-		$this->load->model(array('Tabel_dosen','Tabel_publikasi'));
 
+		//* Check if current-user is dosen *//
 		if (!isset($this->session->userdata['logged_in_portal']['dosen'])) {
 			redirect(site_url('login/dosen'));
 		}
+
+		//* Load model, library, helper, etc *//
+		$this->load->model(array('Tabel_dosen','Tabel_publikasi'));
+
+		//* Initialize class variables. current-user identity. To be used throughout this class *//
+		$this->user = array(
+			'nama' 		=> $this->session->userdata['logged_in_portal']['nama'],
+			'id'		=> $this->session->userdata['logged_in_portal']['desc'],
+		);
 		
 	}
 
 	public function index() {
 		
-		$data['pageTitle']	= "Profile Dosen";
+		//* Initialize general variables for pageview properties *//
+		$data['pageTitle']	= "My Profile";
 		$data['body_page'] 	= "body/dosen/profile";
-		$data['menu_page'] 	= "menu/dosen";
 
-		$dosenNip 				= $this->session->userdata['logged_in_portal']['dosen']['nip'];
-		$data['dosen'] 			= $this->Tabel_dosen->detail(array('nip'=> $dosenNip));
+		//* Declare variables array $data to be passing to view *//
+		$data['dosen'] 			= $this->Tabel_dosen->detail(array('nip'=> $this->user['id']));
+		
+		//* formatting the data to be view properly at the pageview *//
 		$data['dosen']['foto'] 	= (!empty($data['dosen']['foto'])) ? URL_FOTO_DOSEN.$data['dosen']['foto'] : URL_FOTO_DOSEN."default.jpg";
-		$data['dosenSdmAPI'] 	= $this->apicall->get(URL_API.'pegawai?nip='.$dosenNip);
-		$data['dosenSiaAPI'] 	= $this->apicall->get(URL_API.'dosen?nip='.$dosenNip);
-
 		$data['dosen']['jurusan'] = ucwords(strtolower($data['dosen']['jurusan']));
 		$data['dosen']['prodi'] 	= ucwords(strtolower($data['dosen']['prodi']));
-
 		if (!empty($data['dosen']['sintaId'])) $data['dosen']['sintaUrl'] = URL_SINTA.$data['dosen']['sintaId']."&view=overview";
 		if (!empty($data['dosen']['googleId'])) $data['dosen']['googleUrl'] = URL_GOOGLE.$data['dosen']['googleId'];
 		if (!empty($data['dosen']['scopusId'])) $data['dosen']['scopusUrl'] = URL_SCOPUS.$data['dosen']['scopusId'];
 
-		$this->load->view(THEME_DOSEN,$data);
+		$this->load->view(THEME,$data);
 	}
 
 	public function update() {
 		
+		//* Set rules for form validation. Form validation use CI Library *//
 		$this->form_validation->set_rules('nama', 'Nama', 'trim|required');
 		$this->form_validation->set_rules('email', 'Email', 'valid_email');
 		$this->form_validation->set_rules('hp', 'Nomor hp', 'numeric');
 
+		//* Check if form valid *//
 		if ($this->form_validation->run() == TRUE) {
 
-			$database['dosenId'] 	= $this->input->post('dosenId');
+			//* Declare var $database to be input at the database *//
+			$database['idDosen'] 	= $this->input->post('id');
 			$database['nama'] 		= $this->input->post('nama');
 			$database['jabatan'] 	= $this->input->post('jabatan');
 			$database['alamat'] 	= $this->input->post('alamat');
@@ -55,8 +64,9 @@ class Profile extends CI_Controller {
 			$database['scopusId'] 	= $this->input->post('scopusId');
 			$database['interest'] 	= $this->input->post('interest');
 			$database['bio'] 		= $this->input->post('bio');
-			$database['userUpdate']	= $this->session->userdata['logged_in_portal']['nama'];
+			$database['userUpdate']	= $this->user['id'];
 
+			//* Add var $database to be input in the database*//
 			if ($this->Tabel_dosen->update($database)) {
 				
 				$this->session->set_flashdata('type', 'success');
@@ -80,30 +90,35 @@ class Profile extends CI_Controller {
 
 	public function change_pic() {
 
-		$dosenNip = $this->session->userdata['logged_in_portal']['dosen']['nip'];
-		
+		//* Check if file foto is not empty *//
 		if(!empty($_FILES['fotodosen']['name'])) {
 
+			//* Load configuration for upload library *//
 			$this->load->library('upload', $this->config->item('pasfoto_dosen'));
 			
+			//* Check foto has not been upload *//
 			if (!$this->upload->do_upload('fotodosen')) {
 				$this->session->set_flashdata('type', 'danger');
 				$this->session->set_flashdata('message', 'Gagal disimpan! '.$this->upload->display_errors());	
 				
 			} else {
+				//* If the foto has been successfully upload *//
 
-				$file	= $this->Tabel_dosen->detail(array('nip'=> $dosenNip))['foto'];
-
+				//* Delete the foto old file. Check if old foto exist*//
+				$file	= $this->Tabel_dosen->detail(array('nip'=> $this->user['id']))['foto'];
 				if (!empty($file) AND file_exists(FCPATH .DIR_FOTO_DOSEN .$file)) {
 					unlink(FCPATH .DIR_FOTO_DOSEN .$file);
 				}
 			
+				//* Get the upload properties and store in var database *//
 				$upload_data = $this->upload->data();
-				
 				$database['foto'] 		= $upload_data['file_name'];
-				$database['dosenId'] 	= $this->input->post('dosenId');
+				$database['idDosen'] 	= $this->user['id'];
+
+				//* Add var $database to be update in the database*//
 				$this->Tabel_dosen->update($database);
 				
+				//* Load configuration for physical foto file*//
 				$config['source_image'] 	= DIR_FOTO_DOSEN .$upload_data['file_name'];
 				$config['maintain_ratio'] 	= TRUE;
 				$config['width']         	= 300;

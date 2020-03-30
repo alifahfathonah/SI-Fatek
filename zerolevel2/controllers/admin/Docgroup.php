@@ -9,8 +9,10 @@ class Docgroup extends CI_Controller {
 		$this->load->model(array('Tabel_docgroup'));
 
 		if (!isset($this->session->userdata['logged_in_portal']['admin'])) {
-			redirect(site_url('login'));
+			redirect(site_url('login/dosen'));
 		}
+
+		$this->admin = $this->session->userdata['logged_in_portal']['admin']['userid'];
 		
 	}
 
@@ -18,11 +20,10 @@ class Docgroup extends CI_Controller {
 		
 		$data['pageTitle'] 	= "Kelola Kategori Dokumen";
 		$data['body_page'] 	= "body/admin/docgroup";
-		$data['menu_page'] 	= "menu/admin";
 		
 		$data['docgroups'] 	= $this->Tabel_docgroup->get();
 
-		$this->load->view(THEME_ADMIN,$data);
+		$this->load->view(THEME,$data);
 	}
 
 	public function tambah() {
@@ -60,9 +61,9 @@ class Docgroup extends CI_Controller {
 		
 		if ($this->form_validation->run() == TRUE) {
 
-			$database['docgroupId']			= $this->input->post('id');
+			$database['idDocgroup']			= $this->input->post('id');
 			$database['docgroupJenisDoc']	= $this->input->post('nama');
-			$database['userUpdate']			= $this->session->userdata['logged_in_portal']['nama'];
+			$database['userUpdate']			= $this->admin;
 
 			if ($this->Tabel_docgroup->update($database)) {
 				
@@ -105,7 +106,7 @@ class Docgroup extends CI_Controller {
 
 	public function detail($id) {
 
-		$output = $this->Tabel_docgroup->detail(array('docgroupId'=> $id));
+		$output = $this->Tabel_docgroup->detail(array('idDocgroup'=> $id));
 		echo json_encode($output);
 
 	}	

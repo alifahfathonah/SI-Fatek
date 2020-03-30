@@ -9,8 +9,10 @@ class Dosen extends CI_Controller {
 		$this->load->model(array('Tabel_dosen'));
 
 		if (!isset($this->session->userdata['logged_in_portal']['admin'])) {
-			redirect(site_url('login'));
+			redirect(site_url('login/dosen'));
 		}
+
+		$this->admin = $this->session->userdata['logged_in_portal']['admin']['userid'];
 		
 	}
 
@@ -18,11 +20,10 @@ class Dosen extends CI_Controller {
 		
 		$data['pageTitle'] 	= "Kelola Data Dosen";
 		$data['body_page'] 	= "body/admin/dosen";
-		$data['menu_page'] 	= "menu/admin";
 		
 		$data['dosen'] 		= $this->Tabel_dosen->get(FALSE,'kodeJurusan ASC, kodeProdi ASC');
 
-		$this->load->view(THEME_ADMIN,$data);
+		$this->load->view(THEME,$data);
 	}
 
 	public function tambah() {
@@ -85,7 +86,7 @@ class Dosen extends CI_Controller {
 		
 		if ($this->form_validation->run() == TRUE) {
 
-			$database['dosenId']	= $this->input->post('id');
+			$database['idDosen']	= $this->input->post('id');
 			$database['nama']		= $this->input->post('nama');
 			$database['nip']		= $this->input->post('nip');
 			$database['nidn'] 		= $this->input->post('nidn');
@@ -103,7 +104,7 @@ class Dosen extends CI_Controller {
 			$database['scopusId'] 	= $this->input->post('scopusId');
 			$database['interest'] 	= $this->input->post('interest');
 			$database['bio'] 		= $this->input->post('bio');
-			$database['userUpdate']	= $this->session->userdata['logged_in_portal']['nama'];
+			$database['userUpdate']	= $this->admin;
 			$database['showInPublic']= $this->input->post('showInPublic');
 
 			if ($this->Tabel_dosen->update($database)) {
@@ -149,26 +150,24 @@ class Dosen extends CI_Controller {
 
 		if ($format == 'json') {
 
-			$output = $this->Tabel_dosen->detail(array('dosenId'=> $id));
+			$output = $this->Tabel_dosen->detail(array('idDosen'=> $id));
 			echo json_encode($output);
 			
 		} else {
 
 			$data['pageTitle']	= "Profile Dosen";
 			$data['body_page'] 	= "body/dosen/detail";
-			$data['menu_page'] 	= "menu/admin";
 
-			$dosenNip 				= $id;
-			$data['dosen'] 			= $this->Tabel_dosen->detail(array('nip'=> $dosenNip));
+			$data['dosen'] 			= $this->Tabel_dosen->detail(array('idDosen'=> $id));
 			$data['dosen']['foto'] 	= (!empty($data['dosen']['foto'])) ? URL_FOTO_DOSEN.$data['dosen']['foto'] : URL_FOTO_DOSEN."default.jpg";
-			$data['dosenSdmAPI'] 		= $this->apicall->get(URL_API.'pegawai?nip='.$dosenNip);
-			$data['dosenSiaAPI'] 		= $this->apicall->get(URL_API.'dosen?nip='.$dosenNip);
+			//$data['dosenSdmAPI'] 		= $this->apicall->get(URL_API.'pegawai?nip='.$dosenNip);
+			//$data['dosenSiaAPI'] 		= $this->apicall->get(URL_API.'dosen?nip='.$dosenNip);
 
 			if (!empty($data['dosen']['sintaId'])) $data['dosen']['sintaUrl'] = URL_SINTA.$data['dosen']['sintaId']."&view=overview";
 			if (!empty($data['dosen']['googleId'])) $data['dosen']['googleUrl'] = URL_GOOGLE.$data['dosen']['googleId'];
 			if (!empty($data['dosen']['scopusId'])) $data['dosen']['scopusUrl'] = URL_SCOPUS.$data['dosen']['scopusId'];
 
-			$this->load->view(THEME_DOSEN,$data);
+			$this->load->view(THEME,$data);
 		}
 
 	}	

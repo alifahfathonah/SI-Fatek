@@ -19,7 +19,7 @@ class Control extends CI_Controller {
 		$data['menu_page']	= "menu/admin";
 		$data['body_page'] 	= "body/admin/control";
 
-		$this->load->view(THEME_ADMIN,$data);
+		$this->load->view(THEME,$data);
 	}
 
 	public function clear_cache() {

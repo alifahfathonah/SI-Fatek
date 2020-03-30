@@ -9,8 +9,10 @@ class User extends CI_Controller {
 		$this->load->model(array('Tabel_user'));
 
 		if (!isset($this->session->userdata['logged_in_portal']['admin'])) {
-			redirect(site_url('login'));
+			redirect(site_url('login/dosen'));
 		}
+
+		$this->admin = $this->session->userdata['logged_in_portal']['admin']['userid'];
 		
 	}
 
@@ -18,11 +20,10 @@ class User extends CI_Controller {
 		
 		$data['pageTitle'] 	= "Kelola User";
 		$data['body_page'] 	= "body/admin/user";
-		$data['menu_page'] 	= "menu/admin";
 		
-		$data['users'] 		= $this->Tabel_user->get(array('userId !=' => '1'), 'grup ASC, 	namaUnit ASC, position ASC');
+		$data['users'] 		= $this->Tabel_user->get(array('idUser !=' => '1'), 'grup ASC, 	namaUnit ASC, position ASC');
 
-		$this->load->view(THEME_ADMIN,$data);
+		$this->load->view(THEME,$data);
 	}
 
 	public function tambah() {
@@ -77,7 +78,7 @@ class User extends CI_Controller {
 		
 		if ($this->form_validation->run() == TRUE) {
 
-			$database['userId']		= $this->input->post('id');
+			$database['idUser']		= $this->input->post('id');
 			$database['nama']		= $this->input->post('nama');
 			$database['username']	= $this->input->post('username');
 			$database['grup'] 		= $this->input->post('grup');
@@ -127,7 +128,7 @@ class User extends CI_Controller {
 
 	public function detail($id) {
 
-		$output = $this->Tabel_user->detail(array('userId'=> $id));
+		$output = $this->Tabel_user->detail(array('idUser'=> $id));
 		echo json_encode($output);
 
 	}	

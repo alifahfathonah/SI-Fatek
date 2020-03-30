@@ -29,6 +29,9 @@ http://fatek.unsrat.ac.id
     <!-- Bootstrap Select Css -->
     <link href="<?php echo base_url("assets/adminbsb/plugins/bootstrap-select/css/bootstrap-select.css");?>" rel="stylesheet">
 
+    <!-- Multi Select Css -->
+    <link href="<?php echo base_url("assets/adminbsb/plugins/multi-select/css/multi-select.css");?>" rel="stylesheet">
+
     <!-- Bootstrap Tagsinput Css -->
     <link href="<?php echo base_url("assets/adminbsb/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css");?>" rel="stylesheet">
 
@@ -47,11 +50,15 @@ http://fatek.unsrat.ac.id
     <!-- Morris Chart Css-->
     <link href="<?php echo base_url("assets/adminbsb/plugins/morrisjs/morris.css");?>" rel="stylesheet" />
 
-    <!-- Custom Css -->
-    <link href="<?php echo base_url("assets/adminbsb/css/style.min.css");?>" rel="stylesheet" />
+    <!-- Bootstrap Treeview Css-->
+    <link rel="stylesheet" href="<?php echo base_url("assets/bootstrap-treeview/css/bootstrap-treeview.css");?>" />
 
     <!-- Custom Fonts -->
     <link href="<?php echo base_url("assets/adminbsb/plugins/font-awesome/css/font-awesome.min.css");?>" rel="stylesheet" type="text/css">
+
+    <!-- Custom Css -->
+    <link href="<?php echo base_url("assets/adminbsb/css/style.min.css");?>" rel="stylesheet" />
+    <link href="<?php echo base_url("assets/adminbsb/css/typeahead.css");?>" rel="stylesheet" />
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="<?php echo base_url("assets/adminbsb/css/themes/all-themes.min.css");?>" rel="stylesheet" />
@@ -116,14 +123,35 @@ http://fatek.unsrat.ac.id
             <!-- Menu -->
             <div class="menu">
                 <ul class="list">
-                    <?php if($menu_page) $this->load->view($menu_page);?>
+                    <?php
+                        if(isset($this->session->userdata['logged_in_portal']['dosen'])) $this->load->view('menu/dosen');
+                        if(isset($this->session->userdata['logged_in_portal']['mhs'])) $this->load->view('menu/mahasiswa');
+                        if(isset($this->session->userdata['logged_in_portal']['auth'])) {
+
+                            switch ($this->session->userdata['logged_in_portal']['auth']['kodeGrup']) {
+                                case 'dekan'    : $this->load->view('menu/dekan'); break;
+                                case 'wd1'      : $this->load->view('menu/wd1'); break;
+                                case 'wd2'      : $this->load->view('menu/wd2'); break;
+                                case 'wd3'      : $this->load->view('menu/wd3'); break;
+                            }
+
+                            switch ($this->session->userdata['logged_in_portal']['auth']['grup']) {
+                                case 'jurusan'  : $this->load->view('menu/jurusan'); break; 
+                                case 'prodi'    : $this->load->view('menu/prodi'); break;
+                            }
+
+                            $this->load->view('menu/authuser');
+                        }
+
+                        if(isset($this->session->userdata['logged_in_portal']['admin'])) $this->load->view('menu/admin');
+                    ?>                    
                 </ul>
             </div>
             <!-- #Menu -->
             <!-- Footer -->
             <div class="legal">
                 <div class="copyright">
-                    PTI Fatek Unsrat &copy;<?php echo date('Y');?>
+                    Fatek Unsrat &copy;<?php echo date('Y');?>
                 </div>
             </div>
             <!-- #Footer -->
@@ -164,6 +192,9 @@ http://fatek.unsrat.ac.id
     <!-- Waves Effect Plugin Js -->
     <script src="<?php echo base_url("assets/adminbsb/plugins/node-waves/waves.js");?>"></script>
 
+    <!-- Multi Select Plugin Js -->
+    <script src="<?php echo base_url("assets/adminbsb/plugins/multi-select/js/jquery.multi-select.js");?>"></script>
+
     <!-- Jquery CountTo Plugin Js -->
     <script src="<?php echo base_url("assets/adminbsb/plugins/jquery-countto/jquery.countTo.js");?>"></script>
 
@@ -201,10 +232,16 @@ http://fatek.unsrat.ac.id
     <script src="<?php echo base_url("assets/adminbsb/plugins/jquery-datatable/extensions/export/buttons.html5.min.js");?>"></script>
     <script src="<?php echo base_url("assets/adminbsb/plugins/jquery-datatable/extensions/export/buttons.print.min.js");?>"></script>
 
+    <!-- Bootstrap Treeview Js-->
+    <script src="<?php echo base_url("assets/bootstrap-treeview/js/bootstrap-treeview.js");?>"></script>
+
     <!-- Custom Js -->
+    <script src="<?php echo base_url("assets/adminbsb/js/typeahead.bundle.js");?>"></script>
     <script src="<?php echo base_url("assets/adminbsb/js/admin.js");?>"></script>
+
     <script src="<?php echo base_url("assets/adminbsb/js/custom.js");?>"></script>
+    <script src="<?php echo base_url("assets/adminbsb/js/treeview.js");?>"></script>
+
 
 </body>
 </html>
-

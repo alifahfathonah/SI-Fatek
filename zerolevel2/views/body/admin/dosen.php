@@ -39,15 +39,15 @@
                                         <?php foreach($dosen as $list) { ?>
                                         <tr>
                                             <td><?php echo $i;?></td>
-                                            <td><a href="<?php echo site_url('admin/dosen/detail/'.$list['nip']);?>"><?php echo $list['nama'];?></a></td>
+                                            <td><a href="<?php echo site_url('admin/dosen/detail/'.$list['idDosen']);?>"><?php echo $list['nama'];?></a></td>
                                             <td><?php echo $list['nip'];?></td>
                                             <td><?php echo $list['jurusan'];?></td>
                                             <td><?php echo $list['prodi'];?></td>
                                             <td><?php echo $list['showInPublic'];?></td>
                                             <td><?php echo $list['tglUpdate'];?></td>
                                             <td style='white-space: nowrap'>
-                                                <button type="button" class="btn btn-xs btn-warning waves-effect" data-toggle="modal" data-target="#modalFormDosen" data-form="formEdit" data-id="<?php echo $list['dosenId'];?>">Edit</button>
-                                                <button class="btn btn-xs btn-danger waves-effect buttonHapus" data-id="<?php echo $list['dosenId'];?>">Delete</button>
+                                                <button type="button" class="btn btn-xs btn-warning waves-effect" data-toggle="modal" data-target="#modalFormDosen" data-form="formEdit" data-id="<?php echo $list['idDosen'];?>">Edit</button>
+                                                <button class="btn btn-xs btn-danger waves-effect buttonHapus" data-id="<?php echo $list['idDosen'];?>">Delete</button>
                                             </td>
                                         </tr> 
                                         <?php $i++;}?>                           
@@ -206,8 +206,8 @@
                                     <label class="form-label">Show in Public</label>
                                     <div class="form-line">
                                         <select class="form-control show-tick" data-live-search="true" name="showInPublic">
-                                            <option value="0" selected>Don't show</option>
-                                            <option value="1">Show</option>
+                                            <option value="0">Don't show</option>
+                                            <option value="1" selected>Show</option>
                                         </select>
                                     </div>
                                 </div>
