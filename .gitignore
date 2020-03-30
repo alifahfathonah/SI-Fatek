@@ -1,18 +1,11 @@
-*/config/development
-*/logs/log-*.php
-!*/logs/index.html
-*/cache/*
-!*/cache/index.html
-!*/cache/.htaccess
-
 .htaccess
+.gitignore
 
 #Configuration files
 index.php
 config/config.php
 config/ft_config.php
 config/database.php
-system/*
 
 
 user_guide_src/build/*
@@ -45,3 +38,4 @@ composer.lock
 .sublime-project
 /tests/tests/
 /tests/results/
+index.php
