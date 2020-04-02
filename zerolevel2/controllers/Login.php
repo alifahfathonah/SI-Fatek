@@ -12,11 +12,8 @@ class Login extends CI_Controller {
 
 	public function index() {
 
-		if(isset($this->session->userdata['logged_in_portal']['dosen'])) {
-			redirect(site_url('dosen/profile'));
-		}
-		else if(isset($this->session->userdata['logged_in_portal']['mhs'])) {
-			redirect(site_url('mahasiswa/profile'));
+		if(isset($this->session->userdata['logged_in_portal'])) {
+			redirect(site_url('dashboard'));
 		}
 	
 		$this->load->view("login");
@@ -58,8 +55,8 @@ class Login extends CI_Controller {
 						//* Session variable, dosen info *//
 						$sess_data['dosen']['userid']    = $user_dosen['nip'];
 						$sess_data['dosen']['nama']    	 = $user_dosen['nama'];
-						$sess_data['dosen']['kodeProdi'] = $user_dosen['kodeProdi'];
-						$sess_data['dosen']['kodeJur']   = $user_dosen['kodeJurusan'];
+						$sess_data['dosen']['kodeProdi'] = "prodi".$user_dosen['kodeProdi'];
+						$sess_data['dosen']['kodeJur']   = "jurusan".$user_dosen['kodeJurusan'];
 						
 						//* Cek if user is authorize user *//
 						$auth_user = $this->Tabel_user->detail(array('username'=> $username));
@@ -81,6 +78,7 @@ class Login extends CI_Controller {
 								$sess_data['auth']['kodeUnit'] 	= $auth_user['kodeUnit'];
 								$sess_data['auth']['grup'] 		= $value;
 								$sess_data['auth']['kodeGrup']	= $auth_user['kodeGrup'];
+								$sess_data['auth']['posisi']	= $auth_user['posisi'];
 							}
 
 							//* Record authorize login in database *//
@@ -90,7 +88,7 @@ class Login extends CI_Controller {
 						//* Register session, clear login attempt, redirect to site *//
 						$this->session->set_userdata('logged_in_portal',$sess_data);
 						$this->session->unset_userdata('login_attempt');						
-						redirect(site_url('dosen/profile'));
+						redirect(site_url('dashboard'));
 					
 					} else {
 						//* Below line is executed when user_dosen not found on FATEK database *//
@@ -110,7 +108,7 @@ class Login extends CI_Controller {
 				$this->session->set_flashdata('message_login_dosen', validation_errors($this->icon));				
 			}
 		}
-		redirect(base_url());
+		redirect(site_url('login'));
 
 	}
 
@@ -171,13 +169,13 @@ class Login extends CI_Controller {
 						//* Session variable, mahasiswa info *//
 						$sess_data['mhs']['userid']    	= $dataAPI->nim;
 						$sess_data['mhs']['nama']    	= $dataAPI->nama;
-						$sess_data['mhs']['kodeProdi'] 	= $dataAPI->kodeProdi;
-						$sess_data['mhs']['kodeJur']   	= $dataAPI->kodeJurusan;
+						$sess_data['mhs']['kodeProdi'] 	= "prodi".$dataAPI->kodeProdi;
+						$sess_data['mhs']['kodeJur']   	= "jurusan".$dataAPI->kodeJurusan;
 
 						//* Register session, clear login attempt, redirect to site *//
 						$this->session->set_userdata('logged_in_portal',$sess_data);
 						$this->session->unset_userdata('login_attempt');
-						redirect(site_url('mahasiswa/profile'));
+						redirect(site_url('dashboard'));
 
 					} else  {
 						//* Below line is executed if user not Fatek student *//
@@ -196,13 +194,13 @@ class Login extends CI_Controller {
 			}
 		}
 		
-		redirect(base_url());
+		redirect(site_url('login'));
 
 	}
 	
 	public function logout() {
 		$this->session->unset_userdata('logged_in_portal');
-		redirect(base_url());
+		redirect(site_url('login'));
 	}
 
 	public function undercons() {

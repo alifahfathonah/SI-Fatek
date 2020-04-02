@@ -9,14 +9,14 @@ class Profile extends CI_Controller {
 		//* Check if current-user is mahasiswa *//
 		if (!isset($this->session->userdata['logged_in_portal']['mhs'])) {
 			if (!isset($this->session->userdata['logged_in_portal'])) {
-				redirect(base_url());
+				redirect(site_url('login'));
 			} else {
 				show_error('Access denied!');
 			}
 		}
 
 		//* Load model, library, helper, etc *//
-		$this->load->model(array('Tabel_mahasiswa'));
+		$this->load->model(array('Tabel_mahasiswa', 'Tabel_kmPrestasi', 'Tabel_kmDisiplin'));
 
 		//* Initialize class variables. current-user identity. To be used throughout this class *//
 		$this->user = array(
@@ -29,12 +29,26 @@ class Profile extends CI_Controller {
 	public function index() {
 		
 		//* Initialize general variables for pageview properties *//
-		$data['pageTitle']	= "Profile Mahasiswa";
+		$data['pageTitle']	= "My Profile";
 		$data['body_page'] 	= "body/mahasiswa/profile";
 
 		//* Get data from API and from local DB. Store in $data *//
 		$data['mhsAPI'] 	= $this->apicall->get(URL_API.'mahasiswa?nim='.$this->user['id']);
 		$data['mahasiswa'] 	= $this->Tabel_mahasiswa->detail(array('nim'=> $this->user['id']));
+		$data['prestasi'] 	= $this->Tabel_kmPrestasi->user_get(array('userId'=> $this->user['id']), 'tglLomba DESC');
+		$data['disiplin'] 	= $this->Tabel_kmDisiplin->user_get(array('userId'=> $this->user['id']), 'tglEnd DESC');
+
+		//* formatting the data to be view properly at the pageview *//
+		foreach ($data['prestasi'] as &$key) {
+			$key['tglLomba'] 	= date('d M Y',strtotime($key['tglLomba']));
+		}
+
+		foreach ($data['disiplin'] as &$key) {
+			$key['status'] 		= ($key['tglEnd'] < date('Y-m-d')) ? TRUE : FALSE;
+			$key['tglStart'] 	= date('d M Y',strtotime($key['tglStart']));
+			$key['tglEnd']  	= date('d M Y',strtotime($key['tglEnd']));
+		}
+
 
 		$this->load->view(THEME,$data);
 	}

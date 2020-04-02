@@ -36,6 +36,7 @@
                                         <?php foreach($data as $list) { ?>
                                         <tr>
                                             <td><input type="checkbox" id="md_checkbox_<?php echo $list['idProposal'];?>" class="filled-in chk-col-blue" name="check" value="<?php echo $list['idProposal'];?>"/><label for="md_checkbox_<?php echo $list['idProposal'];?>"></label>
+                                            </td>
                                             <td><?php echo $list['lastDate'];?></td>
                                             <td><a href="<?php echo site_url('detail/mahasiswa/').$list['nim'];?>"><?php echo $list['nama'];?></a></td>
                                             <td><?php echo $list['nim'];?></td>
@@ -109,9 +110,9 @@
 
                             <?php echo form_open();?>
                                 <input type="hidden" name="id">
-                                <div class="form-group form-float">
+                                <div class="form-group form-float" id="div-comment">
                                     <label class="form-label" id="label-comment">Catatan</label>
-                                    <div class="form-line div-comment">
+                                    <div class="form-line">
                                        <textarea rows="2" class="form-control no-resize" name="comment"></textarea>
                                     </div>
                                 </div>

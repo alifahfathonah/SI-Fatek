@@ -9,7 +9,7 @@
         <title>Portal Fakultas Teknik Unsrat</title>
 
         <!-- CSS -->
-        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
         <link href="<?php echo base_url("assets/beautiful-login/bootstrap/css/bootstrap.min.css");?>" rel="stylesheet">
         <link href="<?php echo base_url("assets/beautiful-login/font-awesome/css/font-awesome.min.css");?>" rel="stylesheet">
         <link href="<?php echo base_url("assets/beautiful-login/css/form-elements.css");?>" rel="stylesheet">

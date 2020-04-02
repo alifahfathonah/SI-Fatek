@@ -9,7 +9,7 @@ class Dokumen extends CI_Controller {
 		//* Check if current-user is authorized user *//
 		if (!isset($this->session->userdata['logged_in_portal']['auth'])) {
 			if (!isset($this->session->userdata['logged_in_portal'])) {
-				redirect(site_url());
+				redirect(site_url('login'));
 			} else {
 				show_error('Access denied!');
 			}
@@ -33,7 +33,7 @@ class Dokumen extends CI_Controller {
 	public function index() {
 
 		//* Initialize general variables for pageview properties *//
-		$data['pageTitle'] 	= "Repository Fakultas";
+		$data['pageTitle'] 	= "Repository";
 		$data['subtitle'] 	= $this->user['namaunit'];
 		$data['body_page'] 	= "body/dokumen/list_with_add_multiple";
 
@@ -92,7 +92,7 @@ class Dokumen extends CI_Controller {
 			}
 
 			//* Initialize general variables for pageview properties *//
-			$data['pageTitle'] 	= "Dokumen ". $this->user['namaunit'];
+			$data['pageTitle'] 	= "Dokumen Dosen ". $this->user['namaunit'];
 			$data['subtitle'] 	= "Daftar Dosen";
 			$data['body_page'] 	= "body/dokumen/list_dosen";
 

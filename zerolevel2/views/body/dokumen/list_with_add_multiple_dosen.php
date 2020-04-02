@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 
             <div class="block-header">
-                <h2><?php echo $pageTitle;?></h2>
+                <h1><?php echo $pageTitle;?></h1>
             </div>
 
             <?php if($this->session->flashdata('message')) {?>  
@@ -122,12 +122,14 @@
                                 </div>
                                 <div class="form-group form-float">
                                     <label class="form-label">Tag Dosen</label>
+                                    <small>(Tandai nama-nama dosen yang terkait dengan dokumen ini)</small>
                                     <div class="form-line">
                                         <input id="tags-input-dosen" name="dsndoc">
                                     </div>
                                 </div>
                                 <div class="form-group form-float">
                                     <label class="form-label">Tag Mahasiswa</label>
+                                    <small>(Tandai nama-nama mahasiswa yang terkait dengan dokumen ini)</small>
                                     <div class="form-line">
                                         <input id="tags-input-mhs" name="mhsdoc">
                                     </div>

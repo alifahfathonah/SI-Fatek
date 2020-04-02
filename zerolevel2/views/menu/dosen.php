@@ -2,6 +2,12 @@
 
                     <li class="header">DAFTAR MENU</li>
                     <li>
+                        <a href="<?php echo site_url('dashboard');?>">
+                            <i class="material-icons">home</i>
+                            <span>Beranda</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="<?php echo site_url('dosen/profile');?>">
                             <i class="material-icons">person</i>
                             <span>My Profile</span>

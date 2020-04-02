@@ -9,14 +9,14 @@ class Data extends CI_Controller {
 		//* Check if current-user is authorized user *//
 		if (!isset($this->session->userdata['logged_in_portal']['auth'])) {
 			if (!isset($this->session->userdata['logged_in_portal'])) {
-				redirect(base_url());
+				redirect(site_url('login'));
 			} else {
 				show_error('Access denied!');
 			}
 		}
 
 		//* Load model, library, helper, etc *//
-		$this->load->model(array('Apicall','Tabel_dosen')); 
+		$this->load->model(array('Apicall','Tabel_dosen', 'Tabel_kmPrestasi')); 
 
 		//* Initialize class variables. current-user identity. To be used throughout this class *//
 		$this->user = array(
@@ -35,10 +35,10 @@ class Data extends CI_Controller {
 		$data['pageTitle'] 	= "Data Mahasiswa ". $this->user['namaunit'];
 		$data['body_page'] 	= "body/mahasiswa/list_api";
 
-		//* Get data from API and return the data to $mhsApi *//
-		$data['mhsApi'] = $this->apicall->get(URL_API.'mahasiswa/'.$this->user['grup'].'?kode='.$this->user['kodeunit']);
-		
-		$this->load->view(THEME,$data);
+			//* Get data from API and return the data to $mhsApi *//
+			$data['mhsApi'] = $this->apicall->get(URL_API.'mahasiswa/'.$this->user['grup'].'?kode='.$this->user['kodeunit']);
+			
+			$this->load->view(THEME,$data);
 	}
 
 	public function alumni() {
@@ -76,6 +76,27 @@ class Data extends CI_Controller {
 		}
 
 		$this->load->view(THEME,$data);
-	}			
+	}
 
+	public function prestasi_mahasiswa() {
+
+
+		$data['pageTitle'] 	= "Data Mahasiswa Berprestasi";
+		$data['body_page'] 	= "body/kemahasiswaan/prestasi/list_without_add";
+
+		$data['prestasi'] 	= $this->Tabel_kmPrestasi->user_get(array('status'=> 'Sudah diverifikasi'),'tglLomba DESC, even ASC');
+
+		foreach ($data['prestasi'] as &$val) {
+			$val['tglLomba'] 	= date('d M Y',strtotime($val['tglLomba']));
+
+			//because sometimes mahasiswa belum ada data didatabase fatek
+			$val['nama'] 	= (!empty($val['nama'])) ? $val['nama'] : $this->apicall->get(URL_API.'daftar/user/'.$val['userId'])[0]->nama;
+			$val['nim'] 	= (!empty($val['nim'])) ? $val['nim'] : $val['userId'];
+		}
+
+		//echo json_encode($data);die;
+		
+		$this->load->view(THEME,$data);
+
+	}	
 }

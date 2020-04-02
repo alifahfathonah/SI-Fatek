@@ -1,10 +1,8 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 
             <div class="block-header">
-                <h2><?php echo $pageTitle;?></h2>
+                <h1><?php echo $pageTitle;?></h1>
             </div>
-
-
 
             <?php if($this->session->flashdata('message')) {?>  
             <div class="alert alert-dismissable alert-<?php echo $this->session->flashdata('type');?>">
@@ -14,63 +12,63 @@
             <?php }?>              
             
             <div class="row clearfix">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                     <div class="card">
-                        <div class="header align-right">
+                        <div class="header">
+                            <h2>Direktori Fakultas</h2>
+                        </div>
+                        <div class="body">
+                            <div id="directory" class="col-blue"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 scrollhere">
+                    <div class="card">
+                        <div class="header">
                             <h2>Daftar Dokumen <span class="subtitle"><?php echo $subtitle;?></span></h2>
                         </div>
                         <div class="body">
+                            <div class="button-demo">
+                                <button type="button" class="btn btn-primary btn-lg waves-effect" data-toggle="modal" data-target="#modalFormDocMultiUser" data-form="formTambah">Tambah Dokumen</button>
+                            </div>
 
-                            <div class="row">
-
-                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                                    <h5>Direktori Dokumen Fakultas</h5>
-                                    <div id="directory" class=""></div>
-                                </div>
-                                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-                                    <div class="button-demo text-right">
-                                        <button type="button" class="btn btn-primary btn-lg waves-effect" data-toggle="modal" data-target="#modalFormDocMultiUser" data-form="formTambah">Tambah Dokumen</button>
-                                    </div>
-
-                                    <!-- Tabel dokumen -->
-                                    <div class="table-responsive">
-                                        <table id="tabelData" class="table table-bordered table-striped table-hover tblListAllDoc">
-                                            <thead>
-                                                <tr>
-                                                    <th>No</th>
-                                                    <th>Nama Dokumen / No / Deskripsi</th>
-                                                    <th>Tahun</th>
-                                                    <th>Kategori</th>
-                                                    <th>OwnerId</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php $i=1;?>
-                                                <?php foreach($dokumen as $list) { ?>
-                                                
-                                                <tr>
-                                                    <td><?php echo $i;?></td>
-                                                    <td>
-                                                        <a href="<?php echo $list['dokumenFile'];?>" target="_blank"><?php echo $list['dokumenNama'];?></a><br>
-                                                        <small>Nomor Dokumen : <?php echo $list['dokumenNomor'];?></small><br>
-                                                        <small><?php echo $list['dokumenDeskripsi'];?></small>
-                                                    </td>
-                                                    <td><?php echo $list['dokumenTahun'];?></td>
-                                                    <td><?php echo $list['docgroupJenisDoc'];?></td>
-                                                    <td><?php echo $list['ownerId'];?></td>
-                                                    <td style='white-space: nowrap'>
-                                                        <?php if ($list['ownerId'] == $ownerId) {?>
-                                                        <button type="button" class="btn btn-xs btn-warning waves-effect" data-toggle="modal" data-target="#modalFormDocMultiUser" data-form="formEdit" data-id="<?php echo $list['idDokumen'];?>">Edit</button>
-                                                        <button class="btn btn-xs btn-danger waves-effect buttonHapus" data-id="<?php echo $list['idDokumen'];?>">Delete</button>
-                                                        <?php }?>
-                                                    </td>                                            
-                                                </tr>
-                                                <?php $i++;}?>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+                            <!-- Tabel dokumen -->
+                            <div class="table-responsive">
+                                <table id="tabelData" class="table table-bordered table-striped table-hover tblListAllDoc">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nama Dokumen / No / Deskripsi</th>
+                                            <th>Tahun</th>
+                                            <th>Kategori</th>
+                                            <th>OwnerId</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $i=1;?>
+                                        <?php foreach($dokumen as $list) { ?>
+                                        
+                                        <tr>
+                                            <td><?php echo $i;?></td>
+                                            <td>
+                                                <a href="<?php echo $list['dokumenFile'];?>" target="_blank"><?php echo $list['dokumenNama'];?></a><br>
+                                                <small>Nomor Dokumen : <?php echo $list['dokumenNomor'];?></small><br>
+                                                <small><?php echo $list['dokumenDeskripsi'];?></small>
+                                            </td>
+                                            <td><?php echo $list['dokumenTahun'];?></td>
+                                            <td><?php echo $list['docgroupJenisDoc'];?></td>
+                                            <td><?php echo $list['ownerId'];?></td>
+                                            <td style='white-space: nowrap'>
+                                                <?php if ($list['ownerId'] == $ownerId) {?>
+                                                <button type="button" class="btn btn-xs btn-warning waves-effect" data-toggle="modal" data-target="#modalFormDocMultiUser" data-form="formEdit" data-id="<?php echo $list['idDokumen'];?>">Edit</button>
+                                                <button class="btn btn-xs btn-danger waves-effect buttonHapus" data-id="<?php echo $list['idDokumen'];?>">Delete</button>
+                                                <?php }?>
+                                            </td>                                            
+                                        </tr>
+                                        <?php $i++;}?>
+                                    </tbody>
+                                </table>
                             </div>
                             <!-- #END# Tabel dokumen -->
                         </div>
@@ -135,12 +133,14 @@
                                 </div>
                                 <div class="form-group form-float">
                                     <label class="form-label">Tag Dosen</label>
+                                    <small>(Tandai nama-nama dosen yang terkait dengan dokumen ini)</small>
                                     <div class="form-line">
                                         <input id="tags-input-dosen" name="dsndoc">
                                     </div>
                                 </div>
                                 <div class="form-group form-float">
                                     <label class="form-label">Tag Mahasiswa</label>
+                                    <small>(Tandai nama-nama mahasiswa yang terkait dengan dokumen ini)</small>
                                     <div class="form-line">
                                         <input id="tags-input-mhs" name="mhsdoc">
                                     </div>
@@ -172,9 +172,6 @@
     var prefetch_dsn = "<?php echo URL_API.'daftar/dosen/2';?>";
     var prefetch_mhs = "<?php echo URL_API.'daftar/mahasiswa/2';?>";
     var kodeUnit     = "<?php echo $ownerId; ?>";
-    <?php if(isset($loadMe)) {?>
-        var loadMe = <?php echo json_encode($loadMe); ?>;
-    <?php }?>
     <?php if(isset($nodeId)) {?>
         var nodeId = <?php echo $nodeId; ?>;
     <?php }?>

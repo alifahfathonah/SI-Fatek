@@ -9,7 +9,7 @@ class Proposal extends CI_Controller {
 		//* Check if current-user is mahasiswa *//
 		if (!isset($this->session->userdata['logged_in_portal']['mhs'])) {
 			if (!isset($this->session->userdata['logged_in_portal'])) {
-				redirect(base_url());
+				redirect(site_url('login'));
 			} else {
 				show_error('Access denied!');
 			}

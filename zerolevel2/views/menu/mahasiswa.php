@@ -2,6 +2,12 @@
 
                     <li class="header">DAFTAR MENU</li>
                     <li>
+                        <a href="<?php echo site_url('dashboard');?>">
+                            <i class="material-icons">home</i>
+                            <span>Beranda</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="<?php echo site_url('mahasiswa/profile');?>">
                             <i class="material-icons">person</i>
                             <span>My Profile</span>
@@ -13,4 +19,20 @@
                             <span>My Documents</span>
                         </a>
                     </li>
-                    <li class="header">AKADEMIK</li>
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">account_balance</i>
+                            <span>Akademik</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">sports_kabaddi</i>
+                            <span>Kemahasiswaan</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="<?php echo site_url('mahasiswa/prestasi');?>"><span>Pengajuan Data Prestasi</span></a>
+                            </li>
+                        </ul>
+                    </li>

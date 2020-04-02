@@ -9,7 +9,7 @@ class Profile extends CI_Controller {
 		//* Check if current-user is dosen *//
 		if (!isset($this->session->userdata['logged_in_portal']['dosen'])) {
 			if (!isset($this->session->userdata['logged_in_portal'])) {
-				redirect(base_url());
+				redirect(site_url('login'));
 			} else {
 				show_error('Access denied!');
 			}
@@ -97,7 +97,8 @@ class Profile extends CI_Controller {
 		//* Check if file foto is not empty *//
 		if(!empty($_FILES['fotodosen']['name'])) {
 
-			//* Load configuration for upload library *//
+			//* Set the configuration for upload library. Set the file name. with format idUser-currentDate.jpg *//
+			$this->config->config['pasfoto_dosen']['file_name'] = $this->user['id'];
 			$this->load->library('upload', $this->config->item('pasfoto_dosen'));
 			
 			//* Check foto has not been upload *//
@@ -109,10 +110,10 @@ class Profile extends CI_Controller {
 				//* If the foto has been successfully upload *//
 
 				//* Delete the foto old file. Check if old foto exist*//
-				$file	= $this->Tabel_dosen->detail(array('nip'=> $this->user['id']))['foto'];
-				if (!empty($file) AND file_exists(FCPATH .DIR_FOTO_DOSEN .$file)) {
-					unlink(FCPATH .DIR_FOTO_DOSEN .$file);
-				}
+				// $file	= $this->Tabel_dosen->detail(array('nip'=> $this->user['id']))['foto'];
+				// if (!empty($file) AND file_exists(FCPATH .DIR_FOTO_DOSEN .$file)) {
+				// 	unlink(FCPATH .DIR_FOTO_DOSEN .$file);
+				// }
 			
 				//* Get the upload properties and store in var database *//
 				$upload_data = $this->upload->data();

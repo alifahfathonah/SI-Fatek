@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 
 			<div class="block-header">
-                <h2><?php echo $pageTitle;?></h2>
+                <h1><?php echo $pageTitle;?></h1>
             </div>
 
             <?php if($this->session->flashdata('message')) {?>  

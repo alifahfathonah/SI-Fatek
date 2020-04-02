@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 
             <div class="block-header">
-                <h2><?php echo $pageTitle;?></h2>
+                <h1><?php echo $pageTitle;?></h1>
             </div>
 
             <?php if($this->session->flashdata('message')) {?>  
@@ -236,6 +236,90 @@
                                 <label>Status Kontrak Skripsi</label><br/>
                                 <?php echo $mhsAPI->akademik->statusTa;?>
                             </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row clearfix">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header bg-blue">
+                            <h2>Prestasi Mahasiswa</h2>
+                            <ul class="header-dropdown m-r--5">
+                                <li>
+                                    <span >
+                                        <a href="<?php echo site_url('mahasiswa/prestasi');?>" data-toggle="tooltip" title="Tambah Prestasi">
+                                            <i class="material-icons">add</i>
+                                        </a>
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Rangking</th>
+                                            <th>Event/Kegiatan</th>
+                                            <th>Tingkat</th>
+                                            <th>Tgl. Kegiatan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $i=1;?>
+                                        <?php foreach($prestasi as $list) { ?>
+                                        <tr>
+                                            <td><?php echo $i;?></td>
+                                            <td><?php echo $list['prestasi'];?></td>
+                                            <td><?php echo $list['even'];?></td>
+                                            <td><?php echo $list['tingkat'];?></td>
+                                            <td><?php echo $list['tglLomba'];?></td>
+                                        </tr> 
+                                        <?php $i++;}?>                        
+                                    </tbody>
+                                </table>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header bg-red">
+                            <h2>Disiplin Akademik</h2>
+                        </div>
+                        <div class="body">
+                            <div class="table-responsive">
+                                 <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Disiplin Akademik</th>
+                                            <th>Tanggal Berlaku</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $i=1;?>
+                                        <?php foreach($disiplin as $list) { ?>
+                                        <tr>
+                                            <td><?php echo $i;?></td>
+                                            <td><?php echo $list['disiplin'];?></td>
+                                            <td><?php echo $list['tglStart'];?> s/d <?php echo $list['tglEnd'];?></td>
+                                            <td>
+                                                <?php if ($list['status']) {?>
+                                                    <span class="label label-success">Tidak berlaku</span>
+                                                <?php } else {?>
+                                                    <span class="label label-warning">Masih berlaku</span>
+                                                <?php }?>    
+                                            </td>
+                                        </tr> 
+                                        <?php $i++;}?>                         
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>

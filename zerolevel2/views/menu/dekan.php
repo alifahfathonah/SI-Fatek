@@ -9,21 +9,6 @@
                         <ul class="ml-menu">
                             <li>
                                 <a href="#">
-                                    <span>Daftar Ajuan Seminar Proposal</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span>Daftar Ajuan Seminar Hasil</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span>Daftar Ajuan Sidang Sarjana</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
                                     <span>Daftar Ajuan Yudisium</span>
                                 </a>
                             </li>

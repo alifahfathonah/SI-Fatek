@@ -9,7 +9,7 @@ class Dokumen extends CI_Controller {
 		//* Check if current-user is dosen *//
 		if (!isset($this->session->userdata['logged_in_portal']['dosen'])) {
 			if (!isset($this->session->userdata['logged_in_portal'])) {
-				redirect(base_url());
+				redirect(site_url('login'));
 			} else {
 				show_error('Access denied!');
 			}

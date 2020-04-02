@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 
 			<div class="block-header">
-                <h2><?php echo $pageTitle;?></h2>
+                <h1><?php echo $pageTitle;?></h1>
             </div>
 
             <div class="row clearfix">
@@ -12,10 +12,10 @@
                         </div>
                         <div class="body">
                             <div class="row clearfix">
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4 form-control-label">
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
                                     <label>Pilih Angkatan</label>
                                 </div>
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
+                                <div class="col-lg-3 col-md-3 col-sm-8 col-xs-8">
                                     <div class="form-group">
                                         <div class="form-line">
                                             <select class="form-control show-tick" data-live-search="true" id="table-filter">

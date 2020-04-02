@@ -35,6 +35,8 @@ http://fatek.unsrat.ac.id
     <!-- Bootstrap Tagsinput Css -->
     <link href="<?php echo base_url("assets/adminbsb/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css");?>" rel="stylesheet">
 
+    <!-- Bootstrap Material Datetime Picker Css -->
+    <link href="<?php echo base_url("assets/adminbsb/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css");?>" rel="stylesheet">
     <!-- Waves Effect Css -->
     <link href="<?php echo base_url("assets/adminbsb/plugins/node-waves/waves.css");?>" rel="stylesheet" />
 
@@ -59,6 +61,7 @@ http://fatek.unsrat.ac.id
     <!-- Custom Css -->
     <link href="<?php echo base_url("assets/adminbsb/css/style.min.css");?>" rel="stylesheet" />
     <link href="<?php echo base_url("assets/adminbsb/css/typeahead.css");?>" rel="stylesheet" />
+    <link href="<?php echo base_url("assets/adminbsb/css/custom.css");?>" rel="stylesheet" />
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="<?php echo base_url("assets/adminbsb/css/themes/all-themes.min.css");?>" rel="stylesheet" />
@@ -192,6 +195,12 @@ http://fatek.unsrat.ac.id
     <!-- Waves Effect Plugin Js -->
     <script src="<?php echo base_url("assets/adminbsb/plugins/node-waves/waves.js");?>"></script>
 
+    <!-- Moment Plugin Js -->
+    <script src="<?php echo base_url("assets/adminbsb/plugins/momentjs/moment.js");?>"></script>
+
+    <!-- Bootstrap Material Datetime Picker Plugin Js -->
+    <script src="<?php echo base_url("assets/adminbsb/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js");?>"></script>
+
     <!-- Multi Select Plugin Js -->
     <script src="<?php echo base_url("assets/adminbsb/plugins/multi-select/js/jquery.multi-select.js");?>"></script>
 
@@ -240,6 +249,7 @@ http://fatek.unsrat.ac.id
     <script src="<?php echo base_url("assets/adminbsb/js/admin.js");?>"></script>
 
     <script src="<?php echo base_url("assets/adminbsb/js/custom.js");?>"></script>
+    <script src="<?php echo base_url("assets/adminbsb/js/form-modal.js");?>"></script>
     <script src="<?php echo base_url("assets/adminbsb/js/treeview.js");?>"></script>
 
 

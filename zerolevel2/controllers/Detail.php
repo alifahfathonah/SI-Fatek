@@ -3,34 +3,46 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Detail extends CI_Controller {
 	
-	public function __construct() {
-		
+	public function __construct() {	
 		parent::__construct();
-		$this->load->model(array('Tabel_dosen','Tabel_mahasiswa', 'Tabel_proposal'));
 
 		//* Check if current-user is logged user *//
 		if (!isset($this->session->userdata['logged_in_portal'])) {
-			redirect(base_url());
+			redirect(site_url('login'));
 		}
 
 		//* Load model, library, helper, etc *//
-		$this->load->model(array('Tabel_dosen','Tabel_mahasiswa', 'Tabel_proposal'));
+		$this->load->model(array('Tabel_dosen','Tabel_mahasiswa', 'Tabel_kmPrestasi', 'Tabel_kmDisiplin'));
 		
 	}
 
 	public function mahasiswa($nim) {
-		$data['pageTitle'] 	= "Data Mahasiswa";
+		$data['pageTitle'] 	= "Detail Mahasiswa";
 		$data['body_page'] 	= "body/mahasiswa/detail";
 
 		$data['mhsAPI'] 	= $this->apicall->get(URL_API.'mahasiswa?nim='.$nim);
 		$data['mahasiswa'] 	= $this->Tabel_mahasiswa->detail(array('nim'=> $nim));
+		$data['prestasi'] 	= $this->Tabel_kmPrestasi->user_get(array('userId'=> $nim), 'tglLomba DESC');
+		$data['disiplin'] 	= $this->Tabel_kmDisiplin->user_get(array('userId'=> $nim), 'tglEnd DESC');
 
+		//* formatting the data to be view properly at the pageview *//
+		foreach ($data['prestasi'] as &$key) {
+			$key['tglLomba'] 	= date('d M Y',strtotime($key['tglLomba']));
+		}
+
+		foreach ($data['disiplin'] as &$key) {
+			$key['status'] 		= ($key['tglEnd'] < date('Y-m-d')) ? TRUE : FALSE;
+			$key['tglStart'] 	= date('d M Y',strtotime($key['tglStart']));
+			$key['tglEnd']  	= date('d M Y',strtotime($key['tglEnd']));
+		}
+
+		//echo json_encode($data);die;
 		$this->load->view(THEME,$data);
 	}	
 
 	public function dosen($nip) {
 
-		$data['pageTitle'] 	= "Data Dosen";
+		$data['pageTitle'] 	= "Detail Dosen";
 		$data['body_page'] 	= "body/dosen/detail";
 
 		$data['dosen'] 			= $this->Tabel_dosen->detail(array('nip'=> $nip));

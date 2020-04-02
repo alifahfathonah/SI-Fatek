@@ -4,18 +4,22 @@ $(function () {
 
     {
         text: 'Dekan',
+        judu: 'Dekan',
         href: 'dekan',
     },
     {
         text: 'Bidang I',
+        judu: 'Bidang I',
         href: 'wd1',
     },
     {
         text: 'Bidang II',
+        judu: 'Bidang II',
         href: 'wd2',
     },
     {
         text: 'Bidang III',
+        judu: 'Bidang III',
         href: 'wd3'  ,
     },
     {
@@ -24,19 +28,23 @@ $(function () {
 
         nodes: [
         {
-            text: 'Jurusan Teknik Sipil',
+            text: 'Teknik Sipil',
+            judu: 'Jurusan Teknik Sipil',
             href: 'jurusan45',
         },
         {
-            text: 'Jurusan Arsitektur',
+            text: 'Arsitektur',
+            judu: 'Jurusan Arsitektur',
             href: 'jurusan42',
         },
         {
-            text: 'Jurusan Teknik Elektro',
+            text: 'Teknik Elektro',
+            judu: 'Jurusan Teknik Elektro',
             href: 'jurusan43',
         },
         {
-            text: 'Jurusan Teknik Mesin',
+            text: 'Teknik Mesin',
+            judu: 'Jurusan Teknik Mesin',
             href: 'jurusan44',
         },
         ]
@@ -46,37 +54,45 @@ $(function () {
         selectable: false,
         nodes: [
         {
-            text: 'Prodi Teknik Sipil',
+            text: 'Teknik Sipil',
+            judu: 'Prodi Teknik Sipil',
             href: 'prodi14',
         },
         {
-            text: 'Prodi Teknik Lingkungan',
+            text: 'Teknik Lingkungan',
+            judu: 'Prodi Teknik Lingkungan',
             href: 'prodi94',
         },
         {
-            text: 'Prodi Arsitektur',
+            text: 'Arsitektur',
+            judu: 'Prodi Arsitektur',
             href: 'prodi15',
         },
         {
-            text: 'Prodi PWK',
+            text: 'PWK',
+            judu: 'Prodi PWK',
             href: 'prodi16',
         },
         {
-            text: 'Prodi Teknik Elektro',
+            text: 'Teknik Elektro',
+            judu: 'Prodi Teknik Elektro',
             href: 'prodi12',
         },
         {
-            text: 'Prodi Teknik Informatika',
+            text: 'Teknik Informatika',
+            judu: 'Prodi Teknik Informatika',
             href: 'prodi77',
         },
         {
-            text: 'Prodi Teknik Mesin',
+            text: 'Teknik Mesin',
+            judu: 'Prodi Teknik Mesin',
             href: 'prodi13',
         },
         ]
     },
     {
         text: 'Bag. Umum',
+        judu: 'Bag. Umum',
         href: 'umum'  ,
     }
     ];
@@ -91,7 +107,10 @@ $(function () {
 
         onNodeSelected: function(event, node) {
               $('.tblListAllDoc').DataTable().columns(4).search(node.href).draw();
-              $('.subtitle').text(node.text);
+              $('.subtitle').text(node.judu);
+              $('html, body').animate({
+                    scrollTop: $(".scrollhere").offset().top -80
+                }, 2000);
             },
     });
 
