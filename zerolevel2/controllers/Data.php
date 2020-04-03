@@ -36,7 +36,8 @@ class Data extends CI_Controller {
 		$data['body_page'] 	= "body/mahasiswa/list_api";
 
 			//* Get data from API and return the data to $mhsApi *//
-			$data['mhsApi'] = $this->apicall->get(URL_API.'mahasiswa/'.$this->user['grup'].'?kode='.$this->user['kodeunit']);
+			$data['mhsApi'] = $this->apicall->get(URL_API.'mahasiswa/'.$this->user['grup'].'?kode='.$this->user['kodeunit'].'&filter=status&by=A');
+			
 			
 			$this->load->view(THEME,$data);
 	}

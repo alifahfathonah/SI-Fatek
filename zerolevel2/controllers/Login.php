@@ -13,7 +13,7 @@ class Login extends CI_Controller {
 	public function index() {
 
 		if(isset($this->session->userdata['logged_in_portal'])) {
-			redirect(site_url('dashboard'));
+			redirect(site_url('wall'));
 		}
 	
 		$this->load->view("login");
@@ -88,7 +88,7 @@ class Login extends CI_Controller {
 						//* Register session, clear login attempt, redirect to site *//
 						$this->session->set_userdata('logged_in_portal',$sess_data);
 						$this->session->unset_userdata('login_attempt');						
-						redirect(site_url('dashboard'));
+						redirect(site_url('wall'));
 					
 					} else {
 						//* Below line is executed when user_dosen not found on FATEK database *//
@@ -175,7 +175,7 @@ class Login extends CI_Controller {
 						//* Register session, clear login attempt, redirect to site *//
 						$this->session->set_userdata('logged_in_portal',$sess_data);
 						$this->session->unset_userdata('login_attempt');
-						redirect(site_url('dashboard'));
+						redirect(site_url('wall'));
 
 					} else  {
 						//* Below line is executed if user not Fatek student *//

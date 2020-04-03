@@ -2,9 +2,9 @@
 
                     <li class="header">DAFTAR MENU</li>
                     <li>
-                        <a href="<?php echo site_url('dashboard');?>">
-                            <i class="material-icons">home</i>
-                            <span>Beranda</span>
+                        <a href="<?php echo site_url('wall');?>">
+                            <i class="material-icons">whatshot</i>
+                            <span>My Wall</span>
                         </a>
                     </li>
                     <li>

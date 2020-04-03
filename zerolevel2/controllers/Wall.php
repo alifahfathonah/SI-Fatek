@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Dashboard extends CI_Controller {
+class Wall extends CI_Controller {
 	
 	public function __construct() {
 		parent::__construct();
@@ -48,7 +48,7 @@ class Dashboard extends CI_Controller {
 
 		//* Initialize general variables for pageview properties *//
 		$data['pageTitle'] 	= "Pengumuman";
-		$data['body_page'] 	= "body/dashboard/timeline";
+		$data['body_page'] 	= "body/dashboard/wall";
 
 		//* Get data from tabel announce and store at $announce *//
 		$data['announce']	= (isset($this->admin)) ? $this->Tabel_announce->get(FALSE,'tanggal DESC') : $this->Tabel_announce->get("grups = 'fakultas' OR grups ='".$this->user['kodeJur']."' OR grups ='".$this->user['kodeProdi']."'",'tanggal DESC');
@@ -130,7 +130,7 @@ class Dashboard extends CI_Controller {
 			$this->session->set_flashdata('message', validation_errors('Form tidak lengkap! '));
 		}
 
-		redirect(base_url());
+		redirect(site_url('wall'));
 	
 	}
 
@@ -195,7 +195,7 @@ class Dashboard extends CI_Controller {
 			$this->session->set_flashdata('message', validation_errors('Form tidak lengkap! '));
 		}
 
-		redirect(base_url());
+		redirect(site_url('wall'));
 	
 	}	
 
