@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 
 			<div class="block-header">
-                <h2><?php echo $pageTitle;?></h2>
+                <h1><?php echo $pageTitle;?></h1>
             </div>
 
             <!-- Widgets -->
@@ -16,7 +16,18 @@
                             <div class="number count-to" data-from="0" data-to="<?php echo $API['jlhMhs'];?>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
-                </div>               
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-purple hover-expand-effect">
+                        <div class="icon">
+                            <i class="material-icons">emoji_people</i>
+                        </div>
+                        <div class="content">
+                            <div class="text">MAHASISWA AKTIF</div>
+                            <div class="number count-to" data-from="0" data-to="<?php echo $API['jlhMhA'];?>" data-speed="1000" data-fresh-interval="20"></div>
+                        </div>
+                    </div>
+                </div>                              
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="info-box bg-green hover-expand-effect">
                         <div class="icon">
@@ -35,22 +46,10 @@
                         </div>
                         <div class="content">
                             <div class="text">DOSEN</div>
-                            <div class="number count-to" data-from="0" data-to="<?php echo $API['jlhDsn'];?>" data-speed="1000" data-fresh-interval="20"></div>
+                            <div class="number count-to" data-from="0" data-to="<?php echo $jlhDsn;?>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-purple hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">person</i>
-                        </div>
-                        <div class="content">
-                            <div class="text">PEGAWAI</div>
-                            <div class="number count-to" data-from="0" data-to="<?php echo $API['jlhPgw'];?>" data-speed="1000" data-fresh-interval="20"></div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
             <!-- #END# Widgets -->
 
@@ -194,13 +193,13 @@
 
     graphs[5] = {type : 'donut', 
                     element : 'chart-dsn-jurusan', 
-                    data : <?php echo json_encode($API['dosjur']);?>, 
+                    data : <?php echo json_encode($dosjur);?>, 
                     param : {'colors' : ['rgb(233, 30, 99)', 'rgb(0, 188, 212)', 'rgb(255, 152, 0)', 'rgb(0, 150, 136)'],}
     };
 
     graphs[6] = {type : 'bar', 
                     element : 'chart-dsn-prodi', 
-                    data : <?php echo json_encode($API['dospro']);?>, 
+                    data : <?php echo json_encode($dospro);?>, 
                     param : {'xkey': 'prodi',
                         'ykeys': ['jumlah'],
                         'labels' : ['Jumlah Dosen'],

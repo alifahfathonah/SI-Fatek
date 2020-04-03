@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 
             <div class="block-header">
-                <h2><?php echo $pageTitle;?></h2>
+                <h1><?php echo $pageTitle;?></h1>
             </div>
 
             <!-- Widgets -->
@@ -20,7 +20,7 @@
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="info-box bg-purple hover-expand-effect">
                         <div class="icon">
-                            <i class="material-icons">person</i>
+                            <i class="material-icons">emoji_people</i>
                         </div>
                         <div class="content">
                             <div class="text">MAHASISWA AKTIF</div>
@@ -46,7 +46,7 @@
                         </div>
                         <div class="content">
                             <div class="text">DOSEN</div>
-                            <div class="number count-to" data-from="0" data-to="<?php echo $API['jlhDsn'];?>" data-speed="1000" data-fresh-interval="20"></div>
+                            <div class="number count-to" data-from="0" data-to="<?php echo $jlhDsn;?>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
                 </div>
@@ -98,21 +98,6 @@
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
-                            <h2>Jumlah Mahasiswa per Sumber Dana</h2>
-                        </div>
-                        <div class="body">
-                            <div id="bar-mhs-sumber" class="graph"></div>
-                        </div>
-                    </div>
-                </div>
-                <!-- #END# Bar1 Chart -->                
-            </div>
-
-            <div class="row clearfix">
-                <!-- Bar1 Chart -->
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <div class="card">
-                        <div class="header">
                             <h2>Jumlah Mahasiswa per Jenis Kelamin</h2>
                         </div>
                         <div class="body">
@@ -120,20 +105,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- #END# Bar1 Chart -->
-
-                <!-- Bar1 Chart -->
-                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                    <div class="card">
-                        <div class="header">
-                            <h2>Jumlah Alumni per Periode Wisuda</h2>
-                        </div>
-                        <div class="body">
-                            <div id="bar-alu-wisuda" class="graph"></div>
-                        </div>
-                    </div>
-                </div>
-                <!-- #END# Bar1 Chart -->
+                <!-- #END# Bar1 Chart -->                
             </div>
 
 
@@ -170,24 +142,4 @@
                     data : <?php echo json_encode($API['gender']);?>, 
                     param : {'colors' : ['rgb(233, 30, 99)', 'rgb(0, 150, 136)'],}
     };
-
-    graphs[4] = {type : 'bar', 
-                    element : 'bar-mhs-sumber', 
-                    data : <?php echo json_encode($API['dana']);?>, 
-                    param : {'xkey': 'sumberDana',
-                        'ykeys': ['jumlah'],
-                        'labels' : ['Jumlah Mahasiswa'],
-                        'barColors' : ['rgb(0, 188, 212)'],}
-    };
-
-    graphs[5] = {type : 'bar', 
-                    element : 'bar-alu-wisuda', 
-                    data : <?php echo json_encode($API['wis']);?>, 
-                    param : {'xkey': 'wisudaPeriod',
-                        'ykeys': ['jumlah'],
-                        'labels' : ['Jumlah Alumni'],
-                        'barColors' : ['rgb(0, 212, 85)'],}
-    };
-
-    
 </script>

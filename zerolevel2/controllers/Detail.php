@@ -26,6 +26,8 @@ class Detail extends CI_Controller {
 		$data['disiplin'] 	= $this->Tabel_kmDisiplin->user_get(array('userId'=> $nim), 'tglEnd DESC');
 
 		//* formatting the data to be view properly at the pageview *//
+		$data['mhsAPI']->tanggalLahir = date('d F Y', strtotime($data['mhsAPI']->tanggalLahir));
+
 		foreach ($data['prestasi'] as &$key) {
 			$key['tglLomba'] 	= date('d M Y',strtotime($key['tglLomba']));
 		}
@@ -65,8 +67,13 @@ class Detail extends CI_Controller {
 
 		$data['mhsAPI'] 	= $this->apicall->get(URL_API.'mahasiswa?nim='.$nim);
 		$data['mahasiswa'] 	= $this->Tabel_mahasiswa->detail(array('nim'=> $nim));
-		//$data['alumniAPI'] = $this->apicall->get(URL_API.'alumni?nim='.$nim);
-		$data['alumniAPI'] = "";
+		$data['alumniAPI'] 	= $this->apicall->get(URL_API.'alumni?nim='.$nim);
+		//$data['alumniAPI'] 	= "";
+
+		//* formatting the data to be view properly at the pageview *//
+		$data['mhsAPI']->tanggalLahir = date('d F Y', strtotime($data['mhsAPI']->tanggalLahir));
+		$data['alumniAPI']->tanggalLulus = date('d F Y', strtotime($data['alumniAPI']->tanggalLulus));
+		$data['alumniAPI']->tanggalIjazah = date('d F Y', strtotime($data['alumniAPI']->tanggalIjazah));
 
 		$this->load->view(THEME,$data);
 	}

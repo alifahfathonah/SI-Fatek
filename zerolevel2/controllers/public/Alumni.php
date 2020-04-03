@@ -116,10 +116,13 @@ class Alumni extends CI_Controller {
 
 			$data['alumni']->jurusan = ucwords(strtolower($data['alumni']->jurusan));
 			$data['alumni']->prodi = ucwords(strtolower($data['alumni']->prodi));
-			//if (!empty($data['dosen']['email'])) $data['dosen']['email'] = str_replace("@", "[a]", $data['dosen']['email']);
 
 			$data['pageTitle'] = $data['alumni']->nama;
-			$data['body_page'] = 'body/alumni/detail_public';	
+			$data['body_page'] = 'body/alumni/detail_public';
+
+			//* Formatting the output *//
+			$data['alumni']->tanggalLulus = date('d F Y', strtotime($data['alumni']->tanggalLulus));
+			$data['alumni']->tanggalIjazah = date('d F Y', strtotime($data['alumni']->tanggalIjazah));
 
 			$this->load->view($this->layout,$data);
 

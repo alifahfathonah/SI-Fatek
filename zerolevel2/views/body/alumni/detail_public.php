@@ -28,9 +28,6 @@
                                     <dt>Tanggal Lulus</dt>
                                     <dd><?php echo $alumni->tanggalLulus;?></dd>
 
-                                    <dt>Tanggal Wisuda</dt>
-                                    <dd><?php echo $alumni->tanggalWisuda;?></dd>
-
                                     <dt>Tanggal Ijazah</dt>
                                     <dd><?php echo $alumni->tanggalIjazah;?></dd>
 

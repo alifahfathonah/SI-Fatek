@@ -3,15 +3,22 @@
             <div class="block-header">
                 <h1><?php echo $pageTitle;?></h1>
             </div>
-           
+
             <div class="row clearfix">
                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                     <div class="card">
-                        <div class="header bg-green">
-                            <h2>Foto Profil</h2>
-                        </div>
-                        <div class="body">
+                        <div class="body align-center">
                             <img src="<?php echo $mhsAPI->foto;?>" class="img-responsive img-thumbnail"/>
+                        </div>
+                    </div>
+
+                    <div class="info-box bg-amber hover-zoom-effect">
+                        <div class="icon">
+                            <i class="material-icons">stars</i>
+                        </div>
+                        <div class="content">
+                            <div class="text">STATUS</div>
+                            <div class="number"><?php echo $mhsAPI->statusMahasiswa; ?></div>
                         </div>
                     </div>
                 </div>
@@ -193,40 +200,6 @@
                             <small>Last Update: <?php echo $mahasiswa['last_update']; ?></small>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                    <div class="card">
-                        <div class="header bg-green">
-                            <h2>Akademik <small>Source: Database Akademik Unsrat</small></h2>
-                        </div>
-                        <div class="body">
-<!--                             <p>
-                                <label>Pembimbing Akademik</label><br/>
-                                <a href="<?php echo site_url('detail/dosen/').$mhsAPI->nipDosenPembimbingAkademik;?>"><?php echo $mhsAPI->dosenPembimbingAkademik;?></a>
-                            </p>
-                            <p>
-                                <label>IPK</label><br/>
-                                <?php echo $mhsAPI->akademik->ipk;?>
-                            </p>
-                            <p>
-                                <label>SKS Kontrak</label><br/>
-                                <?php echo $mhsAPI->akademik->sksTotal;?>
-                            </p>
-                            <p>
-                                <label>SKS Lulus</label><br/>
-                                <?php echo $mhsAPI->akademik->sksLulus;?>
-                            </p>
-                            <p>
-                                <label>Status Kontrak Skripsi</label><br/>
-                                <?php echo $mhsAPI->akademik->statusTa;?>
-                            </p> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row clearfix">
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header bg-blue">
                             <h2>Prestasi Mahasiswa</h2>
@@ -259,8 +232,7 @@
                             </div> 
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+
                     <div class="card">
                         <div class="header bg-red">
                             <h2>Disiplin Akademik</h2>
@@ -295,6 +267,37 @@
                                     </tbody>
                                 </table>
                             </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header bg-green">
+                            <h2>Akademik <small>Source: Database Akademik Unsrat</small></h2>
+                        </div>
+                        <div class="body">
+                            <p>
+                                <label>Pembimbing Akademik</label><br/>
+                                <a href="<?php echo site_url('detail/dosen/').$mhsAPI->nipDosenPembimbingAkademik;?>"><?php echo $mhsAPI->dosenPembimbingAkademik;?></a>
+                            </p>
+                            <p>
+                                <label>IPK</label><br/>
+
+                            </p>
+                            <p>
+                                <label>SKS Kontrak</label><br/>
+
+                            </p>
+                            <p>
+                                <label>SKS Lulus</label><br/>
+
+                            </p>
+                            <p>
+                                <label>Status Kontrak Skripsi</label><br/>
+
+                            </p>
                         </div>
                     </div>
                 </div>

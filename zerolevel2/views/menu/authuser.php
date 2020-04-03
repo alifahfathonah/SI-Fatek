@@ -33,6 +33,12 @@
                         </ul>
                     </li>
                     <li>
+                        <a href="<?php echo site_url('statistik');?>">
+                            <i class="material-icons">show_chart</i>
+                            <span>Statistik</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">library_books</i>
                             <span>Dokumen</span>

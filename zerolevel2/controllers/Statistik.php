@@ -43,7 +43,7 @@ class Statistik extends CI_Controller {
 		$data['API']['jlhMhA'] 	= $this->apicall->get(URL_API.'jumlah/mahasiswa/fakultas?kode=2&filter=status&by=A')[0]->jumlah;
 		$data['API']['jlhAlu'] 	= $this->apicall->get(URL_API.'jumlah/alumni/fakultas?kode=2')[0]->jumlah;
 		
-		//$data['API']['jlhDsn'] 	= $this->apicall->get(URL_API.'jumlah/dosen/fakultas?kode=2')[0]->jumlah;
+		//Get langsung from local database --> $data['API']['jlhDsn'] 	= $this->apicall->get(URL_API.'jumlah/dosen/fakultas?kode=2')[0]->jumlah;
 		$data['jlhDsn'] 		= $this->Tabel_dosen->get_dosen('COUNT(*) AS jumlah','status=1')[0]['jumlah'];
 
 		$data['API']['mhs'] 	= $this->apicall->get(URL_API.'jumlah/gabung/mhs-alumni?fakultas=2');
@@ -53,9 +53,9 @@ class Statistik extends CI_Controller {
 		$data['API']['alujur'] 	= $this->apicall->get(URL_API.'jumlah/alumni/fakultas?kode=2&groupby=jurusan');
 		$data['API']['alupro'] 	= $this->apicall->get(URL_API.'jumlah/alumni/fakultas?kode=2&groupby=prodi');
 		
-		//$data['API']['dosjur'] 	= $this->apicall->get(URL_API.'jumlah/dosen/fakultas?kode=2&groupby=jurusan');
+		//Get langsung from local database --> $data['API']['dosjur'] 	= $this->apicall->get(URL_API.'jumlah/dosen/fakultas?kode=2&groupby=jurusan');
 		$data['dosjur'] 		= $this->Tabel_dosen->get_dosen('jurusan, COUNT(*) AS jumlah','status = 1','kodeJurusan');
-		//$data['API']['dospro'] 	= $this->apicall->get(URL_API.'jumlah/dosen/fakultas?kode=2&groupby=prodi');
+		//Get langsung from local database --> $data['API']['dospro'] 	= $this->apicall->get(URL_API.'jumlah/dosen/fakultas?kode=2&groupby=prodi');
 		$data['dospro'] 		= $this->Tabel_dosen->get_dosen('prodi, COUNT(*) AS jumlah','status = 1','kodeProdi');
 
 
@@ -64,8 +64,8 @@ class Statistik extends CI_Controller {
 			$data['API']['mhsjur'][$i]->value = $data['API']['mhsjur'][$i]->jumlah;
 			$data['API']['alujur'][$i]->label = $data['API']['alujur'][$i]->jurusan;
 			$data['API']['alujur'][$i]->value = $data['API']['alujur'][$i]->jumlah;
-			//$data['API']['dosjur'][$i]->label = $data['API']['dosjur'][$i]->jurusan;
-			//$data['API']['dosjur'][$i]->value = $data['API']['dosjur'][$i]->jumlah;
+			//Error --> $data['API']['dosjur'][$i]->label = $data['API']['dosjur'][$i]->jurusan;
+			//Error --> $data['API']['dosjur'][$i]->value = $data['API']['dosjur'][$i]->jumlah;
 			$data['dosjur'][$i]['label'] = $data['dosjur'][$i]['jurusan'];
 			$data['dosjur'][$i]['value'] = $data['dosjur'][$i]['jumlah'];
 		}
@@ -87,16 +87,16 @@ class Statistik extends CI_Controller {
 		$data['API']['jlhMhs'] 	= $this->apicall->get(URL_API.'jumlah/mahasiswa/jurusan?kode='.$kodeUnit)[0]->jumlah;
 		$data['API']['jlhMhA'] 	= $this->apicall->get(URL_API.'jumlah/mahasiswa/jurusan?kode='.$kodeUnit.'&filter=status&by=A')[0]->jumlah;
 		$data['API']['jlhAlu'] 	= $this->apicall->get(URL_API.'jumlah/alumni/jurusan?kode='.$kodeUnit)[0]->jumlah;
-		//$data['API']['jlhDsn'] 	= $this->apicall->get(URL_API.'jumlah/dosen/jurusan?kode='.$kodeUnit)[0]->jumlah;
+		//Get langsung from local database --> $data['API']['jlhDsn'] 	= $this->apicall->get(URL_API.'jumlah/dosen/jurusan?kode='.$kodeUnit)[0]->jumlah;
 		$data['jlhDsn'] 		= $this->Tabel_dosen->get_dosen('COUNT(*) AS jumlah','status=1 AND kodeJurusan='.$kodeUnit,'kodeJurusan')[0]['jumlah'];
 
 		$data['API']['mhs'] 	= $this->apicall->get(URL_API.'jumlah/gabung/mhs-alumni?jurusan='.$kodeUnit);
 
 		$data['API']['status'] 	= $this->apicall->get(URL_API.'jumlah/mahasiswa/jurusan?kode='.$kodeUnit.'&groupby=status');
 		$data['API']['jalur'] 	= $this->apicall->get(URL_API.'jumlah/mahasiswa/jurusan?kode='.$kodeUnit.'&groupby=jalurmasuk');
-		$data['API']['dana'] 	= $this->apicall->get(URL_API.'jumlah/mahasiswa/jurusan?kode='.$kodeUnit.'&groupby=sumberdana');
+		//Error --> $data['API']['dana'] 	= $this->apicall->get(URL_API.'jumlah/mahasiswa/jurusan?kode='.$kodeUnit.'&groupby=sumberdana');
 		$data['API']['gender'] 	= $this->apicall->get(URL_API.'jumlah/mahasiswa/jurusan?kode='.$kodeUnit.'&groupby=gender');
-		$data['API']['wis'] 	= $this->apicall->get(URL_API.'jumlah/alumni/jurusan?kode='.$kodeUnit.'&groupby=wisudaprd');
+		//Error --> $data['API']['wis'] 	= $this->apicall->get(URL_API.'jumlah/alumni/jurusan?kode='.$kodeUnit.'&groupby=wisudaprd');
 
 		for ($i=0; $i<count($data['API']['status']); $i++) {
 			$data['API']['status'][$i]->label = $data['API']['status'][$i]->status;
@@ -123,16 +123,16 @@ class Statistik extends CI_Controller {
 		$data['API']['jlhMhs'] 	= $this->apicall->get(URL_API.'jumlah/mahasiswa/prodi?kode='.$kodeUnit)[0]->jumlah;
 		$data['API']['jlhMhA'] 	= $this->apicall->get(URL_API.'jumlah/mahasiswa/prodi?kode='.$kodeUnit.'&filter=status&by=A')[0]->jumlah;
 		$data['API']['jlhAlu'] 	= $this->apicall->get(URL_API.'jumlah/alumni/prodi?kode='.$kodeUnit)[0]->jumlah;
-		//$data['API']['jlhDsn'] 	= $this->apicall->get(URL_API.'jumlah/dosen/prodi?kode='.$kodeUnit)[0]->jumlah;
+		//Get langsung from local database --> $data['API']['jlhDsn'] 	= $this->apicall->get(URL_API.'jumlah/dosen/prodi?kode='.$kodeUnit)[0]->jumlah;
 		$data['jlhDsn'] 		= $this->Tabel_dosen->get_dosen('COUNT(*) AS jumlah','status=1 AND kodeProdi='.$kodeUnit,'kodeProdi')[0]['jumlah'];
 
 		$data['API']['mhs'] 	= $this->apicall->get(URL_API.'jumlah/gabung/mhs-alumni?prodi='.$kodeUnit);
 
 		$data['API']['status'] 	= $this->apicall->get(URL_API.'jumlah/mahasiswa/prodi?kode='.$kodeUnit.'&groupby=status');
 		$data['API']['jalur'] 	= $this->apicall->get(URL_API.'jumlah/mahasiswa/prodi?kode='.$kodeUnit.'&groupby=jalurmasuk');
-		$data['API']['dana'] 	= $this->apicall->get(URL_API.'jumlah/mahasiswa/prodi?kode='.$kodeUnit.'&groupby=sumberdana');
+		//Error --> $data['API']['dana'] 	= $this->apicall->get(URL_API.'jumlah/mahasiswa/prodi?kode='.$kodeUnit.'&groupby=sumberdana');
 		$data['API']['gender'] 	= $this->apicall->get(URL_API.'jumlah/mahasiswa/prodi?kode='.$kodeUnit.'&groupby=gender');
-		$data['API']['wis'] 	= $this->apicall->get(URL_API.'jumlah/alumni/prodi?kode='.$kodeUnit.'&groupby=wisudaprd');
+		//Error --> $data['API']['wis'] 	= $this->apicall->get(URL_API.'jumlah/alumni/prodi?kode='.$kodeUnit.'&groupby=wisudaprd');
 
 		for ($i=0; $i<count($data['API']['status']); $i++) {
 			$data['API']['status'][$i]->label = $data['API']['status'][$i]->status;

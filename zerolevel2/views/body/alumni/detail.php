@@ -202,10 +202,12 @@
                         <div class="body">
                             <?php if ($alumniAPI) {?>
                             <p>
-                                <label>Pembimbing Akademik</label><br/>
+                                <label>Pembimbing Akademik</label>
+                                <ul>
                                 <?php foreach($alumniAPI->pembimbing as $list) { ?>
-                                    <a href="<?php echo site_url('detail/dosen/').$list->nip;?>"><?php echo $list->nama;?></a>
+                                    <li><a href="<?php echo site_url('detail/dosen/').$list->nip;?>"><?php echo $list->nama;?></a></li>
                                 <?php }?>
+                                </ul>
                             </p>
                             <p>
                                 <label>Judul Skripsi/TA</label><br/>
@@ -213,11 +215,7 @@
                             </p>
                             <p>
                                 <label>Tanggal Lulus</label><br/>
-                                <?php echo $alumniAPI->alumniAPI;?>
-                            </p>
-                            <p>
-                                <label>Tanggal Wisuda</label><br/>
-                                <?php echo $alumniAPI->tanggalWisuda;?>
+                                <?php echo $alumniAPI->tanggalLulus;?>
                             </p>
                             <p>
                                 <label>Tanggal Ijazah</label><br/>
@@ -231,18 +229,7 @@
                                 <label>Gelar / Predikat</label><br/>
                                 <?php echo $alumniAPI->gelar." / ".$alumniAPI->predikatKelulusan;?>
                             </p>
-                            <p>
-                                <label>Tanggal Ijazah</label><br/>
-                                <?php echo $alumniAPI->tanggalIjazah;?>
-                            </p>
-                            <p>
-                                <label>Tanggal Ijazah</label><br/>
-                                <?php echo $alumniAPI->tanggalIjazah;?>
-                            </p>
-                            <p>
-                                <label>Tanggal Ijazah</label><br/>
-                                <?php echo $alumniAPI->tanggalIjazah;?>
-                            </p>
+                            
                             <?php } else echo "Not available";?>
                         </div>
                     </div>
