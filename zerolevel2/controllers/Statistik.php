@@ -44,7 +44,7 @@ class Statistik extends CI_Controller {
 		$data['API']['jlhAlu'] 	= $this->apicall->get(URL_API.'jumlah/alumni/fakultas?kode=2')[0]->jumlah;
 		
 		//$data['API']['jlhDsn'] 	= $this->apicall->get(URL_API.'jumlah/dosen/fakultas?kode=2')[0]->jumlah;
-		$data['jlhDsn'] 		= $this->Tabel_dosen->get_dosen('COUNT(*) AS jumlah',FALSE)[0]['jumlah'];
+		$data['jlhDsn'] 		= $this->Tabel_dosen->get_dosen('COUNT(*) AS jumlah','status=1')[0]['jumlah'];
 
 		$data['API']['mhs'] 	= $this->apicall->get(URL_API.'jumlah/gabung/mhs-alumni?fakultas=2');
 		$data['API']['mhsjur'] 	= $this->apicall->get(URL_API.'jumlah/mahasiswa/fakultas?kode=2&groupby=jurusan&filter=status&by=A');
@@ -54,9 +54,9 @@ class Statistik extends CI_Controller {
 		$data['API']['alupro'] 	= $this->apicall->get(URL_API.'jumlah/alumni/fakultas?kode=2&groupby=prodi');
 		
 		//$data['API']['dosjur'] 	= $this->apicall->get(URL_API.'jumlah/dosen/fakultas?kode=2&groupby=jurusan');
-		$data['dosjur'] 		= $this->Tabel_dosen->get_dosen('jurusan, COUNT(*) AS jumlah','showInPublic = 1','kodeJurusan');
+		$data['dosjur'] 		= $this->Tabel_dosen->get_dosen('jurusan, COUNT(*) AS jumlah','status = 1','kodeJurusan');
 		//$data['API']['dospro'] 	= $this->apicall->get(URL_API.'jumlah/dosen/fakultas?kode=2&groupby=prodi');
-		$data['dospro'] 		= $this->Tabel_dosen->get_dosen('prodi, COUNT(*) AS jumlah','showInPublic = 1','kodeProdi');
+		$data['dospro'] 		= $this->Tabel_dosen->get_dosen('prodi, COUNT(*) AS jumlah','status = 1','kodeProdi');
 
 
 		for ($i=0; $i<count($data['API']['mhsjur']); $i++) {
@@ -88,7 +88,7 @@ class Statistik extends CI_Controller {
 		$data['API']['jlhMhA'] 	= $this->apicall->get(URL_API.'jumlah/mahasiswa/jurusan?kode='.$kodeUnit.'&filter=status&by=A')[0]->jumlah;
 		$data['API']['jlhAlu'] 	= $this->apicall->get(URL_API.'jumlah/alumni/jurusan?kode='.$kodeUnit)[0]->jumlah;
 		//$data['API']['jlhDsn'] 	= $this->apicall->get(URL_API.'jumlah/dosen/jurusan?kode='.$kodeUnit)[0]->jumlah;
-		$data['jlhDsn'] 		= $this->Tabel_dosen->get_dosen('COUNT(*) AS jumlah','kodeJurusan='.$kodeUnit,'kodeJurusan')[0]['jumlah'];
+		$data['jlhDsn'] 		= $this->Tabel_dosen->get_dosen('COUNT(*) AS jumlah','status=1 AND kodeJurusan='.$kodeUnit,'kodeJurusan')[0]['jumlah'];
 
 		$data['API']['mhs'] 	= $this->apicall->get(URL_API.'jumlah/gabung/mhs-alumni?jurusan='.$kodeUnit);
 
@@ -124,7 +124,7 @@ class Statistik extends CI_Controller {
 		$data['API']['jlhMhA'] 	= $this->apicall->get(URL_API.'jumlah/mahasiswa/prodi?kode='.$kodeUnit.'&filter=status&by=A')[0]->jumlah;
 		$data['API']['jlhAlu'] 	= $this->apicall->get(URL_API.'jumlah/alumni/prodi?kode='.$kodeUnit)[0]->jumlah;
 		//$data['API']['jlhDsn'] 	= $this->apicall->get(URL_API.'jumlah/dosen/prodi?kode='.$kodeUnit)[0]->jumlah;
-		$data['jlhDsn'] 		= $this->Tabel_dosen->get_dosen('COUNT(*) AS jumlah','kodeProdi='.$kodeUnit,'kodeProdi')[0]['jumlah'];
+		$data['jlhDsn'] 		= $this->Tabel_dosen->get_dosen('COUNT(*) AS jumlah','status=1 AND kodeProdi='.$kodeUnit,'kodeProdi')[0]['jumlah'];
 
 		$data['API']['mhs'] 	= $this->apicall->get(URL_API.'jumlah/gabung/mhs-alumni?prodi='.$kodeUnit);
 

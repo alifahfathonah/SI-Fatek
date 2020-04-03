@@ -29,7 +29,7 @@
                                             <th>Nip</th>
                                             <th>Jurusan</th>
                                             <th>Prodi</th>
-                                            <th>Show in Public</th>
+                                            <th>Status</th>
                                             <th>Last Update</th>
                                             <th></th>
                                         </tr>
@@ -43,7 +43,7 @@
                                             <td><?php echo $list['nip'];?></td>
                                             <td><?php echo $list['jurusan'];?></td>
                                             <td><?php echo $list['prodi'];?></td>
-                                            <td><?php echo $list['showInPublic'];?></td>
+                                            <td><?php echo $list['status'];?></td>
                                             <td><?php echo $list['tglUpdate'];?></td>
                                             <td style='white-space: nowrap'>
                                                 <button type="button" class="btn btn-xs btn-warning waves-effect" data-toggle="modal" data-target="#modalFormDosen" data-form="formEdit" data-id="<?php echo $list['idDosen'];?>">Edit</button>
@@ -203,11 +203,11 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="form-label">Show in Public</label>
+                                    <label class="form-label">Status</label>
                                     <div class="form-line">
-                                        <select class="form-control show-tick" data-live-search="true" name="showInPublic">
-                                            <option value="0">Don't show</option>
-                                            <option value="1" selected>Show</option>
+                                        <select class="form-control show-tick" data-live-search="true" name="status">
+                                            <option value="0">Tidak Aktif</option>
+                                            <option value="1" selected>Aktif</option>
                                         </select>
                                     </div>
                                 </div>

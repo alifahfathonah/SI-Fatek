@@ -31,7 +31,7 @@ class Dosen extends CI_Controller {
 		$data['pageTitle'] 	= "Kelola Data Dosen";
 		$data['body_page'] 	= "body/admin/dosen";
 		
-		$data['dosen'] 		= $this->Tabel_dosen->get(FALSE,'kodeJurusan ASC, kodeProdi ASC');
+		$data['dosen'] 		= $this->Tabel_dosen->get_dosen();
 
 		$this->load->view(THEME,$data);
 	}
@@ -63,7 +63,7 @@ class Dosen extends CI_Controller {
 			$database['scopusId'] 	= $this->input->post('scopusId');
 			$database['interest'] 	= $this->input->post('interest');
 			$database['bio'] 		= $this->input->post('bio');
-			$database['showInPublic']= $this->input->post('showInPublic');
+			$database['status']		= $this->input->post('status');
 
 			if ($this->Tabel_dosen->tambah($database)) {
 
@@ -115,7 +115,7 @@ class Dosen extends CI_Controller {
 			$database['interest'] 	= $this->input->post('interest');
 			$database['bio'] 		= $this->input->post('bio');
 			$database['userUpdate']	= $this->user['nama'];
-			$database['showInPublic']= $this->input->post('showInPublic');
+			$database['status']		= $this->input->post('status');
 
 			if ($this->Tabel_dosen->update($database)) {
 				
