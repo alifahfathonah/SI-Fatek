@@ -11,9 +11,10 @@ class Tabel_dosen extends CI_Model {
 		if ($condition) $this->db->where($condition);
 		if ($sort) $this->db->order_by($sort);
 		if ($limit) $this->db->limit($limit);
+		$this->db->where('status = 1');
+
 		$query = $this->db->get('ft_dosen');
 		$result = $query->result_array();
-		//print_r($this->db->last_query()); die;
 
 		return $result;
 	}
@@ -45,16 +46,18 @@ class Tabel_dosen extends CI_Model {
 		return $this->db->affected_rows();
 	}
 
-	public function get2() {
-		$sql= "SELECT nama FROM ft_dosen";
+	public function get_dosen($select = FALSE, $condition = FALSE, $groupby = FALSE, $having = FALSE) {
 
-		$result = $this->db->query($sql);
-
-		//echo var_dump($result->result_array());die;
-		//$this->debugSql();
-		return $result->result_array();
-
-
+		if ($select)	$this->db->select($select);
+		if ($condition)	$this->db->where($condition);
+		if ($groupby) 	$this->db->group_by($groupby);
+		if ($having) 	$this->db->having($having);
+		
+		$query = $this->db->get('ft_dosen');
+		$result = $query->result_array();
+		//print_r($this->db->last_query()); die;
+		
+		return $result;
 	}
 
 }

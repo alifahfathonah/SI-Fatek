@@ -39,7 +39,7 @@
                                     <dd id="interest"><?php echo $dosen['interest'];?></dd>
 
                                 </dl>
-
+<!-- 
                                 <h4>Education</h4>
 
                                 <div class="table-responsive">
@@ -55,7 +55,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-
+ -->
                                 <h4>Publication</h4>
 
                                 <div class="list-group">
