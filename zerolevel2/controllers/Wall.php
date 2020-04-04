@@ -12,7 +12,7 @@ class Wall extends CI_Controller {
 		}
 
 		//* Load model, library, helper, etc *//
-		$this->load->model(array('Tabel_announce')); 
+		$this->load->model(array('Tabel_announce', 'Tabel_dosen')); 
 
 		//* Initialize class variables. current-user identity. To be used throughout this class *//
 		if (isset($this->session->userdata['logged_in_portal']['dosen'])) {
@@ -51,7 +51,11 @@ class Wall extends CI_Controller {
 		$data['body_page'] 	= "body/dashboard/wall";
 
 		//* Get data from tabel announce and store at $announce *//
-		$data['announce']	= (isset($this->admin)) ? $this->Tabel_announce->get(FALSE,'tanggal DESC') : $this->Tabel_announce->get("grups = 'fakultas' OR grups ='".$this->user['kodeJur']."' OR grups ='".$this->user['kodeProdi']."'",'tanggal DESC');
+		//$data['announce']	= (isset($this->admin)) ? $this->Tabel_announce->get(FALSE,'tanggal DESC') : $this->Tabel_announce->get("grups = 'fakultas' OR grups ='".$this->user['kodeJur']."' OR grups ='".$this->user['kodeProdi']."'",'tanggal DESC');
+
+		$data['announce']	= $this->Tabel_announce->get("grups = 'fakultas' OR grups ='".$this->user['kodeJur']."' OR grups ='".$this->user['kodeProdi']."'",'tanggal DESC');
+
+		$data['bday']	= $this->Tabel_dosen->get("DATE_FORMAT((tglLahir),'%m-%d') = DATE_FORMAT(NOW(),'%m-%d')");
 
 		//* formatting the data to be view properly at the pageview *//
 		foreach ($data['announce'] as &$val) {

@@ -490,13 +490,13 @@ $(function () {
         $('.doc-empty').text('');
 
         if (form == "formTambah") {
-            $(this).find(':submit').text('POSTING');
+            $(this).find(':submit').text('TEMPEL');
             $(this).find('form').attr('action', url_timeline + '/add_post');
-            $(this).find('.modal-title').text('Posting Pengumuman');
+            $(this).find('.modal-title').text('Tempel Pengumuman');
         }
 
         else if (form == "formEdit") {
-            $(this).find(':submit').text('UPDATE');
+            $(this).find(':submit').text('EDIT');
             $(this).find('form').attr('action', url_timeline + '/update_post');
             $(this).find('.modal-title').text('Edit Pengumuman');
             $(this).find('.doc-empty').text('Biarkan kosong, jika tidak ingin mengganti file attachment');

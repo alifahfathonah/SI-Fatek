@@ -44,8 +44,8 @@
                             	</p>
                             </div>
                             <div class="top-big-link">
-                            	<a class="btn btn-link-2 launch-modal" href="#" data-modal-id="modal_mhs"><i class="fa fa-male"></i> Mahasiswa</a>
-                            	<a class="btn btn-link-2 launch-modal" href="#" data-modal-id="modal_dosen"><i class="fa fa-university"></i> Dosen</a>
+                            	<a class="btn btn-link-2 launch-modal" href="#" data-user="mahasiswa" data-modal-id="modal_login"><i class="fa fa-male"></i> Mahasiswa</a>
+                            	<a class="btn btn-link-2 launch-modal" href="#" data-user="dosen" data-modal-id="modal_login"><i class="fa fa-university"></i> Dosen</a>
                             </div>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
         </div>
         
         <!-- MODAL -->
-        <div class="modal fade" id="modal_mhs" tabindex="-1" role="dialog" aria-labelledby="modal-login-label" aria-hidden="true">
+        <div class="modal fade" id="modal_login" tabindex="-1" role="dialog" aria-labelledby="modal-login-label" aria-hidden="true">
         	<div class="modal-dialog">
         		<div class="modal-content">
         			
@@ -64,43 +64,7 @@
         				<button type="button" class="close" data-dismiss="modal">
         					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
         				</button>
-        				<h3 class="modal-title" id="modal-login-label">Login Mahasiswa to Portal Fatek</h3>
-        				<p>Enter your username and password to log on:</p>
-        			</div>
-        			
-        			<div class="modal-body">
-        				<?php if($this->session->flashdata('message_login_mhs')) {?>
-							<div class="error-message"><?php echo $this->session->flashdata('message_login_mhs');?></div>
-						<?php }?>
-        				
-	                    <?php echo form_open('login/mahasiswa');?>
-	                    	<div class="form-group">
-	                    		<label class="sr-only" for="form-username" name="identity">Username</label>
-	                        	<input type="text" name="namepf" placeholder="Username..." class="form-username form-control" id="form-username" required>
-	                        </div>
-	                        <div class="form-group">
-	                        	<label class="sr-only" for="form-password">Password</label>
-	                        	<input type="password" name="passpf" placeholder="Password..." class="form-password form-control" id="form-password" required>
-	                        </div>
-	                        <button type="submit" class="btn">Login</button>
-	                    </form>
-	                    
-        			</div>
-        			
-        		</div>
-        	</div>
-        </div>
-
-        <!-- MODAL -->
-        <div class="modal fade" id="modal_dosen" tabindex="-1" role="dialog" aria-labelledby="modal-login-label" aria-hidden="true">
-        	<div class="modal-dialog">
-        		<div class="modal-content">
-        			
-        			<div class="modal-header">
-        				<button type="button" class="close" data-dismiss="modal">
-        					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-        				</button>
-        				<h3 class="modal-title" id="modal-login-label">Login Dosen to Portal Fatek</h3>
+        				<h3 class="modal-title" id="modal-login-label">Login <span class="user"></span> to Portal Fatek</h3>
         				<p>Enter your username and password to log on:</p>
         			</div>
         			
@@ -108,15 +72,19 @@
         				<?php if($this->session->flashdata('message_login_dosen')) {?>
 							<div class="error-message"><?php echo $this->session->flashdata('message_login_dosen');?></div>
 						<?php }?>
+
+                        <?php if($this->session->flashdata('message_login_mhs')) {?>
+                            <div class="error-message"><?php echo $this->session->flashdata('message_login_mhs');?></div>
+                        <?php }?>
         				
-	                    <?php echo form_open('login/dosen');?>
+	                    <?php echo form_open('login');?>
 	                    	<div class="form-group">
 	                    		<label class="sr-only" for="form-username" name="identity">Username</label>
-	                        	<input type="text" name="namepf" placeholder="Username..." class="form-username form-control" id="form-username" required>
+	                        	<input type="text" name="namepf" placeholder="Username..." class="form-username form-control" id="form-username" autocomplete="on" required>
 	                        </div>
 	                        <div class="form-group">
 	                        	<label class="sr-only" for="form-password">Password</label>
-	                        	<input type="password" name="passpf" placeholder="Password..." class="form-password form-control" id="form-password" required>
+	                        	<input type="password" name="passpf" placeholder="Password..." class="form-password form-control" id="form-password" autocomplete="off" required>
 	                        </div>
 	                        <button type="submit" class="btn">Login</button>
 	                    </form>
@@ -126,14 +94,16 @@
         		</div>
         	</div>
         </div>
-        <?php //if (ENVIRONMENT != 'production')  $this->load->view('debug'); //display debug page ?> 
+
+
+        <?php if (ENVIRONMENT != 'production')  $this->load->view('debug'); //display debug page ?> 
 
 		<script type="text/javascript">
 		    <?php if($this->session->flashdata('message_login_dosen')) {?>
-		        var message_login_dsn = "true";
+		        var message_login_dsn = "dosen";
 		    <?php }?>
 		    <?php if($this->session->flashdata('message_login_mhs')) {?>
-		        var message_login_mhs = "true";
+		        var message_login_mhs = "mahasiswa";
 		    <?php }?>
 		</script>
 
