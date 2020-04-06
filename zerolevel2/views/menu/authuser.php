@@ -59,4 +59,23 @@
                             
                         </ul>
                     </li>
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">layers</i>
+                            <span>Sample Page</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="<?php echo site_url('testing/layanan');?>">
+                                    <span>Formulir Permintaan Layanan Administrasi Akademik [mhs]</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?php echo site_url('testing/prestasi');?>">
+                                    <span>Formulir Pengajuan Data Prestasi [mhs]</span>
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </li>
 
