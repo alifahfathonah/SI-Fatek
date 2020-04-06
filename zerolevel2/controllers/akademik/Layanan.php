@@ -142,7 +142,7 @@ class Layanan extends CI_Controller {
 		redirect(site_url('akademik/layanan'));
 	}
 
-	public function list() {
+	public function prodi() {
 		
 		//* Initialize general variables for pageview properties *//
 		$data['pageTitle'] 	= "Daftar Permintaan Layanan Administrasi";

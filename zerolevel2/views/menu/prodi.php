@@ -19,7 +19,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo site_url('akademik/layanan/list');?>">
+                                        <a href="<?php echo site_url('akademik/layanan/prodi');?>">
                                             <span>List Permintaan</span>
                                         </a>
                                     </li>
