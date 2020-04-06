@@ -83,4 +83,10 @@
                             
                         </ul>
                     </li>
+                    <li>
+                        <a href="<?php echo site_url('wall/about');?>">
+                            <i class="material-icons">update</i>
+                            <span>About Portal</span>
+                        </a>
+                    </li>
 

@@ -233,6 +233,15 @@ class Wall extends CI_Controller {
 			$this->output->set_status_header('500');
 		}
 
+	}
+
+	public function about() {
+
+		//* Initialize general variables for pageview properties *//
+		$data['pageTitle'] 	= "Portal Information";
+		$data['body_page'] 	= "body/description";
+
+		$this->load->view(THEME,$data);
 	}	
 
 }
