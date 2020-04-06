@@ -134,7 +134,16 @@ class Layanan extends CI_Controller {
 			$database2[$key]['prosesId']		= $database[$key]['proses'];
 			$database2[$key]['prosesStatus']	= $status;
 
-			$this->Tabel_akLayananMhs->update_status($database[$key], $database2[$key]);
+			if ($this->Tabel_akLayananMhs->update_status($database[$key], $database2[$key])) {
+
+				$this->session->set_flashdata('type', 'success');
+				$this->session->set_flashdata('message', 'Berhasil diproses!');	
+
+			} else {
+			
+				$this->session->set_flashdata('type', 'danger');
+				$this->session->set_flashdata('message', 'Gagal diproses!');
+			}
 		}
 
 		//echo json_encode($database);echo json_encode($database2);die;
