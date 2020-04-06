@@ -24,6 +24,13 @@
                             <i class="material-icons">account_balance</i>
                             <span>Akademik</span>
                         </a>
+                        <ul class="ml-menu">
+                            <?php if ($this->session->userdata['logged_in_portal']['mhs']['kodeProdi'] == 'prodi77') {?>
+                            <li>
+                                <a href="<?php echo site_url('mahasiswa/layanan');?>"><span>Layanan Administrasi</span></a>
+                            </li>
+                            <?php }?>
+                        </ul>
                     </li>
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">

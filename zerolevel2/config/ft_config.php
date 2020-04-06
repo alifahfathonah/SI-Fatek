@@ -59,7 +59,7 @@ $config['dokumen'] = array(
 
 $config['dokumen_tmp'] = array(
 	'upload_path' 		=> DIR_DOKUMEN_TMP,
-	'allowed_types' 	=>'pdf',
+	'allowed_types' 	=>'pdf|jpg|jpeg',
 	'max_filename' 		=>'40',
 	'file_ext_tolower'	=> TRUE,
 	'max_size' 			=> '3000',

@@ -17,7 +17,7 @@
                         <div class="body">
 
                             <div class="table-responsive">
-                                <table class="table table-bordered">
+                                <table class="table table-bordered" id="tabelApproval">
                                     <thead>
                                         <tr class="info">
                                             <th></th>

@@ -9,7 +9,20 @@
                         <ul class="ml-menu">
                             <li>
                                 <a href="#">
-                                    <span>Daftar Ajuan Yudisium</span>
+                                    <span>Not available yet!</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">sports_kabaddi</i>
+                            <span>Kemahasiswaan</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="#">
+                                    <span>Not available yet!</span>
                                 </a>
                             </li>
                         </ul>

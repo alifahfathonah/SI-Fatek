@@ -4,7 +4,7 @@ jQuery(document).ready(function() {
     /*
         Fullscreen background
     */
-    $.backstretch("http://localhost/fatek.unsrat.ac.id/portal/assets/beautiful-login/img/backgrounds/slide01.jpg");
+    $.backstretch("https://fatek.unsrat.ac.id/portal/assets/beautiful-login/img/backgrounds/slide01.jpg");
     
     /*
         Modals
@@ -14,7 +14,6 @@ jQuery(document).ready(function() {
         $( '#' + $(this).data('modal-id') ).modal();
 
         var user = $(this).data('user');
-        console.log(user);
 
         $(".modal-body").find('form').attr('action', window.location.href + '/' + user);
         $(".user").text(user);

@@ -407,77 +407,6 @@ $(function () {
         }
     });
 
-    // Modal form Approval Proposal
-    $('#modalFormApproveProposal').on('show.bs.modal', function (event) {
-        
-        var button = $(event.relatedTarget);
-        var form = button.data('form');
-        var action = button.data('action');
-        $('form [name="comment"]').prop("required",false);
-        $("#label-comment").empty();
-
-        if (form == "single") {
-            var id = button.data('id');
-        }
-
-        else if (form == "bulk") {
-            var id = [];
-            $.each($(".actionTabel input[name='check']:checked"), function(){
-                id.push($(this).val());
-            });
-            id = id.join('-');
-            if (id == "") return false;
-        }
-
-        $.ajax({
-            url : window.location.href + '/get/' + id,
-            type: "GET",
-            dataType: "JSON",
-            success: function(data)
-            {
-                $.each(data, function(i, item) {
-                    var $tr = $('<tr>').append(
-                        $('<td>').text(item.nama),
-                        $('<td>').text(item.nim),
-                        $('<td>').text(item.jurusan_alias),
-                        $('<td>').text(item.prodi_alias)
-                    );
-                    $('#tabelApprove tbody').append($tr);
-                });
-            },
-            error: function (jqXHR, textStatus, errorThrown)
-            {
-                alert('Error get data from ajax');
-            }
-        });
-
-        $(this).find('form')[0].reset();
-        $('form').validate().resetForm();
-        $('form [name="id"]').val(id);
-        $('#tabelApprove tbody').empty();
-
-        if (action == "approve") {
-
-            $(this).find('form').attr('action', window.location.href + '/approve');
-            $(this).find('.modal-title').text('Proposal judul DISETUJUI');
-            $(this).find(':submit').addClass('bg-light-blue').removeClass('bg-orange');
-            $(this).find(':submit').html('DISETUJUI');
-            $(this).find('.div-comment').empty();
-            $(this).find('#label-comment').empty();
-
-        }
-
-        else if (action == "reject") {
-            $(this).find('form').attr('action', window.location.href + '/reject');
-            $(this).find('.modal-title').text('Proposal judul DITOLAK');
-            $(this).find(':submit').addClass('bg-red').removeClass('bg-light-blue');
-            $(this).find(':submit').html('DITOLAK');
-            $(this).find('.div-comment').empty().append("<textarea rows='2' class='form-control no-resize' name='comment'></textarea>");
-            $('form [name="comment"]').prop("required",true);
-            $(this).find('#label-comment').append('Alasan ditolak');
-        }
-    });
-
     // Modal form Announcement
     $('#modalFormPost').on('show.bs.modal', function (event) {
         
@@ -518,13 +447,12 @@ $(function () {
         }
     });
 
-        // Modal form Approval
+    // Modal form Approval
     $('#modalFormApproval').on('show.bs.modal', function (event) {
         
         var button = $(event.relatedTarget);
         var form = button.data('form');
         var action = button.data('action');
-
 
         if (form == "single") {
             var id = button.data('id');
@@ -532,7 +460,7 @@ $(function () {
 
         else if (form == "bulk") {
             var id = [];
-            $.each($(".actionTabel input[name='check']:checked"), function(){
+            $.each($("#tabelApproval input[name='check']:checked"), function(){
                 id.push($(this).val());
             });
             id = id.join('-');
@@ -581,8 +509,148 @@ $(function () {
             $(this).find(':submit').addClass('bg-red').removeClass('bg-orange');
             $(this).find(':submit').html('DITOLAK');
         }
-    }); 
+    });
 
+    // Modal form Layanan Akademik
+    $('#modalFormLayananAkademik').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var id = button.data('id');
+        var form = button.data('form');
+        $(this).find('form')[0].reset();
+        $('form').validate().resetForm();
+        $('form [name="id"]').val('');
+        $('form [name="jenisLayanan"]').selectpicker("refresh");
+        $('#divInfo').hide();
+        $('#divFile').hide();
+        $('.fileinfo').text('');
+        $('form [name="infoTambahan"]').empty();
+
+        if (form == "formTambah") {
+        
+            $(this).find('form').attr('action', window.location.href + '/tambah');   
+        }
+
+    });
+
+    // Modal form Approval
+    $('#modalFormUpdateStatus').on('show.bs.modal', function (event) {
+        
+        var button = $(event.relatedTarget);
+        var form = button.data('form');
+        var action = button.data('action');
+
+        if (action == "single") {
+            var id = button.data('id');
+        }
+
+        else if (action == "bulk") {
+            var id = [];
+            $.each($("#tabelApproval input[name='check']:checked"), function(){
+                id.push($(this).val());
+            });
+            id = id.join('-');
+            if (id == "") return false;
+        }
+
+        $.ajax({
+            url : url_update_status + 'detail_approval/' + id,
+            type: "GET",
+            dataType: "JSON",
+            success: function(data)
+            {
+                $.each(data, function(i, item) {
+                    var $tr = $('<tr>').append(
+                        $('<td>').text(item.item1),
+                        $('<td>').text(item.item2),
+                        $('<td>').text(item.item3),
+                        $('<td>').text(item.item4)
+                    );
+                    $('#tabelApprove tbody').append($tr);
+                });
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+                alert('Error get data from ajax');
+            }
+        });
+
+        //$(this).find('form').reset();
+        $('form').validate().resetForm();
+        $('form [name="id"]').val(id);
+        $('#tabelApprove tbody').empty();
+        $(this).find(':submit').removeClass('bg-red bg-orange bg-green');
+
+        if (form == "process") {
+            $(this).find('.modal-title').text('Proses Pengajuan');
+            $(this).find(':submit').addClass('bg-orange');
+            $(this).find(':submit').html('PROCESS');
+            $('form [name="status"]').val('process');
+
+        }
+
+        else if (form == "reject") {
+            $(this).find('.modal-title').text('Tolak Pengajuan');
+            $(this).find(':submit').addClass('bg-red');
+            $(this).find(':submit').html('REJECT');
+            $('form [name="status"]').val('reject');
+        }
+
+        else if (form == "done") {
+            $(this).find('.modal-title').text('Selesaikan Pengajuan');
+            $(this).find(':submit').addClass('bg-green');
+            $(this).find(':submit').html('DONE');
+            $('form [name="status"]').val('done');
+        }
+
+    });    
+
+});
+
+$(function () {
+    $('#jenisLayanan').on('change', function() {
+        $('#divInfo').hide();
+        $('#divFile').hide();
+        $('form [name="infoTambahan"]').empty();
+
+        switch (this.value) {
+            case "Tanda Tangan Berita Acara Seminar Konsep Skripsi (Hasil)"    : 
+                $('#divInfo').show();
+                $('#divFile').show();
+                $('form [name="infoTambahan"]').append("Tanggal Pelaksanaan Seminar : ");
+                $('.fileinfo').text('(Berita Acara Seminar Konsep Skripsi)'); break;
+            case "Membuat SK 3 (SK Seminar Konsep Skripsi)"    : 
+                $('#divFile').show();
+                $('.fileinfo').text('(Berita Acara Seminar Konsep Skripsi)'); break;
+            case "Surat Keterangan Persetujuan Ujian Khusus"    : 
+                $('#divInfo').show();
+                $('form [name="infoTambahan"]').append("Nama MK Ujian Khusus : \nTanggal Pelaksanaan Seminar : "); break;
+            case "DPNA Ujian Khusus"    : 
+                $('#divFile').show();
+                $('.fileinfo').text('(Surat Keterangan Ujian Khusus)'); break;
+            case "Upload Nilai Ujian Khusus"    : 
+                $('#divFile').show();
+                $('.fileinfo').text('(DPNA Ujian Khusus)'); break;
+            case "Tanda Tangan Berita Acara Sidang"    : 
+                $('#divFile').show();
+                $('.fileinfo').text('(Berita Acara Sidang)'); break;
+            case "Membuat SK 4 (SK Ujian Skripsi)"    : 
+                $('#divInfo').show();
+                $('#divFile').show();
+                $('form [name="infoTambahan"]').append("Tanggal Ujian Skripsi : ");
+                $('.fileinfo').text('(Sertifikat TOEFL)'); break;
+            case "Surat Keterangan Upload Nilai Skripsi"    : 
+                $('#divFile').show();
+                $('.fileinfo').text('(Berita Acara Sidang)'); break;
+            case "Surat Keterangan Siap Yudisium"    : 
+                $('#divInfo').show();
+                $('#divFile').show();
+                $('form [name="infoTambahan"]').append("Link video demo aplikasi : "); 
+                $('.fileinfo').text('(Skripsi, Softcopy Aplikasi, Biodata Yudisium, Jurnal, Pasfoto)'); break;
+            case "Hapus Mata Kuliah"   : 
+                $('#divInfo').show();
+                $('form [name="infoTambahan"]').append("Nama MK yang akan dihapus : \nTanggal Seminar Konsep Skripsi : "); break;
+        }
+    });
 });
 
 // Script untuk hapus data via AJAX request (JQuery Plugin: SweetAlert)

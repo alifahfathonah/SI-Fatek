@@ -8,24 +8,22 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="#">
-                                    <span>Daftar Ajuan Seminar Proposal</span>
+                                <a href="javascript:void(0);" class="menu-toggle">
+                                    <i class="material-icons">dynamic_feed</i>
+                                    <span>Layanan Administrasi</span>
                                 </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span>Daftar Ajuan Seminar Hasil</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span>Daftar Ajuan Sidang Sarjana</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span>Daftar Ajuan Yudisium</span>
-                                </a>
+                                <ul class="ml-menu">
+                                    <li>
+                                        <a href="<?php echo site_url('akademik/layanan');?>">
+                                            <span>Disposisi Permintaan</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo site_url('akademik/layanan/list');?>">
+                                            <span>List Permintaan</span>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
                     </li>
