@@ -29,6 +29,9 @@
                             <li>
                                 <a href="<?php echo site_url('mahasiswa/layanan');?>"><span>Layanan Administrasi</span></a>
                             </li>
+                            <li>
+                                <a href="<?php echo site_url('mahasiswa/seminar');?>"><span>Pendaftaran Seminar</span></a>
+                            </li>
                             <?php }?>
                         </ul>
                     </li>

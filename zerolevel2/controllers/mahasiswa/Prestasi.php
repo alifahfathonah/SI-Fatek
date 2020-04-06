@@ -67,7 +67,7 @@ class Prestasi extends CI_Controller {
 		$this->form_validation->set_rules('tglLomba', 'Tanggal', 'required');
 		$this->form_validation->set_rules('mhsdoc', 'Tag Mahasiswa', 'required');
 		if (empty($_FILES['dokumen']['name'][0])) {
-		 	$this->form_validation->set_rules('dokumen', 'Dokumen Pendukung', 'required');
+		 	$this->form_validation->set_rules('dokumen[]', 'Dokumen Pendukung', 'required');
 		}
 
 		if ($this->form_validation->run() == TRUE) {

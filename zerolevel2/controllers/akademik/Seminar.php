@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Layanan extends CI_Controller {
+class seminar extends CI_Controller {
 	
 	public function __construct() {
 		parent::__construct();
@@ -16,7 +16,7 @@ class Layanan extends CI_Controller {
 		}
 
 		//* Load model, library, helper, etc *//
-		$this->load->model(array('Tabel_akLayananMhs'));
+		$this->load->model(array('Tabel_akSeminar'));
 
 		//* Initialize class variables. current-user identity. To be used throughout this class *//
 		$this->user = array(
@@ -32,16 +32,18 @@ class Layanan extends CI_Controller {
 	public function index() {
 		
 		//* Initialize general variables for pageview properties *//
-		$data['pageTitle'] 	= "Disposisi Permintaan";
-		$data['subtitle'] 	= "Daftar Permintaan Layanan Administrasi";
-		$data['body_page'] 	= "body/akademik/layanan/list_proses_ajuan";
+		$data['pageTitle'] 	= "Disposisi Pendaftaran";
+		$data['subtitle'] 	= "Daftar Ajuan Pendaftaran Seminar";
+		$data['body_page'] 	= "body/akademik/seminar/list_proses_ajuan";
 
 		//* Get data ajuan mahasiswa from database. Store at $data *//
-		$data['request'] 	= $this->Tabel_akLayananMhs->get(array('toUser'=> $this->user['kodegrup']),'tglRequest DESC');
+		$data['request'] 	= $this->Tabel_akSeminar->get(array('toUser'=> $this->user['kodegrup']),'tglRequest DESC');
 
 		//* formatting the data to be view properly at the pageview *//
 		foreach ($data['request'] as &$val) {
 			$val['tglRequest'] 	= date('d M Y g:i a',strtotime($val['tglRequest']));
+
+			//if ($val['infoTambahan']) $val['infoTambahan'] = nl2br($val['infoTambahan']);
 
 			if ($val['file']) {
 				$val['file'] 	= explode(" ", $val['file']);
@@ -50,6 +52,8 @@ class Layanan extends CI_Controller {
 				}
 			}
 		}
+
+		//echo json_encode($data);die;
 		
 		$this->load->view(THEME,$data);
 
@@ -57,9 +61,9 @@ class Layanan extends CI_Controller {
 
 	public function detail($id) {
 
-		$data 			 	= $this->Tabel_akLayananMhs->detail(array('idRequest'=> $id));
+		$data 			 	= $this->Tabel_akSeminar->detail(array('idRequest'=> $id));
 
-		$data['disposisi'] 	= $this->Tabel_akLayananMhs->aso_get(array('jenisId'=> $id),'prosesTgl ASC');
+		$data['disposisi'] 	= $this->Tabel_akSeminar->aso_get(array('jenisId'=> $id),'prosesTgl ASC');
 
 		if ($data['file']) {
 			$data['file'] 	= explode(" ", $data['file']);
@@ -72,8 +76,8 @@ class Layanan extends CI_Controller {
 			$val['prosesTgl'] = date('d M Y g:i a',strtotime($val['prosesTgl']));
 		}
 
-		$data['pageTitle'] 	= "Detail Ajuan Layanan Administrasi";
-		$data['body_page'] 	= "body/akademik/layanan/detail";
+		$data['pageTitle'] 	= "Detail Ajuan Pendaftaran Seminar";
+		$data['body_page'] 	= "body/akademik/seminar/detail";
 
 		$this->load->view(THEME,$data);
 
@@ -85,11 +89,11 @@ class Layanan extends CI_Controller {
 		$id = explode("-", $id);
 
 		for ($i=0; $i<count($id); $i++)  {
-			$data[$i] = $this->Tabel_akLayananMhs->detail(array('idRequest'=> $id[$i]));
+			$data[$i] = $this->Tabel_akSeminar->detail(array('idRequest'=> $id[$i]));
 			$output[$i]['item1'] = $data[$i]['nama'];
 			$output[$i]['item2'] = $data[$i]['nim'];
-			$output[$i]['item3'] = $data[$i]['prodi_alias'];
-			$output[$i]['item4'] = $data[$i]['jenisLayanan'];
+			$output[$i]['item3'] = $data[$i]['jenisSeminar'];
+			$output[$i]['item4'] = $data[$i]['judul'];
 		}
 		
 		echo json_encode($output);
@@ -120,7 +124,7 @@ class Layanan extends CI_Controller {
 
 		foreach ($idRequest as $key => $value) {
 
-			$database[$key]['proses']		= $this->Tabel_akLayananMhs->detail(array('idRequest'=> $value))['proses'] + 1;
+			$database[$key]['proses']		= $this->Tabel_akSeminar->detail(array('idRequest'=> $value))['proses'] + 1;
 			$database[$key]['idRequest']	= $value;
 			
 			$database2[$key]['jenisId']			= $value;
@@ -130,7 +134,7 @@ class Layanan extends CI_Controller {
 			$database2[$key]['prosesId']		= $database[$key]['proses'];
 			$database2[$key]['prosesStatus']	= $status;
 
-			if ($this->Tabel_akLayananMhs->update_status($database[$key], $database2[$key])) {
+			if ($this->Tabel_akSeminar->update_status($database[$key], $database2[$key])) {
 
 				$this->session->set_flashdata('type', 'success');
 				$this->session->set_flashdata('message', 'Berhasil diproses!');	
@@ -142,7 +146,9 @@ class Layanan extends CI_Controller {
 			}
 		}
 
-		redirect(site_url('akademik/layanan'));
+		//echo json_encode($database);echo json_encode($database2);die;
+
+		redirect(site_url('akademik/seminar'));
 	}
 
 	public function list_all() {
@@ -154,12 +160,12 @@ class Layanan extends CI_Controller {
 		}
 		
 		//* Initialize general variables for pageview properties *//
-		$data['pageTitle'] 	= "Layanan Administrasi Akademik";
-		$data['subtitle'] 	= "Daftar Permintaan Layanan - " . $this->user['namaunit'];
-		$data['body_page'] 	= "body/akademik/layanan/list_without_action";
+		$data['pageTitle'] 	= "Pendaftaran Seminar";
+		$data['subtitle'] 	= "Daftar Ajuan Seminar - " . $this->user['namaunit'];
+		$data['body_page'] 	= "body/akademik/seminar/list_without_action";
 
 		//* Get data ajuan mahasiswa from database. Store at $data *//
-		$data['request'] 	= $this->Tabel_akLayananMhs->get($filter,'tglRequest DESC');
+		$data['request'] 	= $this->Tabel_akSeminar->get($filter,'tglRequest DESC');
 
 		//* formatting the data to be view properly at the pageview *//
 		foreach ($data['request'] as &$val) {
@@ -182,5 +188,6 @@ class Layanan extends CI_Controller {
 		$this->load->view(THEME,$data);
 
 	}	
+
 
 }

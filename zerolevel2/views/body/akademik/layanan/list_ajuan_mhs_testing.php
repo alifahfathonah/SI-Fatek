@@ -31,13 +31,6 @@
                         </div>
                         <div class="body">
 
-                            <?php if($this->session->flashdata('message')) {?>  
-                            <div class="alert alert-dismissable alert-<?php echo $this->session->flashdata('type');?>">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                <?php echo $this->session->flashdata('message');?>
-                            </div>
-                            <?php }?>  
-
                             <div class="button-demo">
                                 <button type="button" class="btn btn-primary btn-lg waves-effect" data-toggle="modal" data-target="#modalFormLayananAkademik" data-form="formTambah"><i class="fa fa-fw fa-plus" aria-hidden="true"></i> Ajukan Permintaan</button>
                             </div>

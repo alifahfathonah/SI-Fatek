@@ -71,6 +71,11 @@
                                 </a>
                             </li>
                             <li>
+                                <a href="<?php echo site_url('testing/seminar');?>">
+                                    <span>Formulir Pendaftaran Seminar [mhs]</span>
+                                </a>
+                            </li>
+                            <li>
                                 <a href="<?php echo site_url('testing/prestasi');?>">
                                     <span>Formulir Pengajuan Data Prestasi [mhs]</span>
                                 </a>

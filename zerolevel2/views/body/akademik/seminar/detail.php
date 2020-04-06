@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 
             <div class="block-header">
-                <h2><?php echo $pageTitle;?></h2>
+                <h1><?php echo $pageTitle;?></h1>
             </div>
            
             <div class="row clearfix">
@@ -10,8 +10,7 @@
                     <div class="card">
                         <div class="body">
                             <dl class="dl-horizontal">
-                                <dt>Judul</dt>
-                                <dd><?php echo $judul; ?>&nbsp;</dd>
+
                                 <dt>Nama</dt>
                                 <dd><?php echo $nama; ?>&nbsp;</dd>
                                 <dt>NIM</dt>
@@ -19,20 +18,36 @@
                                 <dt>Prodi</dt>
                                 <dd><?php echo $nama_prodi; ?>&nbsp;</dd>                                  
                                 <dt>Jurusan</dt>
-                                <dd><?php echo $nama_jurusan; ?>&nbsp;</dd>  
-                                <dt>Jumlah SKS Lulus</dt>
-                                <dd><?php echo $sksLulus; ?> SKS&nbsp;</dd>              
-                                <dt>Status MK. Skripsi</dt>
-                                <dd><span class="label bg-<?php echo ($kontrakSkripsi=="Sedang dikontrak" ? "green" : "orange");?>"><?php echo $kontrakSkripsi; ?></span>&nbsp;</dd>                                  
-                                <dt>Pelanggaran Akademik</dt>
-                                <dd><span class="label bg-<?php echo ($pelanggaranAk=="Tidak ada" ? "green" : "orange");?>"><?php echo $pelanggaranAk; ?></span>&nbsp;</dd>
-                                <dt>Dokumen Pendukung</dt>
-                                <dd>
-                                    <?php foreach ($dokumen as $key => $value) {
-                                        echo "<a href='".$value."' target='_BLANK'>"."Dokumen ".($key+1)."</a><br/>"; 
-                                    }?>
-                                </dd>
+                                <dd><?php echo $nama_jurusan; ?>&nbsp;</dd>
                             </dl>
+
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Jenis Seminar</th>
+                                        <th>Judul</th>
+                                        <th>Informasi Tambahan</th>
+                                        <th>Dokumen</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><?php echo $jenisSeminar; ?></td>
+                                        <td><?php echo $judul; ?></td>
+                                        <td><?php echo $infoTambahan; ?></td>
+                                        <td>
+                                            <?php if ($file) { 
+                                                foreach ($file as $key => $value) {
+                                                    echo "<a href='".$value."' target='_BLANK'>"."File".($key+1)."</a><br/>"; 
+                                                }
+                                             }?>
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
                         </div>
                     </div>
                 </div>
@@ -41,7 +56,7 @@
                     <div class="card">
                         <div class="header bg-cyan">
                             <h2>
-                                History Pengusulan
+                                History Disposisi
                             </h2>
                         </div>
                         <div class="body">
@@ -51,18 +66,20 @@
                                         <tr>
                                             <th>Proses</th>
                                             <th>Tanggal</th>
+                                            <th>Keterangan</th>
                                             <th>Status</th>
                                             <th>User</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php $i=1;?>
-                                        <?php foreach($history as $list) { ?>
+                                        <?php foreach($disposisi as $list) { ?>
                                         <tr>
                                             <td><?php echo $i;?></td>
-                                            <td><?php echo $list['tgl'];?></td>
-                                            <td><?php echo $list['comment'];?></td>
-                                            <td><?php echo $list['userPerform'];?></td>
+                                            <td><?php echo $list['prosesTgl'];?></td>
+                                            <td><?php echo $list['komentar'];?></td>
+                                            <td><?php echo $list['prosesStatus'];?></td>
+                                            <td><?php echo $list['fromUser'];?></td>
                                         </tr> 
                                         <?php $i++;}?>                         
                                     </tbody>

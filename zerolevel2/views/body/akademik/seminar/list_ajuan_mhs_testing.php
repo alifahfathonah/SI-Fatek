@@ -1,0 +1,117 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed');?>
+
+            <div class="block-header">
+                <h1><?php echo $pageTitle;?></h1>
+            </div>
+
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>Pendaftaran Seminar Proposal, Seminar Konsep Skripsi (Hasil) dan Sidang Sarjana</h2>
+                        </div>
+                        <div class="body">
+                            <h5>Persyaratan pendaftaran</h5>
+                            <p>Untuk pendaftar seminar, mahasiswa harus sedang mengontrak matakuliah Skripsi pada semester aktif, jumlah SKS lulus sudah memenuhi, tidak ada disiplin (pelanggaran) akademik dan mengisi/mengupload informasi tambahan. Untuk informasi tambahan lainnya, disesuaikan sesuai petunjuk dibawah ini.
+                            <h5>Seminar Proposal Judul</h5>
+                            <p>Informasi yang perlu diisi adalah: Judul proposal, nama KDK dan nama-nama calon dosen pembimbing 1 dan 2. Dokumen yang wajib diupload adalah: file proposal (pdf).</p>
+                            <h5>Seminar Konsep Skripsi (Seminar Hasil)</h5>
+                            <p>Informasi yang perlu diisi adalah: Judul skripsi dan nama dosen pembimbing 1 dan 2. Dokumen yang wajib diupload adalah: file skripsi dan bukti skripsi telah disetujui untuk diseminarkan oleh 2 orang dosen pembimbing.</p>
+                            <h5>Sidang Sarjana</h5>
+                            <p>Informasi yang perlu diisi adalah: Judul skripsi dan nama dosen 5 orang dosen penguji. Dokumen yang wajib diupload adalah: file skripsi dan bukti skripsi telah disetujui untuk sidang sarjana oleh 5 orang dosen penguji.</p>
+                        </div>
+                        <div class="header">
+                            <h2><?php echo $subtitle;?></h2>
+                        </div>
+                        <div class="body">
+
+                            <div class="button-demo">
+                                <button type="button" class="btn btn-primary btn-lg waves-effect" data-toggle="modal" data-target="#modalFormSeminar" data-form="formTambah"><i class="fa fa-fw fa-plus" aria-hidden="true"></i> Daftar Seminar</button>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table id="tabelData" class="table table-bordered table-striped dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Jenis Seminar</th>
+                                            <th>Judul</th>
+                                            <th>Informasi Tambahan</th>
+                                            <th>Dokumen</th>
+                                            <th>Tanggal Pengajuan</th>
+                                            <th>Keterangan</th>
+                                            <th>Status</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>  
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modals utk menampilkan form input user -->
+            <div class="modal fade" id="modalFormSeminar" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="defaultModalLabel">Pendaftaran Seminar</h4>
+                        </div>
+
+                        <div class="modal-body">
+                            <?php echo form_open_multipart();?>
+                                <input type="hidden" name="id">
+                                <div class="form-group form-float">
+                                    <label class="form-label">Jenis Seminar</label>
+                                    <div class="form-line">
+                                        <select class="form-control show-tick" data-live-search="true" name="jenisSeminar" id="jenisSeminar" required>
+                                            <option value="">Pilih jenis seminar</option>
+                                            <option value="Seminar Proposal Judul">Seminar Proposal Judul</option>
+                                            <option value="Seminar Konsep Skripsi (Hasil)">Seminar Konsep Skripsi (Hasil)</option>
+                                            <option value="Sidang Sarjana">Sidang Sarjana</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div id="divInfo">
+                                    <div class="form-group form-float">
+                                        <label class="form-label" id="judul">Judul Skripsi</label>
+                                        <div class="form-line">
+                                           <textarea rows="2" class="form-control no-resize" name="judul" required></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-float">
+                                        <label class="form-label">Informasi Tambahan</label>
+                                        <div class="form-line">
+                                           <textarea rows="5" class="form-control no-resize" name="infoTambahan" required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="divFile">    
+                                    <div class="form-group form-float">
+                                        <label class="form-label">Upload Dokumen</label> 
+                                        <small class="col-red"><span class="fileinfo"></span></small>
+                                        <input name="dokumen[]" type="file" multiple="" required>
+                                    </div>
+                                    
+                                    <div class="alert alert-info">
+                                         <i class="material-icons">info</i>
+                                        Spesifikasi File: Filetype=pdf|jpg|jpeg; Max size=3 Mb utk tiap file;
+                                    </div>
+                                </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-link waves-effect" type="submit">SUBMIT</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- #END# Modals utk menampilkan form input user -->
+                     

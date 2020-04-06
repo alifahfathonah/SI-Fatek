@@ -532,6 +532,27 @@ $(function () {
 
     });
 
+    // Modal form Layanan Akademik
+    $('#modalFormSeminar').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var id = button.data('id');
+        var form = button.data('form');
+        $(this).find('form')[0].reset();
+        $('form').validate().resetForm();
+        $('form [name="id"]').val('');
+        $('form [name="jenisSeminar"]').selectpicker("refresh");
+        $('#divInfo').hide();
+        $('#divFile').hide();
+        $('.fileinfo').text('');
+        $('form [name="infoTambahan"]').empty();
+
+        if (form == "formTambah") {
+        
+            $(this).find('form').attr('action', window.location.href + '/tambah');   
+        }
+
+    });
+
     // Modal form Approval
     $('#modalFormUpdateStatus').on('show.bs.modal', function (event) {
         
@@ -651,6 +672,34 @@ $(function () {
                 $('form [name="infoTambahan"]').append("Nama MK yang akan dihapus : \nTanggal Seminar Konsep Skripsi : "); break;
         }
     });
+
+    $('#jenisSeminar').on('change', function() {
+        $('#divInfo').hide();
+        $('#divFile').hide();
+        $('form [name="infoTambahan"]').empty();
+
+        switch (this.value) {
+            case "Seminar Proposal Judul"    : 
+                $('#divInfo').show();
+                $('#divFile').show();
+                $('#judul').text('Judul Proposal');
+                $('form [name="infoTambahan"]').append("KDK : \nCalon Pembimbing 1 : \nCalon Pembimbing 2 : ");
+                $('.fileinfo').text('(File proposal)'); break;
+            case "Seminar Konsep Skripsi (Hasil)"    : 
+                $('#divInfo').show();
+                $('#divFile').show();
+                $('#judul').text('Judul Skripsi');
+                $('form [name="infoTambahan"]').append("Dosen Pembimbing 1 : \nDosen Pembimbing 2 : ");
+                $('.fileinfo').text('(File skripsi dan Bukti persetujuan dari dosen pembimbing)'); break;
+            case "Sidang Sarjana"    : 
+                $('#divInfo').show();
+                $('#divFile').show();
+                $('#judul').text('Judul Skripsi');
+                $('form [name="infoTambahan"]').append("Dosen Penguji 1 : \nDosen Penguji 2 : \nDosen Penguji 3 : \nDosen Penguji 4 : \nDosen Penguji 5 : ");
+                $('.fileinfo').text('(File skripsi dan Bukti revisi yang telah ditandatangani dosen penguji)'); break;
+        }
+    });
+
 });
 
 // Script untuk hapus data via AJAX request (JQuery Plugin: SweetAlert)

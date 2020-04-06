@@ -137,6 +137,22 @@ $(function () {
     });
 });
 
+//function for select jenis
+$(function () {
+    var table = $('.tabelListAkademik').DataTable({
+       dom: 'Bfrtip',
+        responsive: true,
+        "pageLength":50,
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ],
+    });
+
+    $('#tableakademik').on('change', function(){
+       table.columns(1).search(this.value).draw();
+    });
+});
+
 
 //function for typeahead and bloodhound
 $(function () {

@@ -14,34 +14,28 @@
 
                             <div class="row clearfix">
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 align-right">
-                                    <label>Filter Jenis Layanan</label>
+                                    <label>Filter Jenis Seminar</label>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="col-lg-3 col-md-3 col-sm-8 col-xs-8">
                                     <div class="form-group">
                                         <div class="form-line">
                                             <select class="form-control show-tick" data-live-search="true" id="tableakademik">
                                                 <option value="">Semua</option>
-                                                <option value="Tanda Tangan Berita Acara Seminar Konsep Skripsi (Hasil)">Tanda Tangan Berita Acara Seminar Konsep Skripsi (Hasil)</option>
-                                                <option value="Membuat SK 3 (SK Seminar Konsep Skripsi)">Membuat SK 3 (SK Seminar Konsep Skripsi)</option>
-                                                <option value="Surat Keterangan Persetujuan Ujian Khusus">Surat Keterangan Persetujuan Ujian Khusus</option>
-                                                <option value="DPNA Ujian Khusus">DPNA Ujian Khusus</option>
-                                                <option value="Upload Nilai Ujian Khusus">Upload Nilai Ujian Khusus</option>
-                                                <option value="Tanda Tangan Berita Acara Sidang">Tanda Tangan Berita Acara Sidang</option>
-                                                <option value="Membuat SK 4 (SK Ujian Skripsi)">Membuat SK 4 (SK Ujian Skripsi)</option>
-                                                <option value="Surat Keterangan Upload Nilai Skripsi">Surat Keterangan Upload Nilai Skripsi</option>
-                                                <option value="Surat Keterangan Siap Yudisium">Surat Keterangan Siap Yudisium</option>
-                                                <option value="Hapus Mata Kuliah">Hapus Mata Kuliah</option>
+                                                <option value="Seminar Proposal Judul">Seminar Proposal Judul</option>
+                                                <option value="Seminar Konsep Skripsi (Hasil)">Seminar Konsep Skripsi</option>
+                                                <option value="Sidang Sarjana">Sidang Sarjana</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped table-hover tabelListAkademik">
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Jenis Layanan</th>
+                                            <th>Jenis Seminar</th>
                                             <th>Mahasiswa</th>
                                             <th>Nim</th>
                                             <th>Jurusan</th>
@@ -56,7 +50,7 @@
                                         <?php foreach($request as $list) { ?>
                                         <tr>
                                             <td><?php echo $i;?></td>
-                                            <td><?php echo $list['jenisLayanan'];?></td>
+                                            <td><?php echo $list['jenisSeminar'];?></td>
                                             <td><a href="<?php echo site_url('detail/mahasiswa/').$list['nim'];?>"><?php echo $list['nama'];?></a></td>
                                             <td><?php echo $list['nim'];?></td>
                                             <td><?php echo $list['jurusan_alias'];?></td>
@@ -66,7 +60,7 @@
                                                 <span class="label bg-<?php echo $list['prosesColor'];?>"><?php echo $list['prosesStatus'];?></span>
                                             </td>
                                             <td style='white-space: nowrap'>
-                                                <a href="<?php echo site_url('akademik/layanan/detail/').$list['idRequest'];?>" class="btn btn-xs btn-info waves-effect" role="button">
+                                                <a href="<?php echo site_url('akademik/seminar/detail/').$list['idRequest'];?>" class="btn btn-xs btn-info waves-effect" role="button">
                                                     Detail
                                                 </a>
                                             </td>

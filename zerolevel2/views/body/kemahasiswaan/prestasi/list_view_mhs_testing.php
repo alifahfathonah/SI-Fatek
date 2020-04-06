@@ -4,13 +4,6 @@
                 <h1><?php echo $pageTitle;?></h1>
             </div>
 
-            <?php if($this->session->flashdata('message')) {?>  
-            <div class="alert alert-dismissable alert-<?php echo $this->session->flashdata('type');?>">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <?php echo $this->session->flashdata('message');?>
-            </div>
-            <?php }?>  
-
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">

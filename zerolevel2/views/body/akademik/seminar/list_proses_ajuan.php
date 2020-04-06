@@ -26,7 +26,7 @@
                                             <th></th>
                                             <th>Nama</th>
                                             <th>Nim</th>
-                                            <th>Jenis Layanan</th>
+                                            <th>Jenis Seminar</th>
                                             <th>Informasi Tambahan</th>
                                             <th>Dokumen</th>
                                             <th>Tgl. Pengajuan</th>
@@ -41,7 +41,7 @@
                                             </td>
                                             <td><a href="<?php echo site_url('detail/mahasiswa/').$list['nim'];?>"><?php echo $list['nama'];?></a></td>
                                             <td><?php echo $list['nim'];?></td>
-                                            <td><?php echo $list['jenisLayanan'];?></td>
+                                            <td><?php echo $list['jenisSeminar'];?></td>
                                             <td><?php echo $list['infoTambahan'];?></td>
                                             <td>
                                                 <?php if ($list['file']) { 
@@ -90,15 +90,14 @@
                         </div>
 
                         <div class="modal-body">
-
                             <div class="table">
                                 <table id="tabelApprove">
                                     <thead>
                                         <tr>
                                             <th>Nama</th>
                                             <th>Nim</th>
-                                            <th>Prodi</th>
-                                            <th>Jenis Layanan</th>
+                                            <th>Jenis Seminar</th>
+                                            <th>Judul</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -106,7 +105,7 @@
                                 </table>
                             </div>
 
-                            <?php echo form_open(site_url('akademik/layanan/process_request'));?>
+                            <?php echo form_open(site_url('akademik/seminar/process_request'));?>
 
                             <input type="hidden" name="id">
                             <input type="hidden" name="status">
@@ -129,6 +128,6 @@
             <!-- #END# Modals utk menampilkan form status update -->
 
 <script type="text/javascript">
-    var url_update_status = "<?php echo site_url('akademik/layanan/');?>";
+    var url_update_status = "<?php echo site_url('akademik/seminar/');?>";
 </script> 
                      
