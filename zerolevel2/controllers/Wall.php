@@ -238,7 +238,7 @@ class Wall extends CI_Controller {
 	public function about() {
 
 		//* Initialize general variables for pageview properties *//
-		$data['pageTitle'] 	= "Portal Information";
+		$data['pageTitle'] 	= "About Portal Fatek";
 		$data['body_page'] 	= "body/description";
 
 		$this->load->view(THEME,$data);
