@@ -19,7 +19,7 @@
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <select class="form-control show-tick" data-live-search="true" id="tableakademik">
+                                            <select class="form-control show-tick" id="tableakademik">
                                                 <option value="">Semua</option>
                                                 <option value="Tanda Tangan Berita Acara Seminar Konsep Skripsi (Hasil)">Tanda Tangan Berita Acara Seminar Konsep Skripsi (Hasil)</option>
                                                 <option value="Membuat SK 3 (SK Seminar Konsep Skripsi)">Membuat SK 3 (SK Seminar Konsep Skripsi)</option>

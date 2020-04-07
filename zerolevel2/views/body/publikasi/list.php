@@ -85,7 +85,7 @@
                                 <div class="form-group form-float">
                                     <label class="form-label">Tahun</label>
                                     <div class="form-line">
-                                        <select class="form-control show-tick" data-live-search="true" name="tahun">
+                                        <select class="form-control show-tick" name="tahun">
                                             <?php $i = date('Y');
                                             for ($i;$i>=1995;$i--) {?>
                                                 <option value="<?php echo $i;?>"><?php echo $i;?></option>

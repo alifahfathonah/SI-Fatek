@@ -100,7 +100,7 @@
                                         <div class="col-xs-4">
                                             <label class="form-label">Jenis Dokumen</label>
                                             <div class="form-line">
-                                                <select class="form-control show-tick" data-live-search="true" name="jenis">
+                                                <select class="form-control show-tick" name="jenis">
                                                     <?php foreach ($docgroup as $list) {;?>
                                                     <option value="<?php echo $list['idDocgroup'];?>"><?php echo $list['docgroupJenisDoc'];?></option>
                                                     <?php }?>                                                   
@@ -110,7 +110,7 @@
                                         <div class="col-xs-4">
                                             <label class="form-label">Tahun</label>
                                             <div class="form-line">
-                                                <select class="form-control show-tick" data-live-search="true" name="tahun">
+                                                <select class="form-control show-tick" name="tahun">
                                                     <?php $i = date('Y');
                                                     for ($i;$i>=1980;$i--) {?>
                                                         <option value="<?php echo $i;?>"><?php echo $i;?></option>

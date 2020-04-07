@@ -74,7 +74,7 @@
                                 <div class="form-group form-float">
                                     <label class="form-label">Jenis Layanan</label>
                                     <div class="form-line">
-                                        <select class="form-control show-tick" data-live-search="true" name="jenisLayanan" id="jenisLayanan" required>
+                                        <select class="form-control show-tick" name="jenisLayanan" id="jenisLayanan" required>
                                             <option value="">Pilih jenis layanan</option>
                                             <option value="Tanda Tangan Berita Acara Seminar Konsep Skripsi (Hasil)">Tanda Tangan Berita Acara Seminar Konsep Skripsi (Hasil)</option>
                                             <option value="Membuat SK 3 (SK Seminar Konsep Skripsi)">Membuat SK 3 (SK Seminar Konsep Skripsi)</option>

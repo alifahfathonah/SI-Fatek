@@ -140,7 +140,7 @@
                                         <div class="col-xs-6">
                                             <label class="form-label">Jurusan</label>
                                             <div class="form-line">
-                                                <select class="form-control show-tick" data-live-search="true" name="jurusan">
+                                                <select class="form-control show-tick" name="jurusan">
                                                     <option value="45|TEKNIK SIPIL" selected>TEKNIK SIPIL</option>
                                                     <option value="42|ARSITEKTUR">ARSITEKTUR</option>
                                                     <option value="43|TEKNIK ELEKTRO">TEKNIK ELEKTRO</option>
@@ -151,7 +151,7 @@
                                         <div class="col-xs-6">
                                             <label class="form-label">Program Studi</label>
                                             <div class="form-line">
-                                                <select class="form-control show-tick" data-live-search="true" name="prodi">
+                                                <select class="form-control show-tick" name="prodi">
                                                     <option value="14|TEKNIK SIPIL" selected>TEKNIK SIPIL</option>
                                                     <option value="94|TEKNIK LINGKUNGAN">TEKNIK LINGKUNGAN</option>
                                                     <option value="15|ARSITEKTUR">ARSITEKTUR</option>
@@ -222,7 +222,7 @@
                                 <div class="form-group">
                                     <label class="form-label">Status</label>
                                     <div class="form-line">
-                                        <select class="form-control show-tick" data-live-search="true" name="status">
+                                        <select class="form-control show-tick" name="status">
                                             <option value="0">Tidak Aktif</option>
                                             <option value="1" selected>Aktif</option>
                                         </select>

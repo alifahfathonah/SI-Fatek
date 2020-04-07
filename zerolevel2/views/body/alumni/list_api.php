@@ -18,7 +18,7 @@
                                 <div class="col-lg-3 col-md-3 col-sm-8 col-xs-8">
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <select class="form-control show-tick" data-live-search="true" id="table-filter">
+                                            <select class="form-control show-tick" id="table-filter">
                                                 <option value="">Semua</option>
                                                 <?php $i = date('Y') - 4; $max = $i-10;
                                                 for ($i;$i>=$max;$i--) {?>

@@ -113,7 +113,7 @@
                                         <div class="col-xs-6">
                                             <label class="form-label">Grup</label>
                                             <div class="form-line">
-                                                <select class="form-control show-tick" data-live-search="true" name="grup">
+                                                <select class="form-control show-tick" name="grup">
                                                     <option value="fakultas" selected>Fakultas</option>
                                                     <option value="fakultas">WD</option>
                                                     <option value="jurusan">Jurusan</option>

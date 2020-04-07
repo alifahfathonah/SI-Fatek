@@ -103,7 +103,7 @@
                                         <div class="col-xs-6">
                                             <label class="form-label">Tingkat</label>
                                             <div class="form-line">
-                                                <select class="form-control show-tick" data-live-search="true" name="tingkat">
+                                                <select class="form-control show-tick" name="tingkat">
                                                     <option value="Lokal">Lokal</option> 
                                                     <option value="Regional">Regional</option>
                                                     <option value="Nasional">Nasional</option>

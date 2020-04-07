@@ -70,7 +70,7 @@
                                 <div class="form-group form-float">
                                     <label class="form-label">Jenis Seminar</label>
                                     <div class="form-line">
-                                        <select class="form-control show-tick" data-live-search="true" name="jenisSeminar" id="jenisSeminar" required>
+                                        <select class="form-control show-tick" name="jenisSeminar" id="jenisSeminar" required>
                                             <option value="">Pilih jenis seminar</option>
                                             <option value="Seminar Kerja Praktek">Seminar KP</option>
                                             <option value="Seminar Proposal Judul">Seminar Proposal Judul</option>

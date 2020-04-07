@@ -19,7 +19,7 @@
                                 <div class="col-lg-3 col-md-3 col-sm-8 col-xs-8">
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <select class="form-control show-tick" data-live-search="true" id="tableakademik">
+                                            <select class="form-control show-tick" id="tableakademik">
                                                 <option value="">Semua</option>
                                                 <option value="Seminar Kerja Praktek">Seminar KP</option>
                                                 <option value="Seminar Proposal Judul">Seminar Proposal Judul</option>

@@ -359,7 +359,7 @@
                                             <div class="form-group">
                                                 <label>Jalur Masuk*</label>
                                                 <div class="form-line">
-                                                    <select class="form-control show-tick" data-live-search="true" name="jalur_masuk" required>
+                                                    <select class="form-control show-tick" name="jalur_masuk" required>
                                                         <option value="" <?php if ($mahasiswa['jalur_masuk'] == "") echo "selected";?>>Pilih</option>
                                                         <option value="Jalur Undangan" <?php if ($mahasiswa['jalur_masuk'] == "Jalur Undangan") echo "selected";?>>SNMPTN / Jalur Undangan</option>
                                                         <option value="SBMPTN" <?php if ($mahasiswa['jalur_masuk'] == "SBMPTN") echo "selected";?>>SBMPTN</option>
@@ -376,7 +376,7 @@
                                             <div class="form-group">
                                                 <label>Beasiswa*</label>
                                                 <div class="form-line">
-                                                    <select class="form-control show-tick" data-live-search="true" name="beasiswa" required>
+                                                    <select class="form-control show-tick" name="beasiswa" required>
                                                         <option value="" <?php if ($mahasiswa['beasiswa'] == "") echo "selected";?>>Tanpa Beasiswa</option>
                                                         <option value="Bidik Misi" <?php if ($mahasiswa['beasiswa'] == "Bidik Misi") echo "selected";?>>Bidik Misi</option>
                                                         <option value="Mapalus" <?php if ($mahasiswa['beasiswa'] == "Mapalus") echo "selected";?>>Mapalus</option>
@@ -551,7 +551,7 @@
                                             <div class="form-group">
                                                 <label>Pendidikan Terakhir Ayah</label>
                                                 <div class="form-line">
-                                                    <select class="form-control show-tick" data-live-search="true" name="pendidikan_ayah">
+                                                    <select class="form-control show-tick" name="pendidikan_ayah">
                                                         <option value="" >Pilih</option>
                                                         <option value="SD" <?php if ($mahasiswa['pendidikan_ayah'] == 'SD') echo "selected";?>>SD</option>
                                                         <option value="SMP" <?php if ($mahasiswa['pendidikan_ayah'] == 'SMP') echo "selected";?>>SMP</option>
@@ -594,7 +594,7 @@
                                             <div class="form-group">
                                                 <label>Pendidikan Terakhir Ibu</label>
                                                 <div class="form-line">
-                                                    <select class="form-control show-tick" data-live-search="true" name="pendidikan_ibu">
+                                                    <select class="form-control show-tick" name="pendidikan_ibu">
                                                         <option value="" >Pilih</option>
                                                         <option value="SD" <?php if ($mahasiswa['pendidikan_ibu'] == 'SD') echo "selected";?>>SD</option>
                                                         <option value="SMP" <?php if ($mahasiswa['pendidikan_ibu'] == 'SMP') echo "selected";?>>SMP</option>
@@ -637,7 +637,7 @@
                                             <div class="form-group">
                                                 <label>Pendidikan Terakhir Wali</label>
                                                 <div class="form-line">
-                                                    <select class="form-control show-tick" data-live-search="true" name="pendidikan_wali">
+                                                    <select class="form-control show-tick" name="pendidikan_wali">
                                                         <option value="" >Pilih</option>
                                                         <option value="SD" <?php if ($mahasiswa['pendidikan_wali'] == 'SD') echo "selected";?>>SD</option>
                                                         <option value="SMP" <?php if ($mahasiswa['pendidikan_wali'] == 'SMP') echo "selected";?>>SMP</option>
