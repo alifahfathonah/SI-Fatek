@@ -13,16 +13,9 @@
                         <div class="body">
                             <p>Layanan administrasi akademik adalah layanan online yang dapat digunakan mahasiswa untuk permintaan atau pengajuan surat-surat yang berhubungan dengan administrasi akademik seperti:</p>
                             <ol>
-                                <li>Tanda-tangan berita acara seminar konsep skripsi (hasil)</li>
-                                <li>Membuat SK 3 (SK seminar konsep skripsi)</li>
-                                <li>Surat Keterangan Persetujuan Ujian Khusus</li>
-                                <li>DPNA Ujian Khusus</li>
-                                <li>Upload Nilai Ujian Khusus</li>
-                                <li>Tanda Tangan Berita Acara Sidang</li>
-                                <li>Membuat SK 4 (SK Ujian Skripsi)</li>
-                                <li>Surat Keterangan Upload Nilai Skripsi</li>
-                                <li>Surat Keterangan Siap Yudisium</li>
-                                <li>Hapus Mata Kuliah</li>
+                                <?php foreach ($layanan as $key) {?>
+                                    <li><?php echo $key['layanan'];?></li>
+                                <?php }?>
                             </ol>
 
                         </div>
@@ -62,7 +55,7 @@
                                         <?php foreach($request as $list) { ?>
                                         <tr>
                                             <td><?php echo $i;?></td>
-                                            <td><?php echo $list['jenisLayanan'];?></td>
+                                            <td><?php echo $list['layanan'];?></td>
                                             <td><?php echo $list['infoTambahan'];?></td>
                                             <td>
                                                 <?php if ($list['file']) { 
@@ -107,18 +100,11 @@
                                 <div class="form-group form-float">
                                     <label class="form-label">Jenis Layanan</label>
                                     <div class="form-line">
-                                        <select class="form-control show-tick" name="jenisLayanan" id="jenisLayanan" required>
+                                        <select class="form-control show-tick" name="layananId" id="jenisLayanan" required>
                                             <option value="">Pilih jenis layanan</option>
-                                            <option value="Tanda Tangan Berita Acara Seminar Konsep Skripsi (Hasil)">Tanda Tangan Berita Acara Seminar Konsep Skripsi (Hasil)</option>
-                                            <option value="Membuat SK 3 (SK Seminar Konsep Skripsi)">Membuat SK 3 (SK Seminar Konsep Skripsi)</option>
-                                            <option value="Surat Keterangan Persetujuan Ujian Khusus">Surat Keterangan Persetujuan Ujian Khusus</option>
-                                            <option value="DPNA Ujian Khusus">DPNA Ujian Khusus</option>
-                                            <option value="Upload Nilai Ujian Khusus">Upload Nilai Ujian Khusus</option>
-                                            <option value="Tanda Tangan Berita Acara Sidang">Tanda Tangan Berita Acara Sidang</option>
-                                            <option value="Membuat SK 4 (SK Ujian Skripsi)">Membuat SK 4 (SK Ujian Skripsi)</option>
-                                            <option value="Surat Keterangan Upload Nilai Skripsi">Surat Keterangan Upload Nilai Skripsi</option>
-                                            <option value="Surat Keterangan Siap Yudisium">Surat Keterangan Siap Yudisium</option>
-                                            <option value="Hapus Mata Kuliah">Hapus Mata Kuliah</option>
+                                            <?php foreach ($layanan as $key) {?>
+                                                <option value="<?php echo $key['idLayanan'];?>"><?php echo $key['layanan'];?></option>
+                                            <?php }?>
                                         </select>
                                     </div>
                                 </div>

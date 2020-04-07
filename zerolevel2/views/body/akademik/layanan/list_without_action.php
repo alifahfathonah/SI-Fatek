@@ -21,16 +21,9 @@
                                         <div class="form-line">
                                             <select class="form-control show-tick" id="tableakademik">
                                                 <option value="">Semua</option>
-                                                <option value="Tanda Tangan Berita Acara Seminar Konsep Skripsi (Hasil)">Tanda Tangan Berita Acara Seminar Konsep Skripsi (Hasil)</option>
-                                                <option value="Membuat SK 3 (SK Seminar Konsep Skripsi)">Membuat SK 3 (SK Seminar Konsep Skripsi)</option>
-                                                <option value="Surat Keterangan Persetujuan Ujian Khusus">Surat Keterangan Persetujuan Ujian Khusus</option>
-                                                <option value="DPNA Ujian Khusus">DPNA Ujian Khusus</option>
-                                                <option value="Upload Nilai Ujian Khusus">Upload Nilai Ujian Khusus</option>
-                                                <option value="Tanda Tangan Berita Acara Sidang">Tanda Tangan Berita Acara Sidang</option>
-                                                <option value="Membuat SK 4 (SK Ujian Skripsi)">Membuat SK 4 (SK Ujian Skripsi)</option>
-                                                <option value="Surat Keterangan Upload Nilai Skripsi">Surat Keterangan Upload Nilai Skripsi</option>
-                                                <option value="Surat Keterangan Siap Yudisium">Surat Keterangan Siap Yudisium</option>
-                                                <option value="Hapus Mata Kuliah">Hapus Mata Kuliah</option>
+                                                <?php foreach ($layanan as $key) {?>
+                                                    <option value="<?php echo $key['layanan'];?>"><?php echo $key['layanan'];?></option>
+                                                <?php }?>
                                             </select>
                                         </div>
                                     </div>
@@ -56,7 +49,7 @@
                                         <?php foreach($request as $list) { ?>
                                         <tr>
                                             <td><?php echo $i;?></td>
-                                            <td><?php echo $list['jenisLayanan'];?></td>
+                                            <td><?php echo $list['layanan'];?></td>
                                             <td><a href="<?php echo site_url('detail/mahasiswa/').$list['nim'];?>"><?php echo $list['nama'];?></a></td>
                                             <td><?php echo $list['nim'];?></td>
                                             <td><?php echo $list['jurusan_alias'];?></td>

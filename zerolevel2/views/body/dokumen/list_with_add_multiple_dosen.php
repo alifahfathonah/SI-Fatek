@@ -18,13 +18,34 @@
                             <h2><?php echo $subtitle;?></h2>
                         </div>
                         <div class="body">
+
+                            <div class="row clearfix">
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 align-right">
+                                    <label>Filter Kategori Dokumen</label>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <select class="form-control show-tick" id="selectKategoriDokumen">
+                                                <option value="">Semua</option>
+                                                <?php foreach ($docgroup as $key) {?>
+                                                    <option value="<?php echo $key['docgroupJenisDoc'];?>"><?php echo $key['docgroupJenisDoc'];?></option>
+                                                <?php }?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
                             <div class="button-demo">
                                 <button type="button" class="btn btn-primary btn-lg waves-effect" data-toggle="modal" data-target="#modalFormDocMultiUser" data-form="formTambah">Tambah</button>
                             </div>
 
+                            
+
                             <!-- Tabel dokumen -->
                             <div class="table-responsive">
-                                <table id="tabelData" class="table table-bordered table-striped table-hover dataTable basicTabel">
+                                <table id="tabelData" class="table table-bordered table-striped table-hover tabelListDokumen">
                                     <thead>
                                         <tr>
                                             <th>No</th>

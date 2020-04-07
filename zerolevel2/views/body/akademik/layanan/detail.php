@@ -31,7 +31,7 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><?php echo $jenisLayanan; ?></td>
+                                        <td><?php echo $layanan; ?></td>
                                         <td><?php echo $infoTambahan; ?></td>
                                         <td>
                                             <?php if ($file) { 

@@ -153,6 +153,18 @@ $(function () {
     });
 });
 
+//function for select kategori dokumen
+$(function () {
+    var table = $('.tabelListDokumen').DataTable({
+        responsive: true,
+        "pageLength":50,
+    });
+
+    $('#selectKategoriDokumen').on('change', function(){
+       table.columns(4).search(this.value).draw();
+    });
+});
+
 
 //function for typeahead and bloodhound
 $(function () {

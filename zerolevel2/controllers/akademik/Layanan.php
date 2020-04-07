@@ -16,7 +16,7 @@ class Layanan extends CI_Controller {
 		}
 
 		//* Load model, library, helper, etc *//
-		$this->load->model(array('Tabel_akLayananMhs'));
+		$this->load->model(array('Tabel_akLayananMhs', 'Tabel_refLayanan'));
 
 		//* Initialize class variables. current-user identity. To be used throughout this class *//
 		$this->user = array(
@@ -89,7 +89,7 @@ class Layanan extends CI_Controller {
 			$output[$i]['item1'] = $data[$i]['nama'];
 			$output[$i]['item2'] = $data[$i]['nim'];
 			$output[$i]['item3'] = $data[$i]['prodi_alias'];
-			$output[$i]['item4'] = $data[$i]['jenisLayanan'];
+			$output[$i]['item4'] = $data[$i]['layanan'];
 		}
 		
 		echo json_encode($output);
@@ -160,6 +160,7 @@ class Layanan extends CI_Controller {
 
 		//* Get data ajuan mahasiswa from database. Store at $data *//
 		$data['request'] 	= $this->Tabel_akLayananMhs->get($filter,'tglRequest DESC');
+		$data['layanan'] 	= $this->Tabel_refLayanan->get(array('status' => '1'),'urutan ASC');
 
 		//* formatting the data to be view properly at the pageview *//
 		foreach ($data['request'] as &$val) {

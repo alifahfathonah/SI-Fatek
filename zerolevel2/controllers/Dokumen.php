@@ -107,6 +107,7 @@ class Dokumen extends CI_Controller {
 
 			//* Declare variables array $data to be passing to view *//
 			$data['dokumen'] 	= $this->Tabel_dokumen->user_get(array('aso_dokumen.userId'=> $nip),'dokumenTahun DESC, dokumenDocgroupId ASC');
+			$data['docgroup'] 	= $this->Tabel_refDocgroup->get();
 
 			//* formatting the data to be view properly at the pageview *//
 			foreach ($data['dokumen'] as &$val) {

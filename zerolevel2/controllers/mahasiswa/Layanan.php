@@ -16,7 +16,7 @@ class Layanan extends CI_Controller {
 		}
 
 		//* Load model, library, helper, etc *//
-		$this->load->model(array('Tabel_akLayananMhs'));
+		$this->load->model(array('Tabel_akLayananMhs', 'Tabel_refLayanan'));
 
 		//* Initialize class variables. current-user identity. To be used throughout this class *//
 		$this->user = array(
@@ -36,6 +36,7 @@ class Layanan extends CI_Controller {
 
 		//* Get data ajuan mahasiswa from database. Store at $data *//
 		$data['request'] 	= $this->Tabel_akLayananMhs->get(array('nimReq'=> $this->user['id']),'tglRequest DESC');
+		$data['layanan'] 	= $this->Tabel_refLayanan->get(array('status' => '1'),'urutan ASC');
 
 		//* formatting the data to be view properly at the pageview *//
 		foreach ($data['request'] as &$val) {
@@ -63,12 +64,12 @@ class Layanan extends CI_Controller {
 
 	public function tambah() {
 
-		$this->form_validation->set_rules('jenisLayanan', 'Jenis Layanan', 'required');
+		$this->form_validation->set_rules('layananId', 'Jenis Layanan', 'required');
 
 		if ($this->form_validation->run() == TRUE) {
 
 			$database['nimReq'] 		= $this->user['id'];
-			$database['jenisLayanan']	= $this->input->post('jenisLayanan');
+			$database['layananId']		= $this->input->post('layananId');
 			$database['infoTambahan'] 	= $this->input->post('infoTambahan');
 
 			if(!empty($_FILES['dokumen']['name'][0])) {
@@ -183,6 +184,16 @@ class Layanan extends CI_Controller {
 		$this->load->view(THEME,$data);
 
 
-	}	
+	}
+
+	public function detail_layanan($id) {
+
+		$output 		= $this->Tabel_refLayanan->detail(array('idLayanan'=> $id));
+
+		echo json_encode($output);
+
+	}
+
+
 
 }
