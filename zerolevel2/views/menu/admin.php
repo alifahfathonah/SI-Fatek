@@ -12,6 +12,11 @@
                         </a>
                     </li>
                     <li>
+                        <a href="<?php echo site_url('admin/layanan');?>">
+                            <span>Kelola Layanan Administrasi</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="<?php echo site_url('admin/docgroup');?>">
                             <span>Kelola Kategori Dokumen</span>
                         </a>

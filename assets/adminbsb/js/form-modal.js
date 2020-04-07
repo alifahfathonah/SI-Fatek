@@ -510,6 +510,49 @@ $(function () {
         }
     });
 
+    // Modal form Kelola Layanan
+    $('#modalAdminLayanan').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var id = button.data('id');
+        var form = button.data('form');
+        $(this).find('form')[0].reset();
+        $('form').validate().resetForm();
+        $('form [name="id"]').val('');
+        $('form [name="status"]').selectpicker("refresh");
+
+        if (form == "formTambah") {
+        
+            $(this).find('form').attr('action', window.location.href + '/tambah');
+            $(this).find(':submit').addClass('buttonTambah').removeClass('buttonEdit');
+            $(this).find('.modal-title').text('Tambah Layanan');
+        }
+
+        else if (form == "formEdit") {
+            $(this).find(':submit').addClass('buttonEdit').removeClass('buttonTambah');
+            $(this).find('form').attr('action', window.location.href + '/edit');
+            $(this).find('.modal-title').text('Edit Layanan');
+
+            $.ajax({
+                url : window.location.href + '/detail/' + id,
+                type: "GET",
+                dataType: "JSON",
+                success: function(data)
+                {
+                    $('form [name="id"]').val(data.idLayanan);
+                    $('form [name="layanan"]').val(data.layanan);
+                    $('form [name="infoRequired"]').val(data.infoRequired);
+                    $('form [name="fileRequired"]').val(data.fileRequired);
+                    $('form [name="urutan"]').val(data.urutan);
+                    $('form [name="status"]').selectpicker('val',data.status);
+                },
+                error: function (jqXHR, textStatus, errorThrown)
+                {
+                    alert('Error get data from ajax');
+                }
+            });
+        }
+    });
+
     // Modal form Layanan Akademik
     $('#modalFormLayananAkademik').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget);
@@ -627,49 +670,33 @@ $(function () {
 });
 
 $(function () {
+
     $('#jenisLayanan').on('change', function() {
         $('#divInfo').hide();
         $('#divFile').hide();
         $('form [name="infoTambahan"]').empty();
 
-        switch (this.value) {
-            case "Tanda Tangan Berita Acara Seminar Konsep Skripsi (Hasil)"    : 
-                $('#divInfo').show();
-                $('#divFile').show();
-                $('form [name="infoTambahan"]').append("Tanggal Pelaksanaan Seminar : ");
-                $('.fileinfo').text('(Berita Acara Seminar Konsep Skripsi)'); break;
-            case "Membuat SK 3 (SK Seminar Konsep Skripsi)"    : 
-                $('#divFile').show();
-                $('.fileinfo').text('(Berita Acara Seminar Konsep Skripsi)'); break;
-            case "Surat Keterangan Persetujuan Ujian Khusus"    : 
-                $('#divInfo').show();
-                $('form [name="infoTambahan"]').append("Nama MK Ujian Khusus : \nTanggal Pelaksanaan Seminar : "); break;
-            case "DPNA Ujian Khusus"    : 
-                $('#divFile').show();
-                $('.fileinfo').text('(Surat Keterangan Ujian Khusus)'); break;
-            case "Upload Nilai Ujian Khusus"    : 
-                $('#divFile').show();
-                $('.fileinfo').text('(DPNA Ujian Khusus)'); break;
-            case "Tanda Tangan Berita Acara Sidang"    : 
-                $('#divFile').show();
-                $('.fileinfo').text('(Berita Acara Sidang)'); break;
-            case "Membuat SK 4 (SK Ujian Skripsi)"    : 
-                $('#divInfo').show();
-                $('#divFile').show();
-                $('form [name="infoTambahan"]').append("Tanggal Ujian Skripsi : ");
-                $('.fileinfo').text('(Sertifikat TOEFL)'); break;
-            case "Surat Keterangan Upload Nilai Skripsi"    : 
-                $('#divFile').show();
-                $('.fileinfo').text('(Berita Acara Sidang)'); break;
-            case "Surat Keterangan Siap Yudisium"    : 
-                $('#divInfo').show();
-                $('#divFile').show();
-                $('form [name="infoTambahan"]').append("Link video demo aplikasi : "); 
-                $('.fileinfo').text('(Skripsi, Softcopy Aplikasi, Biodata Yudisium, Jurnal, Pasfoto)'); break;
-            case "Hapus Mata Kuliah"   : 
-                $('#divInfo').show();
-                $('form [name="infoTambahan"]').append("Nama MK yang akan dihapus : \nTanggal Seminar Konsep Skripsi : "); break;
-        }
+        $.ajax({
+            url : window.location.href + '/detail_layanan/' + this.value,
+            type: "GET",
+            dataType: "JSON",
+            success: function(data)
+            {
+                if (data.infoRequired) {
+                    $('#divInfo').show();
+                    $('form [name="infoTambahan"]').append(data.infoRequired);
+                }
+                if (data.fileRequired) {
+                    $('#divFile').show();
+                    $('.fileinfo').text('(' + data.fileRequired + ')');
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+                alert('Error get data from ajax');
+            }
+        });
+
     });
 
     $('#jenisSeminar').on('change', function() {
