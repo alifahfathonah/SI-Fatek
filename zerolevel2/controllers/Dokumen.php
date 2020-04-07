@@ -16,7 +16,7 @@ class Dokumen extends CI_Controller {
 		}
 
 		//* Load model, library, helper, etc *//
-		$this->load->model(array('Tabel_dokumen','Tabel_dosen','Tabel_docgroup'));
+		$this->load->model(array('Tabel_dokumen','Tabel_dosen','Tabel_refDocgroup'));
 
 		//* Initialize class variables. current-user identity. To be used throughout this class *//
 		$this->user = array(
@@ -39,7 +39,7 @@ class Dokumen extends CI_Controller {
 
 		//* Declare variables array $data to be passing to view *//
 		$data['dokumen'] 	= $this->Tabel_dokumen->get("ownerId REGEXP '[a-zA-Z]'",'dokumenTahun DESC, dokumenDocgroupId ASC');
-		$data['docgroup'] 	= $this->Tabel_docgroup->get();
+		$data['docgroup'] 	= $this->Tabel_refDocgroup->get();
 		$data['ownerId']	= $this->user['kodegrup'];
 		$data['fileSpec']	= "Filetype= pdf jpg jpeg xls xlsx mde doc docx; Max Size=20 Mb.";
 

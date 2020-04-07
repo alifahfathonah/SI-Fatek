@@ -16,7 +16,7 @@ class Dokumen extends CI_Controller {
 		}
 
 		//* Load model, library, helper, etc *//
-		$this->load->model(array('Tabel_dokumen','Tabel_docgroup'));
+		$this->load->model(array('Tabel_dokumen','Tabel_refDocgroup'));
 
 		//* Initialize class variables. current-user identity. To be used throughout this class *//
 		$this->user = array(
@@ -34,7 +34,7 @@ class Dokumen extends CI_Controller {
 		
 		//* Declare variables array $data to be passing to view *//
 		$data['dokumen'] 	= $this->Tabel_dokumen->user_get(array('aso_dokumen.userId'=> $this->user['id']),'dokumenTahun DESC, dokumenDocgroupId ASC');
-		$data['docgroup'] 	= $this->Tabel_docgroup->get();
+		$data['docgroup'] 	= $this->Tabel_refDocgroup->get();
 		$data['ownerId']	= $this->user['id'];
 		$data['loadMe']		= array(
 									'tipe' => 'mhs',

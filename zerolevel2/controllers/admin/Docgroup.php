@@ -16,7 +16,7 @@ class Docgroup extends CI_Controller {
 		}
 
 		//* Load model, library, helper, etc *//
-		$this->load->model(array('Tabel_docgroup'));
+		$this->load->model(array('Tabel_refDocgroup'));
 
 		//* Initialize class variables. current-user identity. To be used throughout this class *//
 
@@ -32,7 +32,7 @@ class Docgroup extends CI_Controller {
 		$data['pageTitle'] 	= "Kelola Kategori Dokumen";
 		$data['body_page'] 	= "body/admin/docgroup";
 		
-		$data['docgroups'] 	= $this->Tabel_docgroup->get();
+		$data['docgroups'] 	= $this->Tabel_refDocgroup->get();
 
 		$this->load->view(THEME,$data);
 	}
@@ -45,7 +45,7 @@ class Docgroup extends CI_Controller {
 
 			$database['docgroupJenisDoc']	= $this->input->post('nama');
 
-			if ($this->Tabel_docgroup->tambah($database)) {
+			if ($this->Tabel_refDocgroup->tambah($database)) {
 
 				$this->session->set_flashdata('type', 'success');
 				$this->session->set_flashdata('message', 'Berhasil disimpan!');	
@@ -76,7 +76,7 @@ class Docgroup extends CI_Controller {
 			$database['docgroupJenisDoc']	= $this->input->post('nama');
 			$database['userUpdate']			= $this->user['nama'];
 
-			if ($this->Tabel_docgroup->update($database)) {
+			if ($this->Tabel_refDocgroup->update($database)) {
 				
 				$this->session->set_flashdata('type', 'success');
 				$this->session->set_flashdata('message', 'Berhasil diupdate!');
@@ -101,7 +101,7 @@ class Docgroup extends CI_Controller {
 
 		$id_docgroup = $this->input->post('id');
 
-		if ($this->Tabel_docgroup->delete($id_docgroup)) {
+		if ($this->Tabel_refDocgroup->delete($id_docgroup)) {
 				
 			$this->session->set_flashdata('type', 'success');
 			$this->session->set_flashdata('message', 'Berhasil dihapus!');
@@ -117,7 +117,7 @@ class Docgroup extends CI_Controller {
 
 	public function detail($id) {
 
-		$output = $this->Tabel_docgroup->detail(array('idDocgroup'=> $id));
+		$output = $this->Tabel_refDocgroup->detail(array('idDocgroup'=> $id));
 		echo json_encode($output);
 
 	}	
