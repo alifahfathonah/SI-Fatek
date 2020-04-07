@@ -49,6 +49,8 @@
                         </div>
                         <div class="body">
                             <dl class="dl-horizontal">
+                                <dt>Tanggal Lahir</dt>
+                                <dd><?=$dosen['tglLahir2']?></dd>  
                                 <dt>Departement</dt>
                                 <dd><?=$dosen['jurusan']?> / <?=$dosen['prodi']?></dd>  
                                 <dt>Position/Vocation</dt>
@@ -110,7 +112,14 @@
                                         <input type="text" name="nama" class="form-control" value="<?=$dosen['nama']?>" required>
                                     </div>
                                 </div>
-                                
+
+                                <div class="form-group">
+                                    <label class="form-label">Tanggal Lahir </label>
+                                    <div class="form-line">
+                                        <input type="text" name="tglLahir" class="datepicker form-control" value="<?=$dosen['tglLahir']?>">
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <label class="form-label">Position/Vocation </label>
                                     <small>(Your position/vocation in university/faculty/departement/lab/unit.)</small>

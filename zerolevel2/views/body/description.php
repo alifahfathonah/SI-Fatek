@@ -120,7 +120,7 @@ fitur edit dokumen</p>
 
 <p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in'>2.<span
 style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Tambahan
-fitur tagging dosen dan mahasiswa pada menu tambah dokumen</p>
+fitur tagging dosen dan mahasiswa pada menu dokumen</p>
 
 <p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in'>3.<span
 style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Repository
@@ -130,9 +130,13 @@ dokumen untuk semua unit kerja.</p>
 style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Tambahan
 fitur detail mahasiswa (alamat, sekolah, minat, dll), data prestasi, data disiplin (pelanggaran) akademik</p>
 
-<p class=MsoListParagraphCxSpLast style='text-indent:-.25in'>5.<span
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in'>5.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Tambahan
+fitur detail dosen (tanggal lahir)</p>
+
+<p class=MsoListParagraphCxSpLast style='text-indent:-.25in'>6.<span
 style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Fitur
-baru: wall, akademik dan kemahasiswaan.</p>
+baru: wall (pengumuman, bday), akademik (Layanan administrasi dan pendaftaran seminar) dan kemahasiswaan (prestasi mahasiswa dan disiplin akademik).</p>
 
 <p class=MsoNormal><b><u>Fitur Utama</u></b></p>
 
@@ -172,7 +176,7 @@ administrasi akademik, </p>
 
 <p class=MsoListParagraphCxSpMiddle style='margin-left:1.0in;text-indent:-.25in'>b.<span
 style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Pendaftaran
-Seminar proposal/hasil/sidang</p>
+Seminar kp/proposal/hasil/sidang</p>
 
 <p class=MsoListParagraphCxSpMiddle style='margin-left:1.0in;text-indent:-.25in'>c.<span
 style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Monitoring
@@ -240,7 +244,7 @@ SK, surat pengantar dan monitoring proses disposisi)</p>
 
 <p class=MsoListParagraphCxSpMiddle style='margin-left:1.0in;text-indent:-.25in'>b.<span
 style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Pendaftaran
-seminar (Seminar proposal, seminar hasil, sidang sarjana, dan monitoring proses
+seminar (Seminar kp, proposal, seminar hasil, sidang sarjana, dan monitoring proses
 disposisi)</p>
 
 <p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in'>6.<span

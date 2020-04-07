@@ -47,6 +47,8 @@ class Dosen extends CI_Controller {
 		if ($this->form_validation->run() == TRUE) {
 
 			$database['nama']		= $this->input->post('nama');
+			$database['tglLahir']	= $this->input->post('tglLahir');
+			$database['tmt'] 		= $this->input->post('tmt');
 			$database['nip']		= $this->input->post('nip');
 			$database['nidn'] 		= $this->input->post('nidn');
 			$database['kodePegawai']= $this->input->post('kodePegawai');
@@ -98,6 +100,8 @@ class Dosen extends CI_Controller {
 
 			$database['idDosen']	= $this->input->post('id');
 			$database['nama']		= $this->input->post('nama');
+			$database['tglLahir']	= $this->input->post('tglLahir');
+			$database['tmt'] 		= $this->input->post('tmt');
 			$database['nip']		= $this->input->post('nip');
 			$database['nidn'] 		= $this->input->post('nidn');
 			$database['kodePegawai']= $this->input->post('kodePegawai');

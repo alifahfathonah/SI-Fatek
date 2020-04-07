@@ -25,11 +25,12 @@
                                     <thead>
                                         <tr>
                                             <th>Nama</th>
-                                            <th>Username</th>
-                                            <th>Grup</th>
+                                            <th>NIP</th>
+                                            <th>Jabatan</th>
                                             <th>Nama Unit</th>
-                                            <th>Position</th>
                                             <th>Kode Unit</th>
+                                            <th>Grup</th>
+                                            <th>Kode Grup</th>
                                             <th>Last Login</th>
                                             <th></th>
                                         </tr>
@@ -39,10 +40,11 @@
                                         <tr>
                                             <td><?php echo $list['nama'];?></td>
                                             <td><?php echo $list['username'];?></td>
-                                            <td><?php echo $list['grup'];?></td>
+                                            <td><?php echo $list['posisi'];?></td>
                                             <td><?php echo $list['namaUnit'];?></td>
-                                            <td><?php echo $list['position'];?></td>
                                             <td><?php echo $list['kodeUnit'];?></td>
+                                            <td><?php echo $list['grup'];?></td>
+                                            <td><?php echo $list['kodeGrup'];?></td>
                                             <td><?php echo $list['lastLogin'];?></td>
                                             <td style='white-space: nowrap'>
                                                 <button type="button" class="btn btn-xs btn-warning waves-effect" data-toggle="modal" data-target="#modalFormUser" data-form="formEdit" data-id="<?php echo $list['idUser'];?>">Edit</button>
@@ -77,47 +79,55 @@
                                     </div>
                                 </div>
                                 <div class="form-group form-float">
-                                    <label class="form-label">Username</label>
+                                    <label class="form-label">NIP</label>
                                     <div class="form-line">
                                         <input type="text" name="username" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="form-group form-float">
-                                    <label class="form-label">Grup</label>
+                                    <label class="form-label">Jabatan</label>
                                     <div class="form-line">
-                                        <select class="form-control show-tick" data-live-search="true" name="grup">
-                                            <option value="fakultas" selected>Fakultas</option>
-                                            <option value="wd">WD</option>
-                                            <option value="jurusan">Jurusan</option>
-                                            <option value="prodi">Prodi</option>
-                                            <option value="lab/studio">Lab / Studio</option>
-                                        </select>
+                                        <input type="text" name="posisi" class="form-control">
                                     </div>
                                 </div>
-                                <div class="form-group form-float">
-                                    <label class="form-label">Nama Unit</label>
-                                    <div class="form-line">
-                                        <input type="text" name="namaUnit" class="form-control" required>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <label class="form-label">Nama Unit</label>
+                                            <div class="form-line">
+                                                <input type="text" name="namaUnit" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div class="form-group form-float">
+                                                <label class="form-label">Kode Unit</label>
+                                                <div class="form-line">
+                                                    <input type="text" name="kodeUnit" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group form-float">
-                                    <label class="form-label">Posisi</label>
-                                    <div class="form-line">
-                                        <input type="text" name="position" class="form-control" required>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <label class="form-label">Grup</label>
+                                            <div class="form-line">
+                                                <select class="form-control show-tick" data-live-search="true" name="grup">
+                                                    <option value="fakultas" selected>Fakultas</option>
+                                                    <option value="fakultas">WD</option>
+                                                    <option value="jurusan">Jurusan</option>
+                                                    <option value="prodi">Prodi</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <label class="form-label">Kode Grup</label>
+                                            <div class="form-line">
+                                                <input type="text" name="kodeGrup" class="form-control" required>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group form-float">
-                                    <label class="form-label">Kode Unit</label>
-                                    <div class="form-line">
-                                        <input type="text" name="kodeUnit" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="form-group form-float">
-                                    <label class="form-label">Password</label>
-                                    <div class="form-line">
-                                        <input type="password" name="password" class="form-control">
-                                    </div>
-                                    <small><span class="pass-empty"></span></small>
                                 </div>
 
                                 <button class="btn btn-primary waves-effect" type="submit">SIMPAN</button>

@@ -40,7 +40,7 @@
                             <h1><i class="fa fa-users fa-fw"></i> Portal Fakultas Teknik</h1>
                             <div class="description">
                             	<p>
-	                            	Welcome to Portal Fakultas Teknik Universitas Sam Ratulangi. We currently developing portal-fatek ver.2.0. Please click button below to begin!
+	                            	Welcome to Portal Fakultas Teknik Universitas Sam Ratulangi. We currently developing portal-fatek ver.2. Please click button below to begin!
                             	</p>
                             </div>
                             <div class="top-big-link">

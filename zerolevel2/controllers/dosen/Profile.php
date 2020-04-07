@@ -37,6 +37,7 @@ class Profile extends CI_Controller {
 		
 		//* formatting the data to be view properly at the pageview *//
 		$data['dosen']['foto'] 	= (!empty($data['dosen']['foto'])) ? URL_FOTO_DOSEN.$data['dosen']['foto'] : URL_FOTO_DOSEN."default.jpg";
+		$data['dosen']['tglLahir2'] = date('d F Y',strtotime($data['dosen']['tglLahir']));
 		$data['dosen']['jurusan'] = ucwords(strtolower($data['dosen']['jurusan']));
 		$data['dosen']['prodi'] 	= ucwords(strtolower($data['dosen']['prodi']));
 		if (!empty($data['dosen']['sintaId'])) $data['dosen']['sintaUrl'] = URL_SINTA.$data['dosen']['sintaId']."&view=overview";
@@ -59,6 +60,7 @@ class Profile extends CI_Controller {
 			//* Declare var $database to be input at the database *//
 			$database['idDosen'] 	= $this->input->post('id');
 			$database['nama'] 		= $this->input->post('nama');
+			$database['tglLahir'] 	= $this->input->post('tglLahir');
 			$database['jabatan'] 	= $this->input->post('jabatan');
 			$database['alamat'] 	= $this->input->post('alamat');
 			$database['email'] 		= $this->input->post('email');

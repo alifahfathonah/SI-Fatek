@@ -24,6 +24,8 @@
                         </div>
                         <div class="body">
                             <dl class="dl-horizontal">
+                                <dt>Tanggal Lahir</dt>
+                                <dd><?=$dosen['tglLahir']?></dd> 
                                 <dt>Jabatan</dt>
                                 <dd><?php echo $dosen['jabatan'];?>&nbsp;</dd>
                                 <dt>Office Address</dt>

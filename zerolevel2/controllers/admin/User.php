@@ -28,7 +28,7 @@ class User extends CI_Controller {
 
 	public function index() {
 		
-		$data['pageTitle'] 	= "Kelola User";
+		$data['pageTitle'] 	= "Kelola Authorized User";
 		$data['body_page'] 	= "body/admin/user";
 		
 		$data['users'] 		= $this->Tabel_user->get(array('idUser !=' => '1'), 'grup ASC, 	namaUnit ASC');
@@ -41,20 +41,17 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('nama', 'Nama User', 'trim|required');
 		$this->form_validation->set_rules('username', 'Username', 'trim|required');
 		$this->form_validation->set_rules('grup', 'Grup', 'trim');
-		$this->form_validation->set_rules('namaUnit', 'Nama Unit', 'required');
-		$this->form_validation->set_rules('position', 'Posisi', 'required');
-		$this->form_validation->set_rules('kodeUnit', 'Kode Unit', 'numeric');
-		$this->form_validation->set_rules('password', 'Password', 'required');
+		$this->form_validation->set_rules('kodeGrup', 'Kode Grup', 'required');
 		
 		if ($this->form_validation->run() == TRUE) {
 
 			$database['nama']		= $this->input->post('nama');
 			$database['username']	= $this->input->post('username');
-			$database['grup'] 		= $this->input->post('grup');
+			$database['posisi'] 	= $this->input->post('posisi');
 			$database['namaUnit'] 	= $this->input->post('namaUnit');
-			$database['position'] 	= $this->input->post('position');
 			$database['kodeUnit'] 	= $this->input->post('kodeUnit');
-			$database['password'] 	= md5($this->input->post('password'));
+			$database['grup'] 		= $this->input->post('grup');
+			$database['kodeGrup'] 	= $this->input->post('kodeGrup');
 
 			if ($this->Tabel_user->tambah($database)) {
 
@@ -82,20 +79,18 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('nama', 'Nama User', 'trim|required');
 		$this->form_validation->set_rules('username', 'Username', 'trim|required');
 		$this->form_validation->set_rules('grup', 'Grup', 'trim');
-		$this->form_validation->set_rules('namaUnit', 'Nama Unit', 'required');
-		$this->form_validation->set_rules('position', 'Posisi', 'required');
-		$this->form_validation->set_rules('kodeUnit', 'Kode Unit', 'numeric');
+		$this->form_validation->set_rules('kodeGrup', 'Kode Grup', 'required');
 		
 		if ($this->form_validation->run() == TRUE) {
 
 			$database['idUser']		= $this->input->post('id');
 			$database['nama']		= $this->input->post('nama');
 			$database['username']	= $this->input->post('username');
-			$database['grup'] 		= $this->input->post('grup');
+			$database['posisi'] 	= $this->input->post('posisi');
 			$database['namaUnit'] 	= $this->input->post('namaUnit');
-			$database['position'] 	= $this->input->post('position');
 			$database['kodeUnit'] 	= $this->input->post('kodeUnit');
-			if ($this->input->post('password')) $database['password'] = md5($this->input->post('password'));
+			$database['grup'] 		= $this->input->post('grup');
+			$database['kodeGrup'] 	= $this->input->post('kodeGrup');
 
 			if ($this->Tabel_user->update($database)) {
 				

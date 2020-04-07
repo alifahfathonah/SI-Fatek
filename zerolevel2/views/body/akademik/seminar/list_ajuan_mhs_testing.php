@@ -8,11 +8,13 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
-                            <h2>Pendaftaran Seminar Proposal, Seminar Konsep Skripsi (Hasil) dan Sidang Sarjana</h2>
+                            <h2>Pendaftaran Seminar KP, Seminar Proposal, Seminar Konsep Skripsi (Hasil) dan Sidang Sarjana</h2>
                         </div>
                         <div class="body">
                             <h5>Persyaratan pendaftaran</h5>
-                            <p>Untuk pendaftar seminar, mahasiswa harus sedang mengontrak matakuliah Skripsi pada semester aktif, jumlah SKS lulus sudah memenuhi, tidak ada disiplin (pelanggaran) akademik dan mengisi/mengupload informasi tambahan. Untuk informasi tambahan lainnya, disesuaikan sesuai petunjuk dibawah ini.
+                            <p>Untuk seminar KP (Kerja Praktek) harus telah menyelesaikan Kerja Praktek di lapangan. Untuk pendaftar seminar proposal/skripsi, mahasiswa harus sedang mengontrak matakuliah Skripsi pada semester aktif, jumlah SKS lulus sudah memenuhi, tidak ada disiplin (pelanggaran) akademik dan mengisi/mengupload informasi tambahan. Untuk informasi tambahan lainnya, disesuaikan sesuai petunjuk dibawah ini.
+                            <h5>Seminar Kerja Praktek</h5>
+                            <p>Informasi yang perlu diisi adalah: Lokasi dan Tanggal Kerja Praktek. Dokumen yang wajib diupload adalah: file laporan KP (pdf).</p>
                             <h5>Seminar Proposal Judul</h5>
                             <p>Informasi yang perlu diisi adalah: Judul proposal, nama KDK dan nama-nama calon dosen pembimbing 1 dan 2. Dokumen yang wajib diupload adalah: file proposal (pdf).</p>
                             <h5>Seminar Konsep Skripsi (Seminar Hasil)</h5>
@@ -70,6 +72,7 @@
                                     <div class="form-line">
                                         <select class="form-control show-tick" data-live-search="true" name="jenisSeminar" id="jenisSeminar" required>
                                             <option value="">Pilih jenis seminar</option>
+                                            <option value="Seminar Kerja Praktek">Seminar KP</option>
                                             <option value="Seminar Proposal Judul">Seminar Proposal Judul</option>
                                             <option value="Seminar Konsep Skripsi (Hasil)">Seminar Konsep Skripsi (Hasil)</option>
                                             <option value="Sidang Sarjana">Sidang Sarjana</option>

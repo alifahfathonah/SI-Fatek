@@ -50,6 +50,7 @@ class Detail extends CI_Controller {
 		$data['dosen'] 			= $this->Tabel_dosen->detail(array('nip'=> $nip));
 		$data['dosen']['foto'] 	= (!empty($data['dosen']['foto'])) ? URL_FOTO_DOSEN.$data['dosen']['foto'] : URL_FOTO_DOSEN."default.jpg";
 
+		$data['dosen']['tglLahir'] = date('d F Y',strtotime($data['dosen']['tglLahir']));
 		$data['dosen']['jurusan'] = ucwords(strtolower($data['dosen']['jurusan']));
 		$data['dosen']['prodi'] 	= ucwords(strtolower($data['dosen']['prodi']));
 

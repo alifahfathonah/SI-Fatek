@@ -3,7 +3,7 @@
                     <li class="header">MENU ADMIN</li>
                     <li>
                         <a href="<?php echo site_url('admin/user');?>">
-                            <span>Kelola User</span>
+                            <span>Kelola Authorized User</span>
                         </a>
                     </li>
                     <li>

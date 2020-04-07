@@ -80,6 +80,23 @@
 
                                 <div class="form-group">
                                     <div class="row">
+                                        <div class="col-xs-6">
+                                            <label class="form-label">Tanggal Lahir</label>
+                                            <div class="form-line">
+                                                <input type="text" name="tglLahir" class="datepicker form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <label class="form-label">TMT</label>
+                                            <div class="form-line">
+                                                <input type="text" name="tmt" class="datepicker form-control" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
                                         <div class="col-xs-4">
                                             <label class="form-label">Nip</label>
                                             <div class="form-line">

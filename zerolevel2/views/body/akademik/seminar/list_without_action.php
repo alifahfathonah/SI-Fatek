@@ -21,6 +21,7 @@
                                         <div class="form-line">
                                             <select class="form-control show-tick" data-live-search="true" id="tableakademik">
                                                 <option value="">Semua</option>
+                                                <option value="Seminar Kerja Praktek">Seminar KP</option>
                                                 <option value="Seminar Proposal Judul">Seminar Proposal Judul</option>
                                                 <option value="Seminar Konsep Skripsi (Hasil)">Seminar Konsep Skripsi</option>
                                                 <option value="Sidang Sarjana">Sidang Sarjana</option>

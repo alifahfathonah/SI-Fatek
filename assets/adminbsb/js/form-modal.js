@@ -63,22 +63,18 @@ $(function () {
         $('form').validate().resetForm();
         $('form [name="id"]').val('');
         $('form [name="grup"]').selectpicker("refresh");
-        $('form [name="password"]').prop("required",false);
-        $('.pass-empty').text('');
 
         if (form == "formTambah") {
 
             $(this).find('form').attr('action', window.location.href + '/tambah');
             $(this).find(':submit').addClass('buttonTambah').removeClass('buttonEdit');
             $(this).find('.modal-title').text('Tambah User');
-            $('form [name="password"]').prop("required",true);
         }
 
         else if (form == "formEdit") {
             $(this).find(':submit').addClass('buttonEdit').removeClass('buttonTambah');
             $(this).find('form').attr('action', window.location.href + '/edit');
             $(this).find('.modal-title').text('Edit User');
-            $(this).find('.pass-empty').text('Biarkan kosong, jika tidak ingin mengganti password');
 
             $.ajax({
                 url : window.location.href + '/detail/' + id,
@@ -90,8 +86,9 @@ $(function () {
                     $('form [name="nama"]').val(data.nama);
                     $('form [name="username"]').val(data.username);
                     $('form [name="grup"]').selectpicker('val',data.grup);
+                    $('form [name="kodeGrup"]').val(data.kodeGrup);
                     $('form [name="namaUnit"]').val(data.namaUnit);
-                    $('form [name="position"]').val(data.position);
+                    $('form [name="posisi"]').val(data.posisi);
                     $('form [name="kodeUnit"]').val(data.kodeUnit);
                 },
                 error: function (jqXHR, textStatus, errorThrown)
@@ -215,6 +212,8 @@ $(function () {
                 {
                     $('form [name="id"]').val(data.idDosen);
                     $('form [name="nama"]').val(data.nama);
+                    $('form [name="tglLahir"]').val(data.tglLahir);
+                    $('form [name="tmt"]').val(data.tmt);
                     $('form [name="nip"]').val(data.nip);
                     $('form [name="nidn"]').val(data.nidn);
                     $('form [name="kodePegawai"]').val(data.kodePegawai);
@@ -229,7 +228,7 @@ $(function () {
                     $('form [name="scopusId"]').val(data.scopusId);
                     $('form [name="interest"]').val(data.interest);
                     $('form [name="bio"]').val(data.bio);
-                    $('form [name="showInPublic"]').selectpicker('val',data.showInPublic);
+                    $('form [name="status"]').selectpicker('val',data.status);
                 },
                 error: function (jqXHR, textStatus, errorThrown)
                 {
@@ -532,7 +531,7 @@ $(function () {
 
     });
 
-    // Modal form Layanan Akademik
+    // Modal form Seminar
     $('#modalFormSeminar').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget);
         var id = button.data('id');
@@ -553,7 +552,7 @@ $(function () {
 
     });
 
-    // Modal form Approval
+    // Modal form Update Status (Process)
     $('#modalFormUpdateStatus').on('show.bs.modal', function (event) {
         
         var button = $(event.relatedTarget);
@@ -679,6 +678,12 @@ $(function () {
         $('form [name="infoTambahan"]').empty();
 
         switch (this.value) {
+            case "Seminar Kerja Praktek"    : 
+                $('#divInfo').show();
+                $('#divFile').show();
+                $('#judul').text('Judul Laporan KP');
+                $('form [name="infoTambahan"]').append("Lokasi KP : \nTanggal KP : ");
+                $('.fileinfo').text('(File laporan KP)'); break;
             case "Seminar Proposal Judul"    : 
                 $('#divInfo').show();
                 $('#divFile').show();
