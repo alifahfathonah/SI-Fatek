@@ -101,7 +101,7 @@ class Wall extends CI_Controller {
 					$_FILES['dokumens']['error']	= $_FILES['dokumen']['error'][$i];
 					$_FILES['dokumens']['size']		= $_FILES['dokumen']['size'][$i];
 
-					$this->config->config['dokumen_tmp']['file_name'] = "announce".date('Ymd');
+					$this->config->config['dokumen_tmp']['file_name'] = "announce-".date('Ymd');
 					$this->load->library('upload', $this->config->item('dokumen_tmp'));
 
 					if(!$this->upload->do_upload('dokumens')) {
@@ -158,7 +158,7 @@ class Wall extends CI_Controller {
 					$_FILES['dokumens']['error']	= $_FILES['dokumen']['error'][$i];
 					$_FILES['dokumens']['size']		= $_FILES['dokumen']['size'][$i];
 
-					$this->config->config['dokumen_tmp']['file_name'] = "announce".date('Ymd');
+					$this->config->config['dokumen_tmp']['file_name'] = "announce-".date('Ymd');
 					$this->load->library('upload', $this->config->item('dokumen_tmp'));
 
 					if(!$this->upload->do_upload('dokumens')) {

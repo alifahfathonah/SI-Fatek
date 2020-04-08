@@ -86,7 +86,7 @@
 
                             <h4>Dekan</h4>
                             <ol>
-                                <li>Data (Mahasiswa, alumni, dosen, prestasi mahasiswa fakultas)</li>
+                                <li>Data (Mahasiswa, alumni, dosen, prestasi mahasiswa, disiplin akademik fakultas)</li>
                                 <li>Statistik (Statistik fakultas)</li>
                                 <li>Dokumen (Dokumen dekan, dokumen dosen fakultas)</li>
                                 <li>Akademik <span class="badge bg-cyan">New</span>
@@ -99,7 +99,7 @@
 
                             <h4>WD 1</h4>
                             <ol>
-                                <li>Data fakultas (Mahasiswa, alumni, dosen, prestasi mahasiswa fakultas)</li>
+                                <li>Data fakultas (Mahasiswa, alumni, dosen, prestasi mahasiswa, disiplin akademik fakultas)</li>
                                 <li>Statistik (Statistik fakultas)</li>
                                 <li>Dokumen (Dokumen wd1, dokumen dosen fakultas)</li>
                                 <li>Akademik <span class="badge bg-cyan">New</span>
@@ -112,27 +112,27 @@
 
                             <h4>WD 2</h4>
                             <ol>
-                                <li>Data fakultas (Mahasiswa, alumni, dosen, prestasi mahasiswa fakultas)</li>
+                                <li>Data fakultas (Mahasiswa, alumni, dosen, prestasi mahasiswa, disiplin akademik fakultas)</li>
                                 <li>Statistik (Statistik fakultas)</li>
                                 <li>Dokumen (Dokumen wd2, dokumen dosen fakultas)</li>
                             </ol>
 
                             <h4>WD 3</h4>
                             <ol>
-                                <li>Data fakultas (Mahasiswa, alumni, dosen, prestasi mahasiswa fakultas)</li>
+                                <li>Data fakultas (Mahasiswa, alumni, dosen, prestasi mahasiswa, disiplin akademik fakultas)</li>
                                 <li>Statistik (Statistik fakultas)</li>
                                 <li>Dokumen (Dokumen wd3, dokumen dosen fakultas)</li>
                                 <li>Kemahasiswaan <span class="badge bg-cyan">New</span>
                                     <ul>
                                         <li>Prestasi Mahasiswa (Daftar prestasi mahasiswa, Verifikasi ajuan prestasi mahasiswa)</li>
-                                        <li>Disiplin Akademik (Tambah data disiplin (pelanggaran), data disiplin akademik untuk tingkat fakultas)</li>
+                                        <li>Disiplin Akademik (Tambah data disiplin (pelanggaran))</li>
                                     </ul>
                                 </li>
                             </ol>
 
                             <h4>Jurusan <small>(Kajur/Sekjur)</small></h4>
                             <ol>
-                                <li>Data Jurusan (Mahasiswa, alumni, dosen, prestasi mahasiswa jurusan)</li>
+                                <li>Data Jurusan (Mahasiswa, alumni, dosen, prestasi mahasiswa, disiplin akademik jurusan)</li>
                                 <li>Statistik (Statistik jurusan)</li>
                                 <li>Dokumen (dokumen jurusan, dokumen dosen jurusan)</li>
                                 <li>Akademik <span class="badge bg-cyan">New</span>
@@ -145,7 +145,7 @@
 
                             <h4>Prodi <small>(Koprodi)</small></h4>
                             <ol>
-                                <li>Data Prodi (Mahasiswa, alumni, dosen, prestasi mahasiswa prodi)</li>
+                                <li>Data Prodi (Mahasiswa, alumni, dosen, prestasi mahasiswa, disiplin akademik prodi)</li>
                                 <li>Statistik (Statistik prodi)</li>
                                 <li>Dokumen (dokumen prodi, dokumen dosen prodi)</li>
                                 <li>Akademik <span class="badge bg-cyan">New</span>

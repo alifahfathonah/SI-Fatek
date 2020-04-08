@@ -166,30 +166,4 @@ class Disiplin extends CI_Controller {
 
 	}
 
-	public function lists() {
-		
-		$data['pageTitle'] 	= "Data Disiplin Akademik";
-		$data['body_page'] 	= "body/kemahasiswaan/disiplin/list_without_add";
-
-		$data['disiplin'] 	= $this->Tabel_kmDisiplin->user_get(FALSE,'tglEnd DESC, nim ASC');
-
-		foreach ($data['disiplin'] as &$val) {
-
-			//* data tambahan status jika masih berlaku per hari ini *//
-			$val['status'] = ($val['tglEnd'] < date('Y-m-d')) ? TRUE : FALSE;
-
-			$val['tglStart'] 	= date('d M Y',strtotime($val['tglStart']));
-			$val['tglEnd'] 		= date('d M Y',strtotime($val['tglEnd']));
-
-			//because sometimes mahasiswa belum ada data didatabase fatek
-			$val['nama'] 	= (!empty($val['nama'])) ? $val['nama'] : $this->apicall->get(URL_API.'daftar/user/'.$val['userId'])[0]->nama;
-			$val['nim'] 	= (!empty($val['nim'])) ? $val['nim'] : $val['userId'];
-
-		}
-
-		//echo json_encode($data);die;
-		$this->load->view(THEME,$data);
-
-	}
-
 }

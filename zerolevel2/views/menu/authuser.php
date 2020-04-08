@@ -29,7 +29,13 @@
                                     <i class="material-icons">emoji_events</i>
                                     <span>Prestasi Mahasiswa</span>
                                 </a>
-                            </li>  
+                            </li>
+                            <li>
+                                <a href="<?php echo site_url('data/disiplin-akademik');?>">
+                                    <i class="material-icons">sentiment_very_dissatisfied</i>
+                                    <span>Disiplin Akademik</span>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     <li>

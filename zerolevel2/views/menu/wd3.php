@@ -36,11 +36,6 @@
                                             <span>Daftar Disiplin Akademik</span>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="<?php echo site_url('kemahasiswaan/disiplin/lists');?>">
-                                            <span>Data Disiplin Akademik</span>
-                                        </a>
-                                    </li>
                                 </ul>
                             </li>
                         </ul>

@@ -35,12 +35,12 @@ class Prestasi extends CI_Controller {
 		$data['body_page'] 	= "body/kemahasiswaan/prestasi/list_wd3";
 
 		$data['prestasi'] 	= $this->Tabel_kmPrestasi->get(array('status'=> 'Sudah diverifikasi'),'tglLomba DESC');
-		$data['fileSpec']	= "Filetype = pdf jpg jpeg; Max Size = 5 Mb.";
+		$data['fileSpec']	= "Filetype = pdf jpg jpeg; Max Size = 3 Mb.";
 
 		foreach ($data['prestasi'] as &$val) {
 			$val['bukti'] 		= explode(" ", $val['bukti']);
 			foreach ($val['bukti'] as &$dok) {
-				$dok = URL_DOKUMEN . $dok;
+				$dok = URL_DOKUMEN_TMP . $dok;
 			}
 			$val['tglLomba'] 	= date('d M Y',strtotime($val['tglLomba']));
 
@@ -88,8 +88,8 @@ class Prestasi extends CI_Controller {
 					$_FILES['dokumens']['error']	= $_FILES['dokumen']['error'][$i];
 					$_FILES['dokumens']['size']		= $_FILES['dokumen']['size'][$i];
 
-					$this->config->config['dokumen']['file_name'] = "prestasi".date('Ymd');
-					$this->load->library('upload', $this->config->item('dokumen'));
+					$this->config->config['dokumen_tmp']['file_name'] = "prestasi-".date('Ymd');
+					$this->load->library('upload', $this->config->item('dokumen_tmp'));
 
 					if(!$this->upload->do_upload('dokumens')) {
 
@@ -153,8 +153,8 @@ class Prestasi extends CI_Controller {
 					$_FILES['dokumens']['error']	= $_FILES['dokumen']['error'][$i];
 					$_FILES['dokumens']['size']		= $_FILES['dokumen']['size'][$i];
 
-					$this->config->config['dokumen']['file_name'] = "prestasi".date('Ymd');
-					$this->load->library('upload', $this->config->item('dokumen'));
+					$this->config->config['dokumen_tmp']['file_name'] = "prestasi-".date('Ymd');
+					$this->load->library('upload', $this->config->item('dokumen_tmp'));
 
 					if(!$this->upload->do_upload('dokumens')) {
 
@@ -175,7 +175,7 @@ class Prestasi extends CI_Controller {
 			$file['bukti'] 		= explode(" ", $file['bukti']);
 
 			foreach ($file['bukti'] as $key => $value) {
-				if (file_exists(FCPATH.DIR_DOKUMEN.$value)) unlink(FCPATH.DIR_DOKUMEN.$value);
+				if (file_exists(FCPATH.DIR_DOKUMEN_TMP.$value)) unlink(FCPATH.DIR_DOKUMEN_TMP.$value);
 			}
 			$database['bukti']= implode(" ", $filename);
 			
@@ -215,7 +215,7 @@ class Prestasi extends CI_Controller {
 
 		//* Delete each dokumen file*//
 		foreach ($file['bukti'] as $key => $value) {
-			if (file_exists(FCPATH.DIR_DOKUMEN.$value)) unlink(FCPATH.DIR_DOKUMEN.$value);
+			if (file_exists(FCPATH.DIR_DOKUMEN_TMP.$value)) unlink(FCPATH.DIR_DOKUMEN_TMP.$value);
 		}
 
 		//* Delete entry in database *//
@@ -255,12 +255,12 @@ class Prestasi extends CI_Controller {
 		$data['body_page'] 	= "body/kemahasiswaan/prestasi/list_verifikasi";
 
 		$data['prestasi'] 	= $this->Tabel_kmPrestasi->get(array('status'=> 'Diajukan - Menunggu verifikasi WD3'),'tglLomba ASC');
-		$data['fileSpec']	= "Filetype = pdf jpg jpeg; Max Size = 5 Mb.";
+		$data['fileSpec']	= "Filetype = pdf jpg jpeg; Max Size = 3 Mb.";
 
 		foreach ($data['prestasi'] as &$val) {
 			$val['bukti'] 		= explode(" ", $val['bukti']);
 			foreach ($val['bukti'] as &$dok) {
-				$dok = URL_DOKUMEN . $dok;
+				$dok = URL_DOKUMEN_TMP . $dok;
 			}
 			$val['tglLomba'] 	= date('d M Y',strtotime($val['tglLomba']));
 
