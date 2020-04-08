@@ -9,7 +9,7 @@ class Disiplin extends CI_Controller {
 		//* Check if current-user is authorized user *//
 		if ($this->session->userdata['logged_in_portal']['auth']['kodeGrup'] != 'wd3') {
 			if (!isset($this->session->userdata['logged_in_portal'])) {
-				redirect(site_url('login'));
+				redirect(site_url('login')."?redirect=".uri_string());
 			} else {
 				show_error('Access denied!');
 			}

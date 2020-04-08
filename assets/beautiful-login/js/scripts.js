@@ -15,20 +15,20 @@ jQuery(document).ready(function() {
 
         var user = $(this).data('user');
 
-        $(".modal-body").find('form').attr('action', window.location.href + '/' + user);
+        $(".modal-body").find('form').attr('action', window.location.href.split('?')[0] + '/' + user);
         $(".user").text(user);
         $('.error-message').remove();
     });
 
     //Get from API
     if (typeof message_login_dsn !== 'undefined') {
-        $(".modal-body").find('form').attr('action', window.location.href + '/' + message_login_dsn);
+        $(".modal-body").find('form').attr('action', window.location.href.split('?')[0] + '/' + message_login_dsn);
         $(".user").text(message_login_dsn);
         $('#modal_login').modal('show');
     }
 
     if (typeof message_login_mhs !== 'undefined') {
-        $(".modal-body").find('form').attr('action', window.location.href + '/' + message_login_mhs);
+        $(".modal-body").find('form').attr('action', window.location.href.split('?')[0] + '/' + message_login_mhs);
         $(".user").text(message_login_mhs);
         $('#modal_login').modal('show');
     }

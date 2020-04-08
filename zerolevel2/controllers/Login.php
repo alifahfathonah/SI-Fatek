@@ -12,11 +12,13 @@ class Login extends CI_Controller {
 
 	public function index() {
 
+		$data['url'] = (!empty($_GET['redirect'])) ? $_GET['redirect'] : "";
+
 		if(isset($this->session->userdata['logged_in_portal'])) {
 			redirect(site_url('wall'));
 		}
 	
-		$this->load->view("login");
+		$this->load->view("login",$data);
 	
 	}
 
@@ -33,7 +35,8 @@ class Login extends CI_Controller {
 			
 			if ($this->form_validation->run() == true) {
 				$username 	= $this->input->post('namepf',TRUE);
-				$pwd 		= $this->input->post('passpf',TRUE);					
+				$pwd 		= $this->input->post('passpf',TRUE);
+				$url 		= ($this->input->post('url')) ? ($this->input->post('url')) : "wall";			
 
 				//* Check username and password.*//
 				//* Comment second line for testing purpose. Comment first line for live environment*//
@@ -88,7 +91,7 @@ class Login extends CI_Controller {
 						//* Register session, clear login attempt, redirect to site *//
 						$this->session->set_userdata('logged_in_portal',$sess_data);
 						$this->session->unset_userdata('login_attempt');						
-						redirect(site_url('wall'));
+						redirect(site_url($url));
 					
 					} else {
 						//* Below line is executed when user_dosen not found on FATEK database *//
@@ -108,7 +111,8 @@ class Login extends CI_Controller {
 				$this->session->set_flashdata('message_login_dosen', validation_errors($this->icon));				
 			}
 		}
-		redirect(site_url('login'));
+		if ($this->input->post('url')) redirect(site_url('login')."?redirect=".$this->input->post('url'));
+		else redirect(site_url('login'));
 
 	}
 
@@ -126,6 +130,7 @@ class Login extends CI_Controller {
 			if ($this->form_validation->run() == true) {
 				$username 	= $this->input->post('namepf',TRUE);
 				$pwd 		= $this->input->post('passpf',TRUE);
+				$url 		= ($this->input->post('url')) ? ($this->input->post('url')) : "wall";
 
 				//* Check username and password.*//
 				//* Comment second line for testing purpose. Comment first line for live environment*//
@@ -194,7 +199,8 @@ class Login extends CI_Controller {
 			}
 		}
 		
-		redirect(site_url('login'));
+		if ($this->input->post('url')) redirect(site_url('login')."?redirect=".$this->input->post('url'));
+		else redirect(site_url('login'));
 
 	}
 	

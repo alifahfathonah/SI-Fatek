@@ -8,7 +8,7 @@ class Wall extends CI_Controller {
 
 		//* Check if current-user is logged user *//
 		if (!isset($this->session->userdata['logged_in_portal'])) {
-			redirect(site_url('login'));
+			redirect(site_url('login')."?redirect=".uri_string());
 		}
 
 		//* Load model, library, helper, etc *//

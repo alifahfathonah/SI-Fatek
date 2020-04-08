@@ -78,6 +78,7 @@
                         <?php }?>
         				
 	                    <?php echo form_open('login');?>
+                            <input type="hidden" name="url" value="<?php echo $url;?>">
 	                    	<div class="form-group">
 	                    		<label class="sr-only" for="form-username" name="identity">Username</label>
 	                        	<input type="text" name="namepf" placeholder="Username..." class="form-username form-control" id="form-username" autocomplete="on" required>
