@@ -14,7 +14,7 @@
                             <p>Layanan administrasi akademik adalah layanan online yang dapat digunakan mahasiswa untuk permintaan atau pengajuan surat-surat yang berhubungan dengan administrasi akademik seperti:</p>
                             <ol>
                                 <?php foreach ($layanan as $key) {?>
-                                    <li><?php echo $key['layanan'];?></li>
+                                    <li><?php echo $key['formField'];?></li>
                                 <?php }?>
                             </ol>
 
@@ -70,7 +70,7 @@
                                         <select class="form-control show-tick" name="layananId" id="jenisLayanan" required>
                                             <option value="">Pilih jenis layanan</option>
                                             <?php foreach ($layanan as $key) {?>
-                                                <option value="<?php echo $key['idLayanan'];?>"><?php echo $key['layanan'];?></option>
+                                                <option value="<?php echo $key['idReqField'];?>"><?php echo $key['formField'];?></option>
                                             <?php }?>
                                         </select>
                                     </div>

@@ -521,16 +521,13 @@ $(function () {
         $('form [name="status"]').selectpicker("refresh");
 
         if (form == "formTambah") {
-        
             $(this).find('form').attr('action', window.location.href + '/tambah');
-            $(this).find(':submit').addClass('buttonTambah').removeClass('buttonEdit');
-            $(this).find('.modal-title').text('Tambah Layanan');
+            $(this).find('.modal-title').text('Tambah Form Field');
         }
 
         else if (form == "formEdit") {
-            $(this).find(':submit').addClass('buttonEdit').removeClass('buttonTambah');
             $(this).find('form').attr('action', window.location.href + '/edit');
-            $(this).find('.modal-title').text('Edit Layanan');
+            $(this).find('.modal-title').text('Edit Form Field');
 
             $.ajax({
                 url : window.location.href + '/detail/' + id,
@@ -538,8 +535,9 @@ $(function () {
                 dataType: "JSON",
                 success: function(data)
                 {
-                    $('form [name="id"]').val(data.idLayanan);
-                    $('form [name="layanan"]').val(data.layanan);
+                    $('form [name="id"]').val(data.idReqField);
+                    $('form [name="form"]').val(data.form);
+                    $('form [name="formField"]').val(data.formField);
                     $('form [name="infoRequired"]').val(data.infoRequired);
                     $('form [name="fileRequired"]').val(data.fileRequired);
                     $('form [name="urutan"]').val(data.urutan);
@@ -561,15 +559,20 @@ $(function () {
         $(this).find('form')[0].reset();
         $('form').validate().resetForm();
         $('form [name="id"]').val('');
-        $('form [name="jenisLayanan"]').selectpicker("refresh");
+        $('#jenisLayanan').prop("disabled", false);
+        $('#jenisLayanan').selectpicker('refresh');
         $('#divInfo').hide();
         $('#divFile').hide();
+        $('#judulDok').text('');
         $('.fileinfo').text('');
+        $('.doc-empty').text('');
         $('form [name="infoTambahan"]').empty();
 
         if (form == "formTambah") {
         
-            $(this).find('form').attr('action', window.location.href + '/tambah');   
+            $(this).find('form').attr('action', window.location.href + '/tambah');
+            $(this).find('.modal-title').text('Permintaan Layanan Administrasi Akademik');
+            $('#judulDok').text('Upload Dokumen');
         }
 
     });
@@ -676,12 +679,15 @@ $(function () {
         $('#divFile').hide();
         $('form [name="infoTambahan"]').empty();
 
+        if (!this.value) {$('form [name="jenisLayanan"]').val(''); return false;}
+
         $.ajax({
             url : window.location.href + '/detail_layanan/' + this.value,
             type: "GET",
             dataType: "JSON",
             success: function(data)
             {
+                $('form [name="jenisLayanan"]').val(data.formField);
                 if (data.infoRequired) {
                     $('#divInfo').show();
                     $('form [name="infoTambahan"]').append(data.infoRequired);
@@ -704,32 +710,41 @@ $(function () {
         $('#divFile').hide();
         $('form [name="infoTambahan"]').empty();
 
-        switch (this.value) {
-            case "Seminar Kerja Praktek"    : 
-                $('#divInfo').show();
-                $('#divFile').show();
-                $('#judul').text('Judul Laporan KP');
-                $('form [name="infoTambahan"]').append("Lokasi KP : \nTanggal KP : ");
-                $('.fileinfo').text('(File laporan KP)'); break;
-            case "Seminar Proposal Judul"    : 
-                $('#divInfo').show();
-                $('#divFile').show();
-                $('#judul').text('Judul Proposal');
-                $('form [name="infoTambahan"]').append("KDK : \nCalon Pembimbing 1 : \nCalon Pembimbing 2 : ");
-                $('.fileinfo').text('(File proposal)'); break;
-            case "Seminar Konsep Skripsi (Hasil)"    : 
-                $('#divInfo').show();
-                $('#divFile').show();
-                $('#judul').text('Judul Skripsi');
-                $('form [name="infoTambahan"]').append("Dosen Pembimbing 1 : \nDosen Pembimbing 2 : ");
-                $('.fileinfo').text('(File skripsi dan Bukti persetujuan dari dosen pembimbing)'); break;
-            case "Sidang Sarjana"    : 
-                $('#divInfo').show();
-                $('#divFile').show();
-                $('#judul').text('Judul Skripsi');
-                $('form [name="infoTambahan"]').append("Dosen Penguji 1 : \nDosen Penguji 2 : \nDosen Penguji 3 : \nDosen Penguji 4 : \nDosen Penguji 5 : ");
-                $('.fileinfo').text('(File skripsi dan Bukti revisi yang telah ditandatangani dosen penguji)'); break;
-        }
+        if (!this.value) {$('form [name="jenisSeminar"]').val(''); return false;} 
+
+        $.ajax({
+            url : window.location.href + '/detail_seminar/' + this.value,
+            type: "GET",
+            dataType: "JSON",
+            success: function(data)
+            {
+                $('form [name="jenisSeminar"]').val(data.formField);
+                if (data.infoRequired) {
+                    $('#divInfo').show();
+                    $('form [name="infoTambahan"]').append(data.infoRequired);
+                }
+                if (data.fileRequired) {
+                    $('#divFile').show();
+                    $('.fileinfo').text('(' + data.fileRequired + ')');
+                }
+
+                switch (data.formField) {
+                    case "Seminar Kerja Praktek"    : 
+                        $('#judul').text('Judul Laporan KP'); break;
+                    case "Seminar Proposal Judul"    : 
+                        $('#judul').text('Judul Proposal'); break;
+                    case "Seminar Konsep Skripsi (Hasil)"    : 
+                        $('#judul').text('Judul Skripsi'); break;
+                    case "Sidang Sarjana"    : 
+                        $('#judul').text('Judul Skripsi'); break;
+                } 
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+                alert('Error get data from ajax');
+            }
+        });
+
     });
 
 });

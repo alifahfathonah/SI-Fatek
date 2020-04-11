@@ -78,7 +78,9 @@
                                                 <a href="<?php echo site_url('mahasiswa/seminar/detail/').$list['idRequest'];?>" class="btn btn-xs btn-info waves-effect" role="button">
                                                     Detail
                                                 </a>
+                                                <?php if ($list['authorized']) {?>
                                                 <button class="btn btn-xs btn-danger waves-effect buttonHapus" data-id="<?php echo $list['idRequest'];?>">Delete</button>
+                                                <?php }?>
                                             </td> 
                                         </tr> 
                                         <?php $i++;}?> 
@@ -102,15 +104,15 @@
                         <div class="modal-body">
                             <?php echo form_open_multipart();?>
                                 <input type="hidden" name="id">
+                                <input type="hidden" name="jenisSeminar">
                                 <div class="form-group form-float">
                                     <label class="form-label">Jenis Seminar</label>
                                     <div class="form-line">
-                                        <select class="form-control show-tick" name="jenisSeminar" id="jenisSeminar" required>
+                                        <select class="form-control show-tick" id="jenisSeminar" required>
                                             <option value="">Pilih jenis seminar</option>
-                                            <option value="Seminar Kerja Praktek">Seminar KP</option>
-                                            <option value="Seminar Proposal Judul">Seminar Proposal Judul</option>
-                                            <option value="Seminar Konsep Skripsi (Hasil)">Seminar Konsep Skripsi (Hasil)</option>
-                                            <option value="Sidang Sarjana">Sidang Sarjana</option>
+                                            <?php foreach ($seminar as $key) {?>
+                                                <option value="<?php echo $key['idReqField'];?>"><?php echo $key['formField'];?></option>
+                                            <?php }?>
                                         </select>
                                     </div>
                                 </div>

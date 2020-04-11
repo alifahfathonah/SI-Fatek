@@ -21,10 +21,9 @@
                                         <div class="form-line">
                                             <select class="form-control show-tick" id="tableakademik">
                                                 <option value="">Semua</option>
-                                                <option value="Seminar Kerja Praktek">Seminar KP</option>
-                                                <option value="Seminar Proposal Judul">Seminar Proposal Judul</option>
-                                                <option value="Seminar Konsep Skripsi (Hasil)">Seminar Konsep Skripsi</option>
-                                                <option value="Sidang Sarjana">Sidang Sarjana</option>
+                                                <?php foreach ($seminar as $key) {?>
+                                                    <option value="<?php echo $key['jenisSeminar'];?>"><?php echo $key['jenisSeminar'];?></option>
+                                                <?php }?>
                                             </select>
                                         </div>
                                     </div>

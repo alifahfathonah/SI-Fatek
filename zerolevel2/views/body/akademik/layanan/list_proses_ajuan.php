@@ -41,7 +41,7 @@
                                             </td>
                                             <td><a href="<?php echo site_url('detail/mahasiswa/').$list['nim'];?>"><?php echo $list['nama'];?></a></td>
                                             <td><?php echo $list['nim'];?></td>
-                                            <td><?php echo $list['layanan'];?></td>
+                                            <td><?php echo $list['jenisLayanan'];?></td>
                                             <td><?php echo $list['infoTambahan'];?></td>
                                             <td>
                                                 <?php if ($list['file']) { 

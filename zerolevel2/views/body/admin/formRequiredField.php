@@ -24,25 +24,27 @@
                                 <table id="tabelData" class="table table-bordered table-striped table-hover">
                                     <thead>
                                         <tr>
-                                            <th>Nama Layanan</th>
+                                            <th>Jenis Form</th>
+                                            <th width="200">Form Field</th>
                                             <th>Info Required</th>
-                                            <th>File Required</th>
-                                            <th>Status</th>
-                                            <th>Urutan</th>
-                                            <th></th>
+                                            <th width="200">File Required</th>
+                                            <th width="50">Status</th>
+                                            <th width="30">Urutan</th>
+                                            <th width="50"></th>
                                         </tr>
                                     </thead>
                                     <tbody> 
-                                        <?php foreach($layanan as $list) { ?>
+                                        <?php foreach($formReqField as $list) { ?>
                                         <tr>
-                                            <td><?php echo $list['layanan'];?></td>
+                                            <td><?php echo $list['form'];?></td>
+                                            <td><?php echo $list['formField'];?></td>
                                             <td><?php echo $list['infoRequired'];?></td>
                                             <td><?php echo $list['fileRequired'];?></td>
                                             <td><?php echo $list['status'];?></td>
                                             <td><?php echo $list['urutan'];?></td>
                                             <td style='white-space: nowrap'>
-                                                <button type="button" class="btn btn-xs btn-warning waves-effect" data-toggle="modal" data-target="#modalAdminLayanan" data-form="formEdit" data-id="<?php echo $list['idLayanan'];?>">Edit</button>
-                                                <button class="btn btn-xs btn-danger waves-effect buttonHapus" data-id="<?php echo $list['idLayanan'];?>">Delete</button>
+                                                <button type="button" class="btn btn-xs btn-warning waves-effect" data-toggle="modal" data-target="#modalAdminLayanan" data-form="formEdit" data-id="<?php echo $list['idReqField'];?>">Edit</button>
+                                                <button class="btn btn-xs btn-danger waves-effect buttonHapus" data-id="<?php echo $list['idReqField'];?>">Delete</button>
                                             </td>
                                         </tr> 
                                         <?php }?>                           
@@ -67,9 +69,15 @@
                             <?php echo form_open();?>
                                 <input type="hidden" name="id">
                                 <div class="form-group form-float">
-                                    <label class="form-label">Nama Layanan</label>
+                                    <label class="form-label">Jenis Form</label>
                                     <div class="form-line">
-                                        <input type="text" name="layanan" class="form-control" required>
+                                        <input type="text" name="form" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="form-group form-float">
+                                    <label class="form-label">Form Field</label>
+                                    <div class="form-line">
+                                        <input type="text" name="formField" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="form-group form-float">

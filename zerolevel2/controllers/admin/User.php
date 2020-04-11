@@ -31,7 +31,7 @@ class User extends CI_Controller {
 		$data['pageTitle'] 	= "Kelola Authorized User";
 		$data['body_page'] 	= "body/admin/user";
 		
-		$data['users'] 		= $this->Tabel_user->get(array('idUser !=' => '1'), 'grup ASC, 	namaUnit ASC');
+		$data['users'] 		= $this->Tabel_user->get(array('idUser !=' => '1'), 'grup ASC, 	namaUnit ASC, posisi ASC');
 
 		$this->load->view(THEME,$data);
 	}

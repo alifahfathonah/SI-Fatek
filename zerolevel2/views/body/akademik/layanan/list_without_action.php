@@ -22,7 +22,7 @@
                                             <select class="form-control show-tick" id="tableakademik">
                                                 <option value="">Semua</option>
                                                 <?php foreach ($layanan as $key) {?>
-                                                    <option value="<?php echo $key['layanan'];?>"><?php echo $key['layanan'];?></option>
+                                                    <option value="<?php echo $key['jenisLayanan'];?>"><?php echo $key['jenisLayanan'];?></option>
                                                 <?php }?>
                                             </select>
                                         </div>
@@ -49,7 +49,7 @@
                                         <?php foreach($request as $list) { ?>
                                         <tr>
                                             <td><?php echo $i;?></td>
-                                            <td><?php echo $list['layanan'];?></td>
+                                            <td><?php echo $list['jenisLayanan'];?></td>
                                             <td><a href="<?php echo site_url('detail/mahasiswa/').$list['nim'];?>"><?php echo $list['nama'];?></a></td>
                                             <td><?php echo $list['nim'];?></td>
                                             <td><?php echo $list['jurusan_alias'];?></td>

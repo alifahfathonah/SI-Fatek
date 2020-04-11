@@ -16,7 +16,7 @@ class Seminar extends CI_Controller {
 		}
 
 		//* Load model, library, helper, etc *//
-		$this->load->model(array('Tabel_akSeminar'));
+		$this->load->model(array('Tabel_akSeminar', 'Tabel_refFormReqField'));
 
 		//* Initialize class variables. current-user identity. To be used throughout this class *//
 		$this->user = array(
@@ -36,6 +36,7 @@ class Seminar extends CI_Controller {
 
 		//* Get data ajuan mahasiswa from database. Store at $data *//
 		$data['request'] 	= $this->Tabel_akSeminar->get(array('nimReq'=> $this->user['id']),'tglRequest DESC');
+		$data['seminar'] 	= $this->Tabel_refFormReqField->get(array('form' => 'seminar','status' => '1'),'urutan ASC');
 
 		//* formatting the data to be view properly at the pageview *//
 		foreach ($data['request'] as &$val) {
@@ -55,6 +56,8 @@ class Seminar extends CI_Controller {
 				case "Selesai" 	: $val['prosesColor'] = "green"; break;
 				default 		: $val['prosesColor'] = "orange";
 			}
+
+			$val['authorized'] 	= ($val['prosesStatus'] != "Selesai") ? TRUE : FALSE;
 		}
 		
 		$this->load->view(THEME,$data);
@@ -62,9 +65,6 @@ class Seminar extends CI_Controller {
 	}
 
 	public function tambah() {
-
-		echo json_encode($_FILES);
-		echo json_encode($_POST); die;
 
 		$this->form_validation->set_rules('jenisSeminar', 'Jenis Seminar', 'required');
 		$this->form_validation->set_rules('judul', 'Judul', 'required');
@@ -111,7 +111,6 @@ class Seminar extends CI_Controller {
 			$database2['toUser'] 		= $this->user['prodi'];
 			$database2['prosesId'] 		= "1";
 			$database2['komentar'] 		= "Diajukan mahasiswa";
-			$database2['prosesStatus'] 	= "Sedang berproses";
 
 			if ($this->Tabel_akSeminar->tambah($database, $database2)) {
 
@@ -185,13 +184,25 @@ class Seminar extends CI_Controller {
 
 		foreach ($data['disposisi'] as &$val) {
 			$val['prosesTgl'] = date('d M Y g:i a',strtotime($val['prosesTgl']));
+
+			switch ($val['prosesStatus']) {
+				case "Ditolak" 	: $val['prosesColor'] = "red"; break;
+				case "Selesai" 	: $val['prosesColor'] = "green"; break;
+				default 		: $val['prosesColor'] = "orange";
+			}
 		}
 
 		$data['pageTitle'] 	= "Detail Ajuan Pendaftaran Seminar";
 		$data['body_page'] 	= "body/akademik/seminar/detail";
 
 		$this->load->view(THEME,$data);
+	}
 
+	public function detail_seminar($id) {
+
+		$output 		= $this->Tabel_refFormReqField->detail(array('idReqField'=> $id));
+
+		echo json_encode($output);
 
 	}	
 

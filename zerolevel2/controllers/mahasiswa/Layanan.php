@@ -16,7 +16,7 @@ class Layanan extends CI_Controller {
 		}
 
 		//* Load model, library, helper, etc *//
-		$this->load->model(array('Tabel_akLayananMhs', 'Tabel_refLayanan'));
+		$this->load->model(array('Tabel_akLayananMhs', 'Tabel_refFormReqField'));
 
 		//* Initialize class variables. current-user identity. To be used throughout this class *//
 		$this->user = array(
@@ -36,7 +36,7 @@ class Layanan extends CI_Controller {
 
 		//* Get data ajuan mahasiswa from database. Store at $data *//
 		$data['request'] 	= $this->Tabel_akLayananMhs->get(array('nimReq'=> $this->user['id']),'tglRequest DESC');
-		$data['layanan'] 	= $this->Tabel_refLayanan->get(array('status' => '1'),'urutan ASC');
+		$data['layanan'] 	= $this->Tabel_refFormReqField->get(array('form' => 'layanan','status' => '1'),'urutan ASC');
 
 		//* formatting the data to be view properly at the pageview *//
 		foreach ($data['request'] as &$val) {
@@ -56,6 +56,8 @@ class Layanan extends CI_Controller {
 				case "Selesai" 	: $val['prosesColor'] = "green"; break;
 				default 		: $val['prosesColor'] = "orange";
 			}
+
+			$val['authorized'] 	= ($val['prosesStatus'] != "Selesai") ? TRUE : FALSE;
 		}
 		
 		$this->load->view(THEME,$data);
@@ -64,12 +66,12 @@ class Layanan extends CI_Controller {
 
 	public function tambah() {
 
-		$this->form_validation->set_rules('layananId', 'Jenis Layanan', 'required');
+		$this->form_validation->set_rules('jenisLayanan', 'Jenis Layanan', 'required');
 
 		if ($this->form_validation->run() == TRUE) {
 
 			$database['nimReq'] 		= $this->user['id'];
-			$database['layananId']		= $this->input->post('layananId');
+			$database['jenisLayanan']	= $this->input->post('jenisLayanan');
 			$database['infoTambahan'] 	= $this->input->post('infoTambahan');
 
 			if(!empty($_FILES['dokumen']['name'][0])) {
@@ -102,7 +104,6 @@ class Layanan extends CI_Controller {
 			$database2['toUser'] 		= $this->user['prodi'];
 			$database2['prosesId'] 		= "1";
 			$database2['komentar'] 		= "Diajukan mahasiswa";
-			$database2['prosesStatus'] 	= "Sedang berproses";
 
 			if ($this->Tabel_akLayananMhs->tambah($database, $database2)) {
 
@@ -157,7 +158,7 @@ class Layanan extends CI_Controller {
 
 	}	
 
-	public function detail($id) {
+	public function detail($id, $format=FALSE) {
 
 		$data 			 	= $this->Tabel_akLayananMhs->detail(array('idRequest'=> $id));
 
@@ -165,35 +166,44 @@ class Layanan extends CI_Controller {
 			show_error('Access denied!');die;
 		}
 
-		$data['disposisi'] 	= $this->Tabel_akLayananMhs->aso_get(array('jenisId'=> $id),'prosesTgl ASC');
+		if ($format == 'json') {
 
-		if ($data['file']) {
-			$data['file'] 	= explode(" ", $data['file']);
-			foreach ($data['file'] as &$val) {
-				$val = URL_DOKUMEN_TMP. $val;
+			echo json_encode($data);
+			
+		} else {
+
+
+			$data['disposisi'] 	= $this->Tabel_akLayananMhs->aso_get(array('jenisId'=> $id),'prosesTgl ASC');
+
+			if ($data['file']) {
+				$data['file'] 	= explode(" ", $data['file']);
+				foreach ($data['file'] as &$val) {
+					$val = URL_DOKUMEN_TMP. $val;
+				}
 			}
+
+			foreach ($data['disposisi'] as &$val) {
+				$val['prosesTgl'] = date('d M Y g:i a',strtotime($val['prosesTgl']));
+
+				switch ($val['prosesStatus']) {
+					case "Ditolak" 	: $val['prosesColor'] = "red"; break;
+					case "Selesai" 	: $val['prosesColor'] = "green"; break;
+					default 		: $val['prosesColor'] = "orange";
+				}
+			}
+
+			$data['pageTitle'] 	= "Detail Ajuan Layanan Administrasi";
+			$data['body_page'] 	= "body/akademik/layanan/detail";
+
+			$this->load->view(THEME,$data);
 		}
-
-		foreach ($data['disposisi'] as &$val) {
-			$val['prosesTgl'] = date('d M Y g:i a',strtotime($val['prosesTgl']));
-		}
-
-		$data['pageTitle'] 	= "Detail Ajuan Layanan Administrasi";
-		$data['body_page'] 	= "body/akademik/layanan/detail";
-
-		$this->load->view(THEME,$data);
-
-
 	}
 
 	public function detail_layanan($id) {
 
-		$output 		= $this->Tabel_refLayanan->detail(array('idLayanan'=> $id));
+		$output 		= $this->Tabel_refFormReqField->detail(array('idReqField'=> $id));
 
 		echo json_encode($output);
 
 	}
-
-
-
 }

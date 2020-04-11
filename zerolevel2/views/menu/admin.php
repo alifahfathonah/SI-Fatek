@@ -12,8 +12,8 @@
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo site_url('admin/layanan');?>">
-                            <span>Kelola Layanan Administrasi</span>
+                        <a href="<?php echo site_url('admin/formrequired');?>">
+                            <span>Kelola Form Required Field</span>
                         </a>
                     </li>
                     <li>

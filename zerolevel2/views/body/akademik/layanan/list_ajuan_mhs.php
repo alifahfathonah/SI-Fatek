@@ -14,7 +14,7 @@
                             <p>Layanan administrasi akademik adalah layanan online yang dapat digunakan mahasiswa untuk permintaan atau pengajuan surat-surat yang berhubungan dengan administrasi akademik seperti:</p>
                             <ol>
                                 <?php foreach ($layanan as $key) {?>
-                                    <li><?php echo $key['layanan'];?></li>
+                                    <li><?php echo $key['formField'];?></li>
                                 <?php }?>
                             </ol>
 
@@ -40,14 +40,14 @@
                                 <table id="tabelData" class="table table-bordered table-striped dataTable">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
-                                            <th>Jenis Layanan</th>
+                                            <th width="10">No</th>
+                                            <th width="100">Jenis Layanan</th>
                                             <th>Informasi Tambahan</th>
-                                            <th>Dokumen</th>
-                                            <th>Tanggal Pengajuan</th>
-                                            <th>Keterangan</th>
-                                            <th>Status</th>
-                                            <th>Aksi</th>
+                                            <th width="30">Dokumen</th>
+                                            <th width="50">Tanggal Pengajuan</th>
+                                            <th width="50">Keterangan</th>
+                                            <th width="70">Status</th>
+                                            <th width="50">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -55,7 +55,7 @@
                                         <?php foreach($request as $list) { ?>
                                         <tr>
                                             <td><?php echo $i;?></td>
-                                            <td><?php echo $list['layanan'];?></td>
+                                            <td><?php echo $list['jenisLayanan'];?></td>
                                             <td><?php echo $list['infoTambahan'];?></td>
                                             <td>
                                                 <?php if ($list['file']) { 
@@ -73,7 +73,9 @@
                                                 <a href="<?php echo site_url('mahasiswa/layanan/detail/').$list['idRequest'];?>" class="btn btn-xs btn-info waves-effect" role="button">
                                                     Detail
                                                 </a>
+                                                <?php if ($list['authorized']) {?>
                                                 <button class="btn btn-xs btn-danger waves-effect buttonHapus" data-id="<?php echo $list['idRequest'];?>">Delete</button>
+                                                <?php }?>
                                             </td> 
                                         </tr> 
                                         <?php $i++;}?> 
@@ -91,19 +93,20 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title" id="defaultModalLabel">Permintaan Layanan Administrasi Akademik</h4>
+                            <h4 class="modal-title" id="defaultModalLabel"></h4>
                         </div>
 
                         <div class="modal-body">
                             <?php echo form_open_multipart();?>
                                 <input type="hidden" name="id">
+                                <input type="hidden" name="jenisLayanan">
                                 <div class="form-group form-float">
                                     <label class="form-label">Jenis Layanan</label>
                                     <div class="form-line">
-                                        <select class="form-control show-tick" name="layananId" id="jenisLayanan" required>
+                                        <select class="form-control show-tick" id="jenisLayanan" required>
                                             <option value="">Pilih jenis layanan</option>
                                             <?php foreach ($layanan as $key) {?>
-                                                <option value="<?php echo $key['idLayanan'];?>"><?php echo $key['layanan'];?></option>
+                                                <option value="<?php echo $key['idReqField'];?>"><?php echo $key['formField'];?></option>
                                             <?php }?>
                                         </select>
                                     </div>
@@ -115,9 +118,9 @@
                                     </div>
                                 </div>
 
-                                <div id="divFile">    
+                                <div id="divFile"> 
                                     <div class="form-group form-float">
-                                        <label class="form-label">Upload Dokumen</label> 
+                                        <label class="form-label" id="judulDok">Upload Dokumen</label> 
                                         <small class="col-red"><span class="fileinfo"></span></small>
                                         <input name="dokumen[]" type="file" multiple="">
                                     </div>

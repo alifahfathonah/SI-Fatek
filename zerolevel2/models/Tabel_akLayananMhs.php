@@ -19,7 +19,6 @@ class Tabel_akLayananMhs extends CI_Model {
 
 		$this->db->join('aso_disposisi', 'idRequest = jenisId');
 		$this->db->join('ft_mahasiswa', 'nim = nimReq');
-		$this->db->join('ref_layanan', 'idLayanan = layananId');
 		$this->db->join('ref_jurusan', 'ft_mahasiswa.jurusanId = ref_jurusan.idJurusan');
 		$this->db->join('ref_prodi', 'ft_mahasiswa.prodiId = ref_prodi.idProdi');
 		
@@ -39,7 +38,6 @@ class Tabel_akLayananMhs extends CI_Model {
 		$this->db->where("aso_disposisi.jenis = 'layananMhs'");
 		$this->db->join('ak_layanan_mhs', 'idRequest = jenisId');
 		$this->db->join('ft_mahasiswa', 'nim = nimReq');
-		$this->db->join('ref_layanan', 'idLayanan = layananId');
 		$this->db->join('ref_jurusan', 'ft_mahasiswa.jurusanId = ref_jurusan.idJurusan');
 		$this->db->join('ref_prodi', 'ft_mahasiswa.prodiId = ref_prodi.idProdi');
 		
@@ -57,7 +55,6 @@ class Tabel_akLayananMhs extends CI_Model {
 
 		$this->db->join('aso_disposisi', 'idRequest = jenisId');
 		$this->db->join('ft_mahasiswa', 'nim = nimReq');
-		$this->db->join('ref_layanan', 'idLayanan = layananId');
 		$this->db->join('ref_jurusan', 'ft_mahasiswa.jurusanId = ref_jurusan.idJurusan');
 		$this->db->join('ref_prodi', 'ft_mahasiswa.prodiId = ref_prodi.idProdi');
 

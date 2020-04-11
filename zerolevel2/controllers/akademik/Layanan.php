@@ -16,7 +16,7 @@ class Layanan extends CI_Controller {
 		}
 
 		//* Load model, library, helper, etc *//
-		$this->load->model(array('Tabel_akLayananMhs', 'Tabel_refLayanan'));
+		$this->load->model(array('Tabel_akLayananMhs'));
 
 		//* Initialize class variables. current-user identity. To be used throughout this class *//
 		$this->user = array(
@@ -68,8 +68,16 @@ class Layanan extends CI_Controller {
 			}
 		}
 
+		if ($data['infoTambahan']) $data['infoTambahan'] = nl2br($data['infoTambahan']);
+
 		foreach ($data['disposisi'] as &$val) {
 			$val['prosesTgl'] = date('d M Y g:i a',strtotime($val['prosesTgl']));
+
+			switch ($val['prosesStatus']) {
+				case "Ditolak" 	: $val['prosesColor'] = "red"; break;
+				case "Selesai" 	: $val['prosesColor'] = "green"; break;
+				default 		: $val['prosesColor'] = "orange";
+			}
 		}
 
 		$data['pageTitle'] 	= "Detail Ajuan Layanan Administrasi";
@@ -89,11 +97,9 @@ class Layanan extends CI_Controller {
 			$output[$i]['item1'] = $data[$i]['nama'];
 			$output[$i]['item2'] = $data[$i]['nim'];
 			$output[$i]['item3'] = $data[$i]['prodi_alias'];
-			$output[$i]['item4'] = $data[$i]['layanan'];
+			$output[$i]['item4'] = $data[$i]['jenisLayanan'];
 		}
-		
 		echo json_encode($output);
-
 	}
 
 	public function process_request() {
@@ -102,7 +108,7 @@ class Layanan extends CI_Controller {
 
 		switch ($status) {
 			case "process"	: 
-								$status = "Sedang berproses"; 
+								$status = "Sedang berproses";
 								$toUser	= $this->user['kodegrup'];
 								break;
 			case "reject"	: 	
@@ -159,12 +165,12 @@ class Layanan extends CI_Controller {
 		$data['body_page'] 	= "body/akademik/layanan/list_without_action";
 
 		//* Get data ajuan mahasiswa from database. Store at $data *//
-		$data['request'] 	= $this->Tabel_akLayananMhs->get($filter,'tglRequest DESC');
-		$data['layanan'] 	= $this->Tabel_refLayanan->get(array('status' => '1'),'urutan ASC');
+		$data['request'] 	= $this->Tabel_akLayananMhs->get($filter,'tglRequest DESC, jenisLayanan ASC');
+		$data['layanan'] 	= $this->Tabel_akLayananMhs->get(FALSE,'jenisLayanan ASC',FALSE,'jenisLayanan');
 
 		//* formatting the data to be view properly at the pageview *//
 		foreach ($data['request'] as &$val) {
-			$val['tglRequest'] 	= date('d M Y g:i a',strtotime($val['tglRequest']));
+			$val['tglRequest'] 	= date('d M Y',strtotime($val['tglRequest']));
 
 			if ($val['file']) {
 				$val['file'] 	= explode(" ", $val['file']);

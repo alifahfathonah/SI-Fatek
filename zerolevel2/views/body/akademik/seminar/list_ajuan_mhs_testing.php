@@ -72,10 +72,9 @@
                                     <div class="form-line">
                                         <select class="form-control show-tick" name="jenisSeminar" id="jenisSeminar" required>
                                             <option value="">Pilih jenis seminar</option>
-                                            <option value="Seminar Kerja Praktek">Seminar KP</option>
-                                            <option value="Seminar Proposal Judul">Seminar Proposal Judul</option>
-                                            <option value="Seminar Konsep Skripsi (Hasil)">Seminar Konsep Skripsi (Hasil)</option>
-                                            <option value="Sidang Sarjana">Sidang Sarjana</option>
+                                            <?php foreach ($seminar as $key) {?>
+                                                <option value="<?php echo $key['idReqField'];?>"><?php echo $key['formField'];?></option>
+                                            <?php }?>
                                         </select>
                                     </div>
                                 </div>

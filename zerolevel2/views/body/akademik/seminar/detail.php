@@ -78,7 +78,9 @@
                                             <td><?php echo $i;?></td>
                                             <td><?php echo $list['prosesTgl'];?></td>
                                             <td><?php echo $list['komentar'];?></td>
-                                            <td><?php echo $list['prosesStatus'];?></td>
+                                            <td>
+                                                <span class="label bg-<?php echo $list['prosesColor'];?>"><?php echo $list['prosesStatus'];?></span>
+                                            </td>
                                             <td><?php echo $list['fromUser'];?></td>
                                         </tr> 
                                         <?php $i++;}?>                         

@@ -72,8 +72,16 @@ class seminar extends CI_Controller {
 			}
 		}
 
+		if ($data['infoTambahan']) $data['infoTambahan'] = nl2br($data['infoTambahan']);
+
 		foreach ($data['disposisi'] as &$val) {
 			$val['prosesTgl'] = date('d M Y g:i a',strtotime($val['prosesTgl']));
+
+			switch ($val['prosesStatus']) {
+				case "Ditolak" 	: $val['prosesColor'] = "red"; break;
+				case "Selesai" 	: $val['prosesColor'] = "green"; break;
+				default 		: $val['prosesColor'] = "orange";
+			}
 		}
 
 		$data['pageTitle'] 	= "Detail Ajuan Pendaftaran Seminar";
@@ -165,11 +173,12 @@ class seminar extends CI_Controller {
 		$data['body_page'] 	= "body/akademik/seminar/list_without_action";
 
 		//* Get data ajuan mahasiswa from database. Store at $data *//
-		$data['request'] 	= $this->Tabel_akSeminar->get($filter,'tglRequest DESC');
+		$data['request'] 	= $this->Tabel_akSeminar->get($filter,'tglRequest DESC, jenisSeminar ASC');
+		$data['seminar'] 	= $this->Tabel_akSeminar->get(FALSE,'jenisSeminar ASC',FALSE,'jenisSeminar');
 
 		//* formatting the data to be view properly at the pageview *//
 		foreach ($data['request'] as &$val) {
-			$val['tglRequest'] 	= date('d M Y g:i a',strtotime($val['tglRequest']));
+			$val['tglRequest'] 	= date('d M Y',strtotime($val['tglRequest']));
 
 			if ($val['file']) {
 				$val['file'] 	= explode(" ", $val['file']);

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Layanan extends CI_Controller {
+class FormRequired extends CI_Controller {
 	
 	public function __construct() {
 		parent::__construct();
@@ -16,7 +16,7 @@ class Layanan extends CI_Controller {
 		}
 
 		//* Load model, library, helper, etc *//
-		$this->load->model(array('Tabel_refLayanan'));
+		$this->load->model(array('Tabel_refFormReqFIeld'));
 
 		//* Initialize class variables. current-user identity. To be used throughout this class *//
 
@@ -29,13 +29,15 @@ class Layanan extends CI_Controller {
 
 	public function index() {
 		
-		$data['pageTitle'] 	= "Kelola Layanan Administrasi";
-		$data['body_page'] 	= "body/admin/layanan";
+		$data['pageTitle'] 	= "Kelola Form Required Field";
+		$data['body_page'] 	= "body/admin/formRequiredField";
 		
-		$data['layanan'] 	= $this->Tabel_refLayanan->get();
+		$data['formReqField'] 	= $this->Tabel_refFormReqFIeld->get(FALSE,"form ASC, urutan ASC");
 
-		foreach ($data['layanan'] as &$key) {
+		foreach ($data['formReqField'] as &$key) {
 			$key['status'] = ($key['status']) ? "Aktif" : "Tidak Aktif";
+			$key['infoRequired'] = nl2br($key['infoRequired']);
+			$key['fileRequired'] = nl2br($key['fileRequired']);
 		}
 
 		$this->load->view(THEME,$data);
@@ -43,17 +45,19 @@ class Layanan extends CI_Controller {
 
 	public function tambah() {
 
-		$this->form_validation->set_rules('layanan', 'Nama Layanan', 'trim|required');
+		$this->form_validation->set_rules('form', 'Nama Form', 'trim|required');
+		$this->form_validation->set_rules('formField', 'Form Field', 'trim|required');
 		
 		if ($this->form_validation->run() == TRUE) {
 
-			$database['layanan']		= $this->input->post('layanan');
+			$database['form']			= $this->input->post('form');
+			$database['formField']		= $this->input->post('formField');
 			$database['infoRequired']	= $this->input->post('infoRequired');
 			$database['fileRequired']	= $this->input->post('fileRequired');
 			$database['urutan']			= $this->input->post('urutan');
 			$database['status']			= $this->input->post('status');
 
-			if ($this->Tabel_refLayanan->tambah($database)) {
+			if ($this->Tabel_refFormReqFIeld->tambah($database)) {
 
 				$this->session->set_flashdata('type', 'success');
 				$this->session->set_flashdata('message', 'Berhasil disimpan!');	
@@ -70,24 +74,26 @@ class Layanan extends CI_Controller {
 			$this->session->set_flashdata('message', validation_errors('Form tidak lengkap! '));
 		}
 
-		redirect(site_url('admin/layanan'));
+		redirect(site_url('admin/formrequired'));
 	
 	}
 
 	public function edit() {
 
-		$this->form_validation->set_rules('layanan', 'Nama Layanan', 'trim|required');
+		$this->form_validation->set_rules('form', 'Nama Form', 'trim|required');
+		$this->form_validation->set_rules('formField', 'Form Field', 'trim|required');
 		
 		if ($this->form_validation->run() == TRUE) {
 
-			$database['idLayanan']		= $this->input->post('id');
-			$database['layanan']		= $this->input->post('layanan');
+			$database['idReqField']		= $this->input->post('id');
+			$database['form']			= $this->input->post('form');
+			$database['formField']		= $this->input->post('formField');
 			$database['infoRequired']	= $this->input->post('infoRequired');
 			$database['fileRequired']	= $this->input->post('fileRequired');
 			$database['urutan']			= $this->input->post('urutan');
 			$database['status']			= $this->input->post('status');
 
-			if ($this->Tabel_refLayanan->update($database)) {
+			if ($this->Tabel_refFormReqFIeld->update($database)) {
 				
 				$this->session->set_flashdata('type', 'success');
 				$this->session->set_flashdata('message', 'Berhasil diupdate!');
@@ -104,15 +110,15 @@ class Layanan extends CI_Controller {
 			$this->session->set_flashdata('message', validation_errors('Form tidak lengkap! '));
 		}
 
-		redirect(site_url('admin/layanan'));
+		redirect(site_url('admin/formrequired'));
 	
 	}	
 	
 	public function delete() {
 
-		$idLayanan = $this->input->post('id');
+		$idReqField = $this->input->post('id');
 
-		if ($this->Tabel_refLayanan->delete($idLayanan)) {
+		if ($this->Tabel_refFormReqFIeld->delete($idReqField)) {
 				
 			$this->session->set_flashdata('type', 'success');
 			$this->session->set_flashdata('message', 'Berhasil dihapus!');
@@ -128,7 +134,7 @@ class Layanan extends CI_Controller {
 
 	public function detail($id) {
 
-		$output = $this->Tabel_refLayanan->detail(array('idLayanan'=> $id));
+		$output = $this->Tabel_refFormReqFIeld->detail(array('idReqField'=> $id));
 		echo json_encode($output);
 
 	}	

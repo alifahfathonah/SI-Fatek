@@ -22,6 +22,33 @@
                             
                         </div>
                     </div>
+
+                    <div class="card">
+                        <div class="header">
+                            <h2>Sample Page</h2>
+                        </div>
+                        <div class="body">
+                            <h5>User Mahasiswa</h5>
+                            <ul>
+                                <li>
+                                    <a href="<?php echo site_url('testing/layanan');?>">
+                                        Formulir Permintaan Layanan Administrasi Akademik
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo site_url('testing/seminar');?>">
+                                        Formulir Pendaftaran Seminar
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo site_url('testing/prestasi');?>">
+                                        Formulir Pengajuan Data Prestasi
+                                    </a>
+                                </li>
+                            </ul>
+                            
+                        </div>
+                    </div>
                 </div>
                 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                     <div class="card">
