@@ -41,6 +41,26 @@ class Control extends CI_Controller {
 
 		redirect(site_url('admin/control'));
 
-	}		
+	}
+
+	public function add_notif_user() {
+		$this->load->model(array('Tabel_user', 'Tabel_xNotifikasi'));
+
+
+		$data['user'] = $this->Tabel_user->get();
+
+		foreach ($data['user'] as $val) {
+			$database['tipe'] = "sistem";
+			$database['toUser'] = $val['username'];
+			$database['isiNotif'] = "Upgrade Portal Fatek ver.2";
+			$database['link'] = "wall/about";
+			$database['tglNotif'] = "2020-04-01 00:00:00";
+
+			$this->Tabel_xNotifikasi->tambah($database);
+		}
+
+		echo "berhasil";
+
+	}	
 
 }

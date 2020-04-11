@@ -97,11 +97,38 @@ http://fatek.unsrat.ac.id
                 <a href="javascript:void(0);" class="bars"></a>
                 <a class="navbar-brand" href="<?php echo base_url();?>">Portal Fakultas Teknik Unsrat</a>
             </div>
+
+            
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="<?php echo site_url("logout");?>">Logout <i class="material-icons">logout</i></a></li>                   
+
+                    <!-- Notifications -->
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                            <i class="material-icons">notifications</i>
+                            <span class="label-count"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">NOTIFICATIONS</li>
+                            <li class="body">
+                                <ul class="menu" id="notif">
+                                    
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- #END# Notifications -->
+
+                    <!-- Logout -->
+                    <li>
+                        <a href="<?php echo site_url("logout");?>" data-toggle="tooltip" data-placement="bottom" data-original-title="Logout" title="Logout">
+                            <span><i class="material-icons">logout</i></span>
+                        </a>
+                    </li>
+                    <!-- #END# Logout -->               
                 </ul>
             </div>
+            
         </div>
     </nav>
     <!-- #Top Bar -->
@@ -170,6 +197,10 @@ http://fatek.unsrat.ac.id
 
         <?php if (ENVIRONMENT != 'production')  $this->load->view('debug'); //display debug page ?> 
     </section>
+
+    <script type="text/javascript">
+        var url_notifikasi = "<?php echo site_url('notifikasi/');?>";
+    </script> 
         
     <!-- Jquery Core Js -->
     <script src="<?php echo base_url("assets/adminbsb/plugins/jquery/jquery.min.js");?>"></script>
@@ -244,6 +275,9 @@ http://fatek.unsrat.ac.id
     <!-- Bootstrap Treeview Js-->
     <script src="<?php echo base_url("assets/bootstrap-treeview/js/bootstrap-treeview.js");?>"></script>
 
+    <!-- TimeAgo Js-->
+    <script src="<?php echo base_url("assets/adminbsb/js/jquery.timeago.js");?>"></script>
+
     <!-- Custom Js -->
     <script src="<?php echo base_url("assets/adminbsb/js/typeahead.bundle.js");?>"></script>
     <script src="<?php echo base_url("assets/adminbsb/js/admin.js");?>"></script>
@@ -251,7 +285,6 @@ http://fatek.unsrat.ac.id
     <script src="<?php echo base_url("assets/adminbsb/js/custom.js");?>"></script>
     <script src="<?php echo base_url("assets/adminbsb/js/form-modal.js");?>"></script>
     <script src="<?php echo base_url("assets/adminbsb/js/treeview.js");?>"></script>
-
 
 </body>
 </html>

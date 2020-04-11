@@ -239,6 +239,63 @@ $(function () {
     });
 });
 
+// Untuk Notifikasi
+$(function () {
+
+    $.ajax({
+        url : url_notifikasi + 'get_notif',
+        type: "GET",
+        dataType: "JSON",
+        success: function(data)
+        {
+            if (data.jumlah > 0) {
+                $('span.label-count').text(data.jumlah);
+                $.each(data.notif, function(i, item) {
+                    switch (item.tipe) {
+                        case 'sistem'   : var $bg = "bg-purple"; var $icon = "update"; break;
+                        case 'layanan'  : var $bg = "bg-orange"; var $icon = "dynamic_feed"; break;
+                        case 'seminar'  : var $bg = "bg-cyan"; var $icon = "meeting_room"; break;
+                    }
+
+                    var $li ="<li>\
+                                    <a class=' waves-effect waves-block' href='"+ item.link+"' onClick='return set_read("+item.idNotif+");'>\
+                                        <div class='icon-circle "+$bg+"'>\
+                                            <i class='material-icons'>"+$icon+"</i>\
+                                        </div>\
+                                        <div class='menu-info'>\
+                                            <h4>"+ item.isiNotif +"</h4>\
+                                            <p>\
+                                                <i class='material-icons'>access_time</i> "+jQuery.timeago(item.tglNotif) +"\
+                                            </p>\
+                                        </div>\
+                                    </a>\
+                                </li>"; 
+                    $('#notif').append($li);
+                });
+            } else {
+                $li = "<li><h5 class='align-center'>No new notification</h5></li>";
+                $('#notif').append($li);
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown)
+        {
+            alert('Error get data from ajax');
+        }
+    });
+
+
+});
+
+//function untuk set read notifikasi hay
+function set_read(id) {
+    $.ajax({
+        url : url_notifikasi + 'set_read/' + id,
+        type: "GET",
+        dataType: "JSON",
+    });
+
+}
+
 // Script untuk chart (JQuery Plugin: MorrisChart)
 function getMorris(type, element, data, param) {
     if (type === 'line') {

@@ -9,7 +9,7 @@
                     <div class="card">
                         <div class="body">
 
-                            <p class="lead">Current Version : 2.5</p>
+                            <p class="lead">Current Version : 2.6</p>
                             <h5>Change log since previous version</h5>
                             <ol>
                                 <li>Tambahan fitur edit dokumen</li>
@@ -17,7 +17,7 @@
                                 <li>Repository dokumen untuk semua unit kerja.</li>
                                 <li>Tambahan fitur detail mahasiswa (alamat, sekolah, minat, dll), data prestasi, data disiplin (pelanggaran) akademik.</li>
                                 <li>Tambahan fitur detail dosen (tanggal lahir)</li>
-                                <li>Fitur baru: wall (pengumuman, bday), akademik (Layanan administrasi dan pendaftaran seminar) dan kemahasiswaan (prestasi mahasiswa dan disiplin akademik).</li>
+                                <li>Fitur baru: wall (pengumuman, bday), akademik (Layanan administrasi dan pendaftaran seminar) dan kemahasiswaan (prestasi mahasiswa dan disiplin akademik), notifikasi</li>
                             </ol>
                             
                         </div>
@@ -79,6 +79,7 @@
                                         <li>Disiplin (Pelanggaran) akademik mahasiswa (Ditambahkan langsung oleh Bidang III)</li>
                                     </ul>
                                 </li>
+                                <li>Notifikasi <span class="badge bg-cyan">New</li>
                             </ol>
 
                             <h2>Fitur untuk Tiap-tiap user</h2>
