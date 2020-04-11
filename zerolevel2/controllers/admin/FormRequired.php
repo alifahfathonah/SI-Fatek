@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class FormRequired extends CI_Controller {
+class Formrequired extends CI_Controller {
 	
 	public function __construct() {
 		parent::__construct();
@@ -16,7 +16,7 @@ class FormRequired extends CI_Controller {
 		}
 
 		//* Load model, library, helper, etc *//
-		$this->load->model(array('Tabel_refFormReqFIeld'));
+		$this->load->model(array('Tabel_refFormReqField'));
 
 		//* Initialize class variables. current-user identity. To be used throughout this class *//
 
@@ -32,7 +32,7 @@ class FormRequired extends CI_Controller {
 		$data['pageTitle'] 	= "Kelola Form Required Field";
 		$data['body_page'] 	= "body/admin/formRequiredField";
 		
-		$data['formReqField'] 	= $this->Tabel_refFormReqFIeld->get(FALSE,"form ASC, urutan ASC");
+		$data['formReqField'] 	= $this->Tabel_refFormReqField->get(FALSE,"form ASC, urutan ASC");
 
 		foreach ($data['formReqField'] as &$key) {
 			$key['status'] = ($key['status']) ? "Aktif" : "Tidak Aktif";
@@ -57,7 +57,7 @@ class FormRequired extends CI_Controller {
 			$database['urutan']			= $this->input->post('urutan');
 			$database['status']			= $this->input->post('status');
 
-			if ($this->Tabel_refFormReqFIeld->tambah($database)) {
+			if ($this->Tabel_refFormReqField->tambah($database)) {
 
 				$this->session->set_flashdata('type', 'success');
 				$this->session->set_flashdata('message', 'Berhasil disimpan!');	
@@ -93,7 +93,7 @@ class FormRequired extends CI_Controller {
 			$database['urutan']			= $this->input->post('urutan');
 			$database['status']			= $this->input->post('status');
 
-			if ($this->Tabel_refFormReqFIeld->update($database)) {
+			if ($this->Tabel_refFormReqField->update($database)) {
 				
 				$this->session->set_flashdata('type', 'success');
 				$this->session->set_flashdata('message', 'Berhasil diupdate!');
@@ -118,7 +118,7 @@ class FormRequired extends CI_Controller {
 
 		$idReqField = $this->input->post('id');
 
-		if ($this->Tabel_refFormReqFIeld->delete($idReqField)) {
+		if ($this->Tabel_refFormReqField->delete($idReqField)) {
 				
 			$this->session->set_flashdata('type', 'success');
 			$this->session->set_flashdata('message', 'Berhasil dihapus!');
@@ -134,7 +134,7 @@ class FormRequired extends CI_Controller {
 
 	public function detail($id) {
 
-		$output = $this->Tabel_refFormReqFIeld->detail(array('idReqField'=> $id));
+		$output = $this->Tabel_refFormReqField->detail(array('idReqField'=> $id));
 		echo json_encode($output);
 
 	}	
