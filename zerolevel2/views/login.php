@@ -44,8 +44,9 @@
                             	</p>
                             </div>
                             <div class="top-big-link">
-                            	<a class="btn btn-link-2 launch-modal" href="#" data-user="mahasiswa" data-modal-id="modal_login"><i class="fa fa-male"></i> Mahasiswa</a>
+                            	<a class="btn btn-link-2 launch-modal" href="#" data-user="mahasiswa" data-modal-id="modal_login"><i class="fa fa-user"></i> Mahasiswa</a>
                             	<a class="btn btn-link-2 launch-modal" href="#" data-user="dosen" data-modal-id="modal_login"><i class="fa fa-university"></i> Dosen</a>
+                                <a class="btn btn-link-2 launch-modal" href="#" data-user="pegawai" data-modal-id="modal_login"><i class="fa fa-male"></i> Tendik</a>
                             </div>
                         </div>
                     </div>
@@ -75,6 +76,10 @@
 
                         <?php if($this->session->flashdata('message_login_mhs')) {?>
                             <div class="error-message"><?php echo $this->session->flashdata('message_login_mhs');?></div>
+                        <?php }?>
+
+                        <?php if($this->session->flashdata('message_login_peg')) {?>
+                            <div class="error-message"><?php echo $this->session->flashdata('message_login_peg');?></div>
                         <?php }?>
         				
 	                    <?php echo form_open('login');?>
@@ -106,6 +111,9 @@
 		    <?php if($this->session->flashdata('message_login_mhs')) {?>
 		        var message_login_mhs = "mahasiswa";
 		    <?php }?>
+            <?php if($this->session->flashdata('message_login_peg')) {?>
+                var message_login_peg = "pegawai";
+            <?php }?>
 		</script>
 
 

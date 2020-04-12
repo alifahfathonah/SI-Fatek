@@ -16,7 +16,7 @@ class Seminar extends CI_Controller {
 		}
 
 		//* Load model, library, helper, etc *//
-		$this->load->model(array('Tabel_akSeminar', 'Tabel_refFormReqField'));
+		$this->load->model(array('Tabel_akSeminar', 'Tabel_refFormReqField', 'Tabel_xNotifikasi'));
 
 		//* Initialize class variables. current-user identity. To be used throughout this class *//
 		$this->user = array(
@@ -113,6 +113,12 @@ class Seminar extends CI_Controller {
 			$database2['komentar'] 		= "Diajukan mahasiswa";
 
 			if ($this->Tabel_akSeminar->tambah($database, $database2)) {
+
+				$notif['tipe'] = "seminar";
+				$notif['isiNotif'] = "New request seminar/sidang";
+				$notif['toUser'] = $database2['toUser'];
+				$notif['link'] = "akademik/seminar";
+				$this->Tabel_xNotifikasi->tambah($notif);
 
 				$this->session->set_flashdata('type', 'success');
 				$this->session->set_flashdata('message', 'Berhasil disimpan!');	

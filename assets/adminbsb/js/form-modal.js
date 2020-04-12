@@ -258,8 +258,9 @@ $(function () {
             $(this).find('.modal-title').text('Tambah Dokumen');
             $('form [name="dokumen"]').attr("required", true);
             if (typeof loadMe !== 'undefined') {
-                if (loadMe.tipe == 'peg') $('form [name="dsndoc"]').tagsinput('add', { "id": loadMe.id , "nama": loadMe.nama });
+                if (loadMe.tipe == 'dsn') $('form [name="dsndoc"]').tagsinput('add', { "id": loadMe.id , "nama": loadMe.nama });
                 if (loadMe.tipe == 'mhs') $('form [name="mhsdoc"]').tagsinput('add', { "id": loadMe.id , "nama": loadMe.nama });
+                if (loadMe.tipe == 'peg') $('form [name="pegdoc"]').tagsinput('add', { "id": loadMe.id , "nama": loadMe.nama });
             }
         }
 
@@ -288,8 +289,10 @@ $(function () {
                         $.each(v.detail, function(key, value) {
                             if (value.tipe == 'p') {
                                 $('form [name="dsndoc"]').tagsinput('add', { "id": value.id , "nama": value.nama });
-                            } else {
+                            } else if (value.tipe == 'm') {
                                 $('form [name="mhsdoc"]').tagsinput('add', { "id": value.id , "nama": value.nama });
+                            } else {
+                                $('form [name="pegdoc"]').tagsinput('add', { "id": value.id , "nama": value.nama })
                             }
                         });
                     });

@@ -102,6 +102,10 @@ http://fatek.unsrat.ac.id
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
 
+                    <!-- Call Search -->
+                    <li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li>
+                    <!-- #END# Call Search -->
+
                     <!-- Notifications -->
                     <li class="dropdown">
                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
@@ -112,7 +116,6 @@ http://fatek.unsrat.ac.id
                             <li class="header">NOTIFICATIONS</li>
                             <li class="body">
                                 <ul class="menu" id="notif">
-                                    
                                 </ul>
                             </li>
                         </ul>

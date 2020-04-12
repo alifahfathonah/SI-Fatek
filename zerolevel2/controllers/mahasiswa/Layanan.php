@@ -16,7 +16,7 @@ class Layanan extends CI_Controller {
 		}
 
 		//* Load model, library, helper, etc *//
-		$this->load->model(array('Tabel_akLayananMhs', 'Tabel_refFormReqField'));
+		$this->load->model(array('Tabel_akLayananMhs', 'Tabel_refFormReqField', 'Tabel_xNotifikasi'));
 
 		//* Initialize class variables. current-user identity. To be used throughout this class *//
 		$this->user = array(
@@ -106,6 +106,12 @@ class Layanan extends CI_Controller {
 			$database2['komentar'] 		= "Diajukan mahasiswa";
 
 			if ($this->Tabel_akLayananMhs->tambah($database, $database2)) {
+
+				$notif['tipe'] = "layanan";
+				$notif['isiNotif'] = "New request layanan akademik";
+				$notif['toUser'] = $database2['toUser'];
+				$notif['link'] = "akademik/layanan";
+				$this->Tabel_xNotifikasi->tambah($notif);
 
 				$this->session->set_flashdata('type', 'success');
 				$this->session->set_flashdata('message', 'Berhasil disimpan!');	

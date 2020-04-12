@@ -33,6 +33,12 @@ jQuery(document).ready(function() {
         $('#modal_login').modal('show');
     }
 
+    if (typeof message_login_peg !== 'undefined') {
+        $(".modal-body").find('form').attr('action', window.location.href.split('?')[0] + '/' + message_login_peg);
+        $(".user").text(message_login_peg);
+        $('#modal_login').modal('show');
+    }
+
     /*
         Form validation
     */

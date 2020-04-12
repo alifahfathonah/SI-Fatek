@@ -16,7 +16,7 @@ class seminar extends CI_Controller {
 		}
 
 		//* Load model, library, helper, etc *//
-		$this->load->model(array('Tabel_akSeminar'));
+		$this->load->model(array('Tabel_akSeminar', 'Tabel_xNotifikasi'));
 
 		//* Initialize class variables. current-user identity. To be used throughout this class *//
 		$this->user = array(
@@ -132,7 +132,8 @@ class seminar extends CI_Controller {
 
 		foreach ($idRequest as $key => $value) {
 
-			$database[$key]['proses']		= $this->Tabel_akSeminar->detail(array('idRequest'=> $value))['proses'] + 1;
+			$request 						= $this->Tabel_akSeminar->detail(array('idRequest'=> $value));
+			$database[$key]['proses']		= $request['proses'] + 1;
 			$database[$key]['idRequest']	= $value;
 			
 			$database2[$key]['jenisId']			= $value;
@@ -143,6 +144,13 @@ class seminar extends CI_Controller {
 			$database2[$key]['prosesStatus']	= $status;
 
 			if ($this->Tabel_akSeminar->update_status($database[$key], $database2[$key])) {
+
+				// $notif['tipe'] = "seminar";
+				// $notif['isiNotif'] = "Pengajuan anda, " + strtolower($status);
+				// $notif['toUser'] = $request['nimReq'];
+				// $notif['link'] = "mahasiswa/seminar/detail/" + $request['idRequest'];
+				
+				// $this->Tabel_xNotifikasi->tambah($notif);
 
 				$this->session->set_flashdata('type', 'success');
 				$this->session->set_flashdata('message', 'Berhasil diproses!');	

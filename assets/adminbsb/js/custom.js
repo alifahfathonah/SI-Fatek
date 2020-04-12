@@ -220,8 +220,35 @@ $(function () {
                 }
             } 
         });
-
     }
+
+    if (typeof prefetch_peg !== 'undefined') {
+        
+        var peg = new Bloodhound({
+          datumTokenizer: Bloodhound.tokenizers.obj.whitespace('nama'),
+          queryTokenizer: Bloodhound.tokenizers.whitespace,
+          prefetch: prefetch_peg,
+        });
+
+        peg.initialize();
+
+        $('#tags-input-peg').tagsinput({
+            itemValue: 'id',
+            itemText: 'nama',
+            typeaheadjs: {
+                name: 'peg',
+                displayKey: 'nama',
+                source: peg.ttAdapter(),
+                templates: {
+                    empty: [
+                    '<div>unable to find</div>'
+                    ].join('\n'),
+                    suggestion: function(e) { return ('<div><strong>' + e.nama + '</strong> - ' + e.id + '</div>')}, 
+                }
+            } 
+        });
+    }
+
 });
 
 // Untuk pengaturan validasi form (JQuery Plugin: Jquery Validation)
@@ -255,17 +282,21 @@ $(function () {
                         case 'sistem'   : var $bg = "bg-purple"; var $icon = "update"; break;
                         case 'layanan'  : var $bg = "bg-orange"; var $icon = "dynamic_feed"; break;
                         case 'seminar'  : var $bg = "bg-cyan"; var $icon = "meeting_room"; break;
+                        case 'dokumen'  : var $bg = "bg-light-green"; var $icon = "library_books"; break;
+                        case 'prestasi'  : var $bg = "bg-red"; var $icon = "emoji_events"; break;
                     }
 
                     var $li ="<li>\
-                                    <a class=' waves-effect waves-block' href='"+ item.link+"' onClick='return set_read("+item.idNotif+");'>\
-                                        <div class='icon-circle "+$bg+"'>\
+                                    <a class=' waves-effect waves-block' href='"+ item.link+"' \
+                                    onClick='return set_read(\"" + item.idNotif + "\");'>\
+                                        <div class='icon-circle "+ $bg +"'>\
                                             <i class='material-icons'>"+$icon+"</i>\
                                         </div>\
                                         <div class='menu-info'>\
                                             <h4>"+ item.isiNotif +"</h4>\
                                             <p>\
-                                                <i class='material-icons'>access_time</i> "+jQuery.timeago(item.tglNotif) +"\
+                                                <i class='material-icons'>access_time</i>\
+                                                 "+jQuery.timeago(item.tglNotif) +"\
                                             </p>\
                                         </div>\
                                     </a>\
@@ -273,7 +304,7 @@ $(function () {
                     $('#notif').append($li);
                 });
             } else {
-                $li = "<li><h5 class='align-center'>No new notification</h5></li>";
+                $li = "<li><h5 class='align-center'>Tidak ada notifikasi baru</h5></li>";
                 $('#notif').append($li);
             }
         },
@@ -282,7 +313,6 @@ $(function () {
             alert('Error get data from ajax');
         }
     });
-
 
 });
 
@@ -293,7 +323,6 @@ function set_read(id) {
         type: "GET",
         dataType: "JSON",
     });
-
 }
 
 // Script untuk chart (JQuery Plugin: MorrisChart)

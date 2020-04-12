@@ -7,14 +7,16 @@ class Tabel_xNotifikasi extends CI_Model {
 		parent::__construct();	
 	}
 
-	public function get($select = FALSE, $condition = FALSE, $sort = FALSE, $groupby = FALSE) {
+	public function get($select = FALSE, $condition = FALSE, $sort = FALSE, $groupby = FALSE, $having = FALSE) {
 		if ($select) $this->db->select($select);
 		if ($condition) $this->db->where($condition);
 		if ($sort) $this->db->order_by($sort);
 		if ($groupby) $this->db->group_by($groupby);
+		if ($having) $this->db->having($having);
+
 		$query = $this->db->get('x_notification');
 		$result = $query->result_array();
-		
+		//print_r($this->db->last_query()); die;
 		return $result;
 	}
 

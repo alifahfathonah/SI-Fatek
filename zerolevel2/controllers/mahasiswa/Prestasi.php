@@ -16,7 +16,7 @@ class Prestasi extends CI_Controller {
 		}
 
 		//* Load model, library, helper, etc *//
-		$this->load->model(array('Tabel_kmPrestasi')); 
+		$this->load->model(array('Tabel_kmPrestasi', 'Tabel_xNotifikasi')); 
 
 		//* Initialize class variables. current-user identity. To be used throughout this class *//
 		$this->user = array(
@@ -109,6 +109,12 @@ class Prestasi extends CI_Controller {
 			$usertag = explode(",", $this->input->post('mhsdoc'));
 
 			if ($this->Tabel_kmPrestasi->tambah($database, $usertag)) {
+
+				$notif['tipe'] = "prestasi";
+				$notif['isiNotif'] = "New request verifikasi data";
+				$notif['toUser'] = "wd3";
+				$notif['link'] = "kemahasiswaan/prestasi/verifikasi";
+				$this->Tabel_xNotifikasi->tambah($notif);
 
 				$this->session->set_flashdata('type', 'success');
 				$this->session->set_flashdata('message', 'Berhasil disimpan!');	

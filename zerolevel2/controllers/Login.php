@@ -5,7 +5,7 @@ class Login extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		$this->load->model(array('Tabel_dosen', 'Tabel_user', 'Tabel_mahasiswa', 'Portal_model'));
+		$this->load->model(array('Tabel_dosen', 'Tabel_user', 'Tabel_mahasiswa', 'Portal_model', 'Tabel_pegawai'));
 		$this->icon = "<p><span class=\"glyphicon glyphicon-remove\"></span>&nbsp;";
 		
 	}
@@ -203,6 +203,98 @@ class Login extends CI_Controller {
 		else redirect(site_url('login'));
 
 	}
+
+	public function pegawai() {
+
+		//* Check if login is locked *//
+		if ($this->session->lock_status == 'locked') {
+			$this->session->set_flashdata('message_login_peg', '<span class="glyphicon glyphicon-remove"></span> Password salah 5x! Akun terkunci 3 menit!');
+		} else {
+		
+			//* Validate form input, CI library *//
+			$this->form_validation->set_rules('namepf', 'Username', 'required');
+			$this->form_validation->set_rules('passpf', 'Password', 'required');
+			
+			if ($this->form_validation->run() == true) {
+				$username 	= $this->input->post('namepf',TRUE);
+				$pwd 		= $this->input->post('passpf',TRUE);
+				$url 		= ($this->input->post('url')) ? ($this->input->post('url')) : "wall";			
+
+				//* Check username and password.*//
+				//* Comment second line for testing purpose. Comment first line for live environment*//
+				$result	  = $pwd == $username;
+				//$result = $this->Tabel_pegawai->check_login($username,md5($pwd));
+				
+				if ($result) {
+
+					//* Get data pegawai, from FATEK database *//
+					$user_pegawai = $this->Tabel_pegawai->detail(array('nip' => $username));
+
+					if ($user_pegawai) {
+
+						//* Session variable, basic info *//
+						$sess_data['nama'] = $user_pegawai['nama'];
+						$sess_data['desc'] = $user_pegawai['nip'];
+						$sess_data['foto'] = (!empty($user_pegawai['foto'])) ? URL_FOTO_DOSEN.$user_pegawai['foto'] : URL_FOTO_DOSEN."default.jpg";
+
+						//* Session variable, pegawai info *//
+						$sess_data['pgw']['userid']    = $user_pegawai['nip'];
+						$sess_data['pgw']['nama']      = $user_pegawai['nama'];
+						
+						//* Cek if user is authorize user *//
+						$auth_user = $this->Tabel_user->detail(array('username'=> $username));
+						
+						if ($auth_user) {
+							$auth_user['grup'] = explode(" ", $auth_user['grup']);
+
+							//* Register user priviledge *//
+							foreach ($auth_user['grup'] as $key => $value) {
+
+								if ($value == 'admin') {
+									$sess_data['admin']['userid']	= $auth_user['username'];
+									$sess_data['admin']['nama']		= $auth_user['nama'];
+								}
+
+								$sess_data['auth']['userid']	= $auth_user['username'];
+								$sess_data['auth']['nama']		= $auth_user['nama'];
+								$sess_data['auth']['namaUnit']	= $auth_user['namaUnit'];
+								$sess_data['auth']['kodeUnit'] 	= $auth_user['kodeUnit'];
+								$sess_data['auth']['grup'] 		= $value;
+								$sess_data['auth']['kodeGrup']	= $auth_user['kodeGrup'];
+								$sess_data['auth']['posisi']	= $auth_user['posisi'];
+							}
+
+							//* Record authorize login in database *//
+							$this->Tabel_user->update(array('idUser'=> $auth_user['idUser'], 'lastLogin'=> date('Y-m-d H:i:s')));
+						}
+
+						//* Register session, clear login attempt, redirect to site *//
+						$this->session->set_userdata('logged_in_portal',$sess_data);
+						$this->session->unset_userdata('login_attempt');						
+						redirect(site_url($url));
+					
+					} else {
+						//* Below line is executed when user_pegawai not found on FATEK database *//
+						$this->session->set_flashdata('message_login_peg', '<span class="glyphicon glyphicon-remove"></span> Tidak ada akses disini');
+					}
+					
+				}  else {
+				
+					//* Below line is executed when user and pass do not match *//
+					$this->session->set_flashdata('message_login_peg', '<span class="glyphicon glyphicon-remove"></span> Username atau Password Salah!');
+					
+					//* Call prosedur login protection to limit the login attempt  *//
+					$this->login_protection();		
+				}
+			
+			} else {
+				$this->session->set_flashdata('message_login_peg', validation_errors($this->icon));				
+			}
+		}
+		if ($this->input->post('url')) redirect(site_url('login')."?redirect=".$this->input->post('url'));
+		else redirect(site_url('login'));
+
+	}	
 	
 	public function logout() {
 		$this->session->unset_userdata('logged_in_portal');

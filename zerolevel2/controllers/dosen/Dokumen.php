@@ -16,7 +16,7 @@ class Dokumen extends CI_Controller {
 		}	
 
 		//* Load model, library, helper, etc *//
-		$this->load->model(array('Tabel_dokumen','Tabel_refDocgroup'));
+		$this->load->model(array('Tabel_dokumen','Tabel_refDocgroup','Tabel_xNotifikasi'));
 
 		//* Initialize class variables. current-user identity. To be used throughout this class *//
 		$this->user = array(
@@ -37,7 +37,7 @@ class Dokumen extends CI_Controller {
 		$data['docgroup'] 	= $this->Tabel_refDocgroup->get();
 		$data['ownerId']	= $this->user['id'];
 		$data['loadMe']		= array(
-									'tipe' => 'peg',
+									'tipe' => 'dsn',
 									'nama' => $this->user['nama'],
 									'id' => $this->user['id']
 									);
@@ -70,7 +70,7 @@ class Dokumen extends CI_Controller {
 			$database['dokumenNomor'] 		= $this->input->post('nomor');
 			$database['dokumenTahun']		= $this->input->post('tahun');
 			$database['dokumenDocgroupId'] 	= $this->input->post('jenis');
-			$database['ownerId'] 			= $this->user['nama'];
+			$database['ownerId'] 			= $this->user['id'];
 
 			//* Check if dokumen has submit *//
 			if(!empty($_FILES['dokumen']['name'])) {
@@ -106,6 +106,11 @@ class Dokumen extends CI_Controller {
 						foreach ($usermhs as $key) array_push($usertag, $key);
 					}
 
+					if ($this->input->post('pegdoc')) {
+						$userpeg = explode(",", $this->input->post('pegdoc'));
+						foreach ($userpeg as $key) array_push($usertag, $key);
+					}
+
 					//* Declare array multi_user and formatting data, which will inserted into database*//
 					foreach ($usertag as $val) {
 						$multi_user[] = array('dokumenId' => $id_dokumen, 'userId' => $val);
@@ -114,6 +119,33 @@ class Dokumen extends CI_Controller {
 					//* Input the usertag into database *//
 					if ($this->Tabel_dokumen->link_user($multi_user)) {
 					
+						$notif['tipe'] = "dokumen";
+						$notif['isiNotif'] = "Dokumen baru, anda ditandai!";
+
+						if ($userdsn) {
+							foreach ($userdsn as $key => $value) {
+								$notif['toUser'] = $value;
+								$notif['link'] = "dosen/dokumen";
+								$this->Tabel_xNotifikasi->tambah($notif);
+							}
+						}
+
+						if ($usermhs) {
+							foreach ($usermhs as $key => $value) {
+								$notif['toUser'] = $value;
+								$notif['link'] = "mahasiswa/dokumen";
+								$this->Tabel_xNotifikasi->tambah($notif);
+							}
+						}
+
+						if ($userpeg) {
+							foreach ($userpeg as $key => $value) {
+								$notif['toUser'] = $value;
+								$notif['link'] = "pegawai/dokumen";
+								$this->Tabel_xNotifikasi->tambah($notif);
+							}
+						}
+
 						$this->session->set_flashdata('type', 'success');
 						$this->session->set_flashdata('message', 'Berhasil disimpan!');;
 						
@@ -151,7 +183,7 @@ class Dokumen extends CI_Controller {
 			$database['dokumenNomor'] 		= $this->input->post('nomor');
 			$database['dokumenTahun']		= $this->input->post('tahun');
 			$database['dokumenDocgroupId'] 	= $this->input->post('jenis');
-			$database['userUpdate']			= $this->user['id'];
+			$database['userUpdate']			= $this->user['nama'];
 
 			//* If new dokumen is submitted, perform below procedure. If not, do nothing *//
 			if(!empty($_FILES['dokumen']['name'])) {
