@@ -32,17 +32,17 @@
                             <ul>
                                 <li>
                                     <a href="<?php echo site_url('testing/layanan');?>">
-                                        Formulir Permintaan Layanan Administrasi Akademik
+                                        Contoh Formulir Permintaan Layanan Administrasi Akademik
                                     </a>
                                 </li>
                                 <li>
                                     <a href="<?php echo site_url('testing/seminar');?>">
-                                        Formulir Pendaftaran Seminar
+                                        Contoh Formulir Pendaftaran Seminar
                                     </a>
                                 </li>
                                 <li>
                                     <a href="<?php echo site_url('testing/prestasi');?>">
-                                        Formulir Pengajuan Data Prestasi
+                                        Contoh Formulir Pengajuan Data Prestasi
                                     </a>
                                 </li>
                             </ul>
@@ -66,7 +66,7 @@
                                         <li>Dosen ultah hari ini</li>
                                     </ul>
                                 </li>
-                                <li>Akademik <span class="badge bg-cyan">New</span>
+                                <li>Akademik <span class="badge bg-cyan">New</span> <span class="badge bg-orange">Belum diaktifkan</span>
                                     <ul>
                                         <li>Layanan administrasi akademik,</li>
                                         <li>Pendaftaran Seminar kp/proposal/hasil/sidang</li>
@@ -96,7 +96,7 @@
                                 <li>Wall (Melihat pengumuman sesuai fakultas/jurusan/prodi mahasiswa ybs)</li>
                                 <li>Profil (Profil mahasiswa, data akademik, data prestasi dan data disiplin akademik)</li>
                                 <li>Dokumen (Dokumen mahasiswa yang ditag oleh unit kerja (fakultas/jurusan/prodi))</li>
-                                <li>Akademik <span class="badge bg-cyan">New</span>
+                                <li>Akademik <span class="badge bg-cyan">New</span> <span class="badge bg-orange">Belum diaktifkan</span>
                                     <ul>
                                         <li>Layanan administrasi akademik (Permintaan layanan administrasi akademik, seperti surat, SK, surat pengantar dan monitoring proses disposisi)</li>
                                         <li>Pendaftaran seminar (Seminar kp, proposal, seminar hasil, sidang sarjana, dan monitoring proses disposisi)</li>
@@ -117,7 +117,7 @@
                                 <li>Data (Mahasiswa, alumni, dosen, prestasi mahasiswa, disiplin akademik fakultas)</li>
                                 <li>Statistik (Statistik fakultas)</li>
                                 <li>Dokumen (Dokumen dekan, dokumen dosen fakultas)</li>
-                                <li>Akademik <span class="badge bg-cyan">New</span>
+                                <li>Akademik <span class="badge bg-cyan">New</span> <span class="badge bg-orange">Belum diaktifkan</span>
                                     <ul>
                                         <li>Layanan administrasi (Disposisi permintaan yang ditujukan pada dekan, melihat daftar semua permintaan layanan administrasi untuk tingkat fakultas, dan melihat detail berkas termasuk history disposisi)</li>
                                         <li>Pendaftaran seminar (Disposisi pendaftaran yang ditujukan pada dekan, melihat daftar semua pendaftaran seminar untuk tingkat fakultas, dan melihat detail berkas termasuk history disposisi)</li>
@@ -130,7 +130,7 @@
                                 <li>Data fakultas (Mahasiswa, alumni, dosen, prestasi mahasiswa, disiplin akademik fakultas)</li>
                                 <li>Statistik (Statistik fakultas)</li>
                                 <li>Dokumen (Dokumen wd1, dokumen dosen fakultas)</li>
-                                <li>Akademik <span class="badge bg-cyan">New</span>
+                                <li>Akademik <span class="badge bg-cyan">New</span> <span class="badge bg-orange">Belum diaktifkan</span>
                                     <ul>
                                         <li>Layanan administrasi (Disposisi permintaan yang ditujukan pada wd1, melihat daftar semua permintaan layanan administrasi untuk tingkat fakultas, dan melihat detail berkas termasuk history disposisi)</li>
                                         <li>Pendaftaran seminar (Disposisi pendaftaran yang ditujukan pada wd1, melihat daftar semua pendaftaran seminar untuk tingkat fakultas, dan melihat detail berkas termasuk history disposisi)</li>
@@ -163,7 +163,7 @@
                                 <li>Data Jurusan (Mahasiswa, alumni, dosen, prestasi mahasiswa, disiplin akademik jurusan)</li>
                                 <li>Statistik (Statistik jurusan)</li>
                                 <li>Dokumen (dokumen jurusan, dokumen dosen jurusan)</li>
-                                <li>Akademik <span class="badge bg-cyan">New</span>
+                                <li>Akademik <span class="badge bg-cyan">New</span> <span class="badge bg-orange">Belum diaktifkan</span>
                                     <ul>
                                         <li>Layanan administrasi (Disposisi permintaan yang ditujukan pada jurusan, melihat daftar semua permintaan layanan administrasi untuk tingkat jurusan, dan melihat detail berkas termasuk history disposisi)</li>
                                         <li>Pendaftaran Seminar (Disposisi pendaftaran yang ditujukan pada jurusan, melihat daftar semua pendaftaran seminar untuk tingkat jurusan, dan melihat detail berkas termasuk history disposisi)</li>
@@ -176,7 +176,7 @@
                                 <li>Data Prodi (Mahasiswa, alumni, dosen, prestasi mahasiswa, disiplin akademik prodi)</li>
                                 <li>Statistik (Statistik prodi)</li>
                                 <li>Dokumen (dokumen prodi, dokumen dosen prodi)</li>
-                                <li>Akademik <span class="badge bg-cyan">New</span>
+                                <li>Akademik <span class="badge bg-cyan">New</span> <span class="badge bg-orange">Belum diaktifkan</span>
                                     <ul>
                                         <li>Layanan administrasi (Disposisi permintaan yang ditujukan pada prodi, melihat daftar semua permintaan layanan administrasi untuk tingkat prodi, dan melihat detail berkas termasuk history disposisi)</li>
                                         <li>Pendaftaran Seminar (Disposisi pendaftaran yang ditujukan pada prodi, melihat daftar semua pendaftaran seminar untuk tingkat prodi, dan melihat detail berkas termasuk history disposisi)</li>

@@ -7,20 +7,19 @@ class Tabel_dokumen extends CI_Model {
 		parent::__construct();
 	}
 	
-	public function user_get($condition = FALSE, $sort = FALSE, $limit = FALSE) {
+	public function user_get($condition = FALSE, $sort = FALSE, $limit = FALSE, $groupby = FALSE) {
 	
 		$this->db->join('ft_dokumen', 'ft_dokumen.idDokumen = aso_dokumen.dokumenId');
 		$this->db->join('ref_docgroup', 'ref_docgroup.idDocgroup = ft_dokumen.dokumenDocgroupId');
 		if ($condition) $this->db->where($condition);
 		if ($sort) $this->db->order_by($sort);
 		if ($limit) $this->db->limit($limit);
+		if ($groupby) $this->db->group_by($groupby);
+		
 		$query = $this->db->get('aso_dokumen');
 		$result = $query->result_array();
 		return $result;
-	
 	}
-
-
 
 	public function get($condition = FALSE, $sort = FALSE, $limit = FALSE) {
 	
@@ -28,12 +27,12 @@ class Tabel_dokumen extends CI_Model {
 		if ($condition) $this->db->where($condition);
 		if ($sort) $this->db->order_by($sort);
 		if ($limit) $this->db->limit($limit);
+
 		$query = $this->db->get('ft_dokumen');
 		$result = $query->result_array();
 		//print_r($this->db->last_query()); die;
 
 		return $result;
-	
 	}
 	
 	public function detail($condition) {

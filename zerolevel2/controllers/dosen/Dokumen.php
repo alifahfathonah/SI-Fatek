@@ -34,7 +34,7 @@ class Dokumen extends CI_Controller {
 		
 		//* Declare variables array $data to be passing to view *//
 		$data['dokumen'] 	= $this->Tabel_dokumen->user_get(array('aso_dokumen.userId'=> $this->user['id']),'dokumenTahun DESC, dokumenDocgroupId ASC');
-		$data['docgroup'] 	= $this->Tabel_refDocgroup->get();
+		$data['docgroup'] 	= $this->Tabel_dokumen->user_get(array('aso_dokumen.userId'=> $this->user['id']),'dokumenDocgroupId ASC', FALSE,'dokumenDocgroupId');
 		$data['ownerId']	= $this->user['id'];
 		$data['loadMe']		= array(
 									'tipe' => 'dsn',
