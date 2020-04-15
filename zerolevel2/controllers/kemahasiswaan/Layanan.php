@@ -33,11 +33,11 @@ class Layanan extends CI_Controller {
 		
 		//* Initialize general variables for pageview properties *//
 		$data['pageTitle'] 	= "Disposisi Permintaan";
-		$data['subtitle'] 	= "Daftar Permintaan Layanan Administrasi Akademik";
-		$data['body_page'] 	= "body/akademik/layanan/list_proses_ajuan";
+		$data['subtitle'] 	= "Daftar Permintaan Layanan Administrasi Kemahasiswaan";
+		$data['body_page'] 	= "body/kemahasiswaan/layanan/list_proses_ajuan";
 
 		//* Get data ajuan mahasiswa from database. Store at $data *//
-		$data['request'] 	= $this->Tabel_layananMhs->get(array('toUser'=> $this->user['kodegrup'], 'tipe'=>'ak'),'tglRequest DESC');
+		$data['request'] 	= $this->Tabel_layananMhs->get(array('toUser'=> $this->user['kodegrup'], 'tipe'=>'km'),'tglRequest DESC');
 
 		//* formatting the data to be view properly at the pageview *//
 		foreach ($data['request'] as &$val) {
@@ -81,7 +81,7 @@ class Layanan extends CI_Controller {
 		}
 
 		$data['pageTitle'] 	= "Detail Ajuan Layanan Administrasi";
-		$data['body_page'] 	= "body/akademik/layanan/detail";
+		$data['body_page'] 	= "body/kemahasiswaan/layanan/detail";
 
 		$this->load->view(THEME,$data);
 
@@ -156,25 +156,25 @@ class Layanan extends CI_Controller {
 			}
 		}
 
-		redirect(site_url('akademik/layanan'));
+		redirect(site_url('kemahasiswaan/layanan'));
 	}
 
 	public function list_all() {
 
 		switch ($this->user['grup']) {
-			case "prodi"	: $filter = array('prodiId'=> $this->user['kodeunit'],'tipe'=>'ak'); break;
-			case "jurusan"	: $filter = array('jurusanId'=> $this->user['kodeunit'],'tipe'=>'ak'); break;
-			default 		: $filter = array('tipe'=>'ak');
+			case "prodi"	: $filter = array('prodiId'=> $this->user['kodeunit'],'tipe'=>'km'); break;
+			case "jurusan"	: $filter = array('jurusanId'=> $this->user['kodeunit'],'tipe'=>'km'); break;
+			default 		: $filter = array('tipe'=>'km');
 		}
 		
 		//* Initialize general variables for pageview properties *//
-		$data['pageTitle'] 	= "Layanan Administrasi Akademik";
-		$data['subtitle'] 	= "Daftar Permintaan Layanan - " . $this->user['namaunit'];
+		$data['pageTitle'] 	= "Layanan Administrasi Kemahasiswaan";
+		$data['subtitle'] 	= "Daftar Permintaan Layanan Administrasi";
 		$data['body_page'] 	= "body/akademik/layanan/list_without_action";
 
 		//* Get data ajuan mahasiswa from database. Store at $data *//
 		$data['request'] 	= $this->Tabel_layananMhs->get($filter,'tglRequest DESC, jenisLayanan ASC');
-		$data['layanan'] 	= $this->Tabel_layananMhs->get(array('tipe'=>'ak'),'jenisLayanan ASC',FALSE,'jenisLayanan');
+		$data['layanan'] 	= $this->Tabel_layananMhs->get(array('tipe'=>'km'),'jenisLayanan ASC',FALSE,'jenisLayanan');
 
 		//* formatting the data to be view properly at the pageview *//
 		foreach ($data['request'] as &$val) {

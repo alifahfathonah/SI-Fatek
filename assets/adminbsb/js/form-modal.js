@@ -731,7 +731,7 @@ $(function () {
         if (!this.value) {$('form [name="jenisLayanan"]').val(''); return false;}
 
         $.ajax({
-            url : window.location.href + '/detail_layanan/' + this.value,
+            url : window.location.href + '/form_detail/' + this.value,
             type: "GET",
             dataType: "JSON",
             success: function(data)
@@ -762,7 +762,7 @@ $(function () {
         if (!this.value) {$('form [name="jenisSeminar"]').val(''); return false;} 
 
         $.ajax({
-            url : window.location.href + '/detail_seminar/' + this.value,
+            url : window.location.href + '/form_detail/' + this.value,
             type: "GET",
             dataType: "JSON",
             success: function(data)

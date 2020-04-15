@@ -18,7 +18,7 @@
                                 <li>Repository dokumen untuk semua unit kerja.</li>
                                 <li>Tambahan fitur detail mahasiswa (alamat, sekolah, minat, dll), data prestasi, data disiplin (pelanggaran) akademik.</li>
                                 <li>Tambahan fitur detail dosen (tanggal lahir)</li>
-                                <li>Fitur baru: wall (pengumuman, bday), akademik (Layanan administrasi dan pendaftaran seminar) dan kemahasiswaan (prestasi mahasiswa dan disiplin akademik), notifikasi</li>
+                                <li>Fitur baru: wall (pengumuman, bday), akademik (Layanan administrasi dan pendaftaran seminar) dan kemahasiswaan (prestasi mahasiswa, disiplin akademik dan layanan administrasi), notifikasi</li>
                             </ol>
                             
                         </div>
@@ -78,6 +78,7 @@
                                     <ul>
                                         <li>Prestasi Mahasiswa (Dapat diajukan oleh mahasiswa ybs atau ditambahkan langsung oleh Bidang III)</li>
                                         <li>Disiplin (Pelanggaran) akademik mahasiswa (Ditambahkan langsung oleh Bidang III)</li>
+                                        <li>Layanan Administrasi Kemahasiswaan</li>
                                     </ul>
                                 </li>
                                 <li>Notifikasi <span class="badge bg-cyan">New</li>
@@ -162,6 +163,7 @@
                                     <ul>
                                         <li>Prestasi Mahasiswa (Daftar prestasi mahasiswa, Verifikasi ajuan prestasi mahasiswa)</li>
                                         <li>Disiplin Akademik (Tambah data disiplin (pelanggaran))</li>
+                                        <li>Layanan Administrasi Kemahasiswaan</li>
                                     </ul>
                                 </li>
                             </ol>

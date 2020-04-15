@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Tabel_akLayananMhs extends CI_Model {
+class Tabel_layananMhs extends CI_Model {
 	
 	public function __construct() {
 		parent::__construct();	
@@ -22,7 +22,7 @@ class Tabel_akLayananMhs extends CI_Model {
 		$this->db->join('ref_jurusan', 'ft_mahasiswa.jurusanId = ref_jurusan.idJurusan');
 		$this->db->join('ref_prodi', 'ft_mahasiswa.prodiId = ref_prodi.idProdi');
 		
-		$query = $this->db->get('ak_layanan_mhs');
+		$query = $this->db->get('layanan_mhs');
 		$result = $query->result_array();
 		//print_r($this->db->last_query()); die;
 		return $result;
@@ -36,7 +36,7 @@ class Tabel_akLayananMhs extends CI_Model {
 		if ($groupby) $this->db->group_by($groupby);
 
 		$this->db->where("aso_disposisi.jenis = 'layananMhs'");
-		$this->db->join('ak_layanan_mhs', 'idRequest = jenisId');
+		$this->db->join('layanan_mhs', 'idRequest = jenisId');
 		$this->db->join('ft_mahasiswa', 'nim = nimReq');
 		$this->db->join('ref_jurusan', 'ft_mahasiswa.jurusanId = ref_jurusan.idJurusan');
 		$this->db->join('ref_prodi', 'ft_mahasiswa.prodiId = ref_prodi.idProdi');
@@ -58,7 +58,7 @@ class Tabel_akLayananMhs extends CI_Model {
 		$this->db->join('ref_jurusan', 'ft_mahasiswa.jurusanId = ref_jurusan.idJurusan');
 		$this->db->join('ref_prodi', 'ft_mahasiswa.prodiId = ref_prodi.idProdi');
 
-		$query = $this->db->get('ak_layanan_mhs');
+		$query = $this->db->get('layanan_mhs');
 		$result = $query->row_array();
 		//print_r($this->db->last_query()); die;
 		return $result;
@@ -66,7 +66,7 @@ class Tabel_akLayananMhs extends CI_Model {
 
 	public function tambah($data, $data2) {
 
-		$this->db->insert('ak_layanan_mhs', $data);
+		$this->db->insert('layanan_mhs', $data);
 		$idRequest = $this->db->insert_id();
 
 		$data2['jenisId'] = $idRequest;
@@ -81,7 +81,7 @@ class Tabel_akLayananMhs extends CI_Model {
 
 	public function delete($id) {
 		$this->delete_aso_all($id);
-		$this->db->delete('ak_layanan_mhs', array('idRequest' => $id));
+		$this->db->delete('layanan_mhs', array('idRequest' => $id));
 		return $this->db->affected_rows();
 	}
 
@@ -93,7 +93,7 @@ class Tabel_akLayananMhs extends CI_Model {
 	public function update_status($data, $data2) {
 		
 		$this->db->where('idRequest', $data['idRequest']);
-		$this->db->update('ak_layanan_mhs', $data);
+		$this->db->update('layanan_mhs', $data);
 
 		return $this->tambah_aso($data2);
 	}

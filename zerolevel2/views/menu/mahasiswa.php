@@ -27,7 +27,7 @@
                         <ul class="ml-menu">
                             <?php if ($this->session->userdata['logged_in_portal']['mhs']['kodeProdi'] == 'prodi77') {?>
                             <li>
-                                <a href="<?php echo site_url('mahasiswa/layanan');?>"><span>Layanan Administrasi</span></a>
+                                <a href="<?php echo site_url('mahasiswa/layanan-akademik');?>"><span>Layanan Administrasi</span></a>
                             </li>
                             <li>
                                 <a href="<?php echo site_url('mahasiswa/seminar');?>"><span>Pendaftaran Seminar</span></a>
@@ -43,6 +43,9 @@
                         <ul class="ml-menu">
                             <li>
                                 <a href="<?php echo site_url('mahasiswa/prestasi');?>"><span>Pengajuan Data Prestasi</span></a>
+                            </li>
+                            <li>
+                                <a href="<?php echo site_url('mahasiswa/layanan-kemahasiswaan');?>"><span>Layanan Administrasi</span></a>
                             </li>
                         </ul>
                     </li>

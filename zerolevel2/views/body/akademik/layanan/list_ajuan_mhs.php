@@ -7,9 +7,6 @@
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
-                        <div class="header">
-                            <h2>Layanan Administrasi Akademik</h2>
-                        </div>
                         <div class="body">
                             <p>Layanan administrasi akademik adalah layanan online yang dapat digunakan mahasiswa untuk permintaan atau pengajuan surat-surat yang berhubungan dengan administrasi akademik seperti:</p>
                             <ol>
@@ -70,7 +67,7 @@
                                                 <span class="label bg-<?php echo $list['prosesColor'];?>"><?php echo $list['prosesStatus'];?></span>
                                             </td>
                                             <td style='white-space: nowrap'>
-                                                <a href="<?php echo site_url('mahasiswa/layanan/detail/').$list['idRequest'];?>" class="btn btn-xs btn-info waves-effect" role="button">
+                                                <a href="<?php echo site_url('mahasiswa/layanan-akademik/detail/').$list['idRequest'];?>" class="btn btn-xs btn-info waves-effect" role="button">
                                                     Detail
                                                 </a>
                                                 <?php if ($list['authorized']) {?>

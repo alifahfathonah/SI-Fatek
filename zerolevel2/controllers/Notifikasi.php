@@ -73,24 +73,6 @@ class Notifikasi extends CI_Controller {
 		$data[0]['tglNotif'] = '2020-04-01 00:00:00';
 		$data[0]['idNotif'] = '';
 
-		$data[1]['tipe'] = 'prestasi';
-		$data[1]['isiNotif'] = 'Fitur Baru Prestasi Mahasiswa';
-		$data[1]['link'] = 'data/prestasi-mahasiswa';
-		$data[1]['tglNotif'] = '2020-04-04 00:00:00';
-		$data[1]['idNotif'] = '';
-
-		$data[2]['tipe'] = 'layanan';
-		$data[2]['isiNotif'] = 'Fitur Baru Layanan Akademik';
-		$data[2]['link'] = 'akademik/layanan/list_all';
-		$data[2]['tglNotif'] = '2020-04-05 00:00:00';
-		$data[2]['idNotif'] = '';
-
-		$data[3]['tipe'] = 'seminar';
-		$data[3]['isiNotif'] = 'Fitur Baru Daftar Seminar/Sidang';
-		$data[3]['link'] = 'akademik/seminar/list_all';
-		$data[3]['tglNotif'] = '2020-04-06 00:00:00';
-		$data[3]['idNotif'] = '';
-
 		return $data;
 
 	}

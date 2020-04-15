@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Seminar extends CI_Controller {
+class Layanan_akademik extends CI_Controller {
 	
 	public function __construct() {
 		parent::__construct();
@@ -16,7 +16,7 @@ class Seminar extends CI_Controller {
 		}
 
 		//* Load model, library, helper, etc *//
-		$this->load->model(array('Tabel_akSeminar', 'Tabel_refFormReqField', 'Tabel_xNotifikasi'));
+		$this->load->model(array('Tabel_layananMhs', 'Tabel_refFormReqField', 'Tabel_xNotifikasi'));
 
 		//* Initialize class variables. current-user identity. To be used throughout this class *//
 		$this->user = array(
@@ -30,13 +30,13 @@ class Seminar extends CI_Controller {
 	public function index() {
 		
 		//* Initialize general variables for pageview properties *//
-		$data['pageTitle'] 	= "Pendaftaran Seminar";
-		$data['subtitle'] 	= "Daftar Ajuan Seminar";
-		$data['body_page'] 	= "body/akademik/seminar/list_ajuan_mhs";
+		$data['pageTitle'] 	= "Layanan Administrasi Akademik";
+		$data['subtitle'] 	= "Daftar Permintaan Layanan";
+		$data['body_page'] 	= "body/akademik/layanan/list_ajuan_mhs";
 
 		//* Get data ajuan mahasiswa from database. Store at $data *//
-		$data['request'] 	= $this->Tabel_akSeminar->get(array('nimReq'=> $this->user['id']),'tglRequest DESC');
-		$data['seminar'] 	= $this->Tabel_refFormReqField->get(array('form' => 'seminar','status' => '1'),'urutan ASC');
+		$data['request'] 	= $this->Tabel_layananMhs->get(array('nimReq'=> $this->user['id'],'tipe'=>'ak'),'tglRequest DESC');
+		$data['layanan'] 	= $this->Tabel_refFormReqField->get(array('form' => 'layanan-akademik','status' => '1'),'urutan ASC');
 
 		//* formatting the data to be view properly at the pageview *//
 		foreach ($data['request'] as &$val) {
@@ -66,20 +66,14 @@ class Seminar extends CI_Controller {
 
 	public function tambah() {
 
-		$this->form_validation->set_rules('jenisSeminar', 'Jenis Seminar', 'required');
-		$this->form_validation->set_rules('judul', 'Judul', 'required');
-		$this->form_validation->set_rules('infoTambahan', 'Informasi Tambahan', 'required');
-
-		if (empty($_FILES['dokumen']['name'][0])) {
-		 	$this->form_validation->set_rules('dokumen[]', 'Dokumen Pendukung', 'required');
-		}
+		$this->form_validation->set_rules('jenisLayanan', 'Jenis Layanan', 'required');
 
 		if ($this->form_validation->run() == TRUE) {
 
 			$database['nimReq'] 		= $this->user['id'];
-			$database['jenisSeminar']	= $this->input->post('jenisSeminar');
-			$database['judul']			= $this->input->post('judul');
+			$database['jenisLayanan']	= $this->input->post('jenisLayanan');
 			$database['infoTambahan'] 	= $this->input->post('infoTambahan');
+			$database['tipe'] 			= "ak";
 
 			if(!empty($_FILES['dokumen']['name'][0])) {
 
@@ -92,7 +86,7 @@ class Seminar extends CI_Controller {
 					$_FILES['dokumens']['error']	= $_FILES['dokumen']['error'][$i];
 					$_FILES['dokumens']['size']		= $_FILES['dokumen']['size'][$i];
 
-					$this->config->config['dokumen_tmp']['file_name'] = "seminar-".$this->user['id']."-".date('Ymd');
+					$this->config->config['dokumen_tmp']['file_name'] = "admAk-".$this->user['id']."-".date('Ymd');
 					$this->load->library('upload', $this->config->item('dokumen_tmp'));
 
 					if(!$this->upload->do_upload('dokumens')) {
@@ -112,12 +106,12 @@ class Seminar extends CI_Controller {
 			$database2['prosesId'] 		= "1";
 			$database2['komentar'] 		= "Diajukan mahasiswa";
 
-			if ($this->Tabel_akSeminar->tambah($database, $database2)) {
+			if ($this->Tabel_layananMhs->tambah($database, $database2)) {
 
-				$notif['tipe'] = "seminar";
-				$notif['isiNotif'] = "New request seminar/sidang";
+				$notif['tipe'] = "layanan";
+				$notif['isiNotif'] = "New request layanan akademik";
 				$notif['toUser'] = $database2['toUser'];
-				$notif['link'] = "akademik/seminar";
+				$notif['link'] = "akademik/layanan";
 				$this->Tabel_xNotifikasi->tambah($notif);
 
 				$this->session->set_flashdata('type', 'success');
@@ -135,7 +129,7 @@ class Seminar extends CI_Controller {
 			$this->session->set_flashdata('message', validation_errors('Form tidak lengkap! '));
 		}
 
-		redirect(site_url('mahasiswa/seminar'));
+		redirect(site_url('mahasiswa/layanan-akademik'));
 	
 	}
 
@@ -144,7 +138,7 @@ class Seminar extends CI_Controller {
 		$id = $this->input->post('id');
 
 		//* Delete the old dokumen file*//
-		$file = $this->Tabel_akSeminar->detail(array('idRequest' => $id));
+		$file = $this->Tabel_layananMhs->detail(array('idRequest' => $id));
 		
 		//* Check if ada file *//
 		if ($file['file']) {
@@ -157,7 +151,7 @@ class Seminar extends CI_Controller {
 		}
 
 		//* Delete entry in database *//
-		if ($this->Tabel_akSeminar->delete($id)) {
+		if ($this->Tabel_layananMhs->delete($id)) {
 				
 			$this->session->set_flashdata('type', 'success');
 			$this->session->set_flashdata('message', 'Berhasil dihapus!');
@@ -171,37 +165,45 @@ class Seminar extends CI_Controller {
 
 	}	
 
-	public function detail($id) {
+	public function detail($id, $format=FALSE) {
 
-		$data 			 	= $this->Tabel_akSeminar->detail(array('idRequest'=> $id));
+		$data 			 	= $this->Tabel_layananMhs->detail(array('idRequest'=> $id));
 
 		if($data['nimReq'] != $this->user['id']) {
 			show_error('Access denied!');die;
 		}
 
-		$data['disposisi'] 	= $this->Tabel_akSeminar->aso_get(array('jenisId'=> $id),'prosesTgl ASC');
+		if ($format == 'json') {
 
-		if ($data['file']) {
-			$data['file'] 	= explode(" ", $data['file']);
-			foreach ($data['file'] as &$val) {
-				$val = URL_DOKUMEN_TMP. $val;
+			echo json_encode($data);
+			
+		} else {
+
+
+			$data['disposisi'] 	= $this->Tabel_layananMhs->aso_get(array('jenisId'=> $id),'prosesTgl ASC');
+
+			if ($data['file']) {
+				$data['file'] 	= explode(" ", $data['file']);
+				foreach ($data['file'] as &$val) {
+					$val = URL_DOKUMEN_TMP. $val;
+				}
 			}
-		}
 
-		foreach ($data['disposisi'] as &$val) {
-			$val['prosesTgl'] = date('d M Y g:i a',strtotime($val['prosesTgl']));
+			foreach ($data['disposisi'] as &$val) {
+				$val['prosesTgl'] = date('d M Y g:i a',strtotime($val['prosesTgl']));
 
-			switch ($val['prosesStatus']) {
-				case "Ditolak" 	: $val['prosesColor'] = "red"; break;
-				case "Selesai" 	: $val['prosesColor'] = "green"; break;
-				default 		: $val['prosesColor'] = "orange";
+				switch ($val['prosesStatus']) {
+					case "Ditolak" 	: $val['prosesColor'] = "red"; break;
+					case "Selesai" 	: $val['prosesColor'] = "green"; break;
+					default 		: $val['prosesColor'] = "orange";
+				}
 			}
+
+			$data['pageTitle'] 	= "Detail Ajuan Layanan Administrasi";
+			$data['body_page'] 	= "body/akademik/layanan/detail";
+
+			$this->load->view(THEME,$data);
 		}
-
-		$data['pageTitle'] 	= "Detail Ajuan Pendaftaran Seminar";
-		$data['body_page'] 	= "body/akademik/seminar/detail";
-
-		$this->load->view(THEME,$data);
 	}
 
 	public function form_detail($id) {
@@ -210,6 +212,5 @@ class Seminar extends CI_Controller {
 
 		echo json_encode($output);
 
-	}	
-
+	}
 }
