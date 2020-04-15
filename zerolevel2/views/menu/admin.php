@@ -12,6 +12,11 @@
                         </a>
                     </li>
                     <li>
+                        <a href="<?php echo site_url('admin/pegawai');?>">
+                            <span>Kelola Data Pegawai</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="<?php echo site_url('admin/formrequired');?>">
                             <span>Kelola Form Required Field</span>
                         </a>

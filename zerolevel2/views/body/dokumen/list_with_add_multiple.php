@@ -145,6 +145,13 @@
                                         <input id="tags-input-mhs" name="mhsdoc">
                                     </div>
                                 </div>
+                                <div class="form-group form-float">
+                                    <label class="form-label">Tag Pegawai</label>
+                                    <small>(Tandai nama-nama pegawai yang terkait dengan dokumen ini)</small>
+                                    <div class="form-line">
+                                        <input id="tags-input-peg" name="pegdoc">
+                                    </div>
+                                </div>
 
                                 <div class="form-group form-float">
                                     <label class="form-label">Upload Dokumen <span class="doc-baru"></span></label>
@@ -171,6 +178,7 @@
 <script type="text/javascript">
     var prefetch_dsn = "<?php echo URL_API.'daftar/dosen/2';?>";
     var prefetch_mhs = "<?php echo URL_API.'daftar/mahasiswa/2';?>";
+    var prefetch_peg = "<?php echo site_url('api/list-pegawai/');?>";
     var kodeUnit     = "<?php echo $ownerId; ?>";
     <?php if(isset($nodeId)) {?>
         var nodeId = <?php echo $nodeId; ?>;

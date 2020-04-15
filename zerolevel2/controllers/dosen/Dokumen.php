@@ -16,7 +16,7 @@ class Dokumen extends CI_Controller {
 		}	
 
 		//* Load model, library, helper, etc *//
-		$this->load->model(array('Tabel_dokumen','Tabel_refDocgroup','Tabel_xNotifikasi'));
+		$this->load->model(array('Tabel_dokumen','Tabel_pegawai','Tabel_refDocgroup','Tabel_xNotifikasi'));
 
 		//* Initialize class variables. current-user identity. To be used throughout this class *//
 		$this->user = array(
@@ -34,7 +34,8 @@ class Dokumen extends CI_Controller {
 		
 		//* Declare variables array $data to be passing to view *//
 		$data['dokumen'] 	= $this->Tabel_dokumen->user_get(array('aso_dokumen.userId'=> $this->user['id']),'dokumenTahun DESC, dokumenDocgroupId ASC');
-		$data['docgroup'] 	= $this->Tabel_dokumen->user_get(array('aso_dokumen.userId'=> $this->user['id']),'dokumenDocgroupId ASC', FALSE,'dokumenDocgroupId');
+		$data['docgroup0'] 	= $this->Tabel_dokumen->user_get(array('aso_dokumen.userId'=> $this->user['id']),'dokumenDocgroupId ASC', FALSE,'dokumenDocgroupId');
+		$data['docgroup'] 	= $this->Tabel_refDocgroup->get();
 		$data['ownerId']	= $this->user['id'];
 		$data['loadMe']		= array(
 									'tipe' => 'dsn',
@@ -99,21 +100,33 @@ class Dokumen extends CI_Controller {
 					$usertag = [];
 					if ($this->input->post('dsndoc')) {
 						$userdsn = explode(",", $this->input->post('dsndoc'));
-						foreach ($userdsn as $key) array_push($usertag, $key);
+						foreach ($userdsn as $key) { 
+							$user['userId'] = $key;
+							$user['tipe'] = "d";
+							array_push($usertag, $user);
+						}
 					}
 					if ($this->input->post('mhsdoc')) {
 						$usermhs = explode(",", $this->input->post('mhsdoc'));
-						foreach ($usermhs as $key) array_push($usertag, $key);
+						foreach ($usermhs as $key) {
+							$user['userId'] = $key;
+							$user['tipe'] = "m";
+							array_push($usertag, $user);
+						}
 					}
 
 					if ($this->input->post('pegdoc')) {
 						$userpeg = explode(",", $this->input->post('pegdoc'));
-						foreach ($userpeg as $key) array_push($usertag, $key);
+						foreach ($userpeg as $key) {
+							$user['userId'] = $key;
+							$user['tipe'] = "p";
+							array_push($usertag, $user);
+						}
 					}
 
 					//* Declare array multi_user and formatting data, which will inserted into database*//
 					foreach ($usertag as $val) {
-						$multi_user[] = array('dokumenId' => $id_dokumen, 'userId' => $val);
+						$multi_user[] = array('dokumenId' => $id_dokumen, 'userId' => $val['userId'], 'tipe' => $val['tipe']);
 					}
 					
 					//* Input the usertag into database *//
@@ -217,19 +230,36 @@ class Dokumen extends CI_Controller {
 				//* If the database has been updated successfully *//
 
 				//* Declare new usertag which will be tag to this dokumen*//
-				$user = [];
+				$usertag = [];
 				if ($this->input->post('dsndoc')) {
 					$userdsn = explode(",", $this->input->post('dsndoc'));
-					foreach ($userdsn as $key) array_push($user, $key);
+					foreach ($userdsn as $key) { 
+						$user['userId'] = $key;
+						$user['tipe'] = "d";
+						array_push($usertag, $user);
+					}
 				}
 				if ($this->input->post('mhsdoc')) {
 					$usermhs = explode(",", $this->input->post('mhsdoc'));
-					foreach ($usermhs as $key) array_push($user, $key);
+					foreach ($usermhs as $key) {
+						$user['userId'] = $key;
+						$user['tipe'] = "m";
+						array_push($usertag, $user);
+					}
+				}
+
+				if ($this->input->post('pegdoc')) {
+					$userpeg = explode(",", $this->input->post('pegdoc'));
+					foreach ($userpeg as $key) {
+						$user['userId'] = $key;
+						$user['tipe'] = "p";
+						array_push($usertag, $user);
+					}
 				}
 
 				//* Declare array multi_user and formatting data, which will inserted into database*//
-				foreach ($user as $val) {
-					$multi_user[] = array('dokumenId' => $database['idDokumen'], 'userId' => $val);
+				foreach ($usertag as $val) {
+					$multi_user[] = array('dokumenId' => $database['idDokumen'], 'userId' => $val['userId'], 'tipe' => $val['tipe']);
 				}
 
 				//* Delete the old usertag*//
@@ -314,12 +344,23 @@ class Dokumen extends CI_Controller {
 
 		//* formatting the data to be view properly at the output *//
 		foreach ($output['user'] as &$key) {
-			//* Get data user from API. nama, id, tipe *//
-			$key['detail'] = $this->apicall->get(URL_API.'daftar/user/'.$key['userId']);
+			
+			switch ($key['tipe']) {
+				case "p"	: $key['detail']['nama'] = $this->detail_pegawai($key['userId'])['nama'];
+							  $key['detail']['id']   = $key['userId'];
+							  $key['detail']['tipe'] = $key['tipe'];break;	 	
+				default 	: $key['detail']['nama'] = $this->apicall->get(URL_API.'daftar/user/'.$key['userId'])[0]->nama;
+							  $key['detail']['id']   = $key['userId'];
+							  $key['detail']['tipe'] = $key['tipe'];
+			}
 		}
-		
 		echo json_encode($output);
+	}
 
+	private function detail_pegawai($id) {
+
+		$output = $this->Tabel_pegawai->detail(array('nip' => $id));
+		return $output;
 	}
 	
 }

@@ -33,6 +33,11 @@ class Dosen extends CI_Controller {
 		
 		$data['dosen'] 		= $this->Tabel_dosen->get_dosen();
 
+		//* formatting the data to be view properly at the pageview *//
+		foreach ($data['dosen'] as &$key) {
+			$key['status'] = ($key['status'])? "Aktif" : "Tidak Aktif";
+		}
+
 		$this->load->view(THEME,$data);
 	}
 
@@ -173,7 +178,7 @@ class Dosen extends CI_Controller {
 			$data['body_page'] 	= "body/dosen/detail";
 
 			$data['dosen'] 			= $this->Tabel_dosen->detail(array('idDosen'=> $id));
-			$data['dosen']['foto'] 	= (!empty($data['dosen']['foto'])) ? URL_FOTO_DOSEN.$data['dosen']['foto'] : URL_FOTO_DOSEN."default.jpg";
+			$data['dosen']['foto'] 	= (!empty($data['dosen']['foto'])) ? URL_FOTO."dsn/".$data['dosen']['foto'] : URL_FOTO."default.jpg";
 			//$data['dosenSdmAPI'] 		= $this->apicall->get(URL_API.'pegawai?nip='.$dosenNip);
 			//$data['dosenSiaAPI'] 		= $this->apicall->get(URL_API.'dosen?nip='.$dosenNip);
 

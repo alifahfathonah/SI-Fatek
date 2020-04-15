@@ -28,7 +28,7 @@
                                         <div class="form-line">
                                             <select class="form-control show-tick" id="selectKategoriDokumen">
                                                 <option value="">Semua</option>
-                                                <?php foreach ($docgroup as $key) {?>
+                                                <?php foreach ($docgroup0 as $key) {?>
                                                     <option value="<?php echo $key['docgroupJenisDoc'];?>"><?php echo $key['docgroupJenisDoc'];?></option>
                                                 <?php }?>
                                             </select>
@@ -157,6 +157,14 @@
                                 </div>
 
                                 <div class="form-group form-float">
+                                    <label class="form-label">Tag Pegawai</label>
+                                    <small>(Tandai nama-nama pegawai yang terkait dengan dokumen ini)</small>
+                                    <div class="form-line">
+                                        <input id="tags-input-peg" name="pegdoc">
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-float">
                                     <label class="form-label">Upload Dokumen <span class="doc-baru"></span></label>
                                     <input name="dokumen" type="file">
                                     <small><span class="doc-empty"></span></small>
@@ -181,6 +189,7 @@
 <script type="text/javascript">
     var prefetch_dsn = "<?php echo URL_API.'daftar/dosen/2';?>";
     var prefetch_mhs = "<?php echo URL_API.'daftar/mahasiswa/2';?>";
+    var prefetch_peg = "<?php echo site_url('api/list-pegawai/');?>";
     <?php if(isset($loadMe)) {?>
         var loadMe = <?php echo json_encode($loadMe); ?>;
     <?php }?>

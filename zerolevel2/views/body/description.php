@@ -9,9 +9,10 @@
                     <div class="card">
                         <div class="body">
 
-                            <p class="lead">Current Version : 2.6</p>
+                            <p class="lead">Current Version : 2.7</p>
                             <h5>Change log since previous version</h5>
                             <ol>
+                                <li>Tambahan fitur pegawai</li>
                                 <li>Tambahan fitur edit dokumen</li>
                                 <li>Tambahan fitur tagging dosen dan mahasiswa pada menu dokumen</li>
                                 <li>Repository dokumen untuk semua unit kerja.</li>
@@ -56,8 +57,8 @@
 
                             <h2>Fitur Utama</h2>
                             <ol>
-                                <li>Profil (Dosen, mahasiswa, alumni)</li>
-                                <li>Dokumen (Dosen, mahasiswa, repository fakultas <span class="badge bg-cyan">New</span> dokumen unit kerja)</li>
+                                <li>Profil (Dosen, mahasiswa, alumni, pegawai)</li>
+                                <li>Dokumen (Dosen, mahasiswa, pegawai, repository fakultas <span class="badge bg-cyan">New</span> dokumen unit kerja)</li>
                                 <li>Data (Mahasiswa, alumni, dosen, sesuai unit masing-masing)</li>
                                 <li>Statistik (Fakultas, jurusan, prodi, sesuai unit masing-masing)</li>
                                 <li>Wall <span class="badge bg-cyan">New</span>
@@ -107,6 +108,13 @@
                                         <li>Pengajuan data prestasi mahasiswa (Diajukan oleh mahasiswa, diverifikasi oleh WD3. Dapat menandai mahasiswa lain yang memiliki prestasi sama.)</li>
                                     </ul>
                                 </li>
+                            </ol>
+
+                            <h3>Fitur untuk User Pegawai <span class="badge bg-cyan">New</span></h3>
+                            <ol>
+                                <li>Wall (Melihat pengumuman fakultas (Dekan, WD, Kabag)) <span class="badge bg-cyan">New</span></li>
+                                <li>Profil (Profil pegawai, edit profil, foto profil)</li>
+                                <li>Dokumen (Dokumen pegawai yg diupload sendiri oleh pegawai ybs atau dokumen yang ditag oleh unit kerja (fakultas/jurusan/prodi)) <span class="badge bg-cyan">New</span></li>
                             </ol>
 
                             <h3>Fitur untuk User Pimpinan <small>(Dekan, WD, Jurusan, Prodi)</small></h3>

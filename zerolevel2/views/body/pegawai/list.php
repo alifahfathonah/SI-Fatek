@@ -1,14 +1,14 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 
             <div class="block-header">
-                <h2><?php echo $pageTitle;?></h2>
+                <h1><?php echo $pageTitle;?></h1>
             </div>
 
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
-                            <h2>Daftar Pegawai Fakultas Teknik</h2>
+                            <h2>Daftar Pegawai</h2>
                         </div>
                         <div class="body">
                             <div class="table-responsive">
@@ -19,9 +19,6 @@
                                             <th>No</th>
                                             <th>Nama</th>
                                             <th>Nip</th>
-                                            <th>Status</th>
-                                            <th>Pangkat/Gol</th>
-                                            <th>Fungsional</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -30,11 +27,8 @@
 
                                         <tr>
                                             <td><?php echo $i;?></td>
-                                            <td><a href="<?php echo site_url("admin/detail/pegawai/").$list->nip;?>"><?php echo $list->nama;?></a></td>
-                                            <td><?php echo $list->nip;?></td>
-                                            <td><?php echo $list->statusPegawai;?></td>
-                                            <td><?php echo $list->pangkatGolongan;?></td>
-                                            <td><?php echo $list->jabatanFungsional;?></td>
+                                            <td><a href="<?php echo site_url("detail/pegawai/").$list['nip'];?>"><?php echo $list['nama'];?></a></td>
+                                            <td><?php echo $list['nip'];?></td>
 
                                         </tr>
                                         <?php $i++;}?>

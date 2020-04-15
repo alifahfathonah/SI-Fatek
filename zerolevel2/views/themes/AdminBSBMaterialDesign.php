@@ -159,6 +159,7 @@ http://fatek.unsrat.ac.id
                     <?php
                         if(isset($this->session->userdata['logged_in_portal']['dosen'])) $this->load->view('menu/dosen');
                         if(isset($this->session->userdata['logged_in_portal']['mhs'])) $this->load->view('menu/mahasiswa');
+                        if(isset($this->session->userdata['logged_in_portal']['pgw'])) $this->load->view('menu/pegawai');
                         if(isset($this->session->userdata['logged_in_portal']['auth'])) {
 
                             switch ($this->session->userdata['logged_in_portal']['auth']['kodeGrup']) {

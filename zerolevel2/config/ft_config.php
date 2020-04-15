@@ -12,16 +12,16 @@
 /* ----- Constant and configuration in localhost environment for testing purpose */
 define('URL_DOKUMEN',		"http://localhost/fatek.unsrat.ac.id/ft_data/dokumen/test/");
 define('URL_DOKUMEN_TMP',	"http://localhost/fatek.unsrat.ac.id/ft_data/dokumen/test/tmp/");
-//define('URL_FOTO_DOSEN',	"http://localhost/fatek.unsrat.ac.id/ft_data/fotodosen/");
+define('URL_FOTO',			"http://localhost/fatek.unsrat.ac.id/ft_data/foto/");
 define('URL_API',			"http://localhost/unsrat-api/");
 define('DIR_DOKUMEN',		"../ft_data/dokumen/test/");
 define('DIR_DOKUMEN_TMP',	"../ft_data/dokumen/test/tmp/");
 /* ----- End Of Constant and configuration in localhost environment for testing purpose */
 
 /* ----- Constant and configuration in live-server environment */
-//define('URL_DOKUMEN',		"http://fatek.unsrat.ac.id/ft_data/dokumen/");
-//define('URL_DOKUMEN_TMP',	"http://fatek.unsrat.ac.id/ft_data/dokumen/tmp/");
-define('URL_FOTO_DOSEN',	"https://fatek.unsrat.ac.id/ft_data/fotodosen/");
+//define('URL_DOKUMEN',		"https://fatek.unsrat.ac.id/ft_data/dokumen/");
+//define('URL_DOKUMEN_TMP',	"https://fatek.unsrat.ac.id/ft_data/dokumen/tmp/");
+//define('URL_FOTO',		"https://fatek.unsrat.ac.id/ft_data/foto/");
 //define('URL_API',			"https://sitdev.unsrat.ac.id/tikdev/usr_api/");
 //define('DIR_DOKUMEN',		"../ft_data/dokumen/");
 //define('DIR_DOKUMEN_TMP',	"../ft_data/dokumen/tmp/");
@@ -31,12 +31,18 @@ define('URL_FOTO_DOSEN',	"https://fatek.unsrat.ac.id/ft_data/fotodosen/");
 define('URL_SINTA',			"http://sinta2.ristekdikti.go.id/authors/detail?id=");
 define('URL_GOOGLE',		"https://scholar.google.co.id/citations?user=");
 define('URL_SCOPUS',		"https://www.scopus.com/authid/detail.uri?authorId=");
-define('DIR_FOTO_DOSEN',	"../ft_data/fotodosen/");
+define('DIR_FOTO',			"../ft_data/foto/");
 define('API_KEY',			"USR-API-KEY: b9QKaYcC0okSG9kkVa4PM6pw9S5BU7");
 define('THEME',				"themes/AdminBSBMaterialDesign");
 
 $config['pasfoto_dosen'] = array(
-	'upload_path' 		=> DIR_FOTO_DOSEN,
+	'upload_path' 		=> DIR_FOTO . "dsn/",
+	'allowed_types' 	=>'jpg|jpeg',
+	'file_ext_tolower'	=> TRUE,
+);
+
+$config['pasfoto_pgw'] = array(
+	'upload_path' 		=> DIR_FOTO . "pgw/",
 	'allowed_types' 	=>'jpg|jpeg',
 	'file_ext_tolower'	=> TRUE,
 );

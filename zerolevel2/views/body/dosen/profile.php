@@ -12,7 +12,7 @@
             <?php }?> 
             
             <div class="row clearfix">
-                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="card">
                         <div class="header bg-cyan">
                             <h2>Foto Profil</h2>
@@ -31,7 +31,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
+                <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
                     <div class="card">
                         <div class="header bg-cyan">
                             <h2>
@@ -116,7 +116,7 @@
                                 <div class="form-group">
                                     <label class="form-label">Tanggal Lahir </label>
                                     <div class="form-line">
-                                        <input type="text" name="tglLahir" class="datepicker form-control" value="<?=$dosen['tglLahir']?>">
+                                        <input type="text" name="tglLahir" class="datepicker form-control" value="<?=$dosen['tglLahir']?>" required>
                                     </div>
                                 </div>
 

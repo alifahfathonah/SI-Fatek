@@ -53,7 +53,7 @@ class Login extends CI_Controller {
 						//* Session variable, basic info *//
 						$sess_data['nama'] = $user_dosen['nama'];
 						$sess_data['desc'] = $user_dosen['nip'];
-						$sess_data['foto'] = (!empty($user_dosen['foto'])) ? URL_FOTO_DOSEN.$user_dosen['foto'] : URL_FOTO_DOSEN."default.jpg";
+						$sess_data['foto'] = (!empty($user_dosen['foto'])) ? URL_FOTO."dsn/".$user_dosen['foto'] : URL_FOTO."default.jpg";
 
 						//* Session variable, dosen info *//
 						$sess_data['dosen']['userid']    = $user_dosen['nip'];
@@ -222,8 +222,8 @@ class Login extends CI_Controller {
 
 				//* Check username and password.*//
 				//* Comment second line for testing purpose. Comment first line for live environment*//
-				$result	  = $pwd == $username;
-				//$result = $this->Tabel_pegawai->check_login($username,md5($pwd));
+				//$result	  = $pwd == $username;
+				$result = $this->Tabel_pegawai->check_login($username,$pwd);
 				
 				if ($result) {
 
@@ -235,7 +235,7 @@ class Login extends CI_Controller {
 						//* Session variable, basic info *//
 						$sess_data['nama'] = $user_pegawai['nama'];
 						$sess_data['desc'] = $user_pegawai['nip'];
-						$sess_data['foto'] = (!empty($user_pegawai['foto'])) ? URL_FOTO_DOSEN.$user_pegawai['foto'] : URL_FOTO_DOSEN."default.jpg";
+						$sess_data['foto'] = (!empty($user_pegawai['foto'])) ? URL_FOTO."pgw/".$user_pegawai['foto'] : URL_FOTO."default.jpg";
 
 						//* Session variable, pegawai info *//
 						$sess_data['pgw']['userid']    = $user_pegawai['nip'];

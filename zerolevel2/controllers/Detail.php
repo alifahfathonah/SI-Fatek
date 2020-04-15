@@ -12,7 +12,7 @@ class Detail extends CI_Controller {
 		}
 
 		//* Load model, library, helper, etc *//
-		$this->load->model(array('Tabel_dosen','Tabel_mahasiswa', 'Tabel_kmPrestasi', 'Tabel_kmDisiplin'));
+		$this->load->model(array('Tabel_dosen','Tabel_mahasiswa', 'Tabel_pegawai', 'Tabel_kmPrestasi', 'Tabel_kmDisiplin'));
 		
 	}
 
@@ -48,7 +48,7 @@ class Detail extends CI_Controller {
 		$data['body_page'] 	= "body/dosen/detail";
 
 		$data['dosen'] 			= $this->Tabel_dosen->detail(array('nip'=> $nip));
-		$data['dosen']['foto'] 	= (!empty($data['dosen']['foto'])) ? URL_FOTO_DOSEN.$data['dosen']['foto'] : URL_FOTO_DOSEN."default.jpg";
+		$data['dosen']['foto'] 	= (!empty($data['dosen']['foto'])) ? URL_FOTO."dsn/".$data['dosen']['foto'] : URL_FOTO."default.jpg";
 
 		$data['dosen']['tglLahir'] = date('d F Y',strtotime($data['dosen']['tglLahir']));
 		$data['dosen']['jurusan'] = ucwords(strtolower($data['dosen']['jurusan']));
@@ -78,6 +78,19 @@ class Detail extends CI_Controller {
 
 		$this->load->view(THEME,$data);
 	}
+
+	public function pegawai($nip) {
+
+		$data['pageTitle'] 	= "Detail Pegawai";
+		$data['body_page'] 	= "body/pegawai/detail";
+
+		$data['pegawai'] 			= $this->Tabel_pegawai->detail(array('nip'=> $nip));
+		$data['pegawai']['foto'] 	= (!empty($data['pegawai']['foto'])) ? URL_FOTO."pgw/".$data['pegawai']['foto'] : URL_FOTO."default.jpg";
+
+		$data['pegawai']['tglLahir'] = date('d F Y',strtotime($data['pegawai']['tglLahir']));
+
+		$this->load->view(THEME,$data);
+	}	
 
 	public function proposal($id, $format=FALSE) {
 		$data 			 = $this->Tabel_proposal->detail(array('idProposal'=> $id),'tglPengajuan ASC');

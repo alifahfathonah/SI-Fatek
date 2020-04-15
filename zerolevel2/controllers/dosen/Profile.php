@@ -36,7 +36,7 @@ class Profile extends CI_Controller {
 		$data['dosen'] 			= $this->Tabel_dosen->detail(array('nip'=> $this->user['id']));
 		
 		//* formatting the data to be view properly at the pageview *//
-		$data['dosen']['foto'] 	= (!empty($data['dosen']['foto'])) ? URL_FOTO_DOSEN.$data['dosen']['foto'] : URL_FOTO_DOSEN."default.jpg";
+		$data['dosen']['foto'] 	= (!empty($data['dosen']['foto'])) ? URL_FOTO."dsn/".$data['dosen']['foto'] : URL_FOTO."default.jpg";
 		$data['dosen']['tglLahir2'] = date('d F Y',strtotime($data['dosen']['tglLahir']));
 		$data['dosen']['jurusan'] = ucwords(strtolower($data['dosen']['jurusan']));
 		$data['dosen']['prodi'] 	= ucwords(strtolower($data['dosen']['prodi']));
@@ -52,7 +52,8 @@ class Profile extends CI_Controller {
 		//* Set rules for form validation. Form validation use CI Library *//
 		$this->form_validation->set_rules('nama', 'Nama', 'trim|required');
 		$this->form_validation->set_rules('email', 'Email', 'valid_email');
-		$this->form_validation->set_rules('hp', 'Nomor hp', 'numeric');
+		$this->form_validation->set_rules('tglLahir', 'Tanggal Lahir', 'required');
+		$this->form_validation->set_rules('hp', 'Nomor hp', 'required');
 
 		//* Check if form valid *//
 		if ($this->form_validation->run() == TRUE) {
@@ -113,20 +114,20 @@ class Profile extends CI_Controller {
 
 				//* Delete the foto old file. Check if old foto exist*//
 				// $file	= $this->Tabel_dosen->detail(array('nip'=> $this->user['id']))['foto'];
-				// if (!empty($file) AND file_exists(FCPATH .DIR_FOTO_DOSEN .$file)) {
-				// 	unlink(FCPATH .DIR_FOTO_DOSEN .$file);
+				// if (!empty($file) AND file_exists(FCPATH .DIR_FOTO . "dsn/" .$file)) {
+				// 	unlink(FCPATH .DIR_FOTO . "dsn/" .$file);
 				// }
 			
 				//* Get the upload properties and store in var database *//
 				$upload_data = $this->upload->data();
 				$database['foto'] 		= $upload_data['file_name'];
-				$database['idDosen'] 	= $this->user['id'];
+				$database['idDosen'] 	= $this->input->post('id');
 
 				//* Add var $database to be update in the database*//
 				$this->Tabel_dosen->update($database);
 				
 				//* Load configuration for physical foto file*//
-				$config['source_image'] 	= DIR_FOTO_DOSEN .$upload_data['file_name'];
+				$config['source_image'] 	= DIR_FOTO . "dsn/" .$upload_data['file_name'];
 				$config['maintain_ratio'] 	= TRUE;
 				$config['width']         	= 300;
 				$this->load->library('image_lib', $config);

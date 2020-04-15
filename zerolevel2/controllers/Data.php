@@ -16,7 +16,7 @@ class Data extends CI_Controller {
 		}
 
 		//* Load model, library, helper, etc *//
-		$this->load->model(array('Apicall','Tabel_dosen', 'Tabel_kmPrestasi', 'Tabel_kmDisiplin')); 
+		$this->load->model(array('Apicall','Tabel_dosen', 'Tabel_pegawai', 'Tabel_kmPrestasi', 'Tabel_kmDisiplin')); 
 
 		//* Initialize class variables. current-user identity. To be used throughout this class *//
 		$this->user = array(
@@ -77,6 +77,20 @@ class Data extends CI_Controller {
 
 		$this->load->view(THEME,$data);
 	}
+
+	public function pegawai() {
+
+		//* Initialize general variables for pageview properties *//
+		$data['pageTitle'] 	= "Data Pegawai";
+		$data['body_page'] 	= "body/pegawai/list";
+
+		//* Get data pegawai *//
+		$data['pegawai'] = $this->Tabel_pegawai->get();
+
+		//* formatting the data to be view properly at the pageview *//
+
+		$this->load->view(THEME,$data);
+	}	
 
 	public function prestasi_mahasiswa() {
 

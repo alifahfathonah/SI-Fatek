@@ -46,10 +46,19 @@ class Tabel_pegawai extends CI_Model {
 		return $this->db->affected_rows();
 	}
 
-	public function get_pegawai($select = FALSE, $condition = FALSE, $groupby = FALSE, $having = FALSE) {
+	public function check_login($username,$pass) {
+		$this->db->where(array('nip' => $username, 'password' => md5($pass)));
+		$query = $this->db->get('ft_pegawai');
+		$result = $query->row_array();
+		
+		return $result;
+	}
+
+	public function get_pegawai($select = FALSE, $condition = FALSE, $sort = FALSE, $groupby = FALSE, $having = FALSE) {
 
 		if ($select)	$this->db->select($select);
 		if ($condition)	$this->db->where($condition);
+		if ($sort) 		$this->db->order_by($sort);
 		if ($groupby) 	$this->db->group_by($groupby);
 		if ($having) 	$this->db->having($having);
 		

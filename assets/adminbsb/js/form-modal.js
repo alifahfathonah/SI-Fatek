@@ -191,7 +191,7 @@ $(function () {
         $('form [name="id"]').val('');
         $('form [name="jurusan"]').selectpicker("refresh");
         $('form [name="prodi"]').selectpicker("refresh");
-        $('form [name="showInPublic"]').selectpicker("refresh");
+        $('form [name="status"]').selectpicker("refresh");
 
         if (form == "formTambah") {
             $(this).find('form').attr('action', window.location.href + '/tambah');
@@ -238,6 +238,53 @@ $(function () {
         }
     });
 
+    // Modal form Kelola pegawai
+    $('#modalFormPegawai').on('show.bs.modal', function (event) {
+        
+        var button = $(event.relatedTarget);
+        var id = button.data('id');
+        var form = button.data('form');
+        $(this).find('form')[0].reset();
+        $('form').validate().resetForm();
+        $('form [name="id"]').val('');
+        $('form [name="status"]').selectpicker("refresh");
+        $('.pass-empty').text('');
+
+        if (form == "formTambah") {
+            $(this).find('form').attr('action', window.location.href + '/tambah');
+            $(this).find('.modal-title').text('Tambah Pegawai');
+            $('form [name="password"]').attr("required", true);
+        }
+
+        else if (form == "formEdit") {
+            $(this).find('form').attr('action', window.location.href + '/edit');
+            $(this).find('.modal-title').text('Edit Pegawai');
+            $('form [name="password"]').attr("required", false);
+            $(this).find('.pass-empty').text('Biarkan kosong, jika tidak ingin mengganti password');
+
+            $.ajax({
+                url : window.location.href + '/detail/' + id + '/json',
+                type: "GET",
+                dataType: "JSON",
+                success: function(data)
+                {
+                    $('form [name="id"]').val(data.idPegawai);
+                    $('form [name="nama"]').val(data.nama);
+                    $('form [name="tglLahir"]').val(data.tglLahir);
+                    $('form [name="nip"]').val(data.nip);
+                    $('form [name="alamat"]').val(data.alamat);
+                    $('form [name="email"]').val(data.email);
+                    $('form [name="hp"]').val(data.hp);
+                    $('form [name="status"]').selectpicker('val',data.status);
+                },
+                error: function (jqXHR, textStatus, errorThrown)
+                {
+                    alert('Error get data from ajax');
+                }
+            });
+        }
+    });    
+
     // Modal form Dokumen multipleuser
     $('#modalFormDocMultiUser').on('show.bs.modal', function (event) {
        //alert('tes');
@@ -250,7 +297,8 @@ $(function () {
         $('.doc-baru').text('');
         $('.doc-empty').text('');
         $('form [name="dsndoc"]').tagsinput('removeAll');
-        $('form [name="mhsdoc"]').tagsinput('removeAll'); 
+        $('form [name="mhsdoc"]').tagsinput('removeAll');
+        $('form [name="pegdoc"]').tagsinput('removeAll');
 
         if (form == "formTambah") {
             $(this).find('form').attr('action', window.location.href + '/tambah');
@@ -285,16 +333,14 @@ $(function () {
                     $('form [name="jenis"]').selectpicker('val',data.dokumenDocgroupId);
                     $('form [name="tahun"]').selectpicker('val',data.dokumenTahun);
 
-                    $.each(data.user, function(k,v) {
-                        $.each(v.detail, function(key, value) {
-                            if (value.tipe == 'p') {
-                                $('form [name="dsndoc"]').tagsinput('add', { "id": value.id , "nama": value.nama });
-                            } else if (value.tipe == 'm') {
-                                $('form [name="mhsdoc"]').tagsinput('add', { "id": value.id , "nama": value.nama });
-                            } else {
-                                $('form [name="pegdoc"]').tagsinput('add', { "id": value.id , "nama": value.nama })
-                            }
-                        });
+                    $.each(data.user, function(key,value) {
+                        if (value.detail.tipe == 'd') {
+                            $('form [name="dsndoc"]').tagsinput('add', { "id": value.detail.id , "nama": value.detail.nama });
+                        } else if (value.detail.tipe == 'm') {
+                            $('form [name="mhsdoc"]').tagsinput('add', { "id": value.detail.id , "nama": value.detail.nama });
+                        } else if (value.detail.tipe == 'p') {
+                            $('form [name="pegdoc"]').tagsinput('add', { "id": value.detail.id , "nama": value.detail.nama });
+                        }
                     });
                 },
                 error: function (jqXHR, textStatus, errorThrown)

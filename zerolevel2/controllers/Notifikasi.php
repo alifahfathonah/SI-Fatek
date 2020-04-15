@@ -25,12 +25,12 @@ class Notifikasi extends CI_Controller {
 
 		$id = $this->session->userdata['logged_in_portal']['desc'];
 
-		$data['notif']	= $this->Tabel_xNotifikasi->get("tipe, link, tglNotif, GROUP_CONCAT(idNotif SEPARATOR '-') as idNotif, CONCAT_WS(' ',COUNT('idNotif') , isiNotif) as isiNotif",array('toUser' => $id, 'unread' => '1'),'tglNotif DESC', 'isiNotif');
+		$data['notif']	= $this->Tabel_xNotifikasi->get("tipe, link, tglNotif, GROUP_CONCAT(idNotif SEPARATOR '-') as idNotif, CONCAT_WS(' ',COUNT('idNotif') , isiNotif) as isiNotif",array('toUser' => $id, 'unread' => '1'),'tglNotif ASC', 'isiNotif');
 		
 
 		if (isset($this->session->userdata['logged_in_portal']['auth'])) {
 			$unit 	= $this->session->userdata['logged_in_portal']['auth']['kodeGrup'];
-			$data2	= $this->Tabel_xNotifikasi->get("tipe, link, tglNotif, GROUP_CONCAT(idNotif SEPARATOR '-') as idNotif, CONCAT_WS(' ',COUNT('idNotif') , isiNotif) as isiNotif",array('toUser' => $unit, 'unread' => '1', 'isi'),'tglNotif DESC', 'isiNotif');
+			$data2	= $this->Tabel_xNotifikasi->get("tipe, link, tglNotif, GROUP_CONCAT(idNotif SEPARATOR '-') as idNotif, CONCAT_WS(' ',COUNT('idNotif') , isiNotif) as isiNotif",array('toUser' => $unit, 'unread' => '1', 'isi'),'tglNotif ASC', 'isiNotif');
 
 			foreach ($data2 as $key) array_push($data['notif'], $key);
 		}
